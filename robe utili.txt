@@ -1,0 +1,4 @@
+Per salvare le password:
+https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+Algoritmo Argon2
+Libreria JVM: https://github.com/phxql/argon2-jvm
