@@ -1,0 +1,14 @@
+target/
+.classpath
+.project
+.settings/
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+.DS_Store
+*.map
+/SistemaSanitario/src/main/webapp/css/main.css
