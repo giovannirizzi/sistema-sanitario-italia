@@ -2,3 +2,8 @@ Per salvare le password:
 https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 Algoritmo Argon2
 Libreria JVM: https://github.com/phxql/argon2-jvm
+
+Per DB: 
+sudo mysql -u admin -h sistemasanitariodb.c16q8irjv9nd.us-east-2.rds.amazonaws.com -p sistemasanitario
+
+Bootstrap Italia Doc: https://italia.github.io/bootstrap-italia/docs/come-iniziare/introduzione/
