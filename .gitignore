@@ -11,4 +11,4 @@ nbactions.xml
 nb-configuration.xml
 .DS_Store
 *.map
-/SistemaSanitario/src/main/webapp/css/style.css
+/SistemaSanitario/src/main/webapp/css/main.css
