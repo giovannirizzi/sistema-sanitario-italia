@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemasanitario.persistence;
+package sistemasanitario.servlets;
 
 import com.j256.ormlite.dao.CloseableWrappedIterable;
 import com.j256.ormlite.dao.Dao;
@@ -18,7 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sistemasanitario.persistence.entities.Test;
+import sistemasanitario.entities.Test;
 
 /**
  *
@@ -43,7 +43,7 @@ public class Example extends HttpServlet {
         
         try {
             
-            connectionSource = new JdbcConnectionSource(getServletContext().getInitParameter("dburl"),
+            connectionSource = new JdbcConnectionSource(getServletContext().getInitParameter("DBURL"),
                                     "webapp", "bufalo123"); //user e pass
             
             Dao<Test, Integer> testDao = DaoManager.createDao(connectionSource, Test.class);
