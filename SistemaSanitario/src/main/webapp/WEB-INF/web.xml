@@ -26,4 +26,8 @@
             30
         </session-timeout>
     </session-config>
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>sistemasanitario.listeners.WebAppContextListener</listener-class>
+    </listener>
 </web-app>

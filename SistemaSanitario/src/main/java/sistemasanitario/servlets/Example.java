@@ -9,6 +9,7 @@ import com.j256.ormlite.dao.CloseableWrappedIterable;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.PreparedQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -38,27 +39,16 @@ public class Example extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("<h1>Read test table</h1>");
-        
-        JdbcConnectionSource connectionSource = null;
-        
-        try {
-            
-            connectionSource = new JdbcConnectionSource(getServletContext().getInitParameter("DBURL"),
-                                    "webapp", "bufalo123"); //user e pass
-            
-            Dao<Test, Integer> testDao = DaoManager.createDao(connectionSource, Test.class);
-            try(CloseableWrappedIterable<Test> iterable = testDao.getWrappedIterable()) {
-                for(Test t : iterable){
-                   out.println("<h3>"+t.getId()+ " - "+t.getText()+"</h3><br>");
-                }
-            }
-        } 
-        finally{
-               
-            if (connectionSource != null)
-                connectionSource.close();
-        }
 
+        JdbcConnectionSource con = (JdbcConnectionSource)getServletContext()
+                .getAttribute("connectionSource");
+
+        Dao<Test, Integer> testDao = DaoManager.createDao(con, Test.class);
+        try(CloseableWrappedIterable<Test> iterable = testDao.getWrappedIterable()) {
+            for(Test t : iterable){
+               out.println("<h3>"+t.getId()+ " - "+t.getText()+"</h3><br>");
+            }
+        }
         out.println("</body>");
         out.println("</html>");
     }
