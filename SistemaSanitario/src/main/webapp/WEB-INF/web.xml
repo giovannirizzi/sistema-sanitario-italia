@@ -6,16 +6,40 @@
         <param-value>jdbc:mariadb://sistemasanitariodb.c16q8irjv9nd.us-east-2.rds.amazonaws.com/sistemasanitario</param-value>
     </context-param>
     <servlet>
-        <servlet-name>Example</servlet-name>
-        <servlet-class>sistemasanitario.servlets.Example</servlet-class>
+        <servlet-name>DAOTest</servlet-name>
+        <servlet-class>sistemasanitario.servlets.DAOTest</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PasswordTest</servlet-name>
         <servlet-class>sistemasanitario.servlets.PasswordTest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Index</servlet-name>
+         <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+         <jsp-file>/login.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>ResetPassword</servlet-name>
+         <jsp-file>/resetPassword.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>Example</servlet-name>
-        <url-pattern>/Example</url-pattern>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/</url-pattern>   
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>   
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPassword</servlet-name>
+        <url-pattern>/resetPassword</url-pattern>   
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DAOTest</servlet-name>
+        <url-pattern>/DAOTest</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PasswordTest</servlet-name>

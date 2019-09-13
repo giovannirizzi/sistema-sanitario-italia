@@ -9,9 +9,9 @@ import com.j256.ormlite.dao.CloseableWrappedIterable;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import com.j256.ormlite.stmt.PreparedQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.SecureRandom;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,13 +19,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sistemasanitario.entities.Test;
+import sistemasanitario.entities.*;
 
 /**
  *
  * @author Giovanni
  */
-public class Example extends HttpServlet {
+public class DAOTest extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException{
@@ -35,20 +35,35 @@ public class Example extends HttpServlet {
         out.println("<!DOCTYPE html>");
         out.println("<html>");
         out.println("<head>");
-        out.println("<title>Servlet Test</title>");            
+        out.println("<title>Test DAO</title>");            
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>Read test table</h1>");
+        out.println("<h1>TEST DAO</h1>");
 
         JdbcConnectionSource con = (JdbcConnectionSource)getServletContext()
                 .getAttribute("connectionSource");
-
-        Dao<Test, Integer> testDao = DaoManager.createDao(con, Test.class);
-        try(CloseableWrappedIterable<Test> iterable = testDao.getWrappedIterable()) {
-            for(Test t : iterable){
-               out.println("<h3>"+t.getId()+ " - "+t.getText()+"</h3><br>");
+        
+        Dao<User, Integer> usersDao = DaoManager.createDao(con, User.class);
+        try(CloseableWrappedIterable<User> iterable = usersDao.getWrappedIterable()) {
+            for(User u : iterable){
+               out.println("<h3>"+u.getId()+ " - "+u.getUsername()+"</h3><br>");
             }
         }
+        
+        Dao<ResetPasswordToken, Integer> tokensDao = DaoManager.createDao(con, ResetPasswordToken.class);
+        try(CloseableWrappedIterable<ResetPasswordToken> iterable = tokensDao.getWrappedIterable()) {
+            for(ResetPasswordToken r : iterable){
+               out.println("<h3>"+r.getUser().getId()+ " - "+r.getCreatedTime()+"</h3><br>");
+            }
+        }
+        
+        Dao<AuthToken, Integer> authDao = DaoManager.createDao(con, AuthToken.class);
+        try(CloseableWrappedIterable<AuthToken> iterable = authDao.getWrappedIterable()) {
+            for(AuthToken a : iterable){
+               out.println("<h3>"+a.getSelector()+ " - "+a.getValidator()+"</h3><br>");
+            }
+        }
+  
         out.println("</body>");
         out.println("</html>");
     }
@@ -68,7 +83,7 @@ public class Example extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Example.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -86,7 +101,7 @@ public class Example extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Example.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
