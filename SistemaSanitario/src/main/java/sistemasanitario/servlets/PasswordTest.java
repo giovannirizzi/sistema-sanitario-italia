@@ -7,17 +7,22 @@ package sistemasanitario.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sistemasanitario.utils.PasswordUtil;
 
+
 /**
  *
  * @author Giovanni
  */
 public class PasswordTest extends HttpServlet {
+    
+    private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,9 +38,11 @@ public class PasswordTest extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             
-            String password = "ciao123";
+            String password = "12345678";
             String hashOfPassword = "$argon2i$v=19$m=65536,t=10,p=1$wNNiYpreZds87Nv3EdcLdQ$41ZxHRwbbpy7HCPUBV4U1ute5Ei1TGke1sgACIZRI3w";
             String hash = PasswordUtil.hash(password.toCharArray());
+            
+            LOGGER.log(Level.INFO, "HASH of {0}: {1}", new String[]{password, hash}); 
             
             if(PasswordUtil.verify(hashOfPassword, password.toCharArray())){
                  out.println("<h1>Password corretta</h1>");

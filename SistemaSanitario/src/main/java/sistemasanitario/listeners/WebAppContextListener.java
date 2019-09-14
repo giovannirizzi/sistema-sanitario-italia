@@ -13,8 +13,15 @@ public class WebAppContextListener  implements ServletContextListener{
 
     private static final Logger LOGGER = Logger.getLogger(WebAppContextListener.class.getName());
     
+    
+    
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+
+        String path = WebAppContextListener.class.getClassLoader()
+                                  .getResource("logging.properties")
+                                  .getFile();
+        System.setProperty("java.util.logging.config.file", path);
 
         try {
             JdbcConnectionSource connectionSource = new JdbcConnectionSource(
