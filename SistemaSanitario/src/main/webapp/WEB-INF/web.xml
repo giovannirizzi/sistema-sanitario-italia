@@ -33,6 +33,25 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>sistemasanitario.servlets.LoginServlet</servlet-class>
     </servlet>
+    <filter>
+        <filter-name>TokenAuthFilter</filter-name>
+        <filter-class>sistemasanitario.filters.TokenAuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>TokenAuthFilter</filter-name>
+        <url-pattern>/myservices/*</url-pattern>
+        <url-pattern>/login</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+     <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>sistemasanitario.filters.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/myservices/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
     <servlet-mapping>
         <servlet-name>MainPage</servlet-name>
         <url-pattern>/myservices/*</url-pattern>
@@ -57,6 +76,7 @@
         <servlet-name>PasswordTest</servlet-name>
         <url-pattern>/PasswordTest</url-pattern>
     </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
@@ -68,6 +88,6 @@
     </listener>
     
     <welcome-file-list>
-        <welcome-file>index</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
