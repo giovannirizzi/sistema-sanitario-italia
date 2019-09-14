@@ -1,13 +1,7 @@
-<%-- 
-    Document   : index
-    Created on : 13 set 2019, 15:04:27
-    Author     : giovanni
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
   <title>Sistema Sanitario</title>
   <meta charset="utf-8">
@@ -43,9 +37,9 @@
                 </div>
                  <!-- ACCEDI AREA PERSONALE-->
                 <div class="it-right-zone">
-                  <!--
+                 
                       <div class="it-search-wrapper">
-                      <a href="#" class="btn btn-primary btn-icon">
+                      <a href="login" class="btn btn-primary btn-icon">
                         <span class="rounded-icon">
                           <svg class="icon icon-primary">
                             <use xlink:href="svg/sprite.svg#it-user"></use>
@@ -54,10 +48,9 @@
                         <span class="d-none d-lg-block" id="hide-cloned">Accedi all'area personale</span>
                       </a>
                         </div>
-                      -->
+                       <!--
                   <div class="it-search-wrapper">
                     <div class="nav-item dropdown">
-
                       <a href="#" class="btn btn-primary btn-icon rounded" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true">
                         <span class="rounded-icon">
@@ -86,6 +79,8 @@
                       </div>
                     </div>
                   </div>
+                        -->
+                      
                 </div>
               </div>
             </div>
