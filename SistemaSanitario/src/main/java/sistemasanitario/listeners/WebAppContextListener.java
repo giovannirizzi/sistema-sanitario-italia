@@ -1,13 +1,13 @@
 package sistemasanitario.listeners;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
 
 public class WebAppContextListener  implements ServletContextListener{
 
@@ -26,7 +26,7 @@ public class WebAppContextListener  implements ServletContextListener{
         try {
             JdbcConnectionSource connectionSource = new JdbcConnectionSource(
                     sce.getServletContext().getInitParameter("DBURL"),
-                                    "webapp", "bufalo123"); //user e pass
+                     "webapp", "bufalo123");  
             
             sce.getServletContext().setAttribute("connectionSource", connectionSource);
             

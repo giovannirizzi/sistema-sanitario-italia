@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : 13 set 2019, 15:04:27
+    Author     : giovanni
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="it">
 

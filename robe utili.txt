@@ -6,6 +6,9 @@ Libreria JVM: https://github.com/phxql/argon2-jvm
 Per DB: 
 sudo mysql -u admin -h sistemasanitariodb.c16q8irjv9nd.us-east-2.rds.amazonaws.com -p sistemasanitario
 
+Dump DB:
+mysqldump -u admin -h sistemasanitariodb.c16q8irjv9nd.us-east-2.rds.amazonaws.com -p sistemasanitario > databaseDump.txt
+
 Bootstrap Italia Doc: https://italia.github.io/bootstrap-italia/docs/come-iniziare/introduzione/
 
 Remember me: https://paragonie.com/blog/2015/04/secure-authentication-php-with-long-term-persistence#title.2
