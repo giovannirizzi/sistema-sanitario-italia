@@ -12,6 +12,7 @@
         <form method="POST" action="./login">
             Username: <input type="text" name="username">
             Password: <input type="password" name="password">
+            Remember me: <input type="checkbox" name="rememberme">
             <input type="submit"> 
             
             <c:if test="${not empty errorMessage}">

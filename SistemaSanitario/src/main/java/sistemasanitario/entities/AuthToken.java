@@ -11,12 +11,12 @@ public class AuthToken {
     private int id;
     
     @DatabaseField(columnName="userId", foreign = true)
-    private User user;
+    public User user;
 
     @DatabaseField
-    private String validator;
+    public String validator;
     @DatabaseField
-    private String selector;
+    public String selector;
     
     @DatabaseField
     private Date created;

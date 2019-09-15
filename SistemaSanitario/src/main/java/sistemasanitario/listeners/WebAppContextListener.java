@@ -1,5 +1,7 @@
 package sistemasanitario.listeners;
 
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 
 import java.io.IOException;
@@ -8,6 +10,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import sistemasanitario.entities.AuthToken;
+import sistemasanitario.entities.ResetPasswordToken;
+import sistemasanitario.entities.User;
 
 public class WebAppContextListener  implements ServletContextListener{
 
@@ -24,15 +29,24 @@ public class WebAppContextListener  implements ServletContextListener{
         System.setProperty("java.util.logging.config.file", path);
 
         try {
-            JdbcConnectionSource connectionSource = new JdbcConnectionSource(
+            JdbcConnectionSource con = new JdbcConnectionSource(
                     sce.getServletContext().getInitParameter("DBURL"),
                      "webapp", "bufalo123");  
             
-            sce.getServletContext().setAttribute("connectionSource", connectionSource);
+            sce.getServletContext().setAttribute("connectionSource", con);
+            
+            //Init DAO clesses
+            Dao<AuthToken, Integer> tokensDao = DaoManager.createDao(con, AuthToken.class);
+            sce.getServletContext().setAttribute("AuthTokensDao", tokensDao);
+            
+            Dao<User, Integer> usersDao = DaoManager.createDao(con, User.class);
+            sce.getServletContext().setAttribute("UsersDao", usersDao);
+            
             
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
         }  
+  
     }
 
     @Override
