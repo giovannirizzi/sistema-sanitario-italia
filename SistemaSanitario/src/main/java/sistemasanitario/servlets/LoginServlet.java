@@ -24,7 +24,7 @@ import sistemasanitario.utils.PasswordUtil;
 public class LoginServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
-    private static final int REMEMBERME_COOKIE_AGE = 60*60;
+    private static final int REMEMBERME_COOKIE_AGE = 60;
     
     private Dao<AuthToken, Integer> authTokensDao;
     private Dao<User, Integer> usersDao;
@@ -77,6 +77,10 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        if(isAlreadyLogged(request)){
+            redirectToServices(response); 
+        }
+        
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         boolean rememberMe = request.getParameter("rememberme") != null;
@@ -107,7 +111,7 @@ public class LoginServlet extends HttpServlet {
         }
 
         if (user != null) { //credenziali verificate
-            
+
             if(rememberMe){
 
                 AuthToken token = AuthTokenUtil.getRandomToken();
@@ -117,13 +121,12 @@ public class LoginServlet extends HttpServlet {
                 userCookie.setMaxAge(REMEMBERME_COOKIE_AGE);
                 response.addCookie(userCookie);
                 
-                saveAuthToken(user, token);   
-            } 
-            
-        } else { //login failed
-            
+                saveAuthToken(user, token);     
+            }
             request.getSession().setAttribute("user", user);
             redirectToServices(response);
+            
+        } else { //login failed
             
             request.setAttribute("errorMessage", "Invalid user or password");
 
@@ -137,10 +140,8 @@ public class LoginServlet extends HttpServlet {
     
     private void saveAuthToken(User user, AuthToken token){
         
-        token.validator = AuthTokenUtil.getHashSHA256(token.validator);
-            
-        try {
-           
+        token.validator = AuthTokenUtil.getHashSHA256(token.validator); 
+        try { 
             token.user = user;
             authTokensDao.create(token);
         } 

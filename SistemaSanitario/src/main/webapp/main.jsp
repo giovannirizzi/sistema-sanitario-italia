@@ -1,5 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +8,9 @@
         <title>Main JSP Page</title>
     </head>
     <body>
-        <h1>Main page logged user</h1>
+        
+        <c:if test="${sessionScope.user != null}">
+            <h1>Welcome <c:out value="${sessionScope.user.username}"/></h1>
+        </c:if>
     </body>
 </html>

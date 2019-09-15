@@ -62,9 +62,9 @@ public class AuthTokenUtil {
         return null;
     } 
     
-    public static boolean verify(String hash, String token) {
+    public static boolean verify(String hash, String validator) {
         
-        String hashedToken = getHashSHA256(token);
+        String hashedToken = getHashSHA256(validator);
         return hash.equals(hashedToken);
     }
 }
