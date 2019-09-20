@@ -18,13 +18,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sistemasanitario.entities.AuthToken;
 import sistemasanitario.entities.User;
-import sistemasanitario.utils.AuthTokenUtil;
+import sistemasanitario.filters.TokenAuthFilter;
+import sistemasanitario.utils.TokenUtil;
 import sistemasanitario.utils.PasswordUtil;
 
 public class LoginServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
-    private static final int REMEMBERME_COOKIE_AGE = 60;
+    private static final int REMEMBERME_COOKIE_AGE = 60*60*24*7; //7 giorni
     
     private Dao<AuthToken, Integer> authTokensDao;
     private Dao<User, Integer> usersDao;
@@ -79,6 +80,7 @@ public class LoginServlet extends HttpServlet {
         
         if(isAlreadyLogged(request)){
             redirectToServices(response); 
+            return;
         }
         
         String username = request.getParameter("username");
@@ -87,39 +89,41 @@ public class LoginServlet extends HttpServlet {
 
         User user = null;
         
-        //QUERY PER VERIFICARE LE CREDENZIALI
-        
-        QueryBuilder<User, Integer> queryBuilder = usersDao.queryBuilder();
-        
-        PreparedQuery<User> getUserByUsernameQuery;
-        try {
-            
-            getUserByUsernameQuery = queryBuilder.where().eq("username", username).prepare();
-            List<User> users = usersDao.query(getUserByUsernameQuery);
-            
-            if(users.size() > 0){
+        if(username != null && username.length()>0 && password != null && password.length() > 0){
+            QueryBuilder<User, Integer> queryBuilder = usersDao.queryBuilder();
 
-                User tmpUser = users.get(0);
-                
-                //Verifica password
-                if(PasswordUtil.verify(tmpUser.getPassword(), password.toCharArray()))
-                   user = tmpUser;
+            PreparedQuery<User> getUserByUsernameQuery;
+            try {
+
+                getUserByUsernameQuery = queryBuilder.where().eq("username", username).prepare();
+                List<User> users = usersDao.query(getUserByUsernameQuery);
+
+                if(users.size() > 0){
+
+                    User tmpUser = users.get(0);
+
+                    //Verifica password
+                    if(PasswordUtil.verify(tmpUser.getPassword(), password.toCharArray()))
+                       user = tmpUser;
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         if (user != null) { //credenziali verificate
 
             if(rememberMe){
 
-                AuthToken token = AuthTokenUtil.getRandomToken();
+                AuthToken token = TokenUtil.getRandomAuthToken();
                 
-                Cookie userCookie = new Cookie("rememberme", 
+                Cookie rememberCookie = new Cookie(TokenAuthFilter.REMEMBER_COOKIE_NAME, 
                         token.selector+token.validator);
-                userCookie.setMaxAge(REMEMBERME_COOKIE_AGE);
-                response.addCookie(userCookie);
+                rememberCookie.setMaxAge(REMEMBERME_COOKIE_AGE);
+                rememberCookie.setHttpOnly(true);
+                rememberCookie.setPath("/");
+                response.addCookie(rememberCookie);
                 
                 saveAuthToken(user, token);     
             }
@@ -140,7 +144,7 @@ public class LoginServlet extends HttpServlet {
     
     private void saveAuthToken(User user, AuthToken token){
         
-        token.validator = AuthTokenUtil.getHashSHA256(token.validator); 
+        token.validator = TokenUtil.getHashSHA256(token.validator); 
         try { 
             token.user = user;
             authTokensDao.create(token);

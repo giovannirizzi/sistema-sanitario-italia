@@ -10,6 +10,10 @@
         <servlet-class>sistemasanitario.servlets.DAOTest</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>sistemasanitario.servlets.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PasswordTest</servlet-name>
         <servlet-class>sistemasanitario.servlets.PasswordTest</servlet-class>
     </servlet>
@@ -27,7 +31,7 @@
     </servlet>
     <servlet>
         <servlet-name>ResetPassword</servlet-name>
-        <jsp-file>/resetPassword.jsp</jsp-file>
+         <servlet-class>sistemasanitario.servlets.ResetPasswordServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/myservices/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ResetPassword</servlet-name>

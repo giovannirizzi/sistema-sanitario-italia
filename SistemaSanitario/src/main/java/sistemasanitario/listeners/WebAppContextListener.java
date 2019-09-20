@@ -42,6 +42,9 @@ public class WebAppContextListener  implements ServletContextListener{
             Dao<User, Integer> usersDao = DaoManager.createDao(con, User.class);
             sce.getServletContext().setAttribute("UsersDao", usersDao);
             
+            Dao<ResetPasswordToken, Integer> resetTokenDao = DaoManager.createDao(con, ResetPasswordToken.class);
+            sce.getServletContext().setAttribute("resetTokenDao", resetTokenDao);
+            
             
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
