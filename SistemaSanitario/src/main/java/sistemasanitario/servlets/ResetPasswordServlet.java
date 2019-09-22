@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -20,16 +22,25 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sistemasanitario.entities.AuthToken;
+import org.passay.CharacterCharacteristicsRule;
+import org.passay.CharacterData;
+import org.passay.CharacterRule;
+import org.passay.EnglishCharacterData;
+import org.passay.LengthRule;
+import org.passay.PasswordData;
+import org.passay.PasswordValidator;
+import org.passay.Rule;
+import org.passay.RuleResult;
+import org.passay.WhitespaceRule;
 import sistemasanitario.entities.ResetPasswordToken;
 import sistemasanitario.entities.User;
 import sistemasanitario.utils.PasswordUtil;
-import sistemasanitario.utils.TokenUtil;
 
 public class ResetPasswordServlet extends HttpServlet{
 
     private Dao<ResetPasswordToken, Integer> resetTokenDao;
     private Dao<User, Integer> usersDao;
+    private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
 
     @Override
     public void init() throws ServletException {
@@ -46,6 +57,16 @@ public class ResetPasswordServlet extends HttpServlet{
         
         QueryBuilder<ResetPasswordToken, Integer> queryBuilder = resetTokenDao.queryBuilder();
         PreparedQuery<ResetPasswordToken> getTokenQuery;
+        
+        RuleResult passwordValResult = PasswordUtil.validatePassword(password);
+
+        if(!passwordValResult.isValid()){
+            resp.sendError(404);
+            LOGGER.log(Level.INFO, passwordValResult.getDetails().toString());
+            req.setAttribute("error", passwordValResult.getDetails().toString());
+            forwardToJSPPage(req, resp); 
+            return;
+        }
 
         try{
             getTokenQuery = queryBuilder.where().eq("token", token).prepare();
@@ -109,12 +130,6 @@ public class ResetPasswordServlet extends HttpServlet{
         catch(IllegalArgumentException ex){
             return false;
         }
-        return true;
-    }
-    
-    private boolean isValidPassword(String password){
-        
-        //Password policy
         return true;
     }
     

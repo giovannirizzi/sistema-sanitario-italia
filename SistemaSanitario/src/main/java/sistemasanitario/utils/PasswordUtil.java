@@ -3,11 +3,18 @@ package sistemasanitario.utils;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import org.passay.CharacterRule;
+import org.passay.EnglishCharacterData;
+import org.passay.LengthRule;
+import org.passay.PasswordData;
+import org.passay.PasswordValidator;
+import org.passay.RuleResult;
 
 public final class PasswordUtil {
     
     private static Argon2 argon2Hasher = null;
-    
+    private static PasswordValidator passwordValidator; 
     private static final int ITERATIONS = 10;
     
     /**
@@ -72,5 +79,20 @@ public final class PasswordUtil {
             return Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2i);
         else
             return argon2Hasher;
+    }
+    
+    public static RuleResult validatePassword(String password){
+         
+        if(passwordValidator == null){
+            passwordValidator = new PasswordValidator(
+                Arrays.asList(
+                    new LengthRule(8, 255),
+                    new CharacterRule(EnglishCharacterData.LowerCase, 1),
+                    new CharacterRule(EnglishCharacterData.UpperCase, 1),
+                    new CharacterRule(EnglishCharacterData.Digit, 1),
+                    new CharacterRule(EnglishCharacterData.Special, 1))
+                );
+        }
+        return passwordValidator.validate(new PasswordData(password));
     }
 }
