@@ -1,5 +1,5 @@
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -12,5 +12,7 @@
         <c:if test="${sessionScope.user != null}">
             <h1>Welcome <c:out value="${sessionScope.user.username}"/></h1>
         </c:if>
+            
+        <a href="./logout">Logout</a>    
     </body>
 </html>

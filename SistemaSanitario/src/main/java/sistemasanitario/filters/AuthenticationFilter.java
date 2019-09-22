@@ -32,7 +32,6 @@ public class AuthenticationFilter implements Filter{
         if (!contextPath.endsWith("/")) contextPath += "/";
         
         response.sendRedirect(response.encodeRedirectURL(contextPath + "login"));
-        LOGGER.log(Level.INFO, "Redirect to My Services"); 
     }
 
     @Override
@@ -42,12 +41,11 @@ public class AuthenticationFilter implements Filter{
             ServletContext servletContext = ((HttpServletRequest) request).getServletContext();
             HttpSession session = ((HttpServletRequest) request).getSession(false);
 
-            if(session == null || session.getAttribute("user") == null){
+            if(session == null || (session != null && session.getAttribute("user") == null)){
                 redirectToLoginPage((HttpServletRequest)request,
                         (HttpServletResponse)response);
-            }
-
-            LOGGER.log(Level.INFO, "Authentication filter before doFilter");   
+                return;
+            }  
         }
         chain.doFilter(request, response);
     }

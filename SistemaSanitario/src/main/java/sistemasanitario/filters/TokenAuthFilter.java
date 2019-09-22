@@ -5,7 +5,11 @@ import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.Filter;
@@ -21,11 +25,14 @@ import javax.servlet.http.HttpSession;
 import sistemasanitario.entities.AuthToken;
 import sistemasanitario.entities.User;
 import sistemasanitario.servlets.PasswordTest;
-import sistemasanitario.utils.AuthTokenUtil;
+import sistemasanitario.utils.TokenUtil;
 
 public class TokenAuthFilter implements Filter{
 
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
+    
+    private static final int MAX_DAYS_REMEMBER_ME = 7;
+    public static final String REMEMBER_COOKIE_NAME = "rememberme";
     
     private Dao<AuthToken, Integer> authTokensDao;
     private Dao<User, Integer> usersDao;
@@ -44,8 +51,8 @@ public class TokenAuthFilter implements Filter{
         if(request instanceof HttpServletRequest){
             
             HttpSession session = ((HttpServletRequest) request).getSession(false);
-            
-            if(session == null || session.getAttribute("user") == null)
+
+            if(session == null ||( session != null && session.getAttribute("user") == null))
                 authUserWithTokenIfPossible((HttpServletRequest)request,(HttpServletResponse)response);  
         }
         
@@ -59,7 +66,7 @@ public class TokenAuthFilter implements Filter{
         String rememberMeToken = null;
         if(cookies != null) {
             for (Cookie cookie : cookies) {
-                if(cookie.getName().equals("rememberme")){
+                if(cookie.getName().equals(REMEMBER_COOKIE_NAME)){
                     rememberMeToken = cookie.getValue();
                     break;
                 } 
@@ -67,8 +74,8 @@ public class TokenAuthFilter implements Filter{
         }
         if(rememberMeToken != null && rememberMeToken.length() > 0){
 
-            String selector = rememberMeToken.substring(0, 16);
-            String validator = rememberMeToken.substring(16);
+            String selector = rememberMeToken.substring(0, 36);
+            String validator = rememberMeToken.substring(36);
 
             QueryBuilder<AuthToken, Integer> queryBuilder = authTokensDao.queryBuilder();
             PreparedQuery<AuthToken> getTokenBySelectorQuery;
@@ -79,20 +86,31 @@ public class TokenAuthFilter implements Filter{
 
                 boolean authenticated = false;
 
-                if(tokens.size() > 0){
+                if(tokens.size() > 0){ 
 
-                    if(AuthTokenUtil.verify(tokens.get(0).getValidator(), validator)){
+                    Timestamp now = Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
+                  
+                    long elapsedDaysSinceCreation = TimeUnit.DAYS.convert(now.getTime() - 
+                            tokens.get(0).getCreatedTime().getTime()
+                            , TimeUnit.MILLISECONDS);
+                    
+                    LOGGER.log(Level.INFO, "ELAPSED DAYS SINCE CREATION OF AUTH TOKEN: {0}", elapsedDaysSinceCreation);
+                    
+                    if(elapsedDaysSinceCreation < MAX_DAYS_REMEMBER_ME
+                            && TokenUtil.verify(tokens.get(0).getValidator(), validator)){
 
                         LOGGER.log(Level.INFO, "User authenticated with token");
                         usersDao.refresh(tokens.get(0).user);
                         ((HttpServletRequest)request).getSession().setAttribute("user", tokens.get(0).user);    
+                    }
+                    else{
+                        authTokensDao.delete(tokens.get(0));
                     }
                 }
 
             } catch (SQLException ex) {
                 Logger.getLogger(TokenAuthFilter.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
     }
 
