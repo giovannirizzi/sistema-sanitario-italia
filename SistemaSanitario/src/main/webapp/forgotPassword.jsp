@@ -44,7 +44,7 @@
        </div>
     </div>
         <div class="container border" style="max-width: 400px;">
-        <form action="ForgotPasswordServlet">    
+        <form action="./ForgotPasswordServlet" method="POST">    
              <div class="form-row">
                  <div class="form-group col text-center">
                     <p><h3>Password dimenticata?</h3></p>
@@ -56,13 +56,13 @@
                     <input type="email" class="form-control" name="email" placeholder="inserisci email">
                     <label for="email" class="active" style="transition: none 0s ease 0s; width: auto;">Email</label>
                 </div>
-            </div>  
-            </form>
+            </div> 
             <div class="form-row">
                 <div class="form-group col-12 text-center">
                         <button type="submit" class="btn btn-primary">Conferma</button>
                 </div>
             </div>
+            </form>
         </div>
          <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/bootstrap-italia.bundle.min.js"></script>

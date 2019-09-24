@@ -1,4 +1,3 @@
-
 package sistemasanitario.utils;
 
 import java.security.MessageDigest;
@@ -9,6 +8,7 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sistemasanitario.entities.AuthToken;
+import sistemasanitario.entities.ResetPasswordToken;
 
 public class TokenUtil {
 
@@ -32,9 +32,22 @@ public class TokenUtil {
         
         AuthToken token = new AuthToken();
         token.selector = UUID.randomUUID().toString();
-        token.validator = Base64.getEncoder().encodeToString(vBytes);
+        token.validator = Base64.getUrlEncoder().encodeToString(vBytes);
         
         return token; 
+    }
+    
+    public static ResetPasswordToken getRandomResetPasswordToken(){
+        
+        ResetPasswordToken token = new ResetPasswordToken();
+        UUID uuid = UUID.randomUUID();
+        
+        byte[] vBytes = generateRandomByte(8);
+        String randomData = Base64.getUrlEncoder().encodeToString(vBytes);
+        String stringToken = Base64.getUrlEncoder().encodeToString(uuid.toString().getBytes());
+        
+        token.token = stringToken+randomData;
+        return token;
     }
     
     public static byte[] generateRandomByte(int length){
@@ -52,8 +65,8 @@ public class TokenUtil {
         try {
             
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(Base64.getDecoder().decode(base64Data));
-            return Base64.getEncoder().encodeToString(hash);
+            byte[] hash = digest.digest(Base64.getUrlDecoder().decode(base64Data));
+            return Base64.getUrlEncoder().encodeToString(hash);
             
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(TokenUtil.class.getName()).log(Level.SEVERE, null, ex);

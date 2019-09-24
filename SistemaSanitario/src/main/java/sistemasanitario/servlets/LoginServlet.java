@@ -25,7 +25,7 @@ import sistemasanitario.utils.PasswordUtil;
 public class LoginServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
-    private static final int REMEMBERME_COOKIE_AGE = 60*60*24*7; //7 giorni
+    private static final int REMEMBERME_COOKIE_AGE = 60*60*24*14; //14 giorni
     
     private Dao<AuthToken, Integer> authTokensDao;
     private Dao<User, Integer> usersDao;
@@ -53,7 +53,6 @@ public class LoginServlet extends HttpServlet {
         if (!contextPath.endsWith("/")) contextPath += "/";
         
         response.sendRedirect(response.encodeRedirectURL(contextPath + "myservices/"));
-        LOGGER.log(Level.INFO, "Redirect to My Services"); 
     }
     
     @Override
@@ -65,8 +64,6 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().
             getRequestDispatcher("/WEB-INF/login.jsp");
             dispatcher.forward(request, response);
-            
-            LOGGER.log(Level.INFO, "Forward to {0}", "login.jsp");
         }
         else{
             
@@ -132,12 +129,11 @@ public class LoginServlet extends HttpServlet {
             
         } else { //login failed
             
-            request.setAttribute("errorMessage", "Invalid user or password");
+            request.setAttribute("error", true);
 
             RequestDispatcher dispatcher = getServletContext().
                     getRequestDispatcher("/WEB-INF/login.jsp");
             
-               
             dispatcher.forward(request, response);
         }
     }

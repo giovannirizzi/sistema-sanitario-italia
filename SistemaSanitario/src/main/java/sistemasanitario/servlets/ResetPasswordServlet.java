@@ -35,6 +35,7 @@ import org.passay.WhitespaceRule;
 import sistemasanitario.entities.ResetPasswordToken;
 import sistemasanitario.entities.User;
 import sistemasanitario.utils.PasswordUtil;
+import sistemasanitario.utils.TokenUtil;
 
 public class ResetPasswordServlet extends HttpServlet{
 
@@ -69,6 +70,7 @@ public class ResetPasswordServlet extends HttpServlet{
         }
 
         try{
+            token = TokenUtil.getHashSHA256(token);
             getTokenQuery = queryBuilder.where().eq("token", token).prepare();
             List<ResetPasswordToken> tokens = resetTokenDao.query(getTokenQuery);           
             

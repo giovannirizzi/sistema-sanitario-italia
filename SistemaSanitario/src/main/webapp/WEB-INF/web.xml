@@ -25,13 +25,13 @@
         <servlet-name>LoginPage</servlet-name>
         <jsp-file>/login.jsp</jsp-file>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>MainPage</servlet-name>
         <jsp-file>/main.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>ResetPassword</servlet-name>
-         <servlet-class>sistemasanitario.servlets.ResetPasswordServlet</servlet-class>
+        <servlet-class>sistemasanitario.servlets.ResetPasswordServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
@@ -47,7 +47,7 @@
         <url-pattern>/login</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
-     <filter>
+    <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>sistemasanitario.filters.AuthenticationFilter</filter-class>
     </filter>
@@ -56,6 +56,10 @@
         <url-pattern>/myservices/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
+    <servlet>
+        <servlet-name>ForgotPasswordServlet</servlet-name>
+        <servlet-class>sistemasanitario.servlets.ForgotPasswordServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainPage</servlet-name>
         <url-pattern>/myservices/*</url-pattern>
@@ -84,7 +88,10 @@
         <servlet-name>PasswordTest</servlet-name>
         <url-pattern>/PasswordTest</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>ForgotPasswordServlet</servlet-name>
+        <url-pattern>/ForgotPasswordServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -94,7 +101,6 @@
         <description>ServletContextListener</description>
         <listener-class>sistemasanitario.listeners.WebAppContextListener</listener-class>
     </listener>
-    
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

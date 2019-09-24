@@ -39,7 +39,7 @@
        </div>
     </div>
         <div class="container border" style="max-width: 400px;">
-            <form action="LoginServlet" method="POST">
+            <form action="./login" method="POST">
              <div class="form-row">
                  <div class="form-group col text-center">
                     <p><h1> Please Login </h1></p>

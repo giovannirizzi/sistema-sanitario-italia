@@ -11,10 +11,10 @@ public class ResetPasswordToken {
     private int id;
     
     @DatabaseField(columnName="userId", foreign = true)
-    private User user;
+    public User user;
 
     @DatabaseField
-    private String token;
+    public String token;
     
     @DatabaseField
     private Date created;
