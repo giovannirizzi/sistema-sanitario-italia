@@ -49,12 +49,14 @@
                                             <div class="group col text-center">
                                                 <p><h2>Accedi al servizio</h2></p>
                                             </div>
-                                        </div>
-                                        <div class="row justify-content-center" style="margin-bottom: 5%">
-                                                <div class="alert alert-danger" role="alert">
-                                                    Credenziali <b>errate</b>.
-                                                </div>
-                                        </div>
+                                        </div>       
+                                    <div class="row justify-content-center" style="margin-bottom: 10%">
+                                        <c:if test="${not empty error}">  
+                                            <div class="alert alert-danger" role="alert">
+                                                Credenziali <b>errate</b>.
+                                            </div>
+                                        </c:if>
+                                    </div>
                                     <form action="./login" method="POST">
                                         <div class="form-row">
                                             <div class="form-group col text-center">
