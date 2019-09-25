@@ -43,41 +43,50 @@
         </div>
        </div>
     </div>
-        <div class="container border" style="max-width: 400px;">
-        <form action="LoginServlet">    
-             <div class="form-row">
-                 <div class="form-group col text-center">
-                    <p><h3>Ripristina password</h3></p>
-                 </div>
-             </div>
-            <div class="form-row">
-                <div class="form-group col text-center">
-                    <input type="password" class="form-control input-password" name="password" placeholder="inserisci nuova password">
-                    <span class="password-icon" aria-hidden="true">
-                      <svg class="password-icon-visible icon icon-sm"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-password-visible"></use></svg>
-                      <svg class="password-icon-invisible icon icon-sm d-none"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-password-invisible"></use></svg>
-                    </span>
-                    <label for="password" class="active" style="transition: none 0s ease 0s; width: auto;">Nuova password</label>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col text-center">
-                    <input type="password" class="form-control input-password" name="confirm" placeholder="conferma nuova password">
-                    <span class="password-icon" aria-hidden="true">
-                      <svg class="password-icon-visible icon icon-sm"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-password-visible"></use></svg>
-                      <svg class="password-icon-invisible icon icon-sm d-none"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-password-invisible"></use></svg>
-                    </span>
-                    <label for="confirm" class="active" style="transition: none 0s ease 0s; width: auto;">Conferma password</label>
-                </div>
-            </div>
-            </form>
-            <div class="form-row">
-                <div class="form-group col-12 text-center">
-                        <button type="submit" class="btn btn-primary">Conferma</button>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-lg-6">
+                    <div class="card-wrapper">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container rounded" style="border:3px solid lightgray;">
+                                    <div class="row">
+                                            <div class="group col text-center">
+                                                <p><h2>Ripristina password</h2></p>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center" style="margin-bottom: 5%">
+                                                <div class="alert alert-danger" role="alert">
+                                                    Le password inserite non <b>coincidono</b>.
+                                                </div>
+                                        </div>
+                                    <form action="./reset" method="POST">  
+                                        <div class="form-row">
+                                            <div class="form-group col text-center">
+                                                <input type="password" class="form-control input-password" name="newpassword" placeholder="inserisci nuova password">
+                                                <label for="newpassword" class="active" style="transition: none 0s ease 0s; width: auto;">Nuova password</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col text-center">
+                                                <input type="password" class="form-control input-password" name="confirm" placeholder="ripeti password">
+                                                <label for="confirm" class="active" style="transition: none 0s ease 0s; width: auto;">Conferma</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-12 text-center">
+                                                    <button type="submit" class="btn btn-primary">Conferma</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-         <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/bootstrap-italia.bundle.min.js"></script>
     </body>
 </html>
