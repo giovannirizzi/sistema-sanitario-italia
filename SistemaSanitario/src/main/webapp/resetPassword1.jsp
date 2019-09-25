@@ -21,28 +21,34 @@
     </head>
     <body>
         <!-- HEADER -->
-        <div class="it-header-wrapper it-header-sticky">
-      <div class="it-nav-wrapper">
-        <!-- HEADER CENTER -->
-        <div class="it-header-center-wrapper">
-          <div class="container mw-75">
-            <div class="row">
-              <div class="col-6">
-                <div class="it-header-center-content-wrapper">
-                  <div class="it-brand-wrapper">
-                    <a href="#">
-                      <svg class="icon">
-                        <use xlink:href="svg/sprite.svg#it-code-circle"></use>
-                      </svg>
-                    </a>
+        <div class="it-header-slim-wrapper">
+            <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="it-header-slim-wrapper-content d-flex justify-content-start">
+                        <div class="it-brand-wrapper mr-2 d-none d-lg-block">
+                            <a href="./index">
+                                <div class="it-brand-text">
+                                  <h3 class="no_toc">Sistema Sanitario</h3>
+                                </div>
+                            </a>
+                        </div> 
+                        <a href="./index" class="go-back mr-5 d-none d-lg-block"><svg class="icon icon-sm icon-white mr-2"><use xlink:href="./svg/sprite.svg#it-arrow-left"></use></svg>Annulla accesso</a>
+                            <a href="#" class="go-back"><svg class="icon icon-sm icon-white d-lg-none"><use xlink:href="./svg/sprite.svg#it-arrow-left"></use></svg></a>
+                            <div class="it-brand-wrapper mr-2  d-lg-none d-flex  justify-content-center">
+                            <a href="./index">
+                                <div class="it-brand-text">
+                                  <h3 class="no_toc">Sistema Sanitario</h3>
+                                </div>
+                            </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-       </div>
-    </div>
+  </div>
+        </div>
         <div class="container">
             <div class="row justify-content-md-center">
                 <div class="col-12 col-lg-6">

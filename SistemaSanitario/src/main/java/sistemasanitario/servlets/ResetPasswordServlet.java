@@ -60,9 +60,11 @@ public class ResetPasswordServlet extends HttpServlet{
         PreparedQuery<ResetPasswordToken> getTokenQuery;
         
         RuleResult passwordValResult = PasswordUtil.validatePassword(password);
+        
+        if(!TokenUtil.isValidResetToken(token)) return;
 
         if(!passwordValResult.isValid()){
-            resp.sendError(404);
+            
             LOGGER.log(Level.INFO, passwordValResult.getDetails().toString());
             req.setAttribute("error", passwordValResult.getDetails().toString());
             forwardToJSPPage(req, resp); 
@@ -96,7 +98,7 @@ public class ResetPasswordServlet extends HttpServlet{
                     
                     //Rimuovo il token utilizzato
                     resetTokenDao.delete(tokens.get(0));
-                    
+        
                     //Stampa password modificata correttamente.
                     req.setAttribute("success", true);
                     forwardToJSPPage(req, resp);
@@ -121,20 +123,6 @@ public class ResetPasswordServlet extends HttpServlet{
         dispatcher.forward(req, resp);  
     }
     
-    private boolean isValidToken(String token){
-        
-        if(token == null || token.length() != 36)
-            return false;
-        
-        try{ 
-            UUID tokenUUID = UUID.fromString(token);
-        }
-        catch(IllegalArgumentException ex){
-            return false;
-        }
-        return true;
-    }
-    
     private void forwardToErrorPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         
         RequestDispatcher dispatcher = getServletContext().
@@ -147,7 +135,7 @@ public class ResetPasswordServlet extends HttpServlet{
         
         String token = req.getParameter("token");
         
-        if(isValidToken(token)){
+        if(TokenUtil.isValidResetToken(token)){
             
             req.setAttribute("token", token);
             forwardToJSPPage(req, resp);    

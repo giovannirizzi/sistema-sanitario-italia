@@ -14,7 +14,7 @@ public class TokenUtil {
 
     public static final int SELECTOR_LENGTH = 36; //la lunghezza dell'UUID
     public static final int VALIDATOR_LENGTH = 32;
-    
+
     private static  SecureRandom srandom = null;
     
     private static SecureRandom getSecureRandomInstance(){
@@ -35,6 +35,23 @@ public class TokenUtil {
         token.validator = Base64.getUrlEncoder().encodeToString(vBytes);
         
         return token; 
+    }
+    
+    public static boolean isValidResetToken (String base64token){
+        
+        if(base64token == null ) return false;
+        
+        try{ 
+            String token = new String(Base64.getUrlDecoder().decode(base64token));
+            
+            String uuidString = token.substring(0, 36);
+        
+            UUID tokenUUID = UUID.fromString(uuidString);
+        }
+        catch(IllegalArgumentException ex){
+            return false;
+        }
+        return true;
     }
     
     public static ResetPasswordToken getRandomResetPasswordToken(){
