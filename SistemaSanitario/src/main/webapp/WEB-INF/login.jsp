@@ -14,40 +14,51 @@
       <link rel="stylesheet" type="text/css" href="css/main.css">
 
     </head>
-    <body>
+    <body style="background-color: #f6f6f6;">
         <!-- HEADER -->
-        <div class="it-header-wrapper it-header-sticky">
-      <div class="it-nav-wrapper">
-        <!-- HEADER CENTER -->
-        <div class="it-header-center-wrapper">
-          <div class="container mw-75">
-            <div class="row">
-              <div class="col-6">
-                <div class="it-header-center-content-wrapper">
-                  <div class="it-brand-wrapper">
-                    <a href="#">
-                      <svg class="icon">
-                        <use xlink:href="svg/sprite.svg#it-code-circle"></use>
-                      </svg>
-                    </a>
+        <div class="it-header-slim-wrapper">
+            <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="it-header-slim-wrapper-content d-flex justify-content-start">
+                        <div class="it-brand-wrapper mr-2 d-none d-lg-block">
+                            <a href="./index">
+                                <div class="it-brand-text">
+                                  <h3 class="no_toc">Sistema Sanitario</h3>
+                                </div>
+                            </a>
+                        </div> 
+                        <a href="./index" class="go-back mr-5 d-none d-lg-block"><svg class="icon icon-sm icon-white mr-2"><use xlink:href="./svg/sprite.svg#it-arrow-left"></use></svg>Annulla accesso</a>
+                            <a href="#" class="go-back"><svg class="icon icon-sm icon-white d-lg-none"><use xlink:href="./svg/sprite.svg#it-arrow-left"></use></svg></a>
+                            <div class="it-brand-wrapper mr-2  d-lg-none d-flex  justify-content-center">
+                            <a href="./index">
+                                <div class="it-brand-text">
+                                  <h3 class="no_toc">Sistema Sanitario</h3>
+                                </div>
+                            </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-       </div>
-    </div>
-        <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="col-12 col-lg-6">
+        <div class="row justify-content-center mt-3 mt-lg-5">
+            <div class="col justify-content-center" style="text-align:center;">
+                    <div class="text-xs-center spacer-xs-bottom-40">
+                        <h1>Accedi</h1>
+                    </div>
+            </div>
+        </div>
+        <div class="container mt-3 mt-lg-5">
+            <div class="row justify-content-center">
+                <div class="col-xs-12  col-lg-6">
                     <div class="card-wrapper">
-                        <div class="card">
+                        <div class="card" style="border:1px solid lightgray;">
                             <div class="card-body">
-                                <div class="container rounded" style="border:3px solid lightgray;">
+                                <div class="container rounded" >
                                     <div class="row">
                                             <div class="group col text-center">
-                                                <p><h2>Accedi al servizio</h2></p>
+                                                <p><h4 class="text-secondary">Inserisci le credenziali</h4></p>
                                             </div>
                                         </div>       
                                     <div class="row justify-content-center" style="margin-bottom: 10%">
@@ -98,6 +109,7 @@
                 </div>
             </div>
         </div>
+
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/bootstrap-italia.bundle.min.js"></script>
     
