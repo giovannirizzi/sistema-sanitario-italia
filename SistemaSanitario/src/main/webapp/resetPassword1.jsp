@@ -54,12 +54,22 @@
                                             <div class="group col text-center">
                                                 <p><h2>Ripristina password</h2></p>
                                             </div>
+                                    </div>
+                                    <div class="row justify-content-center" style="margin-bottom: 5%">
+                                        <div class="alert alert-danger" role="alert">
+                                            Le password inserite non <b>coincidono</b>.
                                         </div>
-                                        <div class="row justify-content-center" style="margin-bottom: 5%">
-                                                <div class="alert alert-danger" role="alert">
-                                                    Le password inserite non <b>coincidono</b>.
-                                                </div>
+                                    </div>
+                                    <div class="row justify-content-center" style="margin-bottom: 5%">
+                                        <div class="alert alert-success" role="alert">
+                                            Password <b>modificata</b>con successo.
                                         </div>
+                                    </div>
+                                    <div class="row justify-content-center" style="margin-bottom: 5%">
+                                        <div class="alert alert-warning" role="alert">
+                                            La password deve contenere almeno 8 caratteri, 1 numero e 1 lettera maiuscola.
+                                        </div>
+                                    </div>
                                     <form action="./reset" method="POST">  
                                         <div class="form-row">
                                             <div class="form-group col text-center">

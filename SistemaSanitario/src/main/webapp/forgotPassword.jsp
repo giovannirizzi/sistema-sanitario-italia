@@ -43,28 +43,44 @@
         </div>
        </div>
     </div>
-        <div class="container border" style="max-width: 400px;">
-        <form action="./ForgotPasswordServlet" method="POST">    
-             <div class="form-row">
-                 <div class="form-group col text-center">
-                    <p><h3>Password dimenticata?</h3></p>
-                    <p>Inserisci il tuo indirizzo email e segui il procedimento per il ripristino della password</p>
-                 </div>
-             </div>
-            <div class="form-row">
-                <div class="form-group col text-center">
-                    <input type="email" class="form-control" name="email" placeholder="inserisci email">
-                    <label for="email" class="active" style="transition: none 0s ease 0s; width: auto;">Email</label>
-                </div>
-            </div> 
-            <div class="form-row">
-                <div class="form-group col-12 text-center">
-                        <button type="submit" class="btn btn-primary">Conferma</button>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-lg-6">
+                    <div class="card-wrapper">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container rounded" style="border:3px solid lightgray;">
+                                    <div class="row">
+                                            <div class="group col text-center">
+                                                <p><h2>Password dimenticata</h2></p>
+                                            </div>
+                                    </div>
+                                    <div class="row justify-content-center" style="margin-bottom: 5%">
+                                        <div class="alert alert-success" role="alert">
+                                            Una mail è stata <b>inviata</b> all'indirizzo fornito.
+                                        </div>
+                                    </div>
+                                    <form action="./forgot" method="POST">  
+                                        <div class="form-row">
+                                            <div class="form-group col text-center">
+                                                <input type="email" class="form-control input-password" name="email" placeholder="inserisci la tua email">
+                                                <label for="email" class="active" style="transition: none 0s ease 0s; width: auto;">Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-12 text-center">
+                                                    <button type="submit" class="btn btn-primary">Conferma</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </form>
         </div>
-         <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/bootstrap-italia.bundle.min.js"></script>
     </body>
 </html>
