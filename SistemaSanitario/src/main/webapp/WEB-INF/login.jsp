@@ -53,14 +53,14 @@
             <div class="row justify-content-center">
                 <div class="col-xs-12  col-lg-6">
                     <div class="card-wrapper">
-                        <div class="card" style="border:1px solid lightgray;">
+                        <div class="card no-after" style="border:1px solid lightgray;">
                             <div class="card-body">
                                 <div class="container rounded" >
                                     <div class="row">
-                                            <div class="group col text-center">
-                                                <p><h4 class="text-secondary">Inserisci le credenziali</h4></p>
-                                            </div>
-                                        </div>       
+                                        <div class="group col text-center">
+                                            <p><h4 class="text-secondary">Inserisci le credenziali</h4></p>
+                                        </div>
+                                    </div>       
                                     <div class="row justify-content-center" style="margin-bottom: 10%">
                                         <c:if test="${not empty error}">  
                                             <div class="alert alert-danger" role="alert">

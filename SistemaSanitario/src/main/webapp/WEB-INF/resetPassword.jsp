@@ -18,7 +18,7 @@
       <link rel="stylesheet" type="text/css" href="css/main.css">
 
     </head>
-    <body>
+    <body style="background-color: #f6f6f6;">
         <!-- HEADER -->
         <div class="it-header-slim-wrapper">
             <div class="container">
@@ -33,8 +33,8 @@
                             </a>
                         </div> 
                         <a href="./index" class="go-back mr-5 d-none d-lg-block"><svg class="icon icon-sm icon-white mr-2"><use xlink:href="./svg/sprite.svg#it-arrow-left"></use></svg>Annulla accesso</a>
-                            <a href="#" class="go-back"><svg class="icon icon-sm icon-white d-lg-none"><use xlink:href="./svg/sprite.svg#it-arrow-left"></use></svg></a>
-                            <div class="it-brand-wrapper mr-2  d-lg-none d-flex  justify-content-center">
+                        <a href="#" class="go-back"><svg class="icon icon-sm icon-white d-lg-none"><use xlink:href="./svg/sprite.svg#it-arrow-left"></use></svg></a>
+                        <div class="it-brand-wrapper mr-2  d-lg-none d-flex  justify-content-center">
                             <a href="./index">
                                 <div class="it-brand-text">
                                   <h3 class="no_toc">Sistema Sanitario</h3>
@@ -46,36 +46,34 @@
                   </div>
             </div>
         </div>
-  </div>
-        </div>
-        <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="col-12 col-lg-6">
+        <div class="container mt-3 mt-lg-5">
+            <div class="row justify-content-center">
+                <div class="col-xs-12  col-lg-6">
                     <div class="card-wrapper">
-                        <div class="card">
+                        <div class="card no-after" style="border:1px solid lightgray;">
                             <div class="card-body">
-                                <div class="container rounded" style="border:3px solid lightgray;">
+                                <div class="container rounded" >
                                     <div class="row">
-                                            <div class="group col text-center">
-                                                <p><h2>Ripristina password</h2></p>
-                                            </div>
+                                        <div class="group col text-center">
+                                            <p><h4 class="text-secondary">Ripristina Password</h4></p>
+                                        </div>
                                     </div>
-                                    <div class="row justify-content-center" style="margin-bottom: 5%">
+                                    <div class="row justify-content-center" style="margin-bottom: 10%">
                                         <div class="alert alert-danger" role="alert">
                                             Le password inserite non <b>coincidono</b>.
                                         </div>
                                     </div>
-                                    <div class="row justify-content-center" style="margin-bottom: 5%">
+                                    <div class="row justify-content-center" style="margin-bottom: 10%">
                                         <div class="alert alert-success" role="alert">
                                             Password <b>modificata</b>con successo.
                                         </div>
                                     </div>
-                                    <div class="row justify-content-center" style="margin-bottom: 5%">
+                                    <div class="row justify-content-center" style="margin-bottom: 10%">
                                         <div class="alert alert-warning" role="alert">
                                             La password deve contenere almeno 8 caratteri, 1 numero e 1 lettera maiuscola.
                                         </div>
                                     </div>
-                                    <form method="POST">  
+                                    <form action="./reset" method="POST">
                                         <div class="form-row">
                                             <div class="form-group col text-center">
                                                 <input type="password" class="form-control input-password" name="newpassword" placeholder="inserisci nuova password">
@@ -84,7 +82,7 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col text-center">
-                                                <input type="password" class="form-control input-password" name="confirm" placeholder="ripeti password">
+                                                <input type="password" class="form-control input-password" name="confirm" placeholder="ripeti nuova password">
                                                 <label for="confirm" class="active" style="transition: none 0s ease 0s; width: auto;">Conferma</label>
                                             </div>
                                         </div>
@@ -93,7 +91,7 @@
                                                     <button type="submit" class="btn btn-primary">Conferma</button>
                                             </div>
                                         </div>
-                                         <input type="hidden" name="token" value="<c:out value="${token}"/>">
+                                        <input type="hidden" name="token" value="<c:out value="${token}"/>">
                                     </form>
                                 </div>
                             </div>
