@@ -30,8 +30,8 @@
                       <use xlink:href="svg/sprite.svg#it-code-circle"></use>
                     </svg>
                     <div class="it-brand-text">
-                      <h2 class="no_toc">Lorem Ipsum Lorem Ipsum</h2>
-                      <h3 class="no_toc d-none d-md-block">Inserire qui la tag line</h3>
+                      <h2 class="no_toc">Sistema Sanitario Pregiato</h2>
+                      <h3 class="no_toc d-none d-md-block">Il sisema sanitario come lo voi tu</h3>
                     </div>
                   </a>
                 </div>
