@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +31,14 @@ public class ForgotPasswordServlet extends HttpServlet {
         resetTokenDao = (Dao<ResetPasswordToken, Integer>)getServletContext().getAttribute("resetTokenDao");
         usersDao = (Dao<User, Integer>)getServletContext().getAttribute("UsersDao");
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        RequestDispatcher dispatcher = getServletContext().
+        getRequestDispatcher("/WEB-INF/forgotPassword.jsp");
+        dispatcher.forward(req, resp);
+    }
         
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -41,26 +50,29 @@ public class ForgotPasswordServlet extends HttpServlet {
         
         User user = getUserByEmail(email);
         
-        if(user == null) return;
-        
-        ResetPasswordToken token = TokenUtil.getRandomResetPasswordToken();
-        token.user = user;
-        
-        try {
-            
-            //TODO INVIA TOKEN PER EMAIL
-              
-            LOGGER.log(Level.INFO, "Reset password token: {0}", token.token );
-            
-            token.token = TokenUtil.getHashSHA256(token.token);
-            
-            resetTokenDao.create(token);           
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ForgotPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
+        if(user != null){
+             
+            ResetPasswordToken token = TokenUtil.getRandomResetPasswordToken();
+            token.user = user;
+
+            try {
+
+                //TODO INVIA TOKEN PER EMAIL
+
+                LOGGER.log(Level.INFO, "Reset password token: {0}", token.token );
+
+                token.token = TokenUtil.getHashSHA256(token.token);
+
+                resetTokenDao.create(token);           
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ForgotPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } 
         }
-      
-         
+        request.setAttribute("email", email);
+        RequestDispatcher dispatcher = getServletContext().
+        getRequestDispatcher("/WEB-INF/forgotPassword.jsp");
+        dispatcher.forward(request, response);     
     }
     
     private User getUserByEmail(String email){

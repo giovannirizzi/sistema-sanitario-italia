@@ -20,57 +20,70 @@
     </head>
     <body style="background-color: #f6f6f6;">
         <!-- HEADER -->
-        <div class="it-header-slim-wrapper">
+         <div class="it-header-slim-wrapper">
             <div class="container">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="it-header-slim-wrapper-content d-flex justify-content-start">
-                        <div class="it-brand-wrapper mr-2 d-none d-lg-block">
+                        <div class="it-brand-wrapper mr-3 d-none d-lg-block">
                             <a href="./index">
                                 <div class="it-brand-text">
-                                  <h3 class="no_toc">Sistema Sanitario</h3>
+                                  <h3 class="mb-1">Sistema Sanitario</h3>
                                 </div>
                             </a>
                         </div> 
-                        <a href="./index" class="go-back mr-5 d-none d-lg-block"><svg class="icon icon-sm icon-white mr-2"><use xlink:href="./svg/sprite.svg#it-arrow-left"></use></svg>Annulla accesso</a>
-                        <a href="#" class="go-back"><svg class="icon icon-sm icon-white d-lg-none"><use xlink:href="./svg/sprite.svg#it-arrow-left"></use></svg></a>
-                        <div class="it-brand-wrapper mr-2  d-lg-none d-flex  justify-content-center">
-                            <a href="./index">
-                                <div class="it-brand-text">
-                                  <h3 class="no_toc">Sistema Sanitario</h3>
-                                </div>
-                            </a>
+                         <div class="col-12 d-lg-none">
+                            <div class="it-brand-wrapper mr-2  d-flex  justify-content-center">
+                                <a href="./index">
+                                    <div class="it-brand-text">
+                                      <h3 class="mb-1">Sistema Sanitario</h3>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                       </div>
                     </div>
                   </div>
             </div>
         </div>
+        <div class="row justify-content-center mt-3 mt-lg-5">
+            <div class="col justify-content-center" style="text-align:center;">
+                <div class="text-xs-center spacer-xs-bottom-40">
+                    <h2>Ripristina password</h2>
+                </div>
+            </div>
+        </div>
+        <c:if test="${not empty success}">  
+            <div class="row justify-content-center">
+                <div class="alert alert-success" role="alert">
+                    Password <b>modificata</b>con successo.
+                </div>
+            </div>
+        </c:if> 
+        <c:if test="${empty success}">  
         <div class="container mt-3 mt-lg-5">
+            <div class="row justify-content-center">
+                <div class="alert alert-warning" role="alert">
+                    La password deve contenere almeno 8 caratteri, 1 numero e 1 lettera maiuscola.
+                </div>
+            </div>
+             <c:if test="${not empty error}">  
+             <div class="row justify-content-center mt-2 mt-lg-4">
+                <div class="alert alert-danger" role="alert">
+                    Le password inserite non <b>coincidono</b>.</div>
+             </div>
+             </c:if> 
+        </div>
+        <div class="container mt-2 mt-lg-4">
             <div class="row justify-content-center">
                 <div class="col-xs-12  col-lg-6">
                     <div class="card-wrapper">
                         <div class="card no-after" style="border:1px solid lightgray;">
                             <div class="card-body">
-                                <div class="container rounded" >
-                                    <div class="row">
+                                <div class="container rounded">
+                                    <div class="row mb-5">
                                         <div class="group col text-center">
-                                            <p><h4 class="text-secondary">Ripristina Password</h4></p>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center" style="margin-bottom: 10%">
-                                        <div class="alert alert-danger" role="alert">
-                                            Le password inserite non <b>coincidono</b>.
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center" style="margin-bottom: 10%">
-                                        <div class="alert alert-success" role="alert">
-                                            Password <b>modificata</b>con successo.
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center" style="margin-bottom: 10%">
-                                        <div class="alert alert-warning" role="alert">
-                                            La password deve contenere almeno 8 caratteri, 1 numero e 1 lettera maiuscola.
+                                            <p><h4 class="text-secondary">Inserisci la nuova password</h4></p>
                                         </div>
                                     </div>
                                     <form action="./reset" method="POST">
@@ -100,6 +113,7 @@
                 </div>
             </div>
         </div>
+        </c:if>  
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/bootstrap-italia.bundle.min.js"></script>
     </body>

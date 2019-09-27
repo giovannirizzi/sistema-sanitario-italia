@@ -53,39 +53,51 @@
         </div>
         <div class="container mt-3 mt-lg-5">
             <div class="row justify-content-center">
-                <div class="col-xs-12  col-lg-6">
-                    <div class="card-wrapper">
-                        <div class="card no-after" style="border:1px solid lightgray;">
-                            <div class="card-body">
-                                <div class="container rounded" >
-                                    <div class="row">
-                                        <div class="group col text-center">
-                                            <p><h4 class="text-secondary">Password dimenticata</h4></p>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center mb-5">
-                                        <div class="alert alert-success" role="alert">
-                                            Una mail è stata <b>inviata</b> all'indirizzo fornito.
-                                        </div>
-                                    </div>
-                                    <form action="./forgot" method="POST">  
-                                        <div class="form-row">
-                                            <div class="form-group col text-center">
-                                                <input type="email" class="form-control input-password" name="email" placeholder="inserisci la tua email">
-                                                <label for="email" class="active" style="transition: none 0s ease 0s; width: auto;">Email</label>
+                <c:if test="${not empty email}">  
+                    <div class="row justify-content-center mb-5">
+                        <div class="alert alert-success" role="alert">
+                            Una mail è stata inviata all'indirizzo <b><c:out value="${email}"/></b>
+                        </div>
+                    </div>
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="./">Torna alla home page</a>
+                            </div>
+                        <div>
+                        
+                </c:if> 
+                
+                <c:if test="${empty email}">  
+                    <div class="col-xs-12  col-lg-6">
+                        <div class="card-wrapper">
+                            <div class="card no-after" style="border:1px solid lightgray;">
+                                <div class="card-body">
+                                    <div class="container rounded" >
+                                        <div class="row">
+                                            <div class="group col text-center">
+                                                <p><h4 class="text-secondary">Password dimenticata</h4></p>
                                             </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-12 text-center">
-                                                <button type="submit" class="btn btn-primary">Conferma</button>
+                                        </div>                                    
+                                        <form action="./forgotpassword" method="POST">  
+                                            <div class="form-row">
+                                                <div class="form-group col text-center">
+                                                    <input type="email" class="form-control input-password" name="email" placeholder="inserisci la tua email">
+                                                    <label for="email" class="active" style="transition: none 0s ease 0s; width: auto;">Email</label>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                            <div class="form-row">
+                                                <div class=" col-12 text-center">
+                                                    <button type="submit" class="btn btn-primary">Conferma</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </c:if>    
             </div>
         </div>
         <script type="text/javascript" src="js/main.js"></script>

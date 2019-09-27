@@ -29,10 +29,6 @@
         <servlet-name>MainPage</servlet-name>
         <jsp-file>/main.jsp</jsp-file>
     </servlet>
-     <servlet>
-        <servlet-name>ForgotPasswordPage</servlet-name>
-        <jsp-file>/WEB-INF/forgotPassword.jsp</jsp-file>
-    </servlet>
     <servlet>
         <servlet-name>ResetPassword</servlet-name>
         <servlet-class>sistemasanitario.servlets.ResetPasswordServlet</servlet-class>
@@ -65,7 +61,7 @@
         <servlet-class>sistemasanitario.servlets.ForgotPasswordServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ForgotPasswordPage</servlet-name>
+        <servlet-name>ForgotPasswordServlet</servlet-name>
         <url-pattern>/forgotpassword</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
