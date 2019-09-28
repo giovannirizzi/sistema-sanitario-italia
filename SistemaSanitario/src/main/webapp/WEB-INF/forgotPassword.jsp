@@ -75,7 +75,7 @@
                                 <div class="card-body">
                                     <div class="container rounded" >
                                         <div class="row">
-                                            <div class="group col text-center">
+                                            <div class="group col text-center mb-5">
                                                 <p><h4 class="text-secondary">Password dimenticata</h4></p>
                                             </div>
                                         </div>                                    
@@ -87,7 +87,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-row">
-                                                <div class=" col-12 text-center">
+                                                <div class="form-col-12 text-center">
                                                     <button type="submit" class="btn btn-primary">Conferma</button>
                                                 </div>
                                             </div>

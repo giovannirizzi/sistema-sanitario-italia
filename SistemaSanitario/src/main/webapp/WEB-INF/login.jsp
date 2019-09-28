@@ -21,19 +21,19 @@
                   <div class="col-md-12">
                     <div class="it-header-slim-wrapper-content d-flex justify-content-start">
                         <div class="it-brand-wrapper mr-3 d-none d-lg-block">
-                            <a href="./index">
+                            <a href="./">
                                 <div class="it-brand-text">
                                   <h3 class="mb-1">Sistema Sanitario</h3>
                                 </div>
                             </a>
                         </div> 
-                        <a href="./index" class="go-back mr-5 d-none d-lg-block"><svg class="icon icon-sm icon-white mr-2"><use xlink:href="./svg/sprite.svg#it-arrow-left"></use></svg>Annulla accesso</a>
+                        <a href="./" class="go-back mr-5 d-none d-lg-block"><svg class="icon icon-sm icon-white mr-2"><use xlink:href="./svg/sprite.svg#it-arrow-left"></use></svg>Annulla accesso</a>
                         <div class="col-1 d-lg-none">
-                            <a href="#" class="go-back"><svg class="icon icon-sm icon-white" style="height: 28px; width: 28px;"><use xlink:href="./svg/sprite.svg#it-arrow-left"></use></svg></a>
+                            <a href="./" class="go-back"><svg class="icon icon-sm icon-white" style="height: 28px; width: 28px;"><use xlink:href="./svg/sprite.svg#it-arrow-left"></use></svg></a>
                         </div>
                          <div class="col-10 d-lg-none">
                             <div class="it-brand-wrapper mr-2  d-flex  justify-content-center">
-                                <a href="./index">
+                                <a href="./">
                                     <div class="it-brand-text">
                                       <h3 class="mb-1">Sistema Sanitario</h3>
                                     </div>
@@ -60,7 +60,7 @@
                             <div class="card-body">
                                 <div class="container rounded" >
                                     <div class="row">
-                                        <div class="group col text-center">
+                                        <div class="group col text-center mb-4">
                                             <p><h4 class="text-secondary">Inserisci le tue credenziali</h4></p>
                                         </div>
                                     </div>       
@@ -71,7 +71,7 @@
                                             </div>
                                         </c:if>
                                     </div>
-                                    <form action="./login" method="POST">
+                                    <form action="./login" method="POST" onsubmit="onSubmitLogin()">
                                         <div class="form-row">
                                             <div class="form-group col text-center">
                                                 <input type="text" class="form-control" name="username" placeholder="inserisci il tuo nome utente">
@@ -94,14 +94,14 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-6 auto text-center">
-                                                <div class="form-check">
+                                            <div class=" col-6 auto text-center">
+                                                <div class="form-group form-check">
                                                     <input class="form-check-input" type="checkbox" id="autoSizingCheck" name="rememberme">
                                                     <label class="form-check-label" for="autoSizingCheck">Ricordami</label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-6 text-center">
-                                                    <button type="submit" class="btn btn-primary">Accedi</button>
+                                                <button type="submit" class="btn btn-primary">Accedi</button>
                                             </div>
                                         </div>
                                     </form>
