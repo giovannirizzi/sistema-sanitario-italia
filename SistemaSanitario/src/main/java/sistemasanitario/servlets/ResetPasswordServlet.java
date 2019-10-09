@@ -56,6 +56,8 @@ public class ResetPasswordServlet extends HttpServlet{
         String token = req.getParameter("token");
         String password = req.getParameter("newPassword");
         
+        if(token == null || password == null ) return;
+        
         QueryBuilder<ResetPasswordToken, Integer> queryBuilder = resetTokenDao.queryBuilder();
         PreparedQuery<ResetPasswordToken> getTokenQuery;
         
@@ -67,7 +69,7 @@ public class ResetPasswordServlet extends HttpServlet{
             
             LOGGER.log(Level.INFO, passwordValResult.getDetails().toString());
             req.setAttribute("error", passwordValResult.getDetails().toString());
-            forwardToJSPPage(req, resp); 
+            forwardToJSPPage(token, req, resp); 
             return;
         }
 
@@ -101,14 +103,17 @@ public class ResetPasswordServlet extends HttpServlet{
         
                     //Stampa password modificata correttamente.
                     req.setAttribute("success", true);
-                    forwardToJSPPage(req, resp);
+                    forwardToJSPPage(token, req, resp);
                 }
                 else{
                     resp.sendError(404);
                     req.setAttribute("error", "errore bobobo");
-                    forwardToJSPPage(req, resp);
+                    forwardToJSPPage(token, req, resp);
                 }
-            }     
+            }
+            else{ //token non nel db
+                
+            }
         }
         catch (SQLException ex) {
             Logger.getLogger(ResetPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,10 +121,11 @@ public class ResetPasswordServlet extends HttpServlet{
         
     }
     
-    private void forwardToJSPPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    private void forwardToJSPPage(String token, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         
         RequestDispatcher dispatcher = getServletContext().
         getRequestDispatcher("/WEB-INF/resetPassword.jsp");
+        req.setAttribute("token", token);
         dispatcher.forward(req, resp);  
     }
     
@@ -137,8 +143,7 @@ public class ResetPasswordServlet extends HttpServlet{
         
         if(TokenUtil.isValidResetToken(token)){
             
-            req.setAttribute("token", token);
-            forwardToJSPPage(req, resp);    
+            forwardToJSPPage(token, req, resp);    
         }
         else{
              //Redirect to 404 page

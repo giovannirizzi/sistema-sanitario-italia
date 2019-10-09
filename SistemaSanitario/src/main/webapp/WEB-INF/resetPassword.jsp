@@ -1,4 +1,4 @@
-<%-- 
+ <%-- 
     Document   : resetPassword
     Created on : 13 set 2019, 15:03:39
 --%>
@@ -55,8 +55,8 @@
         </div>
         <c:if test="${not empty success}">  
             <div class="row justify-content-center">
-                <div class="alert alert-success" role="alert">
-                    Password <b>modificata</b>con successo.
+                <div class="alert alert-success mt-5" role="alert">
+                    Password <b>modificata</b> con successo.
                 </div>
             </div>
         </c:if> 
@@ -70,7 +70,7 @@
              <c:if test="${not empty error}">  
              <div class="row justify-content-center mt-2 mt-lg-4">
                 <div class="alert alert-danger" role="alert">
-                    Le password inserite non <b>coincidono</b>.</div>
+                    La password inserita non rispetta le regole</div>
              </div>
              </c:if> 
         </div>
@@ -86,10 +86,10 @@
                                             <p><h4 class="text-secondary">Inserisci la nuova password</h4></p>
                                         </div>
                                     </div>
-                                    <form action="./reset" method="POST">
+                                    <form action="./resetPassword" method="POST">
                                         <div class="form-row">
                                             <div class="form-group col text-center">
-                                                <input type="password" class="form-control input-password" name="newpassword" placeholder="inserisci nuova password">
+                                                <input type="password" class="form-control input-password" name="newPassword" placeholder="inserisci nuova password">
                                                 <label for="newpassword" class="active" style="transition: none 0s ease 0s; width: auto;">Nuova password</label>
                                             </div>
                                         </div>

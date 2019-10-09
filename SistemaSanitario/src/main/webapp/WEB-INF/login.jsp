@@ -53,6 +53,15 @@
             </div>
         </div>
         <div class="container mt-3 mt-lg-5">
+            <div class="row justify-content-center mb-3">
+                <div class="col-xs-12  col-lg-6">
+                   <c:if test="${not empty error}">  
+                       <div class="alert alert-danger" role="alert">
+                           <b>Autenticazione fallita.</b> Le credenziali inserite non risultano corrette. Ti invitiamo a riprovare.
+                       </div>
+                   </c:if>
+                </div>
+            </div>
             <div class="row justify-content-center">
                 <div class="col-xs-12  col-lg-6">
                     <div class="card-wrapper">
@@ -64,14 +73,7 @@
                                             <p><h4 class="text-secondary">Inserisci le tue credenziali</h4></p>
                                         </div>
                                     </div>       
-                                    <div class="row justify-content-center mb-3">
-                                        <c:if test="${not empty error}">  
-                                            <div class="alert alert-danger" role="alert">
-                                                Credenziali <b>errate</b>.
-                                            </div>
-                                        </c:if>
-                                    </div>
-                                    <form action="./login" method="POST" onsubmit="onSubmitLogin()">
+                                    <form action="./login" method="POST">
                                         <div class="form-row">
                                             <div class="form-group col text-center">
                                                 <input type="text" class="form-control" name="username" placeholder="inserisci il tuo nome utente">
@@ -115,7 +117,5 @@
 
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/bootstrap-italia.bundle.min.js"></script>
-    
         </body>
-    
 </html>
