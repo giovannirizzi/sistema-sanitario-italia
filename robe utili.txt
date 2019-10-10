@@ -14,4 +14,21 @@ SELECT TIMESTAMPDIFF(HOUR, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
 
 Utente paziente:
 username = mario.rossi
-password = 12345678
+password = Ciao1234!
+
+
+CREATE TABLE PAZIENTE(id int AUTO_INCREMENT PRIMARY KEY, userId INT NOT NULL, name VARCHAR(50) NOT NULL, surname VARCHAR(50) NOT NULL, lungoNascita VARCHAR(50) NOT NULL, CF CHAR(16) NOT NULL, sex CHAR(1) NOT NULL, FOTO VARCHAR(100), medicoId INT FK, 
+
+
+
+PAZIENTE:
+id int primary not null
+userid int fk not null
+nome varchar
+cognome
+luogo nascita 
+CF
+Sesso
+Foto 
+Medico base FK
+Provincia

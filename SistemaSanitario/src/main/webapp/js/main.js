@@ -13,4 +13,16 @@ function onSubmitLogin(){
     return false;
 }
 
+function validateResetPasswordForm(){
+
+    var newPassword = document.getElementById("newPassword").value;
+    var confirm = document.getElementById("confirm").value;
+
+    if(newPassword.length == 0 || confirm.length == 0)
+        return false;
+    
+    return true;
+
+}
+
 

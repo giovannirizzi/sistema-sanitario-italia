@@ -59,12 +59,18 @@
                     Password <b>modificata</b> con successo.
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a href="./login">Torna alla schermata di login</a>
+                </div>
+            </div>
         </c:if> 
         <c:if test="${empty success}">  
-        <div class="container mt-3 mt-lg-5">
+        <div class="container mt-3">
             <div class="row justify-content-center">
-                <div class="alert alert-warning" role="alert">
-                    La password deve contenere almeno 8 caratteri, 1 numero e 1 lettera maiuscola.
+                <div class="callout warning">
+                    <div class="callout-title" style="background-color: #f6f6f6;"><svg class="icon"><use xlink:href="./svg/sprite.svg#it-help-circle"></use></svg>Attenzione</div>
+                    <p>La password deve contenere almeno 8 caratteri, 1 lettera maiuscola, 1 lettera maiuscola, 1 numero e 1 carattere speciale.</p>
                 </div>
             </div>
              <c:if test="${not empty error}">  
@@ -86,22 +92,22 @@
                                             <p><h4 class="text-secondary">Inserisci la nuova password</h4></p>
                                         </div>
                                     </div>
-                                    <form action="./resetPassword" method="POST">
+                                    <form action="./resetPassword" method="POST" onsubmit="return validateResetPasswordForm();">
                                         <div class="form-row">
                                             <div class="form-group col text-center">
-                                                <input type="password" class="form-control input-password" name="newPassword" placeholder="inserisci nuova password">
+                                                <input type="password" class="form-control input-password" name="newPassword" id="newPassword" placeholder="inserisci nuova password">
                                                 <label for="newpassword" class="active" style="transition: none 0s ease 0s; width: auto;">Nuova password</label>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col text-center">
-                                                <input type="password" class="form-control input-password" name="confirm" placeholder="ripeti nuova password">
+                                                <input type="password" class="form-control input-password" name="confirm" id="confirm" placeholder="ripeti nuova password">
                                                 <label for="confirm" class="active" style="transition: none 0s ease 0s; width: auto;">Conferma</label>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-12 text-center">
-                                                    <button type="submit" class="btn btn-primary">Conferma</button>
+                                                <button type="submit" class="btn btn-primary">Conferma</button>
                                             </div>
                                         </div>
                                         <input type="hidden" name="token" value="<c:out value="${token}"/>">
