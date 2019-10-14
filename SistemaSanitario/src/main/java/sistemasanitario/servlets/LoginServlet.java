@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import sistemasanitario.filters.TokenAuthFilter;
 import sistemasanitario.utils.TokenUtil;
 import sistemasanitario.utils.PasswordUtil;
 
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());

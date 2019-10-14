@@ -2,7 +2,6 @@ package sistemasanitario.servlets;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.PreparedQuery;
-import com.j256.ormlite.stmt.PreparedUpdate;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.UpdateBuilder;
 import java.io.IOException;
@@ -19,24 +18,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.passay.CharacterCharacteristicsRule;
-import org.passay.CharacterData;
-import org.passay.CharacterRule;
-import org.passay.EnglishCharacterData;
-import org.passay.LengthRule;
-import org.passay.PasswordData;
-import org.passay.PasswordValidator;
-import org.passay.Rule;
 import org.passay.RuleResult;
-import org.passay.WhitespaceRule;
 import sistemasanitario.entities.ResetPasswordToken;
 import sistemasanitario.entities.User;
 import sistemasanitario.utils.PasswordUtil;
 import sistemasanitario.utils.TokenUtil;
 
+@WebServlet("/resetpassword")
 public class ResetPasswordServlet extends HttpServlet{
 
     private Dao<ResetPasswordToken, Integer> resetTokenDao;
@@ -107,12 +99,15 @@ public class ResetPasswordServlet extends HttpServlet{
                 }
                 else{
                     resp.sendError(404);
-                    req.setAttribute("error", "errore bobobo");
+                    req.setAttribute("error", true);
                     forwardToJSPPage(token, req, resp);
                 }
             }
             else{ //token non nel db
                 
+                resp.sendError(404);
+                req.setAttribute("error", true);
+                forwardToJSPPage(token, req, resp);
             }
         }
         catch (SQLException ex) {

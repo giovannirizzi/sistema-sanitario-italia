@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import sistemasanitario.entities.AuthToken;
 import sistemasanitario.entities.User;
 import sistemasanitario.filters.TokenAuthFilter;
 
+@WebServlet("/logout")
 public class LogoutServlet extends HttpServlet{
     
     private Dao<AuthToken, Integer> authTokensDao;
