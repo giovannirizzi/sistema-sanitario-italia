@@ -5,12 +5,8 @@
     <html lang="it">
     <head>
       <title>Login Page</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-      <link rel="stylesheet" type="text/css" href="css/bootstrap-italia.min.css">
-      <link rel="stylesheet" type="text/css" href="css/main.css">
+      
+      <%@ include file="./jspf/meta.jspf" %> 
 
     </head>
     <body style="background-color: #f6f6f6;">
