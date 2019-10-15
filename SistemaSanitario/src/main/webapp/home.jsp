@@ -16,116 +16,86 @@
 <body>
 
   <!-- HEADER -->
-  <div class="it-header-navbar-wrapper">
-  <div class="container">
+      <div class="it-header-wrapper">
+  <div class="it-nav-wrapper">
+    <div class="it-header-center-wrapper it-small-header d-lg-none">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="it-header-center-content-wrapper ">
+              <div class="it-brand-wrapper">
+                <a href="#">
+                  <div class="it-brand-text">
+                      <h2 class="no_toc">Sistema Sanitario Pregiato</h2>
+                      <h3 class="no_toc d-none d-md-block">Il sisema sanitario come lo voi tu</h3>
+                    </div>
+                </a>
+              </div>
+              <div class="it-right-zone">
+                <div class="it-search-wrapper">
+                  <div class="avatar avatar-green size-lg">
+                    <p aria-hidden="true">MR</p>
+                    <span class="sr-only">Mario Rossi</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="it-header-navbar-wrapper">
+    <div class="container">
     <div class="row">
       <div class="col-12">
         <!--start nav-->
-        <nav class="navbar navbar-expand-lg has-megamenu">
-          <div class="navbar-collapsable" id="nav1" style="display: none;">
+        <nav class="navbar navbar-expand-lg">
+          <button class="custom-navbar-toggler" type="button" aria-controls="nav0" aria-expanded="false" aria-label="Toggle navigation" data-target="#nav0">
+            <svg class="icon">
+              <use xlink:href="./svg/sprite.svg#it-burger"></use>
+            </svg>
+          </button>
+          <div class="navbar-collapsable" id="nav0" style="display: none;">
             <div class="overlay" style="display: none;"></div>
             <div class="close-div sr-only">
               <button class="btn close-menu" type="button"><span class="it-close"></span>close</button>
             </div>
             <div class="row">
-                <div class="col-4 d-flex">
-                    <div class="it-header-slim-wrapper-content ml-5 d-flex justify-content-start">
-                        <div class="it-brand-wrapper d-none d-lg-flex align-items-center">
-                            <a href="./">
-                                <div class="it-brand-text d-flex align-items-center">
-                                  <h3 style="color:white;">Sistema Sanitario</h3>
-                                </div>
-                            </a>
-                        </div> 
-                    </div>
-                 </div>
-                    
-                <div class="menu-wrapper">
-                  <ul class="navbar-nav">
-                    <li class="nav-item active"><a class="nav-link active" href="#"><span>Esami</span><span class="sr-only">current</span></a></li>
-                    <li class="nav-item"><a class="nav-link disabled" href="#"><span>Medico</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><span>Ricette</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><span>Profilo</span></a></li>
-                  </ul>
+            <div class="col-4 d-flex">
+                <div class="it-header-slim-wrapper-content d-flex justify-content-start">
+                    <div class="it-brand-wrapper d-none d-lg-flex align-items-center">
+                        <a href="./">
+                            <div class="it-brand-text d-flex align-items-center">
+                              <h3 style="color:white;">Sistema Sanitario</h3>
+                            </div>
+                        </a>
+                    </div> 
                 </div>
-          </div>
-          </div>
+             </div>
+            <div class="menu-wrapper col-6">
+              <ul class="navbar-nav">
+                <li class="nav-item active"><a class="nav-link active" href="#"><span>link 1 active </span><span class="sr-only">current</span></a></li>
+                <li class="nav-item"><a class="nav-link disabled" href="#"><span>link 2 </span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><span>link 3 </span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><span>link 4</span></a></li>
+              </ul>
+            </div>
+                <div class="col-2 justify-content-end d-flex align-items-center">
+                  <div class="avatar avatar-green size-lg">
+                    <p aria-hidden="true">MR</p>
+                    <span class="sr-only">Mario Rossi</span>
+                  </div>
+                </div>
+            </div>
         </nav>
       </div>
     </div>
   </div>
 </div>
-  <div class="container mt-3 d-none" >
-    <div class="row">
-        <div class="col-12">
-            <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Cognome</th>
-            <th scope="col">Username</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mario</td>
-            <td>Verdi</td>
-            <td>mario.verdi</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Francesco</td>
-            <td>Bianchi</td>
-            <td>francesco.bianchi</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Alessandro</td>
-            <td>Rossi</td>
-            <td>alessandro.rossi</td>
-          </tr>
-        </tbody>
-      </table>
-        </div>
-    </div>
   </div>
-  <div class="container mt-3">
-      <div class="it-list-wrapper">
-        <ul class="it-list">
-          <li>
-            <a href="#">
-              <div class="it-right-zone">
-                <span class="text">RX Mano DX</span>
-                <svg class="icon">
-                  <use xlink:href="/SistemaSanitario/svg/sprite.svg#it-more-actions"></use>
-                </svg>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a>
-            <div class="it-right-zone">
-                <p>
-                    La radiografia (RX), o esame radiologico, è un'indagine diagnostica che prevede l'utilizzo di particolari onde elettromagnetiche, i raggi X, in grado di attraversare il corpo umano e di essere misurati da un sistema fotosensibile analogamente a un sistema fotografico.
-                </p>
-            </div>
-            </a>
-          </li>
-          <li>
-            <a class="active" href="#">
-              <div class="it-right-zone">
-                <span class="text">Analisi del sangue</span>
-                <svg class="icon">
-                  <use xlink:href="/SistemaSanitario/svg/sprite.svg#it-more-actions"></use>
-                </svg>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-  </div>
+</div>
+     
+
   <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript" src="js/bootstrap-italia.bundle.min.js"></script>
 </body>
