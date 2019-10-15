@@ -27,7 +27,7 @@
                 <div class="it-brand-wrapper">
                   <a href="#">
                     <svg class="icon">
-                      <use xlink:href="svg/sprite.svg#it-code-circle"></use>
+                      <use xlink:href="svg/sprite.svg#it-pa"></use>
                     </svg>
                     <div class="it-brand-text">
                       <h2 class="no_toc">Sistema Sanitario Pregiato</h2>
@@ -45,7 +45,7 @@
                             <use xlink:href="svg/sprite.svg#it-user"></use>
                           </svg>
                         </span>
-                        <span class="d-none d-lg-block" id="hide-cloned">Accedi all'area personale</span>
+                        <span class="d-none d-lg-block" id="">Accedi all'area personale</span>
                       </a>
                         </div>
                        <!--

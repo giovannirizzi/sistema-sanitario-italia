@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ import sistemasanitario.entities.User;
 import sistemasanitario.utils.PasswordUtil;
 import sistemasanitario.utils.TokenUtil;
 
+@WebServlet("/forgotpassword")
 public class ForgotPasswordServlet extends HttpServlet {
     
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
