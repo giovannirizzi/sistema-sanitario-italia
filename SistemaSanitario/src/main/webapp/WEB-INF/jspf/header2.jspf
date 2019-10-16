@@ -25,16 +25,18 @@
               
                     <div class="it-search-wrapper">
                     <div class="nav-item dropdown">
-                      <a href="#" class="btn btn-primary btn-icon " id="dropdownMenuButton"
+                      <a href="#" class="d-none d-lg-flex btn btn-primary btn-icon" id="resize-cloned"
                         data-toggle="dropdown" aria-haspopup="true">
-                        <span class="mr-3 d-none d-lg-block">MARIO ROSSI</span>
-                        <div class="avatar d-lg-none size-md">
-                            <svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-user"></use></svg>
-                        </div>
-                        <div class="avatar d-none d-lg-block">
+                        <span class="mr-3" id="hide-cloned">MARIO ROSSI</span>
+                        <div class="avatar size-lg">
                             <svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-user"></use></svg>
                         </div>
                       </a>
+                       <a href="#" class="d-lg-none" data-toggle="dropdown" aria-haspopup="true">
+                        <div class="avatar size-lg">
+                            <svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-user"></use></svg>
+                        </div>
+                       </a>
 
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <div class="link-list-wrapper">
@@ -98,7 +100,6 @@
                     </div>
                   </div>
                         -->
-                      
                 </div>
               </div>
             </div>

@@ -37,7 +37,7 @@ public class TokenUtil {
         return token; 
     }
     
-    public static boolean isValidResetToken (String base64token){
+    public static boolean checkSyntaxResetToken (String base64token){
         
         if(base64token == null ) return false;
         

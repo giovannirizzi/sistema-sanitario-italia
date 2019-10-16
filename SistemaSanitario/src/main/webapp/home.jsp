@@ -12,7 +12,7 @@
 
 <body style="height: 100%;">
     <!-- HEADER -->
-    <%@ include file="./WEB-INF/jspf/header.jspf" %> 
+    <%@ include file="./WEB-INF/jspf/header2.jspf" %> 
     
     <div class="section">
         <div class="section-content">
