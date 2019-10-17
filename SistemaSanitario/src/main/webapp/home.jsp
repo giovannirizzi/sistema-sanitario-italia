@@ -14,6 +14,12 @@
     <!-- HEADER -->
     <%@ include file="./WEB-INF/jspf/header2.jspf" %> 
     
+    
+    <div class="form-group">
+        <input class="form-control" value="ciao fra" type="text" id="input-text-read-only" readonly>
+        <label for="input-text-read-only">Contenuto in sola lettura</label>
+    </div>
+    
     <div class="section">
         <div class="section-content">
           <!-- contenuto di esempio START -->

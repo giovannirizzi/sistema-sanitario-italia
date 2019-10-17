@@ -95,17 +95,19 @@
                                                 <p><h4 class="text-secondary">Inserisci la nuova password</h4></p>
                                             </div>
                                         </div>
-                                        <form action="./resetpassword" method="POST" onsubmit="return validateResetPasswordForm();">
+                                        <form class="needs-validation"action="./resetpassword" method="POST" onsubmit="return validateResetPasswordForm();" novalidate>
                                             <div class="form-row">
                                                 <div class="form-group col text-center">
-                                                    <input type="password" class="form-control input-password" name="newPassword" id="newPassword" placeholder="inserisci nuova password">
+                                                    <input type="password" class="form-control input-password " name="newPassword" id="newPassword" placeholder="inserisci nuova password" required>
                                                     <label for="newpassword" class="active" style="transition: none 0s ease 0s; width: auto;">Nuova password</label>
+                                                     <div class="invalid-feedback">Le password non coincidono</div>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col text-center">
-                                                    <input type="password" class="form-control input-password" name="confirm" id="confirm" placeholder="ripeti nuova password">
+                                                    <input type="password" class="form-control input-password" name="confirm" id="confirm" placeholder="ripeti nuova password" required>
                                                     <label for="confirm" class="active" style="transition: none 0s ease 0s; width: auto;">Conferma</label>
+                                                    <div class="invalid-feedback">Le password non coincidono</div>
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -117,6 +119,23 @@
                                         </form>
                                     </div>
                                 </div>
+                                <script>
+                                (function() {
+                                  'use strict';
+                                  window.addEventListener('load', function() {
+                                    var forms = document.getElementsByClassName('needs-validation');
+                                    var validation = Array.prototype.filter.call(forms, function(form) {
+                                      form.addEventListener('submit', function(event) {
+                                        if (validateResetPasswordForm() === false || form.checkValidity() === false) {
+                                          event.preventDefault();
+                                          event.stopPropagation();
+                                        }
+                                        form.classList.add('was-validated');
+                                      }, false);
+                                    });
+                                  }, false);
+                                })();
+                                </script>
                             </div>
                         </div>
                     </div>
