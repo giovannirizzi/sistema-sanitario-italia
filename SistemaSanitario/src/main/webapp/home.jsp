@@ -12,13 +12,17 @@
 
 <body style="height: 100%;">
     <!-- HEADER -->
-    <%@ include file="./WEB-INF/jspf/header2.jspf" %> 
+    <%@ include file="./WEB-INF/jspf/header2.jspf" %>
     
-    
-    <div class="form-group">
-        <input class="form-control" value="ciao fra" type="text" id="input-text-read-only" readonly>
-        <label for="input-text-read-only">Contenuto in sola lettura</label>
+    <div class="container">
+        <div class="main-pills">
+            <div class="main-pills-wrap">
+                <h2 class="text-primary">Descrizione</h2>
+                Ciao fra come stai
+            </div>
+        </div> 
     </div>
+
     
     <div class="section">
         <div class="section-content">

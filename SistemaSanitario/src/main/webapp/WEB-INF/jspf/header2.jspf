@@ -1,14 +1,13 @@
-<%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
 
 <div class="it-header-wrapper it-header-sticky">
     <div class="it-nav-wrapper">
       <!-- HEADER CENTER -->
       <div class="it-header-center-wrapper it-small-header">
-        <div class="container">
+        <div class="container container-extended" style="width:100%;">
           <div class="row">
             <div class="col-12">
-              <div class="it-header-center-content-wrapper">
+                <div class="it-header-center-content-wrapper">
                 <div class="it-brand-wrapper">
                   <a href="#">
                     <svg class="icon">
@@ -22,7 +21,6 @@
                 </div>
                  <!-- ACCEDI AREA PERSONALE-->
                 <div class="it-right-zone">
-              
                     <div class="it-search-wrapper">
                     <div class="nav-item dropdown">
                       <a href="#" class="d-none d-lg-flex btn btn-primary btn-icon" id="resize-cloned"
@@ -45,7 +43,7 @@
                               <h3 id="esempio-header-1">Mario Rossi</h3>
                             </li>
 
-                            <li><a class="list-item" href="#"><span>Area personale</span></a></li>
+                            <li><a class="list-item" href="#"><span>Profilo</span></a></li>
 
                             <li>
                               <span class="divider"></span>
@@ -108,7 +106,7 @@
       </div>
       <!-- HEADER NAV BAR -->
       <div class="it-header-navbar-wrapper">
-        <div class="container">
+        <div class="container container-extended">
           <div class="row">
             <div class="col-12">
               <!--start nav-->
