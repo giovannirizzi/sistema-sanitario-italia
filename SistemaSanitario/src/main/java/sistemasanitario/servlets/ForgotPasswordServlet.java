@@ -67,40 +67,8 @@ public class ForgotPasswordServlet extends HttpServlet {
             token.user = user;
 
             try {
-
-                //TODO INVIA TOKEN PER EMAIL
-                final String host = "smtp.gmail.com";
-                final String port = "465";
-                final String username = "omarbattan@gmail.com";
-                final String passwordAcc = "dbfcdokqbhuspuop";
-                Properties props = System.getProperties();
-                props.setProperty("mail.smtp.host", host);
-                props.setProperty("mail.smtp.port", port);
-                props.setProperty("mail.smtp.socketFactory.port", port);
-                props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-                props.setProperty("mail.smtp.auth", "true");
-                props.setProperty("mail.smtp.starttls.enable", "true");
-                props.setProperty("mail.debug", "true");
-                
-                Session session = Session.getInstance(props, new Authenticator() {
-
-                @Override
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(username, passwordAcc);
-                }
-                });
-                Message msg = new MimeMessage(session);
-                try {
-                    msg.setFrom(new InternetAddress(username));
-                    msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("omarbattan@gmail.com", false));
-                    msg.setSubject("Reset Password");
-                    msg.setText("Clicca sul link per il reset della password: \n"+"http://localhost:8080/SistemaSanitario/resetpassword?token="+token.token);
-                    msg.setSentDate(new Date());
-                    Transport.send(msg);
-                } catch (MessagingException me) {
-                    //TODO: log the exception
-                    me.printStackTrace(System.err);
-                }
+                MailSender s1 = new MailSender();
+                s1.sendEmail(email, "Reset Password", "Clicca sul link per il reset della password: \n"+"http://localhost:8080/SistemaSanitario/resetpassword?token="+token.token);
                 
                 LOGGER.log(Level.INFO, "Reset password token: {0}", token.token );
 
