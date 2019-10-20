@@ -20,9 +20,23 @@ function validateResetPasswordForm(){
 
     if(newPassword.length == 0 || confirm.length == 0)
         return false;
+
+    if(newPassword != confirm){
+        document.getElementById("newPassword").value = "";
+        document.getElementById("confirm").value = "";
+        return false;
+    }
     
     return true;
+}
 
+function validateForgotPasswordForm(){
+    
+    var email = document.getElementById("email").value;
+    if(email.length == 0)
+        return false;
+        
+    return true;
 }
 
 

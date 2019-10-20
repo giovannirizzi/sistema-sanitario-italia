@@ -5,6 +5,7 @@ import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -19,6 +20,14 @@ import sistemasanitario.entities.ResetPasswordToken;
 import sistemasanitario.entities.User;
 import sistemasanitario.utils.PasswordUtil;
 import sistemasanitario.utils.TokenUtil;
+
+//import to send email
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet("/forgotpassword")
 public class ForgotPasswordServlet extends HttpServlet {
@@ -58,9 +67,9 @@ public class ForgotPasswordServlet extends HttpServlet {
             token.user = user;
 
             try {
-
-                //TODO INVIA TOKEN PER EMAIL
-
+                MailSender s1 = new MailSender();
+                s1.sendEmail(email, "Reset Password", "Clicca sul link per il reset della password: \n"+"http://localhost:8080/SistemaSanitario/resetpassword?token="+token.token);
+                
                 LOGGER.log(Level.INFO, "Reset password token: {0}", token.token );
 
                 token.token = TokenUtil.getHashSHA256(token.token);
@@ -69,13 +78,14 @@ public class ForgotPasswordServlet extends HttpServlet {
 
             } catch (SQLException ex) {
                 Logger.getLogger(ForgotPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+            }
         }
         request.setAttribute("email", email);
         RequestDispatcher dispatcher = getServletContext().
         getRequestDispatcher("/WEB-INF/forgotPassword.jsp");
         dispatcher.forward(request, response);     
     }
+    
     
     private User getUserByEmail(String email){
         

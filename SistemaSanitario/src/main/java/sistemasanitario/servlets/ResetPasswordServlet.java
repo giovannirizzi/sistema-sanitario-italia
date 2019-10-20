@@ -50,70 +50,46 @@ public class ResetPasswordServlet extends HttpServlet{
         
         if(token == null || password == null ) return;
         
-        QueryBuilder<ResetPasswordToken, Integer> queryBuilder = resetTokenDao.queryBuilder();
-        PreparedQuery<ResetPasswordToken> getTokenQuery;
-        
         RuleResult passwordValResult = PasswordUtil.validatePassword(password);
         
-        if(!TokenUtil.isValidResetToken(token)) return;
+        if(!TokenUtil.checkSyntaxResetToken(token)) return;
 
         if(!passwordValResult.isValid()){
             
             LOGGER.log(Level.INFO, passwordValResult.getDetails().toString());
-            req.setAttribute("error", passwordValResult.getDetails().toString());
+            req.setAttribute("invalidPassword", true);
             forwardToJSPPage(token, req, resp); 
             return;
         }
-
-        try{
-            token = TokenUtil.getHashSHA256(token);
-            getTokenQuery = queryBuilder.where().eq("token", token).prepare();
-            List<ResetPasswordToken> tokens = resetTokenDao.query(getTokenQuery);           
-            
-            //Il token è nel db
-            if(tokens.size() > 0){ 
-
-                Timestamp now = Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
-
-                long elapsedDaysSinceCreation = TimeUnit.DAYS.convert(now.getTime() - 
-                        tokens.get(0).getCreatedTime().getTime()
-                        , TimeUnit.MILLISECONDS);
-
-                //Se il token è stato generato meno di un giorno fa
-                if(elapsedDaysSinceCreation < 1){
-
-                    String passwordHash = PasswordUtil.hash(password.toCharArray());
-                    usersDao.refresh(tokens.get(0).getUser());
-                    
-                    UpdateBuilder<User, Integer> updateBuilder = usersDao.updateBuilder();
-                    updateBuilder.where().idEq(tokens.get(0).getUser().getId());
-                    updateBuilder.updateColumnValue("password", passwordHash);
-                    updateBuilder.update();
-                    
-                    //Rimuovo il token utilizzato
-                    resetTokenDao.delete(tokens.get(0));
         
-                    //Stampa password modificata correttamente.
-                    req.setAttribute("success", true);
-                    forwardToJSPPage(token, req, resp);
-                }
-                else{
-                    resp.sendError(404);
-                    req.setAttribute("error", true);
-                    forwardToJSPPage(token, req, resp);
-                }
-            }
-            else{ //token non nel db
-                
-                resp.sendError(404);
-                req.setAttribute("error", true);
+        ResetPasswordToken tokenEntry = getTokenEntryFromDB(token);
+        if(tokenEntry != null){
+            
+            try{
+                String passwordHash = PasswordUtil.hash(password.toCharArray());
+                usersDao.refresh(tokenEntry.getUser());
+
+                UpdateBuilder<User, Integer> updateBuilder = usersDao.updateBuilder();
+                updateBuilder.where().idEq(tokenEntry.getUser().getId());
+                updateBuilder.updateColumnValue("password", passwordHash);
+                updateBuilder.update();
+
+                //Rimuovo il token utilizzato
+                resetTokenDao.delete(tokenEntry);
+
+                //Stampa password modificata correttamente.
+                req.setAttribute("success", true);
                 forwardToJSPPage(token, req, resp);
             }
+            catch (SQLException ex) {
+                Logger.getLogger(ResetPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } 
         }
-        catch (SQLException ex) {
-            Logger.getLogger(ResetPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
+        else{
+            
+            req.setAttribute("invalidToken", true);
+            forwardToJSPPage(token, req, resp);   
         }
-        
     }
     
     private void forwardToJSPPage(String token, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -122,6 +98,39 @@ public class ResetPasswordServlet extends HttpServlet{
         getRequestDispatcher("/WEB-INF/resetPassword.jsp");
         req.setAttribute("token", token);
         dispatcher.forward(req, resp);  
+    }
+    
+    private ResetPasswordToken getTokenEntryFromDB(String token){
+        
+        QueryBuilder<ResetPasswordToken, Integer> queryBuilder = resetTokenDao.queryBuilder();
+        PreparedQuery<ResetPasswordToken> getTokenQuery;
+        
+        try{
+            String hashToken = TokenUtil.getHashSHA256(token);
+            getTokenQuery = queryBuilder.where().eq("token", hashToken).prepare();
+            List<ResetPasswordToken> tokens = resetTokenDao.query(getTokenQuery);           
+            
+            //Il token è nel db
+            if(tokens.size() > 0){ 
+                
+                Timestamp now = Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
+
+                long elapsedDaysSinceCreation = TimeUnit.DAYS.convert(now.getTime() - 
+                        tokens.get(0).getCreatedTime().getTime()
+                        , TimeUnit.MILLISECONDS);
+
+                //Se il token è stato generato meno di un giorno fa
+                if(elapsedDaysSinceCreation < 1)
+                    return tokens.get(0);
+                else
+                    return null;           
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ResetPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
     
     private void forwardToErrorPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -135,8 +144,9 @@ public class ResetPasswordServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         String token = req.getParameter("token");
+        ResetPasswordToken tokenEntry = null;
         
-        if(TokenUtil.isValidResetToken(token)){
+        if(TokenUtil.checkSyntaxResetToken(token) && getTokenEntryFromDB(token) != null){
             
             forwardToJSPPage(token, req, resp);    
         }

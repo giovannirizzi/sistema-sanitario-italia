@@ -6,11 +6,54 @@
         }
          width: auto !important;
     }
-    margin-right: 50px;       
+    #resize-cloned{
+        height: 56px !important;
+    }      
+    
 }
 
 .it-brand-wrapper{
     a{
         text-decoration: none !important;
     }
+}
+
+body{
+    background-color: #f6f6f6;
+    height: 100%;
+}
+
+.container-extended {
+    width: auto;
+    max-width: 1350px;
+ }
+ 
+ .main-pills {
+    margin-bottom: 40px;
+    background-color: #fff;
+    border: 1px solid #ececec;
+}
+
+.main-pills.main-pills-basic {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+}
+
+.main-pills .main-pills-wrap {
+    padding: 40px;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.panel-cards {
+    border: 1px solid #ececec;
+    position: relative;
+    -webkit-transition: box-shadow 0.5s linear;
+    -o-transition: box-shadow 0.5s linear;
+    -moz-transition: box-shadow 0.5s linear;
+    -ms-transition: box-shadow 0.5s linear;
+    -kthtml-transition: box-shadow 0.5s linear;
+    transition: box-shadow 0.5s linear;
+    margin-bottom: 30px;
 }

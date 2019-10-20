@@ -74,10 +74,10 @@
                                                 <p><h4 class="text-secondary">Password dimenticata</h4></p>
                                             </div>
                                         </div>                                    
-                                        <form action="./forgotpassword" method="POST">  
+                                        <form action="./forgotpassword" method="POST" onsubmit="return validateForgotPasswordForm();">  
                                             <div class="form-row">
                                                 <div class="form-group col text-center">
-                                                    <input type="email" class="form-control input-password" name="email" placeholder="inserisci la tua email">
+                                                    <input type="email" class="form-control input-password" id="email" name="email" placeholder="inserisci la tua email">
                                                     <label for="email" class="active" style="transition: none 0s ease 0s; width: auto;">Email</label>
                                                 </div>
                                             </div>

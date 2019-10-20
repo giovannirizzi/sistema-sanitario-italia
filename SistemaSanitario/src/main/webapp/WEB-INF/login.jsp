@@ -60,6 +60,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-xs-12  col-lg-6">
+
                     <div class="card-wrapper">
                         <div class="card no-after" style="border:1px solid lightgray;">
                             <div class="card-body">
