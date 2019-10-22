@@ -17,19 +17,83 @@ username = mario.rossi
 password = Ciao1234!
 
 
-CREATE TABLE PAZIENTE(id int AUTO_INCREMENT PRIMARY KEY, userId INT NOT NULL, name VARCHAR(50) NOT NULL, surname VARCHAR(50) NOT NULL, lungoNascita VARCHAR(50) NOT NULL, CF CHAR(16) NOT NULL, sex CHAR(1) NOT NULL, FOTO VARCHAR(100), medicoId INT FK, 
+TODO
+
+lista esami/visite
+esami
+visite mediche
+risultati esami
+risultato visita (prescrizione??, report visita)
+ticketPagati
+ricetta farmaceutica
+
+DOMANDE
+
+D: Qual è la differenza, nelle specifiche, tra "esame" erogato dal servizio sanitario e "visita" erogata dal medico specialista? Dobbiamo supporre che esistano alcuni esami che non sono erogabili da alcun medico specialista? È scritto che il ssp eroga l'esame prescritto con ticket di 11 euro e poi che il medico specialista fa pagare un ticket di 50 euro. Dobbiamo assumere che queste spese sono pagate entrambe dal paziente per ogni prestazione?
+
+R: Ssn eroga esami di laboratorio o radiologia
+Lo specialista la visita. Sono due prestazioni diverse
+
+D: Buongiorno @GinoPerna, nel testo c'è scritto che il SSP eroga gli esami e prescrive i richiami, che sono praticamente degli esami per cui non si paga il ticket. C'è però scritto che il richiamo è erogato dai medici specialistici e non dal SSP, è corretto?
+
+R: Buongiorno @GinoPerna, nel testo c'è scritto che il SSP eroga gli esami e prescrive i richiami, che sono praticamente degli esami per cui non si paga il ticket. C'è però scritto che il richiamo è erogato dai medici specialistici e non dal SSP, è corretto?
+
+D:Però per l'esame di mammografia devo andare dal SSP?
+
+R: Non devo andare, è ssp che lo prescrive per, ad esempio, tutte le donne nate nel 1979 e poi vado a farlo dallo specialista
+
+
+Matteo Zanella, [26.08.19 13:23]
+[In reply to Gino Perna]
+Però per l'esame di mammografia devo andare dal SSP?
+
+Gino Perna, [26.08.19 13:24]
+Non devo andare, è ssp che lo prescrive per, ad esempio, tutte le donne nate nel 1979 e poi vado a farlo dallo specialista
+
+Matteo Zanella, [26.08.19 14:03]
+[In reply to Gino Perna]
+Quindi il medico di base prescrive visite dallo specialista o esami specialistici? Sono la stessa cosa?
+
+Gino Perna, [26.08.19 16:53]
+[In reply to Matteo Zanella]
+In che senso la stessa cosa?
+Se intende che prescrive una tac e va a farla dal radiologo si.
+Ma un esame del sangue lo fa il ssn
+
+Matteo Zanella, [26.08.19 17:04]
+[In reply to Gino Perna]
+Cioè, nel nostro sistema approssimato, una visita di radiologia e un esame tac (che va fatto da un radiologo) sono la stessa cosa in pratica?
+
+Matteo Zanella, [26.08.19 17:05]
+Ovvero, il medico di base cosa può prescrivere di fare tra:
+• Esame specialistico
+• Vista di uno specialista
+• Esame dal SSP
+
+Matteo Zanella, [26.08.19 17:06]
+[In reply to Matteo Zanella]
+Può prescrivere tutte e tre queste cose? Sono tutte e tre differenti? Alcune sono sinonimi tra loro?
+
+Gino Perna, [26.08.19 17:13]
+[In reply to Matteo Zanella]
+Si la stessa cosa
+
+Gino Perna, [26.08.19 17:16]
+[In reply to Matteo Zanella]
+I primi due possono essere considerati sinonimi.
+Comunque se inve sono accorpati il primo ed il terzo (interpretando che il ssn eroga l'esame specialistico comunque e lo specialista solo la visita ordinata dal medico) va bene lo stesso, per evitare panico in chi avesse interpretato così.
+
+Matteo Zanella, [26.08.19 13:23]
+[In reply to Gino Perna]
+Però per l'esame di mammografia devo andare dal SSP?
+
+Gino Perna, [26.08.19 13:24]
+Non devo andare, è ssp che lo prescrive per, ad esempio, tutte le donne nate nel 1979 e poi vado a farlo dallo specialista
 
 
 
-PAZIENTE:
-id int primary not null
-userid int fk not null
-nome varchar
-cognome
-luogo nascita 
-CF
-Sesso
-Foto 
-Medico base FK
-Provincia
-fotoc
+Alberto Xamin, [02.09.19 18:45]
+Buonasera @GinoPerna, la ricerca degli esami da parte dell'utente deve essere fatta sui suoi esami oppure su tutti gli esami esistenti a scopo informativo?
+
+Gino Perna, [02.09.19 19:01]
+Sugli esami esiatenti a scopo informativo
