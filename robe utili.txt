@@ -32,3 +32,4 @@ Sesso
 Foto 
 Medico base FK
 Provincia
+fotoc
