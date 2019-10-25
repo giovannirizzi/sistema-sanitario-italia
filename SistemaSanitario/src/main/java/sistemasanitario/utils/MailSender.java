@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemasanitario.servlets;
+package sistemasanitario.utils;
 
 import java.util.Date;
 import java.util.Properties;
@@ -28,7 +28,7 @@ public class MailSender {
     
     
     
-    void sendEmail(String email, String subject, String message){
+    public void sendEmail(String email, String subject, String message){
         Properties props = System.getProperties();
         props.setProperty("mail.smtp.host", host);
         props.setProperty("mail.smtp.port", port);
