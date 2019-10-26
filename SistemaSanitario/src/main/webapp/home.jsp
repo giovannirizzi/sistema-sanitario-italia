@@ -1,85 +1,65 @@
 
-<%@page contentType="text/html" pageEncoding="UTF-8" session="false" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
+<c:set var = "PAGE_TITLE" value = "Dashboard"/>
+      
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
     
-    <title>Sistema Sanitario</title>
+    <title><c:out value = "${PAGE_TITLE}"/> | Sistema Sanitario</title>
     
     <%@ include file="./WEB-INF/jspf/meta.jspf" %> 
     
 </head>
 
 <body style="height: 100%;">
+    
     <!-- HEADER -->
     <%@ include file="./WEB-INF/jspf/header2.jspf" %>
     
-    <div class="container">
-        <div class="main-pills">
-            <div class="main-pills-wrap">
-                <h2 class="text-primary">Descrizione</h2>
-                Ciao fra come stai
+    <!-- MAIN -->
+    <div class="container mt-sm-4 mt-md-5">
+        <div class="row">
+            <div class="col-xl-10">
+                
+                <!-- PAGE TITLE -->
+                <h1 class="text-center text-primary mb-5"><c:out value = "${PAGE_TITLE}"/>  </h1>
+
+                <!-- CONTENT OF PAGE -->
+                <div class="main-pills  text-center mt-sm-4 mt-md-5">
+                   <div class="main-pills-wrap ">
+                       <h2 class="text-secondary pb-4">Titolo sezione</h2>
+                       <p>Ciao fra come stai</p>
+                       <p>Ciao fra come stai</p>
+                       <p>Ciao fra come stai</p>
+                       <p>Ciao fra come stai</p>
+                   </div>
+               </div> 
+                
             </div>
-        </div> 
+            
+            <!-- SIDEBAR -->
+            <div class="d-none d-xl-block col-xl-2 bd-toc">
+                <div class="sidebar-wrapper">
+                  <h3><c:out value = "${PAGE_TITLE}"/></h3>
+                  <ul class="section-nav">
+                    <li class="toc-entry toc-h3"><a href="#doctype-html5">Doctype HTML5</a></li>
+                    <li class="toc-entry toc-h3"><a href="#meta-tag-responsive">Meta tag responsive</a></li>
+                    <li class="toc-entry toc-h3"><a href="#box-sizing">Box-sizing</a></li>
+                    <li class="toc-entry toc-h3"><a href="#reboot">Reboot</a></li>
+                  </ul>
+                </div>
+            </div>
+            
+        </div>
     </div>
 
-    
-    <div class="section">
-        <div class="section-content">
-          <!-- contenuto di esempio START -->
-          <div class="container">
-            <div class="row mb-3">
-              <div class="col-12">
-                <h4>Morbi fermentum amet</h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5 mb-3">Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.</div>
-              <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5 mb-3">Eget egestas purus viverra accumsan. Diam maecenas ultricies mi eget mauris pharetra et. Etiam dignissim diam quis enim. Eu nisl nunc mi ipsum faucibus.</div>
-              <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5">Euismod lacinia at quis risus sed vulputate. Scelerisque purus semper eget duis at tellus at urna condimentum. Mattis enim ut tellus elementum sagittis.</div>
-            </div>
-          </div>
-          <!-- contenuto di esempio END -->
-        </div>
-    </div>
-    <div class="section">
-        <div class="section-content">
-          <!-- contenuto di esempio START -->
-          <div class="container">
-            <div class="row mb-3">
-              <div class="col-12">
-                <h4>Morbi fermentum amet</h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5 mb-3">Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.</div>
-              <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5 mb-3">Eget egestas purus viverra accumsan. Diam maecenas ultricies mi eget mauris pharetra et. Etiam dignissim diam quis enim. Eu nisl nunc mi ipsum faucibus.</div>
-              <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5">Euismod lacinia at quis risus sed vulputate. Scelerisque purus semper eget duis at tellus at urna condimentum. Mattis enim ut tellus elementum sagittis.</div>
-            </div>
-          </div>
-          <!-- contenuto di esempio END -->
-        </div>
-    </div>
-    <div class="section">
-        <div class="section-content">
-          <!-- contenuto di esempio START -->
-          <div class="container">
-            <div class="row mb-3">
-              <div class="col-12">
-                <h4>Morbi fermentum amet</h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5 mb-3">Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.</div>
-              <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5 mb-3">Eget egestas purus viverra accumsan. Diam maecenas ultricies mi eget mauris pharetra et. Etiam dignissim diam quis enim. Eu nisl nunc mi ipsum faucibus.</div>
-              <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5">Euismod lacinia at quis risus sed vulputate. Scelerisque purus semper eget duis at tellus at urna condimentum. Mattis enim ut tellus elementum sagittis.</div>
-            </div>
-          </div>
-          <!-- contenuto di esempio END -->
-        </div>
-    </div>
-    
+    <!-- FOOTER -->
     <%@ include file="./WEB-INF/jspf/footer.jspf" %> 
+    
 </body>
 
 </html>
