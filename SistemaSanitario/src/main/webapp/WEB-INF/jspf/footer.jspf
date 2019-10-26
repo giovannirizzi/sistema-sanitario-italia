@@ -1,4 +1,4 @@
 <%@ page pageEncoding="UTF-8" %>
 
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/bootstrap-italia.bundle.min.js"></script>
+<script type="text/javascript" src="/SistemaSanitario/js/main.js"></script>
+<script type="text/javascript" src="/SistemaSanitario/js/bootstrap-italia.bundle.min.js"></script>

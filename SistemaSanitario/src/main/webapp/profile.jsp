@@ -12,7 +12,7 @@
         <%@ include file="./WEB-INF/jspf/meta.jspf" %> 
     </head>
     <body>
-        <%@ include file="./WEB-INF/jspf/header.jspf" %>
+        <%@ include file="./WEB-INF/jspf/header2.jspf" %>
         <div class="container">
             <nav class="breadcrumb-container" aria-label="breadcrumb">
                 <ol class="breadcrumb">

@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
         String contextPath = getServletContext().getContextPath(); 
         if (!contextPath.endsWith("/")) contextPath += "/";
         
-        response.sendRedirect(response.encodeRedirectURL(contextPath + "myservices/"));
+        response.sendRedirect(response.encodeRedirectURL(contextPath + "myservices/dashboard"));
     }
     
     @Override
