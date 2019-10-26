@@ -5,6 +5,11 @@
         <param-name>DBURL</param-name>
         <param-value>jdbc:mariadb://sistemasanitariodb.c16q8irjv9nd.us-east-2.rds.amazonaws.com/sistemasanitario</param-value>
     </context-param>
+    
+    <servlet>
+        <servlet-name>PasswordTest</servlet-name>
+        <servlet-class>sistemasanitario.servlets.PasswordTest</servlet-class>
+    </servlet>
   
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
@@ -46,7 +51,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>MainPage</servlet-name>
-        <url-pattern>/myservices/*</url-pattern>
+        <url-pattern>/myservices/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>IndexPage</servlet-name>
@@ -55,6 +60,10 @@
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/myservices/logout</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>PasswordTest</servlet-name>
+        <url-pattern>/passwordtest</url-pattern>
     </servlet-mapping>
    
    <error-page>

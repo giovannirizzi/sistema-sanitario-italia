@@ -144,7 +144,6 @@ public class ResetPasswordServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         String token = req.getParameter("token");
-        ResetPasswordToken tokenEntry = null;
         
         if(TokenUtil.checkSyntaxResetToken(token) && getTokenEntryFromDB(token) != null){
             
