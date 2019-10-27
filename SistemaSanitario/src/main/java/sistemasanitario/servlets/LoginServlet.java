@@ -126,6 +126,9 @@ public class LoginServlet extends HttpServlet {
                 
                 saveAuthToken(user, token);     
             }
+            
+            
+            
             request.getSession().setAttribute("user", user);
             redirectToServices(response);
             
