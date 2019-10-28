@@ -12,7 +12,7 @@
         <%@ include file="./WEB-INF/jspf/meta.jspf" %> 
     </head>
     <body>
-        <%@ include file="./WEB-INF/jspf/header2.jspf" %>
+        <%@ include file="./WEB-INF/jspf/header.jspf" %>
         <div class="container">
             <nav class="breadcrumb-container" aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -24,7 +24,7 @@
             <div class="section">
                 <div class="section-content">
                         <div class="row">
-                            <div class="col-md-5 d-flex ">
+                            <div class="col-md-5">
                                 <div class="d-flex flex-column mb-3 justify-content-center align-items-center">
                                     <div class="p-2"><img src="https://via.placeholder.com/240x120/ebebeb/808080/?text=Immagine" class="rounded-circle" width="200px" height="200px"></div>
                                     <div class="p-2">
@@ -39,11 +39,10 @@
                                 <table class="table">
                                     <tbody>
                                       <tr>
-                                        <td scope="row"><h3>Mario Rossi</h3></td>
-                                        <td></td>
+                                         <td scope="row"><h3>Mario Rossi</h3></td>
                                       </tr>
                                       <tr>
-                                        <td scope="row"><svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-mail"></use></svg></td>
+                                        <th scope="row"><svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-mail"></use></svg></th>
                                         <td>mario.rossi@gmail.com</td>
                                       </tr>
                                       <tr>
