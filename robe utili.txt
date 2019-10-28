@@ -19,6 +19,8 @@ password = Ciao1234!
 
 TODO
 
+tabelle database da fare:
+
 lista esami/visite
 esami
 visite mediche
@@ -26,6 +28,28 @@ risultati esami
 risultato visita (prescrizione??, report visita)
 ticketPagati
 ricetta farmaceutica
+
+
+BACKEND:
+per ogni tabella nuova creare entities
+
+caricare dati utente loggato nella sessione nella sesione
+nome cognome serve per l'header
+
+creare servlet per la cambiare la password 
+
+creare servlet caricare la foto
+
+controllare progetto introduzione web per restfull
+
+
+FRONTEND:
+pagina profilo
+
+pensare e progettare tutte le varie pagine di
+pazienti, medici, medici base e ssp
+
+
 
 DOMANDE
 

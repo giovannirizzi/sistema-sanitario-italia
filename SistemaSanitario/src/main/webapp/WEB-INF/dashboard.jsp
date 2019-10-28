@@ -13,13 +13,13 @@
     
 </head>
 
-<body style="height: 100%;">
+<body>
     
     <!-- HEADER -->
     <%@ include file="./jspf/header.jspf" %>
     
     <!-- MAIN -->
-    <div class="container mt-sm-4 mt-md-5">
+    <div class="container mt-sm-4 mt-md-5" style="height: 100%;">
         <div class="row">
             <div class="col-xl-10">
                 
