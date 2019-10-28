@@ -22,10 +22,14 @@
     </servlet>
   
     <servlet>
-        <servlet-name>MainPage</servlet-name>
-        <jsp-file>/main.jsp</jsp-file>
+        <servlet-name>DashboardPage</servlet-name>
+        <jsp-file>/WEB-INF/dashboard.jsp</jsp-file>
     </servlet>
-  
+    <servlet-mapping>
+        <servlet-name>DashboardPage</servlet-name>
+        <url-pattern>/myservices/dashboard</url-pattern>   
+    </servlet-mapping>
+
     <filter>
         <filter-name>TokenAuthFilter</filter-name>
         <filter-class>sistemasanitario.filters.TokenAuthFilter</filter-class>
@@ -49,10 +53,6 @@
         <servlet-name>ForgotPasswordServlet</servlet-name>
         <servlet-class>sistemasanitario.servlets.ForgotPasswordServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>MainPage</servlet-name>
-        <url-pattern>/myservices/home</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>IndexPage</servlet-name>
         <url-pattern>/index</url-pattern>

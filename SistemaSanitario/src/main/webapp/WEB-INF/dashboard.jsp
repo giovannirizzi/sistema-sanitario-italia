@@ -1,24 +1,22 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <c:set var = "PAGE_TITLE" value = "Dashboard"/>
       
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
     
     <title><c:out value = "${PAGE_TITLE}"/> | Sistema Sanitario</title>
     
-    <%@ include file="./WEB-INF/jspf/meta.jspf" %> 
+    <%@ include file="./jspf/meta.jspf" %> 
     
 </head>
 
 <body style="height: 100%;">
     
     <!-- HEADER -->
-    <%@ include file="./WEB-INF/jspf/header.jspf" %>
+    <%@ include file="./jspf/header.jspf" %>
     
     <!-- MAIN -->
     <div class="container mt-sm-4 mt-md-5">
@@ -26,7 +24,10 @@
             <div class="col-xl-10">
                 
                 <!-- PAGE TITLE -->
-                <h1 class="text-center text-primary mb-5"><c:out value = "${PAGE_TITLE}"/>  </h1>
+                
+                <c:if test="${sessionScope.user != null}">
+                    <h1 class="text-center text-primary mb-5">Benvenuto <c:out value="${sessionScope.user.username}"/></h1>
+                 </c:if>
 
                 <!-- CONTENT OF PAGE -->
                 <div class="main-pills  text-center mt-sm-4 mt-md-5">
@@ -58,7 +59,7 @@
     </div>
 
     <!-- FOOTER -->
-    <%@ include file="./WEB-INF/jspf/footer.jspf" %> 
+    <%@ include file="./jspf/footer.jspf" %> 
     
 </body>
 
