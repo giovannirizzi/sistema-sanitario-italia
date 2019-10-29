@@ -1,124 +1,57 @@
-<%-- 
-    Document   : profile
-    Created on : 16 ott 2019, 10:18:08
-    Author     : marco
---%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:set var = "PAGE_TITLE" value = "Dashboard"/>
+      
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Sistema Sanitario</title>
-        <%@ include file="./WEB-INF/jspf/meta.jspf" %> 
-    </head>
-    <body>
-        <%@ include file="./WEB-INF/jspf/header.jspf" %>
-        <div class="container">
-            <nav class="breadcrumb-container" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a><span class="separator">/</span></li>
-                  <li class="breadcrumb-item"><a href="#">Subsection</a><span class="separator">/</span></li>
-                  <li class="breadcrumb-item active" aria-current="page">Current section</li>
-                </ol>
-            </nav>
-            <div class="section">
-                <div class="section-content">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="d-flex flex-column mb-3 justify-content-center align-items-center">
-                                    <div class="p-2"><img src="https://via.placeholder.com/240x120/ebebeb/808080/?text=Immagine" class="rounded-circle" width="200px" height="200px"></div>
-                                    <div class="p-2">
-                                        <form method="post" action="" enctype="multipart/form-data">
-                                            <label class="d-flex justify-content-center" for="upload1">Cambia immagine</label>
-                                            <input type="file" name="upload1" id="upload1" multiple="multiple" style="visibility:hidden;"/>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <table class="table">
-                                    <tbody>
-                                      <tr>
-                                         <td scope="row"><h3>Mario Rossi</h3></td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row"><svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-mail"></use></svg></th>
-                                        <td>mario.rossi@gmail.com</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row"><svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-card"></use></svg></th>
-                                        <td>RSS MRA 75 L01 H501 A</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row"><svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-pin"></use></svg></th>
-                                        <td>Roma (RM)</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row"><svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-user"></use></svg></th>
-                                        <td>M</td>
-                                      </tr>
-                                    </tbody>
-                                </table>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                Modifica password
-                                </button>
-                            </div>
-                        </div>
+<html lang="it">
+<head>
+    
+    <title><c:out value = "${PAGE_TITLE}"/> | Sistema Sanitario</title>
+    
+    <%@ include file="./WEB-INF/jspf/meta.jspf" %> 
+    
+</head>
+
+<body style="height: 100%;">
+    
+    <!-- HEADER -->
+    <%@ include file="./WEB-INF/jspf/header.jspf" %>
+    
+    <!-- MAIN -->
+    <div class="container mt-sm-4 mt-md-5">
+        <div class="row">
+            <div class="col-xl-10">
+                
+                <c:if test="${sessionScope.user.type == 'PAZIENTE'}">
+                  <%@ include file="./WEB-INF/jspf/personalData.jspf" %> 
+                </c:if>
+                <c:if test="${sessionScope.user.type == 'MEDICO_BASE'}">
+                  <%@ include file="./WEB-INF/jspf/genericData.jspf" %> 
+                </c:if>
+                
+                
+            </div>
+            
+            <!-- SIDEBAR -->
+            <div class="d-none d-xl-block col-xl-2 bd-toc">
+                <div class="sidebar-wrapper">
+                  <h3><c:out value = "${PAGE_TITLE}"/></h3>
+                  <ul class="section-nav">
+                    <li class="toc-entry toc-h3"><a href="#doctype-html5">Doctype HTML5</a></li>
+                    <li class="toc-entry toc-h3"><a href="#meta-tag-responsive">Meta tag responsive</a></li>
+                    <li class="toc-entry toc-h3"><a href="#box-sizing">Box-sizing</a></li>
+                    <li class="toc-entry toc-h3"><a href="#reboot">Reboot</a></li>
+                  </ul>
                 </div>
             </div>
             
-            <!-- Button trigger modal -->
-
-
-<!-- Modal -->
-<div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Modifica password</h4>
-      </div>
-      <div class="modal-body">
-        <form action=" " method="POST">
-            <div class="form-row">
-                <div class="form-group col text-center">
-                    <input type="text" class="form-control" name="username" placeholder="inserisci password attuale">
-                    <label for="username" class="active" style="transition: none 0s ease 0s; width: auto;">Password attuale</label>
-                </div>
-            </div>    
-            <div class="form-row">
-                <div class="form-group col text-center">
-                    <input type="password" class="form-control input-password" name="password" placeholder="inserisci nuova password">
-                    <span class="password-icon" aria-hidden="true">
-                      <svg class="password-icon-visible icon icon-sm"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-password-visible"></use></svg>
-                      <svg class="password-icon-invisible icon icon-sm d-none"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-password-invisible"></use></svg>
-                    </span>
-                    <label for="password" class="active" style="transition: none 0s ease 0s; width: auto;">Password nuova</label>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col text-center">
-                    <input type="password" class="form-control input-password" name="password" placeholder="conferma nuova password">
-                    <span class="password-icon" aria-hidden="true">
-                      <svg class="password-icon-visible icon icon-sm"><use xlink:href="./svg/sprite.svg#it-password-visible"></use></svg>
-                      <svg class="password-icon-invisible icon icon-sm d-none"><use xlink:href="./svg/sprite.svg#it-password-invisible"></use></svg>
-                    </span>
-                    <label for="password" class="active" style="transition: none 0s ease 0s; width: auto;">Conferma password nuova</label>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group text-center">
-                    <button type="submit" class="btn btn-primary">Conferma</button>
-                </div>
-            </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary btn-sm" data-dismiss="modal" type="button">Close</button>
-      </div>
+        </div>
     </div>
-  </div>
-</div>
-            
-    <%@ include file="./WEB-INF/jspf/footer.jspf" %>         
-    </body>
+
+    <!-- FOOTER -->
+    <%@ include file="./WEB-INF/jspf/footer.jspf" %> 
+    
+</body>
+
 </html>

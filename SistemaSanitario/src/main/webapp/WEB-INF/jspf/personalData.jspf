@@ -1,8 +1,10 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-
-<div class="container text-left mb-5">
+<div class="main-pills  text-center mt-sm-4 mt-md-5">
+    <div class="main-pills-wrap ">
+        <h2 class="text-secondary pb-4">Profilo</h2>
+        <div class="container text-left mb-5">
     <div class="row">
         <div class="col-md-5 d-flex flex-column justify-content-center align-items-center">
                 <img src="https://via.placeholder.com/240x120/ebebeb/808080/?text=Immagine" class="rounded-circle" width="200px" height="200px">
@@ -15,6 +17,14 @@
             <div class="row">
                 <div class="col">
                     <h3>Mario Rossi</h3>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-1">
+                    <svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-user"></use></svg>
+                </div>
+                <div class="col">
+                    <h5>mario.rossi</h5>
                 </div>
             </div>
             <div class="row mt-4">
@@ -57,6 +67,8 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
     </div>
 </div>
 

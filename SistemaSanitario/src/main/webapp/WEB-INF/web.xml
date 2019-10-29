@@ -29,6 +29,14 @@
         <servlet-name>DashboardPage</servlet-name>
         <url-pattern>/myservices/dashboard</url-pattern>   
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ProfilePage</servlet-name>
+        <jsp-file>/profile.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfilePage</servlet-name>
+        <url-pattern>/profile</url-pattern>   
+    </servlet-mapping>
 
     <filter>
         <filter-name>TokenAuthFilter</filter-name>
