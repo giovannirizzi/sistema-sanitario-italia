@@ -9,14 +9,14 @@
     
     <title><c:out value = "${PAGE_TITLE}"/> | Sistema Sanitario</title>
     
-    <%@ include file="./WEB-INF/jspf/meta.jspf" %> 
+    <%@ include file="./jspf/meta.jspf" %> 
     
 </head>
 
 <body style="height: 100%;">
     
     <!-- HEADER -->
-    <%@ include file="./WEB-INF/jspf/header.jspf" %>
+    <%@ include file="./jspf/header.jspf" %>
     
     <!-- MAIN -->
     <div class="container mt-sm-4 mt-md-5">
@@ -24,10 +24,10 @@
             <div class="col-xl-10">
                 
                 <c:if test="${sessionScope.user.type == 'PAZIENTE'}">
-                  <%@ include file="./WEB-INF/jspf/personalData.jspf" %> 
+                  <%@ include file="./jspf/personalData.jspf" %> 
                 </c:if>
                 <c:if test="${sessionScope.user.type == 'MEDICO_BASE'}">
-                  <%@ include file="./WEB-INF/jspf/genericData.jspf" %> 
+                  <%@ include file="./jspf/genericData.jspf" %> 
                 </c:if>
                 
                 
@@ -50,7 +50,7 @@
     </div>
 
     <!-- FOOTER -->
-    <%@ include file="./WEB-INF/jspf/footer.jspf" %> 
+    <%@ include file="./jspf/footer.jspf" %> 
     
 </body>
 
