@@ -31,11 +31,11 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ProfilePage</servlet-name>
-        <jsp-file>/profile.jsp</jsp-file>
+        <jsp-file>/WEB-INF/profile.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProfilePage</servlet-name>
-        <url-pattern>/profile</url-pattern>   
+        <url-pattern>/myservices/profile</url-pattern>   
     </servlet-mapping>
 
     <filter>
