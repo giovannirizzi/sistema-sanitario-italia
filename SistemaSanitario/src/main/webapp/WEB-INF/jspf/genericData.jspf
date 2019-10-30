@@ -1,7 +1,10 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
-    <div class="container text-left mb-5">
+<!-- CONTENT OF PAGE -->
+<div class="main-pills  text-center mt-sm-4 mt-md-5">
+    <div class="main-pills-wrap ">
+        <h2 class="text-secondary pb-4">Profilo</h2>
+        <div class="container text-left mb-5">
         <div class="row">
             <div class="col">
                 <h3>Mario Rossi</h3>
@@ -31,6 +34,8 @@
             </div>
         </div>        
     </div>
+    </div>
+</div> 
 <!-- Modal -->
 <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
   <div class="modal-dialog" role="document">

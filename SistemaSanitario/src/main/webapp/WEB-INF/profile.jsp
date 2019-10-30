@@ -9,38 +9,26 @@
     
     <title><c:out value = "${PAGE_TITLE}"/> | Sistema Sanitario</title>
     
-    <%@ include file="./WEB-INF/jspf/meta.jspf" %> 
+    <%@ include file="./jspf/meta.jspf" %> 
     
 </head>
 
 <body style="height: 100%;">
     
     <!-- HEADER -->
-    <%@ include file="./WEB-INF/jspf/header.jspf" %>
+    <%@ include file="./jspf/header.jspf" %>
     
     <!-- MAIN -->
     <div class="container mt-sm-4 mt-md-5">
         <div class="row">
             <div class="col-xl-10">
                 
-                <!-- PAGE TITLE -->
-                
-                <c:if test="${sessionScope.user != null}">
-                    <h1 class="text-center text-primary mb-5">Benvenuto <c:out value="${sessionScope.user.username}"/></h1>
-                 </c:if>
-
-                <!-- CONTENT OF PAGE -->
-                <div class="main-pills  text-center mt-sm-4 mt-md-5">
-                   <div class="main-pills-wrap ">
-                      <h2 class="text-secondary pb-4">Profilo</h2>
-                      <c:if test="${sessionScope.user.type == 'PAZIENTE'}">
-                        <%@ include file="./WEB-INF/jspf/personalData.jspf" %> 
-                      </c:if>
-                      <c:if test="${sessionScope.user.type == 'MEDICO_BASE'}">
-                        <%@ include file="./WEB-INF/jspf/genericData.jspf" %> 
-                      </c:if>
-                   </div>
-               </div> 
+                <c:if test="${sessionScope.user.type == 'PAZIENTE'}">
+                  <%@ include file="./jspf/personalData.jspf" %> 
+                </c:if>
+                <c:if test="${sessionScope.user.type == 'MEDICO_BASE'}">
+                  <%@ include file="./jspf/genericData.jspf" %> 
+                </c:if>
                 
                 
             </div>
@@ -62,7 +50,7 @@
     </div>
 
     <!-- FOOTER -->
-    <%@ include file="./WEB-INF/jspf/footer.jspf" %> 
+    <%@ include file="./jspf/footer.jspf" %> 
     
 </body>
 
