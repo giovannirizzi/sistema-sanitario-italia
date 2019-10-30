@@ -21,7 +21,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-1">
-                    <svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-user"></use></svg>
+                    <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg>
                 </div>
                 <div class="col">
                     <h5>mario.rossi</h5>
@@ -29,7 +29,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-auto">
-                    <svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-mail"></use></svg>
+                    <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-mail"></use></svg>
                 </div>
                 <div class="col">
                     <h5>mario.rossi@gmail.com</h5>
@@ -37,7 +37,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-auto">
-                    <svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-card"></use></svg>
+                    <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-card"></use></svg>
                 </div>
                 <div class="col">
                     <h5>RSS MRA 75 L01 H501 A</h5>
@@ -45,7 +45,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-auto">
-                    <svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-pin"></use></svg>
+                    <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-pin"></use></svg>
                 </div>
                 <div class="col">
                     <h5>Roma (RM)</h5>
@@ -53,7 +53,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-auto">
-                    <svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-user"></use></svg>
+                    <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg>
                 </div>
                 <div class="col">
                     <h5>M</h5>
@@ -101,8 +101,8 @@
                 <div class="form-group col text-center">
                     <input type="password" class="form-control input-password" name="password" placeholder="conferma nuova password">
                     <span class="password-icon" aria-hidden="true">
-                      <svg class="password-icon-visible icon icon-sm"><use xlink:href="./svg/sprite.svg#it-password-visible"></use></svg>
-                      <svg class="password-icon-invisible icon icon-sm d-none"><use xlink:href="./svg/sprite.svg#it-password-invisible"></use></svg>
+                      <svg class="password-icon-visible icon icon-sm"><use xlink:href="../svg/sprite.svg#it-password-visible"></use></svg>
+                      <svg class="password-icon-invisible icon icon-sm d-none"><use xlink:href="../svg/sprite.svg#it-password-invisible"></use></svg>
                     </span>
                     <label for="password" class="active" style="transition: none 0s ease 0s; width: auto;">Conferma password nuova</label>
                 </div>
