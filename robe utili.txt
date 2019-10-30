@@ -121,3 +121,44 @@ Buonasera @GinoPerna, la ricerca degli esami da parte dell'utente deve essere fa
 
 Gino Perna, [02.09.19 19:01]
 Sugli esami esiatenti a scopo informativo
+
+INSERT INTO USERS (username,password,email,type) VALUES ("andrea.gentile","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","andrea.gentile@gmail.com",'PAZIENTE'),
+("mario.fontana","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","mario.fontana@gmail.com",'PAZIENTE'),
+("alessia.lombardi","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","alessia.lombardi@gmail.com",'PAZIENTE'),
+("nicola.giordano","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","nicola.giordano@gmail.com",'PAZIENTE'),
+("aurelio.mancini","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","aurelio.mancini@gmail.com",'PAZIENTE'),
+("oscar.pellegrini","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","oscar.pellegrini@gmail.com",'PAZIENTE'),
+("ilaria.caruso","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","ilaria.caruso@gmail.com",'PAZIENTE'),
+("ugo.ferri","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","ugo.ferri@gmail.com",'PAZIENTE'),
+("emilia.bernardi","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","emilia.bernardi@gmail.com",'PAZIENTE'),
+("federica.mazza","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","federica.mazza@gmail.com",'PAZIENTE'),
+("mario.farina","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","mario.farina@gmail.com",'PAZIENTE'),
+("oscar.bianco","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","oscar.bianco@gmail.com",'PAZIENTE'),
+("alessia.barbieri","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","alessia.barbieri@gmail.com",'PAZIENTE'),
+("ada.conte","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","ada.conte@gmail.com",'MEDICO_BASE'),
+("gabriele.serra","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","gabriele.serra@gmail.com",'MEDICO_BASE'),
+("paolo.santoro","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","paolo.santoro@gmail.com",'MEDICO_SPECIALISTA'),
+("monica.moretti","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","monica.moretti@gmail.com",'MEDICO_BASE'),
+("chiara.leone","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","chiara.leone@gmail.com",'MEDICO_SPECIALISTA'); 
+
+INSERT INTO PAZIENTE (nome,cognome,dataNascita,luogoNascita,provincia,cf,sesso,idUtente,idMedico) VALUES
+("Andrea","Gentile",'1970-11-23',"Trento",'TN',"GNTNDR70S23L378F",'M',22,1),
+("Mario","Fontana",'1994-07-16',"Bolzano",'BZ',"FNTMRA94L16A952G",'M',23,1),
+("Alessia","Lombardi",'1937-02-28',"Cles",'TN',"LMBLSS37B68C794D",'F',24,4),
+("Nicola","Giordano",'1985-05-05',"Lana",'BZ',"GRDNCL85E05E434J",'M',25,3),
+("Aurelio","Mancini",'1997-08-13',"Bressanone",'BZ',"MNCRLA97M13B160P",'M',26,5),
+("Oscar","Pellegrini",'1965-06-19',"Ala",'TN',"PLLSCR65H19A116D",'M',27,4),
+("Ilaria","Caruso",'1949-01-01',"Pergine Valsugana",'TN',"CRSLRI49A41G452F",'F',28,3),
+("Ugo","Ferri",'1918-12-26',"Storo",'TN',"FRRGUO18T26I964B",'M',29,5),
+("Emilia","Bernardi",'1981-04-10',"Merano",'BZ',"BRNMLE81D50F132Z",'F',30,4),
+("Federica","Mazza",'1954-03-15',"Chiusa",'BZ',"MZZFRC54C55C652S",'F',31,3),
+("Mario","Farina",'1927-10-16',"Mori",'TN',"FRNMRA27R16F728T",'M',32,2),
+("Oscar","Bianco",'1964-01-23',"Egna",'BZ',"BNCSCR64A23D392H",'F',33,2),
+("Alessia","Barbieri",'1989-08-20',"Mezzolombardo",'TN',"BRBLSS89M60F187L",'F',34,5);
+
+INSERT INTO MEDICO (nome,cognome,citta,provincia,codiceMedico,idUtente) VALUES
+("Ada","Conte","Rovereto",'TN','TN2849',35),
+("Gabriele","Serra","Merano",'BZ','BZ1690',36),
+("Paolo","Santoro","Merano",'BZ','BZ3271',37),
+("Monica","Moretti","Trento",'TN','TN7421',38),
+("Chiara","Leone","Trento",'TN','TN7954',39);
