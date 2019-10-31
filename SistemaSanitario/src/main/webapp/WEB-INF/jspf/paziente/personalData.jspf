@@ -3,72 +3,75 @@
 
 <div class="main-pills  text-center mt-sm-4 mt-md-5">
     <div class="main-pills-wrap ">
-        <h2 class="text-secondary pb-4">Profilo</h2>
+        <h2 class="text-secondary pb-4 text-left">Dati paziente</h2>
         <div class="container text-left mb-5">
-    <div class="row">
-        <div class="col-md-5 d-flex flex-column justify-content-center align-items-center">
-                <img src="https://via.placeholder.com/240x120/ebebeb/808080/?text=Immagine" class="rounded-circle" width="200px" height="200px">
-                    <form method="post" action="" enctype="multipart/form-data">
-                        <label class="d-flex justify-content-center" for="upload1">Cambia immagine</label>
-                        <input type="file" name="upload1" id="upload1" multiple="multiple" style="visibility:hidden;"/>
-                    </form>
-        </div>
-        <div class="col-md-7">
             <div class="row">
-                <div class="col">
-                    <h3>Mario Rossi</h3>
+                <div class="col-md-5 d-flex flex-column justify-content-center align-items-center">
+                        <img src="https://via.placeholder.com/240x120/ebebeb/808080/?text=Immagine" class="rounded-circle" width="200px" height="200px">
+                            <form method="post" action="" enctype="multipart/form-data">
+                                <label class="d-flex justify-content-center" for="upload1">Cambia immagine</label>
+                                <input type="file" name="upload1" id="upload1" multiple="multiple" style="visibility:hidden;"/>
+                            </form>
+                </div>
+                <div class="col-md-7"> 
+                    <div class="row mt-4">
+                        <div class="col-auto">
+                            <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-card"></use></svg>
+                        </div>
+                        <div class="col">
+                            <h5>RSS MRA 75 L01 H501 A</h5>
+                        </div>   
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-auto">
+                            <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-pin"></use></svg>
+                        </div>
+                        <div class="col">
+                            <h5>Roma (RM)</h5>
+                        </div>   
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-auto">
+                            <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg>
+                        </div>
+                        <div class="col">
+                            <h5>M</h5>
+                        </div>   
+                    </div>
+                    <div class="row mt-4 align-items-center">
+                        <div class="col-7">
+                            <h5>Medico di base: MIKE TYSON</h5>
+                        </div>  
+                        <div class="col-2">
+                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#medicCollapse">
+                                Cambia
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col-1">
-                    <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg>
-                </div>
-                <div class="col">
-                    <h5>mario.rossi</h5>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-auto">
-                    <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-mail"></use></svg>
-                </div>
-                <div class="col">
-                    <h5>mario.rossi@gmail.com</h5>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-auto">
-                    <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-card"></use></svg>
-                </div>
-                <div class="col">
-                    <h5>RSS MRA 75 L01 H501 A</h5>
-                </div>   
-            </div>
-            <div class="row mt-4">
-                <div class="col-auto">
-                    <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-pin"></use></svg>
-                </div>
-                <div class="col">
-                    <h5>Roma (RM)</h5>
-                </div>   
-            </div>
-            <div class="row mt-4">
-                <div class="col-auto">
-                    <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg>
-                </div>
-                <div class="col">
-                    <h5>M</h5>
-                </div>   
-            </div>
-            <div class="row mt-4">
-                <div class="col">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Modifica password
-                    </button>
-                </div>
+            <div class="collapse w-100 mt-4" id="medicCollapse">
+                <form action="./cambiaMedico" method="POST">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="bootstrap-select-wrapper">
+                                <label>Medico di base</label>
+                                <select title="Scegli una opzione" data-live-search="true" data-live-search-placeholder="Cerca medici">
+                                  <option value="1">Bestia vacca</option>
+                                  <option value="2">Medico pregiato</option>
+                                  <option value="3">Pregiated medic</option>
+                                  <option value="4">Gayy</option>
+                                  <option value="5">Gay gay gay</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Conferma</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
-</div>
     </div>
 </div>
 
@@ -120,4 +123,3 @@
     </div>
   </div>
 </div>
-        
