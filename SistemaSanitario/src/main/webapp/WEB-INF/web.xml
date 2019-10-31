@@ -5,29 +5,29 @@
         <param-name>DBURL</param-name>
         <param-value>jdbc:mariadb://sistemasanitariodb.c16q8irjv9nd.us-east-2.rds.amazonaws.com/sistemasanitario</param-value>
     </context-param>
-    
     <servlet>
         <servlet-name>PasswordTest</servlet-name>
         <servlet-class>sistemasanitario.servlets.PasswordTest</servlet-class>
     </servlet>
-  
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>sistemasanitario.servlets.LogoutServlet</servlet-class>
     </servlet>
-   
     <servlet>
         <servlet-name>IndexPage</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
     </servlet>
-  
     <servlet>
         <servlet-name>DashboardPage</servlet-name>
         <jsp-file>/WEB-INF/dashboard.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>sistemasanitario.servlets.DashboardServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DashboardPage</servlet-name>
-        <url-pattern>/myservices/dashboard</url-pattern>   
+        <url-pattern>/myservices/dashboard</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ProfilePage</servlet-name>
@@ -35,9 +35,32 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ProfilePage</servlet-name>
-        <url-pattern>/myservices/profile</url-pattern>   
+        <url-pattern>/myservices/profile</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>EsamiPazientePage</servlet-name>
+        <jsp-file>/WEB-INF/esamiPaziente.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EsamiPazientePage</servlet-name>
+        <url-pattern>/myservices/esamiPaziente</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EsamiMedicoBasePage</servlet-name>
+        <jsp-file>/WEB-INF/esamiMedicoBase.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EsamiMedicoBasePage</servlet-name>
+        <url-pattern>/myservices/esamiMedicoBase</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PazientiMedicoBasePage</servlet-name>
+        <jsp-file>/WEB-INF/pazientiMedicoBase.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PazientiMedicoBasePage</servlet-name>
+        <url-pattern>/myservices/pazientiMedicoBase</url-pattern>
+    </servlet-mapping>
     <filter>
         <filter-name>TokenAuthFilter</filter-name>
         <filter-class>sistemasanitario.filters.TokenAuthFilter</filter-class>
@@ -69,15 +92,18 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/myservices/logout</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>PasswordTest</servlet-name>
         <url-pattern>/passwordtest</url-pattern>
     </servlet-mapping>
-   
-   <error-page>
+    <error-page>
         <error-code>404</error-code>
         <location>/404.html</location>
     </error-page>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/DashboardServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
