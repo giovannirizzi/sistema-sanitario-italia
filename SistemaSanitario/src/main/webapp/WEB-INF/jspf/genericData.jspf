@@ -3,7 +3,7 @@
 <!-- CONTENT OF PAGE -->
 <div class="main-pills  text-center mt-sm-4 mt-md-5">
     <div class="main-pills-wrap ">
-        <h2 class="text-secondary pb-4">Profilo</h2>
+        <h2 class="text-secondary pb-4 text-left">Dati personali</h2>
         <div class="container text-left mb-5">
         <div class="row">
             <div class="col">
@@ -12,7 +12,7 @@
         </div>
         <div class="row mt-4">
             <div class="col-1">
-                <svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-user"></use></svg>
+                <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg>
             </div>
             <div class="col">
                 <h5>mario.rossi</h5>
@@ -20,7 +20,7 @@
         </div>
         <div class="row mt-4">
             <div class="col-1">
-                <svg class="icon icon-secondary"><use xlink:href="./svg/sprite.svg#it-mail"></use></svg>
+                <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-mail"></use></svg>
             </div>
             <div class="col">
                 <h5>mario.rossi@gmail.com</h5>

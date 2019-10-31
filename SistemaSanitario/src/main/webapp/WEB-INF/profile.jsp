@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-<c:set var = "PAGE_TITLE" value = "Dashboard"/>
+<c:set var = "PAGE_TITLE" value = "Profilo"/>
       
 <!DOCTYPE html>
 <html lang="it">
@@ -23,13 +23,18 @@
         <div class="row">
             <div class="col-xl-10">
                 
+                <!-- PAGE TITLE -->
+                <c:if test="${sessionScope.user != null}">
+                    <h1 class="text-center text-primary mb-5">Profilo</h1>
+                 </c:if>
+                
+                <%@ include file="./jspf/genericData.jspf" %>    
+                    
                 <c:if test="${sessionScope.user.type == 'PAZIENTE'}">
-                  <%@ include file="./jspf/personalData.jspf" %> 
-                </c:if>
-                <c:if test="${sessionScope.user.type == 'MEDICO_BASE'}">
-                  <%@ include file="./jspf/genericData.jspf" %> 
+                  <%@ include file="./jspf/paziente/personalData.jspf" %> 
                 </c:if>
                 
+                 
                 
             </div>
             
