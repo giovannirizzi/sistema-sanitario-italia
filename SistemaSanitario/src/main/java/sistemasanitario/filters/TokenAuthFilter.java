@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import sistemasanitario.entities.AuthToken;
 import sistemasanitario.entities.User;
 import sistemasanitario.servlets.PasswordTest;
+import static sistemasanitario.utils.GeneralUtil.getUserSession;
 import sistemasanitario.utils.TokenUtil;
 
 public class TokenAuthFilter implements Filter{
@@ -50,9 +51,9 @@ public class TokenAuthFilter implements Filter{
         
         if(request instanceof HttpServletRequest){
             
-            HttpSession session = ((HttpServletRequest) request).getSession(false);
+            HttpSession session = getUserSession((HttpServletRequest)request);
 
-            if(session == null ||( session != null && session.getAttribute("user") == null))
+            if(session == null)
                 authUserWithTokenIfPossible((HttpServletRequest)request,(HttpServletResponse)response);  
         }
         

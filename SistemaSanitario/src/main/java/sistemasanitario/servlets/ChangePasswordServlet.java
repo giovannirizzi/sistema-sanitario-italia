@@ -25,11 +25,10 @@ import sistemasanitario.utils.PasswordUtil;
 /*
     
 errori:
-    no sesssion 
-    wrong argument
-    wrong password policy
-    wrong old password
-    databases error
+    generic error: 400
+    wrong password policy: 490
+    wrong old password: 491
+    databases error: 500
 
 */
 
@@ -54,7 +53,7 @@ public class ChangePasswordServlet extends HttpServlet {
         HttpSession session = getUserSession(request);
         
         if(session == null){
-            response.sendError(450);
+            response.sendError(400);
             return;
         }
         
@@ -69,14 +68,14 @@ public class ChangePasswordServlet extends HttpServlet {
         RuleResult passwordValResult = PasswordUtil.validatePassword(newPassword);
         //Send error message
         if(!passwordValResult.isValid()){
-            response.sendError(400, "invalid new password");
+            response.sendError(490, "invalid new password");
             return;
         }
         
         //Verifica la vecchia password
         User user = (User)session.getAttribute("user");
         if(!PasswordUtil.verify(user.getPassword(), oldPassword.toCharArray())){
-            response.sendError(400, "invalid old password");
+            response.sendError(491, "invalid old password");
             return;
         }
         
@@ -93,59 +92,5 @@ public class ChangePasswordServlet extends HttpServlet {
             
             response.sendError(500);
         }
-    }
-    
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        HttpSession session = getUserSession(request);
-        
-        if(session == null){
-            LOGGER.log(Level.INFO, "Not logged");
-            response.sendError(410);
-            return;
-        }
-        
-        String oldPassword = (String) request.getParameter("oldpassword");
-        String newPassword = (String) request.getParameter("newpassword");
-        
-        if(oldPassword == null || newPassword == null){
-            LOGGER.log(Level.INFO, "bad argument");
-            response.sendError(420);
-            return;
-        }
-        
-        //new password rispetta le policy?        
-        RuleResult passwordValResult = PasswordUtil.validatePassword(newPassword);
-        //Send error message
-        if(!passwordValResult.isValid()){
-            LOGGER.log(Level.INFO, "invalid new password");
-            response.sendError(401, "invalid new password");
-            return;
-        }
-        
-        //Verifica la vecchia password
-        User user = (User)session.getAttribute("user");
-        if(!PasswordUtil.verify(user.getPassword(), oldPassword.toCharArray())){
-            LOGGER.log(Level.INFO, "invalid old password");
-            response.sendError(402, "invalid old password");
-            return;
-        }
-        
-        //Aggiorno la nuova password le database
-        String passwordHash = PasswordUtil.hash(newPassword.toCharArray());
-        UpdateBuilder<User, Integer> updateBuilder = usersDao.updateBuilder();
-        try {
-            
-            updateBuilder.where().idEq(user.getId());
-            updateBuilder.updateColumnValue("password", passwordHash);
-            updateBuilder.update();
-            
-        } catch (SQLException ex) {
-            
-            response.sendError(500);
-        }
-    }
-    
+    } 
 }

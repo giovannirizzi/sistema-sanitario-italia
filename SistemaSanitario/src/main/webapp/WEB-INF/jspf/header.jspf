@@ -26,7 +26,7 @@
                     <div class="nav-item dropdown">
                       <a href="#" class="d-none d-lg-flex btn btn-primary btn-icon" id="resize-cloned"
                         data-toggle="dropdown" aria-haspopup="true">
-                        <span class="mr-3" id="hide-cloned">MARIO ROSSI</span>
+                        <span class="mr-3" id="hide-cloned"><c:out value = "${sessionScope.headerUserName}"/></span>
                         <div class="avatar size-lg">
                             <svg class="icon icon-secondary"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-user"></use></svg>
                         </div>
@@ -41,7 +41,7 @@
                         <div class="link-list-wrapper">
                           <ul class="link-list">
                             <li>
-                              <h3 id="esempio-header-1">Mario Rossi</h3>
+                              <h3 id="esempio-header-1"><c:out value = "${sessionScope.headerUserName}"/></h3>
                             </li>
 
                             <li><a class="list-item" href="./profile"><span>Profilo</span></a></li>

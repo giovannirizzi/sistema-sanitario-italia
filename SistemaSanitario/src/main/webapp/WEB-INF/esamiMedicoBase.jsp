@@ -19,7 +19,7 @@
     <%@ include file="./jspf/header.jspf" %>
     
     <!-- MAIN -->
-    <div class="container mt-sm-4 mt-md-5" style="height: 100%;">
+    <div class="container mt-sm-4 mt-md-5" style="height: 100vh;">
         <div class="row">
             <div class="col-xl-10">
                 
