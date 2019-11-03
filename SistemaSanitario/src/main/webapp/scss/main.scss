@@ -7,6 +7,7 @@
 body{
     display: block;
     min-height: 100vh;
+    background-color: #f6f6f6;
 }
 
 .it-search-wrapper.cloned{
@@ -27,11 +28,6 @@ body{
     }
 }
 
-body{
-    background-color: #f6f6f6;
-    height: 100%;
-}
-
 .container-extended {
     width: auto;
     max-width: 1350px;
@@ -41,6 +37,7 @@ body{
     margin-bottom: 40px;
     background-color: #fff;
     border: 1px solid #ececec;
+    border-radius: 1rem;
 }
 
 .main-pills.main-pills-basic {
