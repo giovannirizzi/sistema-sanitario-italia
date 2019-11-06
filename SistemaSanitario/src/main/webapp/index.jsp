@@ -144,9 +144,7 @@
     <!-- - img-->
     <div class="img-responsive-wrapper">
       <div class="img-responsive">
-        <div class="img-wrapper"><img
-            src="https://animals.sandiegozoo.org/sites/default/files/2016-08/animals_hero_mountains.jpg"
-            title="img title" alt="imagealt"></div>
+        <div class="img-wrapper"><img src="./images/hero2.png" title="img title" alt="imagealt"></div>
       </div>
     </div>
     <!-- - texts-->
@@ -154,10 +152,12 @@
       <div class="row">
         <div class="col-12">
           <div class="it-hero-text-wrapper bg-dark">
-            <span class="it-category">Category</span>
-            <h1 class="no_toc">Heading lorem ipsum dolor sit amet, consetetur sadipscing.</h1>
-            <p class="d-none d-lg-block">Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim
-              cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.</p>
+            <span class="it-category">Homepage</span>
+            <h1 class="no_toc">Benvenuti in Pregiated</h1>
+            <h5 class="no_toc">Il nuovo canale tematico regionale dedicato alla salute e ai servizi sanitari regionali.</h5>
+            <p class="d-none d-lg-block">
+            Pregiated è la piattaforma elettronica che consente ai cittadini residenti nelle province di Trento e Bolzano di fruire dei servizi connessi alla loro salute. 
+            Pregiated permette al cittadino di consultare on line la documentazione sanitaria prodotta dal Servizio Sanitario Nazionale. </p>
             <div class="it-btn-container"><a class="btn btn-sm btn-secondary" href="#">Label button</a></div>
           </div>
         </div>
@@ -172,41 +172,76 @@
       <div class="container">
         <div class="row mb-3">
           <div class="col-12">
-            <h4>Morbi fermentum amet</h4>
+            <h4>Servizi</h4>
           </div>
         </div>
         <div class="row">
-          <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5 mb-3">Platea dictumst vestibulum rhoncus est pellentesque
-            elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum
-            faucibus.</div>
-          <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5 mb-3">Eget egestas purus viverra accumsan. Diam maecenas
-            ultricies mi eget mauris pharetra et. Etiam dignissim diam quis enim. Eu nisl nunc mi ipsum faucibus.</div>
-          <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5">Euismod lacinia at quis risus sed vulputate. Scelerisque
-            purus semper eget duis at tellus at urna condimentum. Mattis enim ut tellus elementum sagittis.</div>
-        </div>
-      </div>
-      <!-- contenuto di esempio END -->
-    </div>
-  </div>
-
-  <!-- SECTION -->
-  <div class="section section-muted" id="sezione-di-esempio">
-    <div class="section-content">
-      <!-- contenuto di esempio START -->
-      <div class="container">
-        <div class="row mb-3">
-          <div class="col-12">
-            <h4>Morbi fermentum amet</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5 mb-3">Platea dictumst vestibulum rhoncus est pellentesque
-            elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum
-            faucibus.</div>
-          <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5 mb-3">Eget egestas purus viverra accumsan. Diam maecenas
-            ultricies mi eget mauris pharetra et. Etiam dignissim diam quis enim. Eu nisl nunc mi ipsum faucibus.</div>
-          <div class="col-12 col-lg-6 col-xl-4 pr-0 pr-md-5">Euismod lacinia at quis risus sed vulputate. Scelerisque
-            purus semper eget duis at tellus at urna condimentum. Mattis enim ut tellus elementum sagittis.</div>
+            <div class="col-12 col-lg-4">
+              <!--start card-->
+              <div class="card-wrapper">
+                <div class="card card-img no-after">
+                  <div class="img-responsive-wrapper">
+                    <div class="img-responsive">
+                      <figure class="img-wrapper">
+                        <img src="./images/cambiaMedico.png" title="img medico" alt="medico">
+                      </figure>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Cambia Medico</h5>
+                    <p class="card-text"></p><a class="read-more" href="#"><span class="text">Leggi di più</span>
+                      <svg class="icon">
+                        <use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-arrow-right"></use>
+                      </svg></a>
+                  </div>
+                </div>
+              </div>
+              <!--end card-->
+            </div>
+            <div class="col-12 col-lg-4">
+              <!--start card-->
+              <div class="card-wrapper">
+                <div class="card card-img no-after">
+                  <div class="img-responsive-wrapper">
+                    <div class="img-responsive">
+                      <figure class="img-wrapper">
+                        <img src="./images/cambiaMedico.png" title="img medico" alt="medico">
+                      </figure>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"></p><a class="read-more" href="#"><span class="text">Leggi di più</span>
+                      <svg class="icon">
+                        <use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-arrow-right"></use>
+                      </svg></a>
+                  </div>
+                </div>
+              </div>
+              <!--end card-->
+            </div>
+            <div class="col-12 col-lg-4">
+              <!--start card-->
+              <div class="card-wrapper">
+                <div class="card card-img no-after">
+                  <div class="img-responsive-wrapper">
+                    <div class="img-responsive">
+                      <figure class="img-wrapper">
+                        <img src="./images/cambiaMedico.png" title="img medico" alt="medico">
+                      </figure>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"></p><a class="read-more" href="#"><span class="text">Leggi di più</span>
+                      <svg class="icon">
+                        <use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-arrow-right"></use>
+                      </svg></a>
+                  </div>
+                </div>
+              </div>
+              <!--end card-->
+            </div>
         </div>
       </div>
       <!-- contenuto di esempio END -->
