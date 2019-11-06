@@ -7,11 +7,22 @@
         <div class="container text-left mb-5">
             <div class="row">
                 <div class="col-md-5 d-flex flex-column justify-content-center align-items-center">
-                        <img src="https://via.placeholder.com/240x120/ebebeb/808080/?text=Immagine" class="rounded-circle" width="200px" height="200px">
-                            <form method="post" action="" enctype="multipart/form-data">
-                                <label class="d-flex justify-content-center" for="upload1">Cambia immagine</label>
-                                <input type="file" name="upload1" id="upload1" multiple="multiple" style="visibility:hidden;"/>
-                            </form>
+                    <div class="avatar size-xxl" style="width:240px; height: 240px;">
+                        <c:choose>
+                            <c:when test="${empty sessionScope.paziente.foto}">
+                                <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg>
+                            </c:when>
+                            <c:otherwise>
+                                <img src="./paziente/avatar">
+                            </c:otherwise>
+                        </c:choose> 
+                        
+                    </div>
+                       
+                    <form method="post" action="./paziente/avatar" enctype="multipart/form-data" id="formUploader">
+                        <label class="d-flex justify-content-center" for="upload1">Cambia immagine</label>
+                        <input type="file" name="upload1" id="upload1" multiple="multiple" style="visibility:hidden;"/>
+                    </form>
                 </div>
                 <div class="col-md-7"> 
                     <div class="row mt-4">
@@ -123,3 +134,9 @@
     </div>
   </div>
 </div>
+
+ <script type="text/javascript">
+    document.getElementById("upload1").onchange = function() {
+        document.getElementById("formUploader").submit();
+    };
+</script>
