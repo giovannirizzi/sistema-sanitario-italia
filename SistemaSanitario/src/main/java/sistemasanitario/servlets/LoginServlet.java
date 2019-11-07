@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
         medicoDao = (Dao<Medico, Integer>)getServletContext().getAttribute("medicoDao");
     }
     
-    private void loadUserData(HttpSession session, User user) throws SQLException {
+    public void loadUserData(HttpSession session, User user) throws SQLException {
         
         String headerUserName = null;
         
