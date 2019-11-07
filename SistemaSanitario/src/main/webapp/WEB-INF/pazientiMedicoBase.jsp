@@ -11,9 +11,11 @@
     
     <%@ include file="./jspf/meta.jspf" %> 
     
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    
 </head>
 
-<body>
+<body> <!--onload="getPazienti();">-->
     
     <!-- HEADER -->
     <%@ include file="./jspf/header.jspf" %>
@@ -35,48 +37,22 @@
                 <div class="main-pills  text-center mt-sm-4 mt-md-5">
                    <div class="main-pills-wrap ">
                        <h2 class="text-secondary pb-4">Titolo sezione</h2>
-                       <h1 class="text-center text-primary mb-5">Esami</h1>
 
                 <!-- CONTENT OF PAGE -->
                 <div class="main-pills  text-center mt-sm-4 mt-md-5">
                    <div class="main-pills-wrap ">
                        <div class="form-group">
                         <input type="search" class="autocomplete" placeholder="Cerca pazienti..."
-                          id="autocomplete-regioni"
-                          name="autocomplete-regioni"
-                          data-autocomplete='[{"text":"Abruzzo","link":"#"},{"text":"Basilicata","link":"#"},{"text":"Calabria","link":"#"},{"text":"Campania","link":"#"},{"text":"Emilia Romagna","link":"#"},{"text":"Friuli Venezia Giulia","link":"#"},{"text":"Lazio","link":"#"},{"text":"Liguria","link":"#"},{"text":"Lombardia","link":"#"},{"text":"Marche","link":"#"},{"text":"Molise","link":"#"},{"text":"Piemonte","link":"#"},{"text":"Puglia","link":"#"},{"text":"Sardegna","link":"#"},{"text":"Sicilia","link":"#"},{"text":"Toscana","link":"#"},{"text":"Trentino Alto Adige","link":"#"},{"text":"Umbria","link":"#"},{"text":"Valle d’Aosta","link":"#"},{"text":"Veneto","link":"#"}]'>
+                          id="myInput" onkeyup="myFunction()">
+                          <!--name="autocomplete-regioni"
+                          data-autocomplete='[{"text":"Abruzzo","link":"#"},{"text":"Basilicata","link":"#"},{"text":"Calabria","link":"#"},{"text":"Campania","link":"#"},{"text":"Emilia Romagna","link":"#"},{"text":"Friuli Venezia Giulia","link":"#"},{"text":"Lazio","link":"#"},{"text":"Liguria","link":"#"},{"text":"Lombardia","link":"#"},{"text":"Marche","link":"#"},{"text":"Molise","link":"#"},{"text":"Piemonte","link":"#"},{"text":"Puglia","link":"#"},{"text":"Sardegna","link":"#"},{"text":"Sicilia","link":"#"},{"text":"Toscana","link":"#"},{"text":"Trentino Alto Adige","link":"#"},{"text":"Umbria","link":"#"},{"text":"Valle d’Aosta","link":"#"},{"text":"Veneto","link":"#"}]'>-->
                         <span class="autocomplete-icon" aria-hidden="true">
                           <svg class="icon icon-sm"><use xlink:href="../svg/sprite.svg#it-search"></use></svg>
                         </span>
                         <label for="autocomplete-regioni" class="sr-only">Cerca nel sito</label>
                       </div>
                        
-                       <table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Cognome e nome</th>
-      <th scope="col">Ultima visita</th>
-      <th scope="col">Ultima ricetta</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Mario Verdi</td>
-      <td>01/01/01</td>
-      <td>01/01/01</td>
-    </tr>
-    <tr>
-      <td>Francesco Bianchi</td>
-      <td>01/01/01</td>
-      <td>01/01/01</td>
-    </tr>
-    <tr>
-      <td>Alessandro Rossi</td>
-      <td>01/01/01</td>
-      <td>01/01/01</td>
-    </tr>
-  </tbody>
-</table>
+                       <p id="showData"></p>
 
                    </div>
                </div>
@@ -102,7 +78,10 @@
     </div>
 
     <!-- FOOTER -->
-    <%@ include file="./jspf/footer.jspf" %> 
+    <%@ include file="./jspf/footer.jspf" %>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="../js/pazientiMedico.js"></script>
     
 </body>
 
