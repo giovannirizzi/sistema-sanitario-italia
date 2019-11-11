@@ -9,10 +9,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -73,7 +70,7 @@ public class ResetPasswordServlet extends HttpServlet{
                 updateBuilder.where().idEq(tokenEntry.getUser().getId());
                 updateBuilder.updateColumnValue("password", passwordHash);
                 updateBuilder.update();
-
+                
                 //Rimuovo il token utilizzato
                 resetTokenDao.delete(tokenEntry);
 
@@ -114,7 +111,6 @@ public class ResetPasswordServlet extends HttpServlet{
             if(tokens.size() > 0){ 
                 
                 Timestamp now = Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
-
                 long elapsedDaysSinceCreation = TimeUnit.DAYS.convert(now.getTime() - 
                         tokens.get(0).getCreatedTime().getTime()
                         , TimeUnit.MILLISECONDS);
@@ -147,11 +143,9 @@ public class ResetPasswordServlet extends HttpServlet{
         
         if(TokenUtil.checkSyntaxResetToken(token) && getTokenEntryFromDB(token) != null){
             
-            forwardToJSPPage(token, req, resp);    
+            forwardToJSPPage(token, req, resp); 
         }
         else{
-             //Redirect to 404 page
-             //forwardToErrorPage();
             resp.sendError(404);
         } 
     }

@@ -28,6 +28,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -63,10 +64,6 @@ public class AvatarServlet extends HttpServlet {
             throws ServletException, IOException {
         
         Paziente paziente = (Paziente)request.getSession().getAttribute("paziente");
-        try{
-            pazienteDao.refresh(paziente);
-        }
-        catch(SQLException ex){}
         
         if(paziente.getFoto() == null) return;
         
@@ -138,9 +135,8 @@ public class AvatarServlet extends HttpServlet {
 
                                         item.write(storeFile);
                                         LOGGER.log(Level.INFO, "IMMAGINE SALVATA: "+ fileName);
-                                        
-                                        Paziente paziente = (Paziente)request.getSession().getAttribute("paziente");
-                                        updateFotoOfPaziente(paziente, fileName);
+
+                                        updateFotoOfPaziente(request.getSession(), fileName);
                                         
                                     } catch (Exception e) {
                                         LOGGER.log(Level.SEVERE, "ERROR: Not an image"); 
@@ -168,7 +164,9 @@ public class AvatarServlet extends HttpServlet {
         return uuid.toString();
     }
 
-    private void updateFotoOfPaziente(Paziente paziente, String newFileName) {
+    private void updateFotoOfPaziente(HttpSession session, String newFileName) {
+        
+        Paziente paziente = (Paziente)session.getAttribute("paziente");
         
         String oldFoto = paziente.getFoto();
         if(oldFoto != null){
@@ -183,6 +181,7 @@ public class AvatarServlet extends HttpServlet {
             updateBuilder.updateColumnValue("foto", newFileName);
             updateBuilder.update();
             paziente.setPhoto(newFileName);
+            session.setAttribute("paziente", paziente);
             
         } catch (SQLException ex) {
        

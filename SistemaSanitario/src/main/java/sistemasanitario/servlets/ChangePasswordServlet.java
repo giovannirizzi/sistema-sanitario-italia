@@ -9,7 +9,6 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.UpdateBuilder;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -88,6 +87,9 @@ public class ChangePasswordServlet extends HttpServlet {
             updateBuilder.updateColumnValue("password", passwordHash);
             updateBuilder.update();
             
+            usersDao.refresh(user);
+            session.setAttribute("user", user);
+           
         } catch (SQLException ex) {
             
             response.sendError(500);

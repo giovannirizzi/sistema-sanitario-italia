@@ -27,7 +27,6 @@
                 
                 <div class="col-md-7">
                     <div class="row mt-4">
-                        
                         <div class="form-group" style="width:100%;">
                             <div class="input-group mb-5">
                                 <div class="input-group-prepend">
@@ -57,38 +56,37 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><svg class="icon icon-sm"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
                                 </div>
-                                <label for="medicoBase">MEDICO BASE ATTUALE</label>
+                                <label for="medicoBase">MEDICO BASE</label>
                                 <input type="text" class="form-control" id="medicoBase" readonly value="MIKE DYSON">
                                 <div class="input-group-append">
                                     <a data-toggle="collapse" data-target="#medicCollapse"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-pencil"></use></svg></a>
                                 </div>
-                                 <div class="collapse w-100 mt-4" id="medicCollapse">
-                                    <form action="./cambiaMedico" method="POST">
-                                        <div class="row">
-                                            <div class="col-lg-6 pb-5">
-                                                <div class="bootstrap-select-wrapper">
-                                                    <label>Medico di base</label>
-                                                    <select title="Scegli una opzione" data-live-search="true" data-live-search-placeholder="Cerca medici">
-                                                      <option value="1">Bestia vacca</option>
-                                                      <option value="2">Medico pregiato</option>
-                                                      <option value="3">Pregiated medic</option>
-                                                      <option value="4">Gayy</option>
-                                                      <option value="5">Gay gay gay</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button type="submit" class="btn btn-primary">Conferma</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
-                
+                <div class="col-md-5"></div>
+                <div class="collapse col-md-7 w-100 mt-4 " id="medicCollapse">
+                    <form action="./cambiaMedico" method="POST" class="w-100">
+                        <div class="row w-100">
+                            <div class="col-9 pb-5">
+                                <div class="bootstrap-select-wrapper">
+                                    <label>CAMBIA MEDICO DI BASE</label>
+                                    <select title="Selezioni un medico" data-live-search="true" data-live-search-placeholder="Cerca medici">
+                                        <option value="1">Bestia vacca</option>
+                                        <option value="2">Medico pregiato</option>
+                                        <option value="3">Pregiated medic</option>
+                                        <option value="4">Gayy</option>
+                                        <option value="5">Gay gay gay</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary">Conferma</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <!--      
                 <div class="col-md-7"> 
                     <div class="row mt-4">
