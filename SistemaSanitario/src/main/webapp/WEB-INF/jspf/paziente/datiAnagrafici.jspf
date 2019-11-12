@@ -3,7 +3,7 @@
 
 <div class="main-pills text-center mt-sm-4 mt-md-5" id="personaldata">
     <div class="main-pills-wrap ">
-        <h2 class="text-secondary pb-4 text-left">Dati paziente</h2>
+        <h2 class="text-secondary pb-4 text-left">Dati Anagrafici</h2>
         <div class="container text-left mb-5">
             <div class="row">
                 <div class="col-md-5 d-flex flex-column justify-content-center align-items-center">
@@ -30,6 +30,13 @@
                         <div class="form-group" style="width:100%;">
                             <div class="input-group mb-5">
                                 <div class="input-group-prepend">
+                                    <div class="input-group-text"><svg class="icon icon-sm"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
+                                </div>
+                                <label for="codiceFiscale">NOME E COGNOME</label>
+                                <input type="text" class="form-control" id="codiceFiscale" readonly value="Mario Rossi">
+                            </div>
+                            <div class="input-group mb-5">
+                                <div class="input-group-prepend">
                                     <div class="input-group-text"><svg class="icon icon-sm"><use xlink:href="../svg/sprite.svg#it-card"></use></svg></div>
                                 </div>
                                 <label for="codiceFiscale">CODICE FISCALE</label>
@@ -46,7 +53,7 @@
                             
                             <div class="input-group mb-5">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text"><svg class="icon icon-sm"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
+                                    <div class="input-group-text"><svg class="icon icon-sm"></svg></div>
                                 </div>
                                 <label for="sesso">SESSO</label>
                                 <input type="text" class="form-control" id="sesso" readonly value="M">
@@ -54,7 +61,7 @@
                             
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text"><svg class="icon icon-sm"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
+                                    <div class="input-group-text"><svg class="icon icon-sm"></svg></div>
                                 </div>
                                 <label for="medicoBase">MEDICO BASE</label>
                                 <input type="text" class="form-control" id="medicoBase" readonly value="MIKE DYSON">
