@@ -20,8 +20,6 @@ public class WebAppContextListener  implements ServletContextListener{
 
     private static final Logger LOGGER = Logger.getLogger(WebAppContextListener.class.getName());
     
-    
-    
     @Override
     public void contextInitialized(ServletContextEvent sce) {
 

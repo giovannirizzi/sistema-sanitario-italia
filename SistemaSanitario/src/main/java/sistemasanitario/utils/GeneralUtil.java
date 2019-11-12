@@ -13,7 +13,6 @@ public class GeneralUtil {
     
     public static HttpSession getUserSession(HttpServletRequest request){
         
-        ServletContext servletContext = ((HttpServletRequest) request).getServletContext();
         HttpSession session = ((HttpServletRequest) request).getSession(false);
 
         if(session != null && session.getAttribute("user") != null){

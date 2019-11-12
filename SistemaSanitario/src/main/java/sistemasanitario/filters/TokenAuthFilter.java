@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sistemasanitario.entities.AuthToken;
 import sistemasanitario.entities.User;
+import sistemasanitario.listeners.AuthenticatedUserListener;
 import sistemasanitario.servlets.PasswordTest;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
 import sistemasanitario.utils.TokenUtil;
@@ -37,13 +38,14 @@ public class TokenAuthFilter implements Filter{
     
     private Dao<AuthToken, Integer> authTokensDao;
     private Dao<User, Integer> usersDao;
+    private AuthenticatedUserListener authUserListener;
     
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         
         authTokensDao = (Dao<AuthToken, Integer>)filterConfig.getServletContext().getAttribute("AuthTokensDao");
         usersDao = (Dao<User, Integer>)filterConfig.getServletContext().getAttribute("UsersDao");
-  
+        authUserListener = new AuthenticatedUserListener(filterConfig.getServletContext());
     }
 
     @Override
@@ -58,7 +60,6 @@ public class TokenAuthFilter implements Filter{
         }
         
         chain.doFilter(request, response);
-    
     }
     
     private void authUserWithTokenIfPossible(HttpServletRequest request, HttpServletResponse response){
@@ -102,7 +103,11 @@ public class TokenAuthFilter implements Filter{
 
                         LOGGER.log(Level.INFO, "User authenticated with token");
                         usersDao.refresh(tokens.get(0).user);
-                        ((HttpServletRequest)request).getSession().setAttribute("user", tokens.get(0).user);    
+                        
+                        HttpSession session = ((HttpServletRequest)request).getSession();
+                        session.setAttribute("user", tokens.get(0).user);    
+                        
+                        authUserListener.onNewUserAuthenticated(session, tokens.get(0).user);
                     }
                     else{
                         authTokensDao.delete(tokens.get(0));

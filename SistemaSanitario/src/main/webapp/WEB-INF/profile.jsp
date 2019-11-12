@@ -28,10 +28,10 @@
                     <h1 class="text-center text-primary mb-5">Profilo</h1>
                  </c:if>
                 
-                <%@ include file="./jspf/genericData.jspf" %>    
+                <%@ include file="./jspf/userData.jspf" %>    
                     
                 <c:if test="${sessionScope.user.type == 'PAZIENTE'}">
-                  <%@ include file="./jspf/paziente/personalData.jspf" %> 
+                  <%@ include file="./jspf/paziente/datiAnagrafici.jspf" %> 
                 </c:if>
                 
                  
