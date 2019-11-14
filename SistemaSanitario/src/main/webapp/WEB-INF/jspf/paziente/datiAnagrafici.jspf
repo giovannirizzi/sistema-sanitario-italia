@@ -13,13 +13,13 @@
                                 <svg class="icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg>
                             </c:when>
                             <c:otherwise>
-                                <img src="./paziente/avatar">
+                                <img src="./avatar">
                             </c:otherwise>
                         </c:choose> 
                         
                     </div>
                        
-                    <form method="post" action="./paziente/avatar" enctype="multipart/form-data" id="formUploader">
+                    <form method="post" action="./avatar" enctype="multipart/form-data" id="formUploader">
                         <label class="d-flex justify-content-center" for="upload1">Cambia immagine</label>
                         <input type="file" name="upload1" id="upload1" multiple="multiple" style="visibility:hidden;"/>
                     </form>
