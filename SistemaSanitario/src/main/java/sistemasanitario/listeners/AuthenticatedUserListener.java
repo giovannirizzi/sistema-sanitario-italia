@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 import javax.servlet.http.HttpSession;
 import sistemasanitario.entities.Medico;
 import sistemasanitario.entities.Paziente;

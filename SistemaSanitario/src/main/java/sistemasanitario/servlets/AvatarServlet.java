@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemasanitario.servlets.paziente;
+package sistemasanitario.servlets;
 
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.UpdateBuilder;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -35,13 +38,14 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 import sistemasanitario.entities.Paziente;
 import sistemasanitario.entities.User;
+import sistemasanitario.entities.User.UserType;
 import sistemasanitario.servlets.PasswordTest;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
   maxFileSize = 1024 * 1024 * 5, 
   maxRequestSize = 1024 * 1024 * 5 * 5)
 
-@WebServlet(name = "AvatarServlet", urlPatterns = {"/myservices/paziente/avatar"})
+@WebServlet(name = "AvatarServlet", urlPatterns = {"/myservices/avatar"})
 public class AvatarServlet extends HttpServlet {
     
     private String uploadPath;
@@ -59,20 +63,75 @@ public class AvatarServlet extends HttpServlet {
         pazienteDao = (Dao<Paziente, Integer>)getServletContext().getAttribute("pazienteDao");
     }
     
+    private void writeFotoToResponse(HttpServletResponse response, String filePath) throws IOException{
+        
+        File file = new File(filePath);
+        response.setContentLength((int)file.length());
+        FileInputStream in = new FileInputStream(file);
+
+        OutputStream out = response.getOutputStream();
+
+        BufferedInputStream bin = new BufferedInputStream(in);
+        BufferedOutputStream bout = new BufferedOutputStream(out);
+        int ch =0;
+        while((ch=bin.read()) != -1){
+            bout.write(ch);
+        }
+        bin.close();
+        bout.close();
+        out.close();
+        in.close();
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Paziente paziente = (Paziente)request.getSession().getAttribute("paziente");
+        User user = (User)request.getSession().getAttribute("user");
+        String filePath = null;
         
-        if(paziente.getFoto() == null) return;
+        if(user.getType() == UserType.PAZIENTE){
+            
+            Paziente paziente = (Paziente)request.getSession().getAttribute("paziente");
         
-        ServletContext cntx = request.getServletContext();
-   
-        String filename = uploadPath.concat("/" + paziente.getFoto());
-        LOGGER.log(Level.INFO, "filepath:" + filename);
+            if(paziente.getFoto() != null){
+                filePath = uploadPath.concat("/" + paziente.getFoto());
+                LOGGER.log(Level.INFO, "filepath:" + filePath);  
+            }
+        }
+        else{
+            
+            String id = request.getParameter("id");
+            Integer pazienteId = -1;
+            try{
+                pazienteId = Integer.valueOf(id);
+            }
+            catch(NumberFormatException ex){
+                response.sendError(400);
+                return;
+            }
+            
+            QueryBuilder<Paziente, Integer> queryBuilder = pazienteDao.queryBuilder();
+            
+            try {
+                Paziente paziente = pazienteDao.queryForId(pazienteId);
+                if(paziente != null && paziente.getFoto() != null){
+                    filePath = uploadPath.concat("/" + paziente.getFoto());
+                    LOGGER.log(Level.INFO, "filepath:" + filePath); 
+                }               
+            } catch (SQLException ex) {
+                response.sendError(500);
+                return;
+            }            
+        }
         
-        String mime = cntx.getMimeType(filename);
+        //Il paziente non ha la foto
+        if(filePath == null){
+            response.sendError(404);
+            return;
+        }
+            
+        String mime = request.getServletContext().getMimeType(filePath);
         if (mime == null) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             return;
@@ -80,22 +139,8 @@ public class AvatarServlet extends HttpServlet {
         response.setContentType(mime);
         
         try{
-            File file = new File(filename);
-            response.setContentLength((int)file.length());
-            FileInputStream in = new FileInputStream(file);
             
-            OutputStream out = response.getOutputStream();
-
-            BufferedInputStream bin = new BufferedInputStream(in);
-            BufferedOutputStream bout = new BufferedOutputStream(out);
-            int ch =0;
-            while((ch=bin.read()) != -1){
-                bout.write(ch);
-            }
-            bin.close();
-            bout.close();
-            out.close();
-            in.close();         
+            writeFotoToResponse(response, filePath);          
         }
         catch(Exception ex){
             response.sendError(500);
@@ -105,6 +150,12 @@ public class AvatarServlet extends HttpServlet {
     
     protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+        
+        User user = (User)request.getSession().getAttribute("user");
+        if(user.getType() != UserType.PAZIENTE){
+            response.sendError(400);
+            return;
+        }
 	                
         if (!ServletFileUpload.isMultipartContent(request)) {
             response.sendError(400);
