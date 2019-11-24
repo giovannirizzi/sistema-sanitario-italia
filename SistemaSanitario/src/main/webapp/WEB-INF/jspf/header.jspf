@@ -1,10 +1,10 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-<div class="it-header-wrapper it-header-sticky">
+<div class="it-header-wrapper">
     <div class="it-nav-wrapper">
       <!-- HEADER CENTER -->
-      <div class="it-header-center-wrapper it-small-header">
+      <div class="it-header-center-wrapper">
         <div class="container container-extended" style="width:100%;">
           <div class="row">
             <div class="col-12">
@@ -107,7 +107,7 @@
       </div>
       <!-- HEADER NAV BAR -->
       <div class="it-header-navbar-wrapper">
-        <div class="container container-extended">
+        <div class="container container-extended d-lg-none">
           <div class="row">
             <div class="col-12">
               <!--start nav-->

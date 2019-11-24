@@ -16,12 +16,46 @@ Utente paziente:
 username = mario.rossi
 password = Ciao1234!
 
+Medicina (id, name, price, desc)
+
+Prescrizione esame(id, paziente_id, doctor_id, exam_id, report_id NULLABLE, id_specialist NULLABLE, id_ssp NULLABLE read bool, paid bool, prescription date, prescription_date_on_create)
+
+associazione dottore specialista -> esame prescrivibile ??? 
+
+REPORT(id, id_exam, TEXT, report_date_on_create, 
+
+PRESCRIZIONE_MEDICINA(id, id_paziente, id_dottore, id_medicina, int quantità, data_prescrizone_on_create)
+
+CREATE TABLE PRESCRIZIONE_MEDICINA(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, idPaziente INT NOT NULL, idMedico INT NOT NULL, idMedicina INT NOT NULL, quantita INT NOT NULL, data DATETIME DEFAULT current_timestamp(), FOREIGN KEY(idPaziente) REFERENCES PAZIENTE(id), FOREIGN KEY(idMedico) REFERENCES MEDICO(id), FOREIGN KEY(idMedicina) REFERENCES MEDICINA(id));
+
+CREATE TABLE MEDICO_SPECIALISTA(id INT, nome VARCHAR(50) NOT NULL, cognome VARCHAR(50) NOT NULL, citta VARCHAR(50) NOT NULL, provincia CHAR(2) NOT NULL, codice CHAR(6) UNIQUE NOT NULL, PRIMARY KEY(id), FOREIGN KEY(id) REFERENCES USERS(id));
+
+
+DOTTORE:
+vede lista pazienti
+prescrive esami ai suoi pazienti
+prescrive medicine ai suoi pazienti
+
+PAZIENTE
+vede lista esami fatti e da fare (con eventuali report)
+vede i nuovi report
+vede la lista di prescrizioni di medicine
+informazioni esami
+
+DOTTORE specialista
+vede ela lista pazienti (tutti)
+visite da fare
+vede lista visite fatte
+
+SSP
+
+
+
 
 TODO
 
 tabelle database da fare:
 
-lista esami/visite
 esami
 visite mediche
 risultati esami

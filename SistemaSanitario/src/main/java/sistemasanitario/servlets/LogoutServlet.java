@@ -84,7 +84,7 @@ public class LogoutServlet extends HttpServlet{
             try {
                 String contextPath = req.getContextPath();
                 if (!contextPath.endsWith("/")) contextPath += "/";
-                resp.sendRedirect(contextPath);
+                resp.sendRedirect(contextPath+"index");
             } catch (IOException ex) {
                 Logger.getLogger(LogoutServlet.class.getName()).log(Level.SEVERE, null, ex);
             } 

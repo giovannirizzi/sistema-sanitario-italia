@@ -18,10 +18,15 @@
     <!-- HEADER -->
     <%@ include file="./jspf/header.jspf" %>
     
+
+    
     <!-- MAIN -->
-    <div class="container mt-sm-4 mt-md-5" style="height: 100vh;">
+    <div class="container container-extended mt-sm-4 mt-md-5" style="height: 100vh;">
         <div class="row">
-            <div class="col-xl-10">
+            
+            <%@ include file="./jspf/navbar.jspf" %>
+            
+            <div class="col-lg-9">
                 
                 <!-- PAGE TITLE -->
                 
@@ -47,23 +52,7 @@
 
                    </div>
                </div>
-                
-                
             </div>
-            
-            <!-- SIDEBAR -->
-            <div class="d-none d-xl-block col-xl-2 bd-toc">
-                <div class="sidebar-wrapperp">
-                  <h3><c:out value = "${PAGE_TITLE}"/></h3>
-                  <ul class="section-nav">
-                    <li class="toc-entry toc-h3"><a href="#doctype-html5">Doctype HTML5</a></li>
-                    <li class="toc-entry toc-h3"><a href="#meta-tag-responsive">Meta tag responsive</a></li>
-                    <li class="toc-entry toc-h3"><a href="#box-sizing">Box-sizing</a></li>
-                    <li class="toc-entry toc-h3"><a href="#reboot">Reboot</a></li>
-                  </ul>
-                </div>
-            </div>
-            
         </div>
     </div>
 
