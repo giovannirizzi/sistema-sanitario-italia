@@ -41,11 +41,10 @@ public class AuthenticatedUserListener{
             
             case PAZIENTE:
             {
-                List<Paziente> pazienti = pazienteDao.queryForEq("idUtente", user.getId());
+                Paziente paziente = pazienteDao.queryForId(user.getId());
               
-                if(pazienti != null && pazienti.size()>0){
-                    Paziente paziente = pazienti.get(0);
-                  
+                if(paziente != null){
+  
                     session.setAttribute("paziente", paziente);
                     headerUserName = paziente.getNome() + " " + paziente.getCognome();
                 }
@@ -62,10 +61,9 @@ public class AuthenticatedUserListener{
             
             default:
             {
-                List<Medico> medici = medicoDao.queryForEq("idUtente", user.getId());
-                if(medici != null && medici.size()>0){
+                Medico medico = medicoDao.queryForId(user.getId());
+                if(medico != null){
                 
-                    Medico medico = medici.get(0);
                     session.setAttribute("medico", medico);
                     headerUserName = medico.getNome() + " " + medico.getCognome();
                 }

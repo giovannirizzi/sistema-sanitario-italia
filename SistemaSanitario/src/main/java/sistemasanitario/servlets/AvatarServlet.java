@@ -39,7 +39,6 @@ import org.apache.commons.io.FilenameUtils;
 import sistemasanitario.entities.Paziente;
 import sistemasanitario.entities.User;
 import sistemasanitario.entities.User.UserType;
-import sistemasanitario.servlets.PasswordTest;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
   maxFileSize = 1024 * 1024 * 5, 

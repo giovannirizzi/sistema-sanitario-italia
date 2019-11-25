@@ -16,11 +16,8 @@ public class Medico {
     public Medico() {
     }
     
-    @DatabaseField(generatedId = true)
+    @DatabaseField(id = true)
     private int id;
-    
-    @DatabaseField(columnName="idUtente", foreign = true)
-    public User user;
     
     @DatabaseField
     private String nome;
@@ -39,10 +36,6 @@ public class Medico {
 
     public int getId() {
         return id;
-    }
-
-    public User getUser() {
-        return user;
     }
 
     public String getNome() {
