@@ -138,10 +138,16 @@
                             <li class="nav-item"><a class="nav-link" href="#"><span>Bestia</span></a></li>
                             <li class="nav-item"><a class="nav-link" href="#sezione-di-esempio"><span>Vacca</span></a></li>
                             <li class="nav-item"><a class="nav-link" href="#"><span>Sei</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"><span>Meico base</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><span>Medico Specialista</span></a></li>
                         </c:if>    
                             
-                       
+                        <c:if test="${sessionScope.user.type == 'SS_PROVINCIALE'}">
+                            <li class="nav-item"><a class="nav-link" href="#"><span>Bestia</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="#sezione-di-esempio"><span>Vacca</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><span>Sei</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><span>SSP</span></a></li>
+                        </c:if>   
+                            
                         <c:if test="${sessionScope.user == null}">
                             <li class="nav-item"><a class="nav-link" href="#"><span>DEBUG ONLY</span></a></li>
                         </c:if>         
