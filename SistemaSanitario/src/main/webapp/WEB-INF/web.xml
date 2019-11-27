@@ -5,6 +5,27 @@
         <param-name>DBURL</param-name>
         <param-value>jdbc:mariadb://sistemasanitariodb.c16q8irjv9nd.us-east-2.rds.amazonaws.com/sistemasanitario</param-value>
     </context-param>
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name>
+        <param-value>/</param-value>
+    </context-param>
+    
+        
+    <!-- === JSF === -->
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>PasswordTest</servlet-name>
         <servlet-class>sistemasanitario.servlets.PasswordTest</servlet-class>
@@ -43,7 +64,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>EsamiPazientePage</servlet-name>
-        <url-pattern>/myservices/esamiPaziente</url-pattern>
+        <url-pattern>/myservices/private/esami</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>EsamiMedicoBasePage</servlet-name>
@@ -104,6 +125,10 @@
         <servlet-name>DashboardServlet</servlet-name>
         <url-pattern>/DashboardServlet</url-pattern>
     </servlet-mapping>
+
+    
+    
+    
     <session-config>
         <session-timeout>
             30
