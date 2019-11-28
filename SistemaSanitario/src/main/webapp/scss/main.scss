@@ -34,7 +34,6 @@ body{
  }
  
  .main-pills {
-    margin-bottom: 40px;
     background-color: #fff;
     border: 1px solid #ececec;
     border-radius: 0.5rem;
@@ -62,6 +61,12 @@ body{
     -kthtml-transition: box-shadow 0.5s linear;
     transition: box-shadow 0.5s linear;
     margin-bottom: 30px;
+}
+
+.mynavbar{
+
+    border: 1px solid #ececec;
+    border-radius: 0.5rem;
 }
 
 .bd-toc {
@@ -104,3 +109,8 @@ body{
     }
   }
 }
+
+.dropdown-menu:before{
+    content:none !important;
+}
+

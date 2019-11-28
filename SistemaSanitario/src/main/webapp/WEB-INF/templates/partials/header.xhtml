@@ -23,11 +23,12 @@
                       <h3 class="no_toc d-none d-md-block">Il sisema sanitario come lo voi tu</h3>
                     </div>
                   </a>
-                </div>
+                </div> 
                  <!-- ACCEDI AREA PERSONALE-->
                 <div class="it-right-zone">
                     <div class="it-search-wrapper">
-                    <div class="nav-item dropdown">
+                    <div class="nav-item dropdown btn-group">
+                   
                       <a href="#" class="d-none d-lg-flex btn btn-primary btn-icon" id="resize-cloned"
                         data-toggle="dropdown" aria-haspopup="true">
                         <span class="mr-3" id="hide-cloned">#{sessionScope.headerUserName}</span>
@@ -41,124 +42,26 @@
                         </div>
                        </a>
 
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                         <div class="link-list-wrapper">
                           <ul class="link-list">
                             <li>
                               <h3 id="esempio-header-1">#{sessionScope.headerUserName}</h3>
                             </li>
 
-                            <li><a class="list-item" href="./profile"><span>Profilo</span></a></li>
+                            <li><a class="list-item" href="#{request.contextPath}/personalarea/profile.xhtml"><span>Profilo</span></a></li>
 
                             <li>
                               <span class="divider"></span>
                             </li>
-                            <li><a class="list-item" href="./logout"><span>Disconnetti</span></a></li>
+                            <li><a class="list-item" href="#{request.contextPath}/myservices/logout"><span>Disconnetti</span></a></li>
                           </ul>
                         </div>
                       </div>
                     </div>
                     </div>
-                    
-                 <!--
-                      <div class="it-search-wrapper">
-                      <a href="login" class="btn btn-primary btn-icon">
-                        <span class="rounded-icon">
-                          <svg class="icon icon-primary">
-                            <use xlink:href="svg/sprite.svg#it-user"></use>
-                          </svg>
-                        </span>
-                        <span class="d-none d-lg-block" id="">Accedi all'area personale</span>
-                      </a>
-                        </div>-->
-                       <!--
-                  <div class="it-search-wrapper">
-                    <div class="nav-item dropdown">
-                      <a href="#" class="btn btn-primary btn-icon rounded" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true">
-                        <span class="rounded-icon">
-                          <svg class="icon icon-primary">
-                            <use xlink:href="svg/sprite.svg#it-user"></use>
-                          </svg>
-                        </span>
-                        <span class="d-none d-lg-block" id="hide-cloned">Accedi all'area personale</span>
-                      </a>
-
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <div class="link-list-wrapper">
-                          <ul class="link-list">
-                            <li>
-                              <h3 id="esempio-header-1">Mario Rossi</h3>
-                            </li>
-
-                            <li><a class="list-item" href="#"><span>Area personale</span></a></li>
-
-                            <li>
-                              <span class="divider"></span>
-                            </li>
-                            <li><a class="list-item" href="#"><span>Disconnetti</span></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                        -->
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- HEADER NAV BAR -->
-      <div class="it-header-navbar-wrapper">
-        <div class="container container-extended d-lg-none">
-          <div class="row">
-            <div class="col-12">
-              <!--start nav-->
-              <nav class="navbar navbar-expand-lg ">
-                <button class="custom-navbar-toggler" type="button" aria-controls="nav02" aria-expanded="false"
-                  aria-label="Toggle navigation" data-target="#nav02">
-                  <svg class="icon">
-                    <use xlink:href="/SistemaSanitario/svg/sprite.svg#it-burger"></use>
-                  </svg>
-                </button>
-                <div class="navbar-collapsable" id="nav02" style="display: none;">
-                  <div class="overlay" style="display: none;"></div>
-                  <div class="close-div sr-only">
-                    <button class="btn close-menu" type="button"><span class="it-close"></span>close</button>
-                  </div>
-                  <div class="menu-wrapper">
-                    <ul class="navbar-nav">
-                        <c:if test="#{sessionScope.user.type == 'PAZIENTE'}">
-                            <li class="nav-item"><a class="nav-link" href="#"><span>Esami</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#sezione-di-esempio"><span>Ricette</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"><span>Ticket</span></a></li>
-                        </c:if>
-                        <c:if test="#{sessionScope.user.type == 'MEDICO_BASE'}">
-                            <li class="nav-item"><a class="nav-link" href="#"><span>Pazienti</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#sezione-di-esempio"><span>Esami</span></a></li>
-                        </c:if>
-                        <c:if test="#{sessionScope.user.type == 'MEDICO_SPECIALISTA'}">
-                            <li class="nav-item"><a class="nav-link" href="#"><span>Bestia</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#sezione-di-esempio"><span>Vacca</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"><span>Sei</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"><span>Medico Specialista</span></a></li>
-                        </c:if>    
-                            
-                        <c:if test="#{sessionScope.user.type == 'SS_PROVINCIALE'}">
-                            <li class="nav-item"><a class="nav-link" href="#"><span>Bestia</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#sezione-di-esempio"><span>Vacca</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"><span>Sei</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"><span>SSP</span></a></li>
-                        </c:if>   
-                            
-                        <c:if test="#{sessionScope.user == null}">
-                            <li class="nav-item"><a class="nav-link" href="#"><span>DEBUG ONLY</span></a></li>
-                        </c:if>         
-                    </ul>
-                  </div>
-                </div>
-                </nav>
             </div>
           </div>
         </div>

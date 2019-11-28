@@ -19,21 +19,21 @@
             <ui:define name="sectionBody">
                 <div class="container text-left mb-5">
                 <div class="row">  
-                    <div class="form-group" style="width:100%;">
+                    <div class="form-group mb-0" style="width:100%;">
                         <div class="form-row">
-                            <div class="col-md-5 mr-5 input-group mb-5">
+                            <div class="col-md-5 mr-md-5 input-group mb-5">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><svg class="icon icon-sm"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
                                 </div>
-                                <label for="codiceFiscale">NOME UTENTE</label>
-                                <input type="text" class="form-control" id="codiceFiscale" readonly="true" value="mario.rossi"/>
+                                <label for="userName">NOME UTENTE</label>
+                                <input type="text" class="form-control" id="userName" readonly="true" value="#{sessionScope.user.username}"/>
                             </div>
-                            <div class="col-md-6 input-group mb-5">
+                            <div class="col-md-5 col-md-6 input-group mb-5">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><svg class="icon icon-sm"><use xlink:href="../svg/sprite.svg#it-mail"></use></svg></div>
                                 </div>
-                                <label for="luogoNascita">EMAIL</label>
-                                <input type="text" class="form-control" id="luogoNascita" readonly="true" value="mario.rossi@example.com"/>
+                                <label for="email">EMAIL</label>
+                                <input type="text" class="form-control" id="email" readonly="true" value="#{sessionScope.user.email}"/>
                             </div>
                         </div>
                         <div class="form-row">
@@ -84,20 +84,20 @@
 
                             <div class="col-md-7">
                                 <div class="row mt-4">
-                                    <div class="form-group" style="width:100%;">
+                                    <div class="form-group mb-0" style="width:100%;">
                                         <div class="input-group mb-5">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"><svg class="icon icon-sm"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
                                             </div>
                                             <label for="codiceFiscale">NOME E COGNOME</label>
-                                            <input type="text" class="form-control" id="codiceFiscale" readonly="true" value="Mario Rossi"/>
+                                            <input type="text" class="form-control" id="nomeCognome" readonly="true" value="#{sessionScope.paziente.nome} #{sessionScope.paziente.cognome}"/>
                                         </div>
                                         <div class="input-group mb-5">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text"><svg class="icon icon-sm"><use xlink:href="../svg/sprite.svg#it-card"></use></svg></div>
                                             </div>
                                             <label for="codiceFiscale">CODICE FISCALE</label>
-                                            <input type="text" class="form-control" id="codiceFiscale" readonly="true" value="RSS MRA 75 L01 H501 A"/>
+                                            <input type="text" class="form-control" id="codiceFiscale" readonly="true" value="#{sessionScope.paziente.cf}"/>
                                         </div>
 
                                         <div class="input-group mb-5">
@@ -105,7 +105,7 @@
                                                 <div class="input-group-text"><svg class="icon icon-sm"><use xlink:href="../svg/sprite.svg#it-pin"></use></svg></div>
                                             </div>
                                             <label for="luogoNascita">LUOGO DI NASCITA</label>
-                                            <input type="text" class="form-control" id="luogoNascita" readonly="true" value="Roma (RM)"/>
+                                            <input type="text" class="form-control" id="luogoNascita" readonly="true" value="#{sessionScope.paziente.luogoNascita} (#{sessionScope.paziente.provincia})"/>
                                         </div>
 
                                         <div class="input-group mb-5">
@@ -113,7 +113,7 @@
                                                 <div class="input-group-text"><svg class="icon icon-sm"></svg></div>
                                             </div>
                                             <label for="sesso">SESSO</label>
-                                            <input type="text" class="form-control" id="sesso" readonly="true" value="M"/>
+                                            <input type="text" class="form-control" id="sesso" readonly="true" value="#{sessionScope.paziente.sesso}"/>
                                         </div>
 
                                         <div class="input-group">
@@ -130,7 +130,7 @@
                                 </div>
                             </div>
                             <div class="col-md-5"></div>
-                            <div class="collapse col-md-7 w-100 mt-4 " id="medicCollapse">
+                            <div class="collapse col-md-7 w-100 mt-5 " id="medicCollapse">
                                 <form action="./cambiaMedico" method="POST" class="w-100">
                                     <div class="row w-100">
                                         <div class="col-9 pb-5">

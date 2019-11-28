@@ -27,8 +27,8 @@
         </ui:insert>
               
         <!-- MAIN -->
-        <div class="container container-extended mt-sm-4 mt-md-5" style="height: 100vh;">
-            <div class="row">
+        <div class="container container-extended mt-4 mt-md-5" >
+            <div class="row mb-4 mb-md-5">
 
                 <!-- === NAVBAR === -->
                 <ui:insert name="footer">
@@ -38,7 +38,7 @@
                 <div class="col-lg-9">
 
                     <!-- PAGE TITLE -->
-                    <h1 class="text-center text-primary mb-5"><ui:insert name="pageTitle"></ui:insert></h1>
+                    <h1 class="text-center text-primary mb-4 mb-md-5"><ui:insert name="pageTitle"></ui:insert></h1>
                     
                     <!-- === CONTENT OF PAGE === -->
                     <ui:insert name="content"></ui:insert>
@@ -46,6 +46,43 @@
                 </div>
             </div>
         </div>
+        
+        <nav class="bottom-nav d-lg-none">
+        <ul>
+          <li>
+            <a href="#" class="active">
+              <div class="badge-wrapper"><span class="bottom-nav-alert"></span></div>
+              <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-comment"></use></svg>
+              <span class="bottom-nav-label">messaggi<span class="sr-only">ci sono 42 nuovi messaggi da leggere</span></span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-camera"></use></svg>
+              <span class="bottom-nav-label">immagini</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="badge-wrapper"><span class="bottom-nav-alert"></span></div>
+              <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-file"></use></svg>
+              <span class="bottom-nav-label">documenti<span class="sr-only">ci sono 42 nuovi documenti da esaminare</span></span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-star-outline"></use></svg>
+              <span class="bottom-nav-label">preferiti</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-settings"></use></svg>
+              <span class="bottom-nav-label">preferenze</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
         
         <!-- === FOOTER === -->
         <ui:insert name="footer">
