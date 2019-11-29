@@ -3,13 +3,14 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <title>Sistema Sanitario</title>
-  <%@ include file="./WEB-INF/jspf/meta.jspf" %> 
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Sistema Sanitario</title>
 </head>
 
 <body>
-
   <!-- HEADER -->
   <div class="it-header-wrapper it-header-sticky">
     <div class="it-nav-wrapper">
@@ -32,49 +33,16 @@
                 </div>
                  <!-- ACCEDI AREA PERSONALE-->
                 <div class="it-right-zone">
-                      <div class="it-search-wrapper">
-                      <a href="login" class="btn btn-primary btn-icon">
-                        <span class="rounded-icon">
-                          <svg class="icon icon-primary">
-                            <use xlink:href="svg/sprite.svg#it-user"></use>
-                          </svg>
-                        </span>
-                        <span class="d-none d-lg-block" id="">Accedi all'area personale</span>
-                      </a>
-                        </div>
-                       <!--
-                  <div class="it-search-wrapper">
-                    <div class="nav-item dropdown">
-                      <a href="#" class="btn btn-primary btn-icon rounded" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true">
-                        <span class="rounded-icon">
-                          <svg class="icon icon-primary">
-                            <use xlink:href="svg/sprite.svg#it-user"></use>
-                          </svg>
-                        </span>
-                        <span class="d-none d-lg-block" id="hide-cloned">Accedi all'area personale</span>
-                      </a>
-
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <div class="link-list-wrapper">
-                          <ul class="link-list">
-                            <li>
-                              <h3 id="esempio-header-1">Mario Rossi</h3>
-                            </li>
-
-                            <li><a class="list-item" href="#"><span>Area personale</span></a></li>
-
-                            <li>
-                              <span class="divider"></span>
-                            </li>
-                            <li><a class="list-item" href="#"><span>Disconnetti</span></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                <div class="it-search-wrapper">
+                <a href="login" class="btn btn-primary btn-icon">
+                  <span class="rounded-icon">
+                    <svg class="icon icon-primary">
+                      <use xlink:href="svg/sprite.svg#it-user"></use>
+                    </svg>
+                  </span>
+                  <span class="d-none d-lg-block" id="">Accedi all'area personale</span>
+                </a>
                   </div>
-                        -->
-                      
                 </div>
               </div>
             </div>
@@ -294,12 +262,7 @@
         </div>
       </div>
     </div>
-  </section>
-
-    
- 
-
-        
+  </section>    
     
   <!-- BACK TO TOP -->
   <div class="d-flex align-items-center">
@@ -457,8 +420,6 @@
     </div>
   </div>
 </footer>
-  
-  
 
   <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript" src="js/bootstrap-italia.bundle.min.js"></script>

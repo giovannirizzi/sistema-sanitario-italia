@@ -36,7 +36,7 @@
     </servlet>
     <servlet>
         <servlet-name>IndexPage</servlet-name>
-        <jsp-file>/index.jsp</jsp-file>
+        <jsp-file>/WEB-INF/jsp/index.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>DashboardPage</servlet-name>
@@ -50,30 +50,9 @@
         <servlet-name>DashboardPage</servlet-name>
         <url-pattern>/myservices/dashboard</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>ProfilePage</servlet-name>
-        <jsp-file>/WEB-INF/profile.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ProfilePage</servlet-name>
-        <url-pattern>/myservices/profile</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>EsamiPazientePage</servlet-name>
-        <jsp-file>/WEB-INF/esamiPaziente.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EsamiPazientePage</servlet-name>
-        <url-pattern>/myservices/private/esami</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>EsamiMedicoBasePage</servlet-name>
-        <jsp-file>/WEB-INF/esamiMedicoBase.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EsamiMedicoBasePage</servlet-name>
-        <url-pattern>/myservices/esamiMedicoBase</url-pattern>
-    </servlet-mapping>
+    
+    
+
     <servlet>
         <servlet-name>PazientiMedicoBasePage</servlet-name>
         <jsp-file>/WEB-INF/pazientiMedicoBase.jsp</jsp-file>
@@ -82,6 +61,7 @@
         <servlet-name>PazientiMedicoBasePage</servlet-name>
         <url-pattern>/myservices/pazientiMedicoBase</url-pattern>
     </servlet-mapping>
+
     <filter>
         <filter-name>TokenAuthFilter</filter-name>
         <filter-class>sistemasanitario.filters.TokenAuthFilter</filter-class>

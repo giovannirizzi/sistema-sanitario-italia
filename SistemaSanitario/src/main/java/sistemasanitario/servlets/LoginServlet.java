@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
         if(authUserSession == null){
            
             RequestDispatcher dispatcher = getServletContext().
-            getRequestDispatcher("/WEB-INF/login.jsp");
+            getRequestDispatcher("/WEB-INF/jsp/login.jsp");
             dispatcher.forward(request, response);
         }
         else{
@@ -147,7 +147,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("error", true);
 
             RequestDispatcher dispatcher = getServletContext().
-                    getRequestDispatcher("/WEB-INF/login.jsp");
+                    getRequestDispatcher("/WEB-INF/jsp/login.jsp");
             
             dispatcher.forward(request, response);
         }
