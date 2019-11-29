@@ -11,16 +11,21 @@ import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import sistemasanitario.entities.AuthToken;
+import sistemasanitario.entities.EsamePrescrivibile;
+import sistemasanitario.entities.Medicina;
 import sistemasanitario.entities.Medico;
+import sistemasanitario.entities.MedicoSpecialista;
 import sistemasanitario.entities.Paziente;
+import sistemasanitario.entities.PrescrizioneEsame;
+import sistemasanitario.entities.PrescrizioneMedicina;
+import sistemasanitario.entities.Report;
 import sistemasanitario.entities.ResetPasswordToken;
+import sistemasanitario.entities.Ssp;
 import sistemasanitario.entities.User;
 
 public class WebAppContextListener  implements ServletContextListener{
 
     private static final Logger LOGGER = Logger.getLogger(WebAppContextListener.class.getName());
-    
-    
     
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -52,6 +57,26 @@ public class WebAppContextListener  implements ServletContextListener{
             
             Dao<Medico, Integer> medicoDao = DaoManager.createDao(con, Medico.class);
             sce.getServletContext().setAttribute("medicoDao", medicoDao);
+            
+            Dao<MedicoSpecialista, Integer> medicoSpecialistaDao = DaoManager.createDao(con, MedicoSpecialista.class);
+            sce.getServletContext().setAttribute("medicoSpecialistaDao", medicoSpecialistaDao);
+            
+            Dao<Ssp, Integer> sspDao = DaoManager.createDao(con, Ssp.class);
+            sce.getServletContext().setAttribute("sspDao", sspDao);
+            
+            Dao<EsamePrescrivibile, Integer> esamePrescrivibileDao = DaoManager.createDao(con, EsamePrescrivibile.class);
+            sce.getServletContext().setAttribute("esamePrescrivibileDao", esamePrescrivibileDao);
+            
+            Dao<Medicina, Integer> medicinaDao = DaoManager.createDao(con, Medicina.class);
+            sce.getServletContext().setAttribute("medicinaDao", medicinaDao);
+            
+            Dao<PrescrizioneEsame, Integer> prescrizioneEsameDao = DaoManager.createDao(con, PrescrizioneEsame.class);
+            sce.getServletContext().setAttribute("prescrizioneEsameDao", prescrizioneEsameDao);
+            
+            Dao<PrescrizioneMedicina, Integer> prescrizioneMedicinaDao = DaoManager.createDao(con, PrescrizioneMedicina.class);
+            sce.getServletContext().setAttribute("prescrizioneMedicinaDao", medicinaDao);
+            
+            Dao<Report, Integer> reportDao = DaoManager.createDao(con, Report.class); 
             
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, null, ex);

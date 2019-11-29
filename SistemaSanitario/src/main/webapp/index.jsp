@@ -182,7 +182,7 @@
                     </div>
                   </div>
                   <div class="card-body">
-                    <h5 class="card-title">Ritira lericette</h5>
+                    <h5 class="card-title">Ritira le ricette</h5>
                     <p>Scarica e stampa le ricette dematerializzate che ti sono state prescritte.</p>
                   </div>
                 </div>
@@ -213,27 +213,94 @@
       <!-- contenuto di esempio END -->
     </div>
   </div>
-  
-    <!-- SECTION CONTATTI-->
-  <div class="section section-muted">
-    <div class="section-content">
-      <!-- contenuto di esempio START -->
-      <div class="container">
-        <div class="row mb-3">
-          <div class="col-12">
-            <h2 class="text-center">Contatti</h2>
+ 
+    <!-- SECTION CHI-SIAMO -->
+    <div class="section bg-dark p-0 section-3">
+      <div class="section-content">
+        <div class="container white-color">
+          <div class="row">
+            <div class="col-12 col-lg-2 col-right-bg order-2">
+              <div class="col-right-bg-inner bg-dark"></div>
+            </div>
+            <div class="col-12 col-lg-10 px-4 py-5 order-1 bg-dark">
+              <h2>Chi Siamo</h2>
+                <p>Progetto Sanità è stato attivato nel 2019, il servizio è stato implementato per consenti ai cittadini di avere un unico interlocutore. <br>
+                 La piattaforma permette di prenotare visite ed esami della sanità pubblica e privata.
+                 Progetto Sanità consente la prenotazione online con i browser Explorer, FireFox e GoogleChrome. <br>
+                 Con questo servizio si può consultare in tempo reale la disponibilità delle prestazioni e l’attesa. <br>
+                 Le modalità di prenotazione delle visite sono telefonica, online e presso uno degli sportelli dislocati sul territorio provinciale. 
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <section>
+    <div class="py-5">
+      <div class="container px-4">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-4 text-primary">Tutte le novità</h3>
           </div>
         </div>
         <div class="row">
-            
-           
-       
+          <div class="col-12 col-sm-6 col-lg-4">
+            <!--start card-->
+            <div class="card-wrapper">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title big-heading">Ultime notizie</h5>
+                  <p class="card-text">E' stato appena scoperto un farmaco per laurearsi in 3 anni. Se mi dai 50 euro te lo procuro.</p>
+                  <a class="read-more" href="#">
+                    <span class="text">Leggi di più</span>
+                    <svg class="icon">
+                      <use xlink:href="svg/sprite.svg#it-arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!--end card-->
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <!--start card-->
+            <div class="card-wrapper">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title big-heading">Comunicati</h5>
+                  <p class="card-text">Cup Trentino, prenotazioni sospese per un guasto al server.</p>
+                </div>
+              </div>
+            </div>
+            <!--end card-->
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <!--start card-->
+            <div class="card-wrapper">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title big-heading">Eventi</h5>
+                  <p class="card-text">
+                      L’Apss organizza la Giornata della trasparenza come occasione per illustrare le azioni che essa intraprende
+                        e attua per la promozione della cultura della trasparenza, della legalità, e per rendicontare le attività e le
+                        performance dell’azienda sanitaria.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!--end card-->
+          </div>
         </div>
       </div>
-      <!-- contenuto di esempio END -->
     </div>
-  </div>
+  </section>
 
+    
+ 
+
+        
+    
   <!-- BACK TO TOP -->
   <div class="d-flex align-items-center">
     <a href="#" aria-hidden="true" data-attribute="back-to-top" class="back-to-top shadow">
@@ -254,11 +321,14 @@
             <div class="it-brand-wrapper">
               <a href="#">
                 <svg class="icon">
-                  <use xlink:href="svg/sprite.svg#it-code-circle"></use>
+                  <use
+                    xlink:href="svg/sprite.svg#it-pa"></use>
                 </svg>
                 <div class="it-brand-text">
-                  <h2 class="no_toc">Lorem Ipsum</h2>
-                  <h3 class="no_toc d-none d-md-block">Inserire qui la tag line</h3>
+                  <h2 class="no_toc">Sistema Sanitario Pregiato</h2>
+                  <h3 class="no_toc d-none d-md-block">
+                    Il nuovo portale della sanità online
+                  </h3>
                 </div>
               </a>
             </div>
@@ -267,76 +337,100 @@
       </section>
       <section>
         <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-6 pb-2">
+          <div class="col-lg-3 col-md-3 pb-2">
             <h4>
-              <a href="#" title="Vai alla pagina: Amministrazione">Amministrazione</a>
+             <a>Contatti</a>
             </h4>
-            <div class="link-list-wrapper">
-              <ul class="footer-list link-list clearfix">
-                <li><a class="list-item" href="#" title="Vai alla pagina: Giunta e consiglio">Giunta e consiglio</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Aree di competenza">Aree di competenza</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Dipendenti">Dipendenti</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Luoghi">Luoghi</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Associazioni e società partecipate">Associazioni e società partecipate</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-6 pb-2">
-            <h4>
-              <a href="#" title="Vai alla pagina: Servizi">Servizi</a>
-            </h4>
-            <div class="link-list-wrapper">
-              <ul class="footer-list link-list clearfix">
-                <li><a class="list-item" href="#" title="Vai alla pagina: Pagamenti">Pagamenti</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Sostegno">Sostegno</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Domande e iscrizioni">Domande e iscrizioni</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Segnalazioni">Segnalazioni</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Autorizzazioni e concessioni">Autorizzazioni e concessioni</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Certificati e dichiarazioni">Certificati e dichiarazioni</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-6 pb-2">
-            <h4>
-              <a href="#" title="Vai alla pagina: Novità">Novità</a>
-            </h4>
-            <div class="link-list-wrapper">
-              <ul class="footer-list link-list clearfix">
-                <li><a class="list-item" href="#" title="Vai alla pagina: Notizie">Notizie</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Eventi">Eventi</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Comunicati stampa">Comunicati stampa</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-6">
-            <h4>
-              <a href="#" title="Vai alla pagina: Documenti">Documenti</a>
-            </h4>
-            <div class="link-list-wrapper">
-              <ul class="footer-list link-list clearfix">
-                <li><a class="list-item" href="#" title="Vai alla pagina: Progetti e attività">Progetti e attività</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Delibere, determine e ordinanze">Delibere, determine e ordinanze</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Bandi">Bandi</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Concorsi">Concorsi</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Albo pretorio">Albo pretorio</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="py-4 border-white border-top">
-        <div class="row">
-          <div class="col-lg-4 col-md-4 pb-2">
-            <h4><a href="#" title="Vai alla pagina: Contatti">Contatti</a></h4>
             <p>
-              <strong>Comune di Lorem Ipsum</strong><br> Via Roma 0 - 00000 Lorem Ipsum Codice fiscale / P. IVA: 000000000
+              <strong>Comune di Trento</strong><br/>
+              Via Alcide Degasperi 79 - 38123 Trento <br/> Codice fiscale / P. IVA: 01429410226
             </p>
+            <p>
+              <strong>Telefono</strong><br/>
+              848 816 816 <br/>
+              Posta elettronica certificata: urp@apss.tn.it
+            </p>
+          </div>
+            <div class="col-lg-3 col-md-3 pb-2">
+            <h4>
+              <a>Servizi</a>
+            </h4>
             <div class="link-list-wrapper">
               <ul class="footer-list link-list clearfix">
-                <li><a class="list-item" href="#" title="Vai alla pagina: Posta Elettronica Certificata">Posta Elettronica Certificata</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: URP - Ufficio Relazioni con il Pubblico">URP - Ufficio Relazioni con il Pubblico</a></li>
+                <li>
+                  <a class="list-item">Cambia il medico </a>
+                </li>
+                <li>
+                  <a class="list-item">Rititra le ricette </a>
+                </li>
+                <li>
+                  <a class="list-item">Visualizza la cartella clinica </a>
+                </li>
               </ul>
             </div>
+          </div>
+          <div class="col-lg-3 col-md-3 pb-2">
+            <h4>
+              <a href="#" title="Vai alla pagina: Newsletter">Newsletter</a>
+            </h4>
+            <form action="#" class="form-newsletter" method="post">
+              <label
+                class="text-white font-weight-semibold"
+                for="input-newsletter">Iscriviti per riceverla</label>
+              <input
+                class="form-control"
+                id="input-newsletter"
+                name="input-newsletter"
+                placeholder="mail@example.com"
+                type="email"
+              />
+              <button class="btn btn-primary btn-icon" type="submit">
+                <svg class="icon icon-white">
+                  <use
+                    xlink:href="svg/sprite.svg#it-mail"></use>
+                </svg>
+                <span>Iscriviti</span>
+              </button>
+            </form>
+          </div>
+          <div class="col-lg-3 col-md-3 pb-2">
+            <h4>
+              <a href="#" title="Vai alla pagina: Seguici su">Seguici su</a>
+            </h4>
+            <ul class="list-inline text-left social">
+              <li class="list-inline-item">
+                <a class="p-2 text-white" href="#" target="_blank">
+                  <svg class="icon icon-sm icon-white align-top">
+                    <use
+                      xlink:href="svg/sprite.svg#it-designers-italia"></use>
+                  </svg>
+                  <span class="sr-only">Designers Italia</span></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="p-2 text-white" href="#" target="_blank">
+                  <svg class="icon icon-sm icon-white align-top">
+                    <use
+                      xlink:href="svg/sprite.svg#it-twitter"></use>
+                  </svg>
+                  <span class="sr-only">Twitter</span></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="p-2 text-white" href="#" target="_blank">
+                  <svg class="icon icon-sm icon-white align-top">
+                    <use
+                      xlink:href="svg/sprite.svg#it-medium"></use>
+                  </svg>
+                  <span class="sr-only">Medium</span></a>
+              </li>
+              <li class="list-inline-item">
+                <a class="p-2 text-white" href="#" target="_blank">
+                  <svg class="icon icon-sm icon-white align-top">
+                    <use
+                      xlink:href="svg/sprite.svg#it-behance"></use>
+                  </svg>
+                  <span class="sr-only">Behance</span></a>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -345,11 +439,20 @@
   <div class="it-footer-small-prints clearfix">
     <div class="container">
       <h3 class="sr-only">Sezione Link Utili</h3>
-      <ul class="it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row">
-        <li class="list-inline-item"><a href="#" title="Note Legali">Media policy</a></li>
-        <li class="list-inline-item"><a href="#" title="Note Legali">Note legali</a></li>
-        <li class="list-inline-item"><a href="#" title="Privacy-Cookies">Privacy policy</a></li>
-        <li class="list-inline-item"><a href="#" title="Mappa del sito">Mappa del sito</a> </li>
+      <ul
+        class="it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row">
+        <li class="list-inline-item">
+          <a href="#" title="Note Legali">Media policy</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#" title="Note Legali">Note legali</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#" title="Privacy-Cookies">Privacy policy</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#" title="Mappa del sito">Mappa del sito</a>
+        </li>
       </ul>
     </div>
   </div>

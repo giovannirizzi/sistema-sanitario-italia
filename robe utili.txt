@@ -16,12 +16,85 @@ Utente paziente:
 username = mario.rossi
 password = Ciao1234!
 
+Medicina (id, name, price, desc)
+
+Prescrizione esame(id, paziente_id, doctor_id, exam_id, report_id NULLABLE, id_specialist NULLABLE, id_ssp NULLABLE read bool, paid bool, prescription date, prescription_date_on_create)
+
+PRESCRIZIONE_ESAME(id, idPaziente, idMedico, idEsame, letta, data)
+
+CREATE TABLE PRESCRIZIONE_ESAME(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+idPaziente INT NOT NULL,
+idMedico INT,
+idEsame INT NOT NULL,
+letta BOOLEAN DEFAULT false,
+data DATETIME DEFAULT CURRENT_TIMESTAMP(),
+FOREIGN KEY (idPaziente) REFERENCES PAZIENTE(id),
+FOREIGN KEY (idMedico) REFERENCES MEDICO(id),
+FOREIGN KEY (idEsame) REFERENCES ESAME_PRESCRIVIBILE(id)
+);
+
+
+ESAME_SPECIALISTICO(idPrescrizione, idMedicoSpe, idReport)
+ESAME_DI_LABORATORIO(idPrescrizione, idSsp, idReport)
+
+CREATE TABLE ESAME_SPECIALISTICO(idPrescrizione INT NOT NULL PRIMARY KEY, idMedicoSpe INT NOT NULL, idReport INT,
+FOREIGN KEY (idPrescrizione) REFERENCES PRESCRIZIONE_ESAME(id),
+FOREIGN KEY (idMedicoSpe) REFERENCES MEDICO_SPECIALISTA(id),
+FOREIGN KEY (idReport) REFERENCES REPORT(id)
+);
+
+CREATE TABLE ESAME_LABORATORIO(idPrescrizione INT NOT NULL PRIMARY KEY, idSsp INT NOT NULL, idReport INT,
+FOREIGN KEY (idPrescrizione) REFERENCES PRESCRIZIONE_ESAME(id),
+FOREIGN KEY (idSsp) REFERENCES SSP(id),
+FOREIGN KEY (idReport) REFERENCES REPORT(id)
+);
+
+CREATE TABLE SSP(id INT NOT NULL PRIMARY_KEY,
+nome VARCHAR(255) NOT NULL,
+citta VARCHAR(255) NOT NULL,
+provincia CHAR(2) NOT NULL,
+FOREIGN KEY(id) REFERENCES USERS(id));
+
+
+associazione dottore specialista -> esame prescrivibile ??? 
+
+REPORT(id, id_exam, TEXT, report_date_on_create, 
+
+CREATE TABLE REPORT (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+idPrescrizione INT NOT NULL,
+descrizione TEXT NOT NULL,
+data DATETIME DEFAULT CURRENT_TIMESTAMP(),
+FOREIGN_KEY (idPrescrizione) REFERENCES PRESCRIZIONE_ESAME(id)
+);
+
+PRESCRIZIONE_MEDICINA(id, id_paziente, id_dottore, id_medicina, int quantità, 
+
+
+DOTTORE:
+vede lista pazienti
+prescrive esami ai suoi pazienti
+prescrive medicine ai suoi pazienti
+
+PAZIENTE
+vede lista esami fatti e da fare (con eventuali report)
+vede i nuovi report
+vede la lista di prescrizioni di medicine
+informazioni esami
+
+DOTTORE specialista
+vede ela lista pazienti (tutti)
+visite da fare
+vede lista visite fatte
+
+SSP
+
+
+
 
 TODO
 
 tabelle database da fare:
 
-lista esami/visite
 esami
 visite mediche
 risultati esami
@@ -141,22 +214,22 @@ INSERT INTO USERS (username,password,email,type) VALUES ("andrea.gentile","$argo
 ("monica.moretti","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","monica.moretti@gmail.com",'MEDICO_BASE'),
 ("chiara.leone","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","chiara.leone@gmail.com",'MEDICO_SPECIALISTA'); 
 
-INSERT INTO PAZIENTE (nome,cognome,dataNascita,luogoNascita,provincia,cf,sesso,idUtente,idMedico) VALUES
-("Andrea","Gentile",'1970-11-23',"Trento",'TN',"GNTNDR70S23L378F",'M',22,1),
-("Mario","Fontana",'1994-07-16',"Bolzano",'BZ',"FNTMRA94L16A952G",'M',23,1),
-("Alessia","Lombardi",'1937-02-28',"Cles",'TN',"LMBLSS37B68C794D",'F',24,4),
-("Nicola","Giordano",'1985-05-05',"Lana",'BZ',"GRDNCL85E05E434J",'M',25,3),
-("Aurelio","Mancini",'1997-08-13',"Bressanone",'BZ',"MNCRLA97M13B160P",'M',26,5),
-("Oscar","Pellegrini",'1965-06-19',"Ala",'TN',"PLLSCR65H19A116D",'M',27,4),
-("Ilaria","Caruso",'1949-01-01',"Pergine Valsugana",'TN',"CRSLRI49A41G452F",'F',28,3),
-("Ugo","Ferri",'1918-12-26',"Storo",'TN',"FRRGUO18T26I964B",'M',29,5),
-("Emilia","Bernardi",'1981-04-10',"Merano",'BZ',"BRNMLE81D50F132Z",'F',30,4),
-("Federica","Mazza",'1954-03-15',"Chiusa",'BZ',"MZZFRC54C55C652S",'F',31,3),
-("Mario","Farina",'1927-10-16',"Mori",'TN',"FRNMRA27R16F728T",'M',32,2),
-("Oscar","Bianco",'1964-01-23',"Egna",'BZ',"BNCSCR64A23D392H",'F',33,2),
-("Alessia","Barbieri",'1989-08-20',"Mezzolombardo",'TN',"BRBLSS89M60F187L",'F',34,5);
+INSERT INTO PAZIENTE (nome,cognome,dataNascita,luogoNascita,provincia,cf,sesso,id) VALUES
+("Andrea","Gentile",'1970-11-23',"Trento",'TN',"GNTNDR70S23L378F",'M',22),
+("Mario","Fontana",'1994-07-16',"Bolzano",'BZ',"FNTMRA94L16A952G",'M',23),
+("Alessia","Lombardi",'1937-02-28',"Cles",'TN',"LMBLSS37B68C794D",'F',24),
+("Nicola","Giordano",'1985-05-05',"Lana",'BZ',"GRDNCL85E05E434J",'M',25),
+("Aurelio","Mancini",'1997-08-13',"Bressanone",'BZ',"MNCRLA97M13B160P",'M',26),
+("Oscar","Pellegrini",'1965-06-19',"Ala",'TN',"PLLSCR65H19A116D",'M',27),
+("Ilaria","Caruso",'1949-01-01',"Pergine Valsugana",'TN',"CRSLRI49A41G452F",'F',28),
+("Ugo","Ferri",'1918-12-26',"Storo",'TN',"FRRGUO18T26I964B",'M',29),
+("Emilia","Bernardi",'1981-04-10',"Merano",'BZ',"BRNMLE81D50F132Z",'F',30),
+("Federica","Mazza",'1954-03-15',"Chiusa",'BZ',"MZZFRC54C55C652S",'F',31),
+("Mario","Farina",'1927-10-16',"Mori",'TN',"FRNMRA27R16F728T",'M',32),
+("Oscar","Bianco",'1964-01-23',"Egna",'BZ',"BNCSCR64A23D392H",'F',33),
+("Alessia","Barbieri",'1989-08-20',"Mezzolombardo",'TN',"BRBLSS89M60F187L",'F',34);
 
-INSERT INTO MEDICO (nome,cognome,citta,provincia,codiceMedico,idUtente) VALUES
+INSERT INTO MEDICO (nome,cognome,citta,provincia,codiceMedico,id) VALUES
 ("Ada","Conte","Rovereto",'TN','TN2849',35),
 ("Gabriele","Serra","Merano",'BZ','BZ1690',36),
 ("Paolo","Santoro","Merano",'BZ','BZ3271',37),

@@ -10,11 +10,8 @@ public class Paziente {
     public Paziente() {
     }
     
-    @DatabaseField(generatedId = true)
-    private int id;
-    
-    @DatabaseField(columnName="idUtente", foreign = true)
-    public User user;
+    @DatabaseField(columnName="id", id=true)
+    public Integer id;
     
     @DatabaseField(columnName="idMedico", foreign = true)
     public Medico medicoBase;
@@ -51,12 +48,8 @@ public class Paziente {
         this.foto = foto;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
-    }
-
-    public User getUser() {
-        return user;
     }
 
     public Medico getMedicoBase() {

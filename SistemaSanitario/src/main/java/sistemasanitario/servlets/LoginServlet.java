@@ -18,10 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sistemasanitario.entities.AuthToken;
-import sistemasanitario.entities.Medico;
-import sistemasanitario.entities.Paziente;
 import sistemasanitario.entities.User;
 import sistemasanitario.filters.TokenAuthFilter;
+import sistemasanitario.listeners.AuthenticatedUserListener;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
 import sistemasanitario.utils.TokenUtil;
 import sistemasanitario.utils.PasswordUtil;
@@ -32,71 +31,17 @@ public class LoginServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
     private static final int REMEMBERME_COOKIE_AGE = 60*60*24*14; //14 giorni
     
+    private AuthenticatedUserListener authUserListener; 
     private Dao<AuthToken, Integer> authTokensDao;
     private Dao<User, Integer> usersDao;
-    private Dao<Paziente, Integer> pazienteDao;
-    private Dao<Medico, Integer> medicoDao;
     
     @Override
     public void init() throws ServletException {
         super.init();
         
+        authUserListener = new AuthenticatedUserListener(getServletContext());
         authTokensDao = (Dao<AuthToken, Integer>)getServletContext().getAttribute("AuthTokensDao");
         usersDao = (Dao<User, Integer>)getServletContext().getAttribute("UsersDao");
-        pazienteDao = (Dao<Paziente, Integer>)getServletContext().getAttribute("pazienteDao");
-        medicoDao = (Dao<Medico, Integer>)getServletContext().getAttribute("medicoDao");
-    }
-    
-    public void loadUserData(HttpSession session, User user) throws SQLException {
-        
-        String headerUserName = null;
-        
-        switch(user.getType()){
-            
-            case PAZIENTE:
-            {
-                List<Paziente> pazienti = pazienteDao.queryForEq("idUtente", user.getId());
-              
-                if(pazienti != null && pazienti.size()>0){
-                    Paziente paziente = pazienti.get(0);
-                  
-                    session.setAttribute("paziente", paziente);
-                    headerUserName = paziente.getNome() + " " + paziente.getCognome();
-                }
-                else{
-                    LOGGER.log(Level.INFO, "no pazienti");
-                }
-                break;
-            }
-                
-            case SS_PROVINCIALE:
-            {
-                break;
-            }
-            
-            default:
-            {
-                List<Medico> medici = medicoDao.queryForEq("idUtente", user.getId());
-                if(medici != null && medici.size()>0){
-                
-                    Medico medico = medici.get(0);
-                    session.setAttribute("medico", medico);
-                    headerUserName = medico.getNome() + " " + medico.getCognome();
-                }
-                break; 
-            }  
-        }
-        if(headerUserName != null)
-            session.setAttribute("headerUserName", headerUserName.toUpperCase());
-    }
-    
-    private boolean isAlreadyLogged(HttpServletRequest request){
-        
-        ServletContext servletContext = ((HttpServletRequest) request).getServletContext();
-        HttpSession session = ((HttpServletRequest) request).getSession(false);
-
-        return session != null && 
-                session.getAttribute("user") != null;
     }
  
     private void redirectToServices(HttpServletResponse response) throws IOException{
@@ -111,7 +56,9 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if(!isAlreadyLogged(request)){
+        HttpSession authUserSession = getUserSession(request);
+        
+        if(authUserSession == null){
            
             RequestDispatcher dispatcher = getServletContext().
             getRequestDispatcher("/WEB-INF/login.jsp");
@@ -132,7 +79,7 @@ public class LoginServlet extends HttpServlet {
         if(session != null){
             
             try {
-                loadUserData(session, (User)session.getAttribute("user"));
+                authUserListener.onNewUserAuthenticated(session, (User)session.getAttribute("user"));
             } catch (SQLException ex) {
                 response.sendError(500, "SQLException: loadUserData");
             }
@@ -188,7 +135,7 @@ public class LoginServlet extends HttpServlet {
             
             request.getSession().setAttribute("user", user);
             try {
-                loadUserData(request.getSession(), user);
+                authUserListener.onNewUserAuthenticated(request.getSession(false), user);
             } catch (SQLException ex) {
                 response.sendError(500, "SQLException: loadUserData");
                 return;
