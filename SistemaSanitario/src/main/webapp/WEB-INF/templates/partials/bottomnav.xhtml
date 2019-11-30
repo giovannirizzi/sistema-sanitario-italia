@@ -1,0 +1,67 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+  <nav class="bottom-nav d-lg-none">
+      
+    <c:choose>
+        <c:when test="${sessionScope.user.type == 'PAZIENTE'}">
+            <ul>
+                <li>
+                  <a href="#">
+                     <div class="badge-wrapper"><span class="bottom-nav-badge">1</span></div>
+                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-files"></use></svg>
+                    <span class="bottom-nav-label">Esami</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <div class="badge-wrapper"><span class="bottom-nav-badge">2</span></div>
+                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-note"></use></svg>
+                    <span class="bottom-nav-label">Ricette</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-info-circle"></use></svg>
+                    <span class="bottom-nav-label">Info esami</span>
+                  </a>
+                </li>
+            </ul>
+        </c:when>
+        <c:when test="${sessionScope.user.type == 'MEDICO_BASE'}">
+            <ul>
+                <li>
+                  <a href="#">
+                     <div class="badge-wrapper"><span class="bottom-nav-badge">1</span></div>
+                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-files"></use></svg>
+                    <span class="bottom-nav-label">Esami</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <div class="badge-wrapper"><span class="bottom-nav-badge">2</span></div>
+                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-note"></use></svg>
+                    <span class="bottom-nav-label">Ricette</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-info-circle"></use></svg>
+                    <span class="bottom-nav-label">Info esami</span>
+                  </a>
+                </li>
+            </ul>
+        </c:when>
+        
+        <c:otherwise>
+            
+        </c:otherwise>
+    </c:choose> 
+   
+  </nav>
+
+</ui:composition>

@@ -1,73 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <display-name>Sistema Sanitario Italia</display-name>
     <context-param>
         <description>URL to database</description>
         <param-name>DBURL</param-name>
         <param-value>jdbc:mariadb://sistemasanitariodb.c16q8irjv9nd.us-east-2.rds.amazonaws.com/sistemasanitario</param-value>
     </context-param>
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name>
+        <param-value>/</param-value>
+    </context-param>
+    <!-- === JSF === -->
     <servlet>
-        <servlet-name>PasswordTest</servlet-name>
-        <servlet-class>sistemasanitario.servlets.PasswordTest</servlet-class>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>sistemasanitario.servlets.LogoutServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>IndexPage</servlet-name>
-        <jsp-file>/index.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>DashboardPage</servlet-name>
-        <jsp-file>/WEB-INF/dashboard.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>DashboardServlet</servlet-name>
-        <servlet-class>sistemasanitario.servlets.DashboardServlet</servlet-class>
+        <servlet-name>AvatarServlet</servlet-name>
+        <servlet-class>sistemasanitario.servlets.AvatarServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>DashboardPage</servlet-name>
-        <url-pattern>/myservices/dashboard</url-pattern>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>ProfilePage</servlet-name>
-        <jsp-file>/WEB-INF/profile.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ProfilePage</servlet-name>
-        <url-pattern>/myservices/profile</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>EsamiPazientePage</servlet-name>
-        <jsp-file>/WEB-INF/esamiPaziente.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EsamiPazientePage</servlet-name>
-        <url-pattern>/myservices/esamiPaziente</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>EsamiMedicoBasePage</servlet-name>
-        <jsp-file>/WEB-INF/esamiMedicoBase.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EsamiMedicoBasePage</servlet-name>
-        <url-pattern>/myservices/esamiMedicoBase</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>PazientiMedicoBasePage</servlet-name>
-        <jsp-file>/WEB-INF/pazientiMedicoBase.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>PazientiMedicoBasePage</servlet-name>
-        <url-pattern>/myservices/pazientiMedicoBase</url-pattern>
-    </servlet-mapping>
+    <!-- === FILTERS === -->
     <filter>
         <filter-name>TokenAuthFilter</filter-name>
         <filter-class>sistemasanitario.filters.TokenAuthFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>TokenAuthFilter</filter-name>
-        <url-pattern>/myservices/*</url-pattern>
+        <url-pattern>/personalarea/*</url-pattern>
         <url-pattern>/login</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
@@ -77,32 +45,30 @@
     </filter>
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>/myservices/*</url-pattern>
+        <url-pattern>/personalarea/*</url-pattern>
+        <url-pattern>/services/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
+    <!-- SERVLETS-->
     <servlet>
         <servlet-name>ForgotPasswordServlet</servlet-name>
         <servlet-class>sistemasanitario.servlets.ForgotPasswordServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>IndexPage</servlet-name>
-        <url-pattern>/index</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
+    <servlet>
         <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/myservices/logout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PasswordTest</servlet-name>
-        <url-pattern>/passwordtest</url-pattern>
-    </servlet-mapping>
+        <servlet-class>sistemasanitario.servlets.LogoutServlet</servlet-class>
+    </servlet>
     <error-page>
         <error-code>404</error-code>
         <location>/404.html</location>
     </error-page>
     <servlet-mapping>
-        <servlet-name>DashboardServlet</servlet-name>
-        <url-pattern>/DashboardServlet</url-pattern>
+        <servlet-name>AvatarServlet</servlet-name>
+        <url-pattern>/services/avatar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/services/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -115,5 +81,8 @@
     </listener>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <welcome-file-list>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

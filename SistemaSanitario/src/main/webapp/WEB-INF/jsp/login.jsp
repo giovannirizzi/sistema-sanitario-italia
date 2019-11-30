@@ -6,7 +6,7 @@
     <head>
       <title>Login Page</title>
       
-      <%@ include file="./jspf/meta.jspf" %> 
+      <%@ include file="../jspf/meta.jspf" %> 
 
     </head>
     <body style="background-color: #f6f6f6;">
@@ -19,7 +19,7 @@
                         <div class="it-brand-wrapper mr-3 d-none d-lg-block">
                             <a href="./">
                                 <div class="it-brand-text">
-                                  <h3 class="mb-1">Sistema Sanitario</h3>
+                                  <h3 class="mb-1">Sistema Sanitario Italia</h3>
                                 </div>
                             </a>
                         </div> 
@@ -31,7 +31,7 @@
                             <div class="it-brand-wrapper mr-2  d-flex  justify-content-center">
                                 <a href="./">
                                     <div class="it-brand-text">
-                                      <h3 class="mb-1">Sistema Sanitario</h3>
+                                      <h3 class="mb-1">Sistema Sanitario Italia</h3>
                                     </div>
                                 </a>
                             </div>
@@ -48,7 +48,7 @@
                     </div>
             </div>
         </div>
-        <div class="container mt-3 mt-lg-5">
+        <div class="container mt-3 mb-3 mt-lg-5 mb-lg-5">
             <div class="row justify-content-center mb-3">
                 <div class="col-xs-12  col-lg-6">
                    <c:if test="${not empty error}">  
@@ -112,7 +112,10 @@
             </div>
         </div>
 
-        <script type="text/javascript" src="js/main.js"></script>
-        <script type="text/javascript" src="js/bootstrap-italia.bundle.min.js"></script>
+        <script type="text/javascript" src="/SistemaSanitario/js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="/SistemaSanitario/js/main.js"></script>
+        <script type="text/javascript" src="/SistemaSanitario/js/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="/SistemaSanitario/js/popper.min.js"></script>
+        <script type="text/javascript" src="/SistemaSanitario/js/bootstrap-italia.min.js"></script>
         </body>
 </html>

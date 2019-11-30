@@ -1,9 +1,3 @@
-<%-- 
-    Document   : resetPassword
-    Created on : 22 set 2019, 15:03:39
-    Author     : Omar
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -12,7 +6,7 @@
     <head>
       <title>Forgot password page</title>
       
-      <%@ include file="./jspf/meta.jspf" %> 
+      <%@ include file="../jspf/meta.jspf" %> 
 
     </head>
     <body style="background-color: #f6f6f6;">
@@ -25,7 +19,7 @@
                         <div class="it-brand-wrapper mr-3 d-none d-lg-block">
                             <a href="./index">
                                 <div class="it-brand-text">
-                                  <h3 class="mb-1">Sistema Sanitario</h3>
+                                  <h3 class="mb-1">Sistema Sanitario Italia</h3>
                                 </div>
                             </a>
                         </div> 
@@ -37,7 +31,7 @@
                             <div class="it-brand-wrapper mr-2  d-flex  justify-content-center">
                                 <a href="./index">
                                     <div class="it-brand-text">
-                                      <h3 class="mb-1">Sistema Sanitario</h3>
+                                      <h3 class="mb-1">Sistema Sanitario Italia</h3>
                                     </div>
                                 </a>
                             </div>
