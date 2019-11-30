@@ -7,7 +7,7 @@
 <html lang="it">
 <head>
     
-    <title><c:out value = "${PAGE_TITLE}"/> | Sistema Sanitario</title>
+    <title><c:out value = "${PAGE_TITLE}"/> | SS Italia</title>
     
     <%@ include file="./jspf/meta.jspf" %> 
     

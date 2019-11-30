@@ -5,7 +5,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-   >
+          
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -20,7 +21,7 @@
     </h:head>
 
     <h:body>
-
+        <div class="main" style="min-height: 100vh;">
         <!-- === HEADER === -->
         <ui:insert name="footer">
             <ui:include src="/WEB-INF/templates/partials/header.xhtml"/>
@@ -47,47 +48,23 @@
             </div>
         </div>
         
-        <nav class="bottom-nav d-lg-none">
-        <ul>
-          <li>
-            <a href="#" class="active">
-              <div class="badge-wrapper"><span class="bottom-nav-alert"></span></div>
-              <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-comment"></use></svg>
-              <span class="bottom-nav-label">messaggi<span class="sr-only">ci sono 42 nuovi messaggi da leggere</span></span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-camera"></use></svg>
-              <span class="bottom-nav-label">immagini</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="badge-wrapper"><span class="bottom-nav-alert"></span></div>
-              <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-file"></use></svg>
-              <span class="bottom-nav-label">documenti<span class="sr-only">ci sono 42 nuovi documenti da esaminare</span></span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-star-outline"></use></svg>
-              <span class="bottom-nav-label">preferiti</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-settings"></use></svg>
-              <span class="bottom-nav-label">preferenze</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+     
         
+        </div>
         <!-- === FOOTER === -->
         <ui:insert name="footer">
-            <ui:include src="/WEB-INF/templates/partials/footer.xhtml"/>
+            
+            <ui:include src="/WEB-INF/templates/partials/footer.xhtml">
+                <ui:param name="short" value="true" />
+            </ui:include>
         </ui:insert>
+        
+        <!-- === BOTTOMBAR === -->
+        <ui:insert name="bottomnav">
+            <ui:include src="/WEB-INF/templates/partials/bottomnav.xhtml"/>
+        </ui:insert>
+        
+        <script type="text/javascript">window.__PUBLIC_PATH__ = '#{request.contextPath}/fonts';</script>
         
         <script type="text/javascript" src="/SistemaSanitario/js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="/SistemaSanitario/js/main.js"></script>

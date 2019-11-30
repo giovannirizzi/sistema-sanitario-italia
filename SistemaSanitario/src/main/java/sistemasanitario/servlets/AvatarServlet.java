@@ -44,7 +44,7 @@ import sistemasanitario.entities.User.UserType;
   maxFileSize = 1024 * 1024 * 5, 
   maxRequestSize = 1024 * 1024 * 5 * 5)
 
-@WebServlet(name = "AvatarServlet", urlPatterns = {"/myservices/avatar"})
+@WebServlet(name = "AvatarServlet", urlPatterns = {"/services/avatar"})
 public class AvatarServlet extends HttpServlet {
     
     private String uploadPath;
@@ -205,7 +205,7 @@ public class AvatarServlet extends HttpServlet {
         String contextPath = getServletContext().getContextPath(); 
         if (!contextPath.endsWith("/")) contextPath += "/";
                 
-        response.sendRedirect(response.encodeRedirectURL(contextPath + "myservices/profile#personaldata"));
+        response.sendRedirect(response.encodeRedirectURL(contextPath + "personalarea/profile.xhtml#personaldata"));
     }
     
     private String generateRandomFileName(){

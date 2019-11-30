@@ -19,8 +19,8 @@
                       <use xlink:href="/SistemaSanitario/svg/sprite.svg#it-pa"></use>
                     </svg>
                     <div class="it-brand-text">
-                      <h2 class="no_toc">Sistema Sanitario Pregiato</h2>
-                      <h3 class="no_toc d-none d-md-block">Il sisema sanitario come lo voi tu</h3>
+                      <h2 class="no_toc">Sistema Sanitario Italia</h2>
+                      <h3 class="no_toc d-none d-md-block">Il nuovo portale della sanità online</h3>
                     </div>
                   </a>
                 </div> 
@@ -48,13 +48,20 @@
                             <li>
                               <h3 id="esempio-header-1">#{sessionScope.headerUserName}</h3>
                             </li>
-
-                            <li><a class="list-item" href="#{request.contextPath}/personalarea/profile.xhtml"><span>Profilo</span></a></li>
-
+                            <li><span class="divider"></span></li>
                             <li>
-                              <span class="divider"></span>
+                                <a class="list-item left-icon" href="#{request.contextPath}/personalarea/profile.xhtml">
+                                 <svg class="icon icon-sm icon-primary left"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-user"></use></svg>
+                                    <span>Profilo</span>  
+                                </a>
                             </li>
-                            <li><a class="list-item" href="#{request.contextPath}/myservices/logout"><span>Disconnetti</span></a></li>
+                            <li><span class="divider"></span></li>
+                            <li>
+                                <a class="list-item left-icon" href="#{request.contextPath}/services/logout">
+                                 <svg class="icon icon-sm icon-primary left"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-locked"></use></svg>
+                                    <span>Esci</span>  
+                                </a>
+                            </li>
                           </ul>
                         </div>
                       </div>
