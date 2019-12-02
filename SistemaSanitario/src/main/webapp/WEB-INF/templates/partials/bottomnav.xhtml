@@ -11,21 +11,27 @@
         <c:when test="${sessionScope.user.type == 'PAZIENTE'}">
             <ul>
                 <li>
-                  <a href="#">
+                  <a href="#{request.contextPath}/personalarea/patient/">
+                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-pa"></use></svg>
+                    <span class="bottom-nav-label">Home</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#{request.contextPath}/personalarea/patient/exams/">
                      <div class="badge-wrapper"><span class="bottom-nav-badge">1</span></div>
                     <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-files"></use></svg>
                     <span class="bottom-nav-label">Esami</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#{request.contextPath}/personalarea/patient/prescriptions/">
                     <div class="badge-wrapper"><span class="bottom-nav-badge">2</span></div>
                     <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-note"></use></svg>
                     <span class="bottom-nav-label">Ricette</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                    <a href="#{request.contextPath}/personalarea/patient/infoexams/">
                     <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-info-circle"></use></svg>
                     <span class="bottom-nav-label">Info esami</span>
                   </a>
@@ -35,23 +41,29 @@
         <c:when test="${sessionScope.user.type == 'MEDICO_BASE'}">
             <ul>
                 <li>
-                  <a href="#">
+                  <a href="#{request.contextPath}/personalarea/doctor/">
+                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-pa"></use></svg>
+                    <span class="bottom-nav-label">Home</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#{request.contextPath}/personalarea/doctor/patientes/">
                      <div class="badge-wrapper"><span class="bottom-nav-badge">1</span></div>
-                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-files"></use></svg>
-                    <span class="bottom-nav-label">Esami</span>
+                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-user"></use></svg>
+                    <span class="bottom-nav-label">Pazienti</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#{request.contextPath}/personalarea/doctor/prescription_exam/">
                     <div class="badge-wrapper"><span class="bottom-nav-badge">2</span></div>
-                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-note"></use></svg>
-                    <span class="bottom-nav-label">Ricette</span>
+                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-file"></use></svg>
+                    <span class="bottom-nav-label">Prescrivi esame</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-info-circle"></use></svg>
-                    <span class="bottom-nav-label">Info esami</span>
+                  <a href="#{request.contextPath}/personalarea/doctor/prescription_medicine/">
+                    <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-note"></use></svg>
+                    <span class="bottom-nav-label">Prescrivi medicine</span>
                   </a>
                 </li>
             </ul>

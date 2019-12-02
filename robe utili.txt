@@ -16,112 +16,29 @@ Utente paziente:
 username = mario.rossi
 password = Ciao1234!
 
-Medicina (id, name, price, desc)
-
-Prescrizione esame(id, paziente_id, doctor_id, exam_id, report_id NULLABLE, id_specialist NULLABLE, id_ssp NULLABLE read bool, paid bool, prescription date, prescription_date_on_create)
-
-PRESCRIZIONE_ESAME(id, idPaziente, idMedico, idEsame, letta, data)
-
-CREATE TABLE PRESCRIZIONE_ESAME(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-idPaziente INT NOT NULL,
-idMedico INT,
-idEsame INT NOT NULL,
-letta BOOLEAN DEFAULT false,
-data DATETIME DEFAULT CURRENT_TIMESTAMP(),
-FOREIGN KEY (idPaziente) REFERENCES PAZIENTE(id),
-FOREIGN KEY (idMedico) REFERENCES MEDICO(id),
-FOREIGN KEY (idEsame) REFERENCES ESAME_PRESCRIVIBILE(id)
-);
-
-
-ESAME_SPECIALISTICO(idPrescrizione, idMedicoSpe, idReport)
-ESAME_DI_LABORATORIO(idPrescrizione, idSsp, idReport)
-
-CREATE TABLE ESAME_SPECIALISTICO(idPrescrizione INT NOT NULL PRIMARY KEY, idMedicoSpe INT NOT NULL, idReport INT,
-FOREIGN KEY (idPrescrizione) REFERENCES PRESCRIZIONE_ESAME(id),
-FOREIGN KEY (idMedicoSpe) REFERENCES MEDICO_SPECIALISTA(id),
-FOREIGN KEY (idReport) REFERENCES REPORT(id)
-);
-
-CREATE TABLE ESAME_LABORATORIO(idPrescrizione INT NOT NULL PRIMARY KEY, idSsp INT NOT NULL, idReport INT,
-FOREIGN KEY (idPrescrizione) REFERENCES PRESCRIZIONE_ESAME(id),
-FOREIGN KEY (idSsp) REFERENCES SSP(id),
-FOREIGN KEY (idReport) REFERENCES REPORT(id)
-);
-
-CREATE TABLE SSP(id INT NOT NULL PRIMARY_KEY,
-nome VARCHAR(255) NOT NULL,
-citta VARCHAR(255) NOT NULL,
-provincia CHAR(2) NOT NULL,
-FOREIGN KEY(id) REFERENCES USERS(id));
-
-
-associazione dottore specialista -> esame prescrivibile ??? 
-
-REPORT(id, id_exam, TEXT, report_date_on_create, 
-
-CREATE TABLE REPORT (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-idPrescrizione INT NOT NULL,
-descrizione TEXT NOT NULL,
-data DATETIME DEFAULT CURRENT_TIMESTAMP(),
-FOREIGN_KEY (idPrescrizione) REFERENCES PRESCRIZIONE_ESAME(id)
-);
-
-PRESCRIZIONE_MEDICINA(id, id_paziente, id_dottore, id_medicina, int quantità, 
-
 
 DOTTORE:
-vede lista pazienti
-prescrive esami ai suoi pazienti
-prescrive medicine ai suoi pazienti
+vede lista pazienti PAZIENTI
+prescrive esami ai suoi pazienti PRESCRIVI ESAME
+prescrive medicine ai suoi pazienti PRESCRIVI MEDICINE
 
 PAZIENTE
 vede lista esami fatti e da fare (con eventuali report)
 vede i nuovi report
 vede la lista di prescrizioni di medicine
 informazioni esami
+TICKETS?
 
 DOTTORE specialista
-vede ela lista pazienti (tutti)
-visite da fare
-vede lista visite fatte
+vede ela lista pazienti (tutti) PAZIENTI
+visite da fare VISITE DA FARE
+vede lista visite fatte VISITE FATTE
 
 SSP
-
-
-
-
-TODO
-
-tabelle database da fare:
-
-esami
-visite mediche
-risultati esami
-risultato visita (prescrizione??, report visita)
-ticketPagati
-ricetta farmaceutica
-
-
-BACKEND:
-per ogni tabella nuova creare entities
-
-caricare dati utente loggato nella sessione nella sesione
-nome cognome serve per l'header
-
-creare servlet per la cambiare la password 
-
-creare servlet caricare la foto
-
-controllare progetto introduzione web per restfull
-
-
-FRONTEND:
-pagina profilo
-
-pensare e progettare tutte le varie pagine di
-pazienti, medici, medici base e ssp
-
+visite da assegnare
+visite da fare 
+Daily report REPORT STATISTICHE
+pazienti PAZIENTI
 
 
 DOMANDE

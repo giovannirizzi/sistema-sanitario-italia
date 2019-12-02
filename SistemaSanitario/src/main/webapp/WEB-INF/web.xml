@@ -54,10 +54,6 @@
         <servlet-name>ForgotPasswordServlet</servlet-name>
         <servlet-class>sistemasanitario.servlets.ForgotPasswordServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>sistemasanitario.servlets.LogoutServlet</servlet-class>
-    </servlet>
     <error-page>
         <error-code>404</error-code>
         <location>/404.html</location>
@@ -65,10 +61,6 @@
     <servlet-mapping>
         <servlet-name>AvatarServlet</servlet-name>
         <url-pattern>/services/avatar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/services/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -58,7 +58,7 @@
             </c:if> 
             <c:if test="${empty email}">  
                   <div class="row justify-content-center">
-                    <div class="col-xs-12  col-lg-6">
+                    <div class="col-xs-12  col-md-8 col-lg-5">
                         <div class="card-wrapper">
                             <div class="card no-after" style="border:1px solid lightgray;">
                                 <div class="card-body">
@@ -76,8 +76,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-row">
-                                                <div class="form-col-12 text-center">
-                                                    <button type="submit" class="btn btn-primary">Conferma</button>
+                                                <div class="form-group col-12 text-center">
+                                                    <button type="submit" class="btn btn-block btn-primary">Conferma</button>
                                                 </div>
                                             </div>
                                         </form>

@@ -59,14 +59,13 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-xs-12  col-lg-6">
-
+                <div class="col-xs-12  col-md-8 col-lg-5">
                     <div class="card-wrapper">
                         <div class="card no-after" style="border:1px solid lightgray;">
                             <div class="card-body">
                                 <div class="container rounded" >
                                     <div class="row">
-                                        <div class="group col text-center mb-4">
+                                        <div class="form-group col text-center">
                                             <p><h4 class="text-secondary">Inserisci le tue credenziali</h4></p>
                                         </div>
                                     </div>       
@@ -85,22 +84,22 @@
                                                   <svg class="password-icon-invisible icon icon-sm d-none"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-password-invisible"></use></svg>
                                                 </span>
                                                 <label for="password" class="active" style="transition: none 0s ease 0s; width: auto;">Password</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col text-center">
-                                                <a href="./forgotpassword">Ho dimenticato la password?</a>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class=" col-6 auto text-center">
-                                                <div class="form-group form-check">
-                                                    <input class="form-check-input" type="checkbox" id="autoSizingCheck" name="rememberme">
-                                                    <label class="form-check-label" for="autoSizingCheck">Ricordami</label>
+                                                 <div class="form-row pt-4">
+                                                    <div class="col-5 form-check text-left" style="margin-top:0rem;">
+                                                        <input class="form-check-input" type="checkbox" id="autoSizingCheck" name="rememberme">
+                                                        <label class="form-check-label" for="autoSizingCheck">Ricordami</label>
+                                                    </div>
+                                                    <div class="col-7 text-right">
+                                                       <a href="./forgotpassword">Ho dimenticato la password</a>
+                                                   </div>
                                                 </div>
+                                                 
                                             </div>
-                                            <div class="form-group col-6 text-center">
-                                                <button type="submit" class="btn btn-primary">Accedi</button>
+                                        </div>
+                                       
+                                        <div class="form-row">
+                                            <div class="form-group col-12 text-center">
+                                                <button type="submit" class="btn btn-block btn-primary">Accedi</button>
                                             </div>
                                         </div>
                                     </form>

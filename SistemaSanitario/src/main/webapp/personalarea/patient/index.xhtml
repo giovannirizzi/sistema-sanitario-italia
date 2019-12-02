@@ -4,12 +4,26 @@
                 template="/WEB-INF/templates/mainLayout.xhtml">
 
     <ui:define name="title">
-        Dashboard
+        Home
     </ui:define>
 
     <ui:define name="pageTitle">
         Benvenuto #{sessionScope.paziente.nome}
     </ui:define>
+    
+    <ui:define name="content">
+        
+        <ui:decorate template="/WEB-INF/templates/partials/section.xhtml">
+                <ui:define name="sectionTitle">
+                     <h4 class="text-secondary pb-4 text-left">Servizi del paziente</h4>   
+                </ui:define>
+                <ui:define name="sectionBody">
+                    <div class="main-pills text-center">
+                       
+                    </div>
+                </ui:define>
+        </ui:decorate>
 
+    </ui:define>
 
 </ui:composition>

@@ -14,21 +14,45 @@
               <h3 class="no_toc">MENU</h3>
               <ul class="link-list">
                 <li class="nav-item">
-                  <a class="nav-link" href="#"><span>Servizi Paziente</span></a>
-                  <ul class="link-list">
-                    <li class="nav-link">
-                      <a class="nav-link" href="#"><span>Esami</span></a>
-                    </li>
-                    <li class="nav-link">
-                      <a class="nav-link" href="#"><span>Ticket</span></a>
-                    </li>
-                    <li class="nav-link">
-                      <a class="nav-link" href="#"><span>Nuovi report</span></a>
-                    </li>
-                  </ul>
-                  <a class="nav-link" href="#"><span>Informazioni esami</span></a>
+                    <c:choose>
+                    <c:when test="${sessionScope.user.type == 'PAZIENTE'}">
+                      <a class="nav-link" href="#{request.contextPath}/personalarea/patient/"><span>Servizi Paziente</span></a>
+                      <ul class="link-list">
+                        <li class="nav-link">
+                          <a class="nav-link" href="#{request.contextPath}/personalarea/patient/exams/"><span>Esami</span></a>
+                        </li>
+                        <li class="nav-link">
+                          <a class="nav-link" href="#{request.contextPath}/personalarea/patient/prescriptions/"><span>Ricette</span></a>
+                        </li>
+                      </ul>
+                       <a class="nav-link" href="#{request.contextPath}/personalarea/patient/infoexams/"><span>Informazioni esami</span></a>   
+                    </c:when>
+                    <c:when test="${sessionScope.user.type == 'MEDICO_BASE'}">
+                        <a class="nav-link" href="#{request.contextPath}/personalarea/doctor/"><span>Servizi Medico</span></a>
+                        <ul class="link-list">
+                          <li class="nav-link">
+                            <a class="nav-link" href="#{request.contextPath}/personalarea/doctor/patients/"><span>Pazienti</span></a>
+                          </li>
+                          <li class="nav-link">
+                            <a class="nav-link" href="#{request.contextPath}/personalarea/doctor/prescription_exam/"><span>Prescrivi esame</span></a>
+                          </li>
+                           <li class="nav-link">
+                            <a class="nav-link" href="#{request.contextPath}/personalarea/doctor/prescription_medicine/"><span>Prescrivi medicine</span></a>
+                          </li>
+                        </ul>
+                    </c:when>
+                    <c:when test="${sessionScope.user.type == 'MEDICO_SPECIALISTA'}">
+                    <a class="nav-link" href="#{request.contextPath}/personalarea/specialist/"><span>Servizi Medico Specialista</span></a>
+                    <ul class="link-list">
+                      <li class="nav-link">
+                        <a class="nav-link" href="#{request.contextPath}/personalarea/specialist/patients/"><span>Pazienti</span></a>
+                      </li>
+                    </ul>
+                    </c:when>
+                    </c:choose>
+  
                   <a class="nav-link" href="#{request.contextPath}/personalarea/profile.xhtml"><span>Profilo</span></a>
-                  <a class="nav-link" href="#{request.contextPath}/myservices/logout"><span>Disconnetti</span></a>
+                  <a class="nav-link" href="#{request.contextPath}/services/logout"><span>Disconnetti</span></a>
                 </li>
               </ul>
             </div>
