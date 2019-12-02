@@ -2,9 +2,11 @@ package sistemasanitario.listeners;
 
 import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import sistemasanitario.entities.Medicina;
 import sistemasanitario.entities.Medico;
 import sistemasanitario.entities.MedicoSpecialista;
 import sistemasanitario.entities.Paziente;
@@ -17,6 +19,7 @@ public class AuthenticatedUserListener{
     private Dao<Paziente, Integer> pazienteDao;
     private Dao<Medico, Integer> medicoDao;
     private Dao<MedicoSpecialista, Integer> medicoSpecialistaDao;
+    private Dao<Medicina, Integer> medicinaDao;
     private Dao<Ssp, Integer> sspDao;
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
     
@@ -26,6 +29,7 @@ public class AuthenticatedUserListener{
         medicoDao = (Dao<Medico, Integer>)context.getAttribute("medicoDao");
         sspDao = (Dao<Ssp, Integer>)context.getAttribute("sspDao");
         medicoSpecialistaDao = (Dao<MedicoSpecialista, Integer>)context.getAttribute("medicoSpecialistaDao");
+        medicinaDao = (Dao<Medicina, Integer>)context.getAttribute("medicinaDao");
     }
     
     public void onNewUserAuthenticated(HttpSession session, User user) throws SQLException{

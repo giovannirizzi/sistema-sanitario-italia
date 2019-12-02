@@ -13,6 +13,10 @@ public class Medicina {
     
     @DatabaseField
     private String nome;
+
+    public void setId(int id) {
+        this.id = id;
+    }
      
     @DatabaseField
     private String descrizione;

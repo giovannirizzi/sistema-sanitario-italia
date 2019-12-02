@@ -6,6 +6,7 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
@@ -77,7 +78,12 @@ public class WebAppContextListener  implements ServletContextListener{
             sce.getServletContext().setAttribute("prescrizioneMedicinaDao", medicinaDao);
             
             Dao<Report, Integer> reportDao = DaoManager.createDao(con, Report.class); 
+            sce.getServletContext().setAttribute("reportDao", reportDao);
             
+            sce.getServletContext().setAttribute("medicine", medicinaDao.queryForAll());
+            sce.getServletContext().setAttribute("pazienti", pazienteDao.queryForAll());
+            sce.getServletContext().setAttribute("esami", esamePrescrivibileDao.queryForAll());
+               
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
         }  
