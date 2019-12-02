@@ -17,7 +17,7 @@ import sistemasanitario.entities.AuthToken;
 import sistemasanitario.entities.User;
 import sistemasanitario.filters.TokenAuthFilter;
 
-@WebServlet("/logout")
+@WebServlet("/services/logout")
 public class LogoutServlet extends HttpServlet{
     
     private Dao<AuthToken, Integer> authTokensDao;
@@ -84,7 +84,7 @@ public class LogoutServlet extends HttpServlet{
             try {
                 String contextPath = req.getContextPath();
                 if (!contextPath.endsWith("/")) contextPath += "/";
-                resp.sendRedirect(contextPath+"index");
+                resp.sendRedirect(contextPath);
             } catch (IOException ex) {
                 Logger.getLogger(LogoutServlet.class.getName()).log(Level.SEVERE, null, ex);
             } 

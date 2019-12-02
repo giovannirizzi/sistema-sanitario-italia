@@ -15,7 +15,7 @@
     
 </head>
 
-<body> <!--onload="getPazienti();">-->
+<body>
     
     <!-- HEADER -->
     <%@ include file="./jspf/header.jspf" %>
@@ -42,8 +42,8 @@
                 <div class="main-pills  text-center mt-sm-4 mt-md-5">
                    <div class="main-pills-wrap ">
                        <div class="form-group">
-                        <input type="search" class="autocomplete" placeholder="Cerca pazienti..."
-                          id="myInput" onkeyup="myFunction()">
+                        <input type="text" placeholder="Cerca pazienti..."
+                                id="myInput" onkeyup="filterData()">
                           <!--name="autocomplete-regioni"
                           data-autocomplete='[{"text":"Abruzzo","link":"#"},{"text":"Basilicata","link":"#"},{"text":"Calabria","link":"#"},{"text":"Campania","link":"#"},{"text":"Emilia Romagna","link":"#"},{"text":"Friuli Venezia Giulia","link":"#"},{"text":"Lazio","link":"#"},{"text":"Liguria","link":"#"},{"text":"Lombardia","link":"#"},{"text":"Marche","link":"#"},{"text":"Molise","link":"#"},{"text":"Piemonte","link":"#"},{"text":"Puglia","link":"#"},{"text":"Sardegna","link":"#"},{"text":"Sicilia","link":"#"},{"text":"Toscana","link":"#"},{"text":"Trentino Alto Adige","link":"#"},{"text":"Umbria","link":"#"},{"text":"Valle d’Aosta","link":"#"},{"text":"Veneto","link":"#"}]'>-->
                         <span class="autocomplete-icon" aria-hidden="true">

@@ -39,7 +39,7 @@ public class ForgotPasswordServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         RequestDispatcher dispatcher = getServletContext().
-        getRequestDispatcher("/WEB-INF/forgotPassword.jsp");
+        getRequestDispatcher("/WEB-INF/jsp/forgotPassword.jsp");
         dispatcher.forward(req, resp);
     }
         
@@ -74,7 +74,7 @@ public class ForgotPasswordServlet extends HttpServlet {
         }
         request.setAttribute("email", email);
         RequestDispatcher dispatcher = getServletContext().
-        getRequestDispatcher("/WEB-INF/forgotPassword.jsp");
+        getRequestDispatcher("/WEB-INF/jsp/forgotPassword.jsp");
         dispatcher.forward(request, response);     
     }
     

@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <title>Sistema Sanitario</title>
-  <%@ include file="./WEB-INF/jspf/meta.jspf" %> 
-
+    <%@ include file="/WEB-INF/jspf/meta.jspf" %> 
+    <title>Sistema Sanitario Italia</title>
 </head>
 
 <body>
-
+    
+    <div id="main">
   <!-- HEADER -->
   <div class="it-header-wrapper it-header-sticky">
     <div class="it-nav-wrapper">
@@ -25,56 +25,23 @@
                       <use xlink:href="svg/sprite.svg#it-pa"></use>
                     </svg>
                     <div class="it-brand-text">
-                      <h2 class="no_toc">Sistema Sanitario</h2>
+                      <h2 class="no_toc">Sistema Sanitario Italia</h2>
                       <h3 class="no_toc d-none d-md-block">Il nuovo portale della sanità online</h3>
                     </div>
                   </a>
                 </div>
                  <!-- ACCEDI AREA PERSONALE-->
                 <div class="it-right-zone">
-                      <div class="it-search-wrapper">
-                      <a href="login" class="btn btn-primary btn-icon">
-                        <span class="rounded-icon">
-                          <svg class="icon icon-primary">
-                            <use xlink:href="svg/sprite.svg#it-user"></use>
-                          </svg>
-                        </span>
-                        <span class="d-none d-lg-block" id="">Accedi all'area personale</span>
-                      </a>
-                        </div>
-                       <!--
-                  <div class="it-search-wrapper">
-                    <div class="nav-item dropdown">
-                      <a href="#" class="btn btn-primary btn-icon rounded" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true">
-                        <span class="rounded-icon">
-                          <svg class="icon icon-primary">
-                            <use xlink:href="svg/sprite.svg#it-user"></use>
-                          </svg>
-                        </span>
-                        <span class="d-none d-lg-block" id="hide-cloned">Accedi all'area personale</span>
-                      </a>
-
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <div class="link-list-wrapper">
-                          <ul class="link-list">
-                            <li>
-                              <h3 id="esempio-header-1">Mario Rossi</h3>
-                            </li>
-
-                            <li><a class="list-item" href="#"><span>Area personale</span></a></li>
-
-                            <li>
-                              <span class="divider"></span>
-                            </li>
-                            <li><a class="list-item" href="#"><span>Disconnetti</span></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                <div class="it-search-wrapper">
+                <a href="login" class="btn btn-primary btn-icon">
+                  <span class="rounded-icon">
+                    <svg class="icon icon-primary">
+                      <use xlink:href="svg/sprite.svg#it-user"></use>
+                    </svg>
+                  </span>
+                  <span class="d-none d-lg-block" id="">Accedi all'area personale</span>
+                </a>
                   </div>
-                        -->
-                      
                 </div>
               </div>
             </div>
@@ -101,10 +68,10 @@
                   </div>
                   <div class="menu-wrapper">
                     <ul class="navbar-nav">
-                      <li class="nav-item active"><a class="nav-link active" data-attribute="forward" class="forward" href="#"><span>Home</span></a></li>
-                      <li class="nav-item"><a class="nav-link" href="#sezione-servizi"><span>Servizi</span></a></li>
-                      <li class="nav-item"><a class="nav-link" href="#sezione-servizi"><span>Contatti</span></a></li>
-                      <li class="nav-item"><a class="nav-link" href="#"><span>Chi siamo</span></a></li>
+                      <li class="nav-item active"><a class="nav-link active forward" data-attribute="forward"  href="#main"><span>Home</span></a></li>
+                      <li class="nav-item"><a class="nav-link forward" data-attribute="forward" href="#servizi"><span>Servizi</span></a></li>
+                      <li class="nav-item"><a class="nav-link forward" data-attribute="forward" href="#chisiamo"><span>Chi siamo</span></a></li>
+                      <li class="nav-item"><a class="nav-link forward" data-attribute="forward" href="#novita"><span>Novita</span></a></li>
                     </ul>
                   </div>
                 </div>
@@ -117,7 +84,7 @@
   </div>
 
   <!-- HERO -->
-  <div class="it-hero-wrapper it-dark it-overlay">
+  <div class="it-hero-wrapper it-dark it-overlay" >
     <!-- - img-->
     <div class="img-responsive-wrapper">
       <div class="img-responsive">
@@ -129,7 +96,7 @@
       <div class="row">
         <div class="col-12">
           <div class="it-hero-text-wrapper bg-dark">
-            <h1 class="no_toc">Progetto Sanità</h1>
+            <h1 class="no_toc">Sistema Sanitario Italia</h1>
             <h4 class= "no_toc text-white">Il nuovo canale tematico dedicato alla salute dei cittadini e ai servizi sanitari regionali.</h4>
             <p class="d-none d-lg-block mt-2">
              Questa è la piattaforma elettronica che consente ai cittadini residenti nelle province di Trento e Bolzano di fruire dei servizi connessi alla loro salute. 
@@ -141,7 +108,7 @@
   </div>
 
   <!-- SECTION SERVIZI -->
-  <div class="section section-muted" id="sezione-servizi">
+  <div lass="section section-muted" id="servizi">
     <div class="section-content">
       <!-- contenuto di esempio START -->
       <div class="container">
@@ -215,7 +182,7 @@
   </div>
  
     <!-- SECTION CHI-SIAMO -->
-    <div class="section bg-dark p-0 section-3">
+    <div id="chisiamo" class="section bg-dark p-0 section-3">
       <div class="section-content">
         <div class="container white-color">
           <div class="row">
@@ -236,7 +203,7 @@
       </div>
     </div>
     
-    <section>
+    <section id="novita">
     <div class="py-5">
       <div class="container px-4">
         <div class="row">
@@ -294,12 +261,7 @@
         </div>
       </div>
     </div>
-  </section>
-
-    
- 
-
-        
+  </section>    
     
   <!-- BACK TO TOP -->
   <div class="d-flex align-items-center">
@@ -325,7 +287,7 @@
                     xlink:href="svg/sprite.svg#it-pa"></use>
                 </svg>
                 <div class="it-brand-text">
-                  <h2 class="no_toc">Sistema Sanitario Pregiato</h2>
+                  <h2 class="no_toc">Sistema Sanitario Italia</h2>
                   <h3 class="no_toc d-none d-md-block">
                     Il nuovo portale della sanità online
                   </h3>
@@ -458,10 +420,13 @@
   </div>
 </footer>
   
-  
+  </div>
 
-  <script type="text/javascript" src="js/main.js"></script>
-  <script type="text/javascript" src="js/bootstrap-italia.bundle.min.js"></script>
+<script type="text/javascript" src="/SistemaSanitario/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/SistemaSanitario/js/main.js"></script>
+<script type="text/javascript" src="/SistemaSanitario/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/SistemaSanitario/js/popper.min.js"></script>
+<script type="text/javascript" src="/SistemaSanitario/js/bootstrap-italia.min.js"></script>
 </body>
 
 </html>

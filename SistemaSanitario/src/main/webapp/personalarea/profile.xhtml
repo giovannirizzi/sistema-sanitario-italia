@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/templates/mainLayout.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+
+    <ui:define name="title">Profilo</ui:define>
+    <ui:define name="pageTitle">Profilo</ui:define>
+
+    <ui:define name="content">
+
+        <ui:decorate template="/WEB-INF/templates/partials/section.xhtml">
+            <ui:define name="sectionTitle">
+                <h2 class="text-secondary pb-4 text-left mb-5">Dati utente</h2>   
+            </ui:define>
+            <ui:define name="sectionBody">
+                <div class="container text-left mb-5">
+                <div class="row">  
+                    <div class="form-group mb-0" style="width:100%;">
+                        <div class="form-row">
+                            <div class="col-md-5 mr-md-5 input-group mb-5">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
+                                </div>
+                                <label for="userName">NOME UTENTE</label>
+                                <input type="text" class="form-control" id="userName" readonly="true" value="#{sessionScope.user.username}"/>
+                            </div>
+                            <div class="col-md-5 col-md-6 input-group mb-5">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-mail"></use></svg></div>
+                                </div>
+                                <label for="email">EMAIL</label>
+                                <input type="text" class="form-control" id="email" readonly="true" value="#{sessionScope.user.email}"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-5 input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-key"></use></svg></div>
+                                </div>
+                                <label for="medicoBase">PASSWORD</label>
+                                <input type="text" class="form-control" id="password" readonly="true" value="******************"/>
+                                <div class="input-group-append">
+                                    <a data-toggle="modal" data-target="#exampleModal"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-pencil"></use></svg></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>     
+            </div>
+            </ui:define>		
+        </ui:decorate>   
+
+
+        <ui:decorate template="/WEB-INF/templates/partials/section.xhtml" rendered="${sessionScope.user.type == 'PAZIENTE'}">
+            <ui:define name="sectionTitle">
+                    <h2 class="text-secondary pb-4 text-left">Dati Anagrafici</h2>   
+            </ui:define>
+            <ui:define name="sectionBody">
+                <div class="container text-left mb-5">
+                    <div class="row">
+                        <div class="col-md-5 d-flex flex-column justify-content-center align-items-center">
+                            <div class="avatar size-xxl" style="width:240px; height: 240px;">
+                                <c:choose>
+                                    <c:when test="${empty sessionScope.paziente.foto}">
+                                        <svg class="icon icon icon-secondary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="#{request.contextPath}/services/avatar"/>
+                                    </c:otherwise>
+                                </c:choose> 
+
+                            </div>
+
+                            <form method="post" action="#{request.contextPath}/services/avatar" enctype="multipart/form-data" id="formUploader">
+                                <label class="d-flex justify-content-center" for="upload1">Cambia immagine</label>
+                                <input type="file" name="upload1" id="upload1" multiple="multiple" style="visibility:hidden;"/>
+                            </form>
+                            <script type="text/javascript">
+                                document.getElementById("upload1").onchange = function() {
+                                    document.getElementById("formUploader").submit();
+                                };
+                            </script>
+                        </div>
+
+                        <div class="col-md-7">
+                            <div class="row mt-4">
+                                <div class="form-group mb-0" style="width:100%;">
+                                    <div class="input-group mb-5">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
+                                        </div>
+                                        <label for="codiceFiscale">NOME E COGNOME</label>
+                                        <input type="text" class="form-control" id="nomeCognome" readonly="true" value="#{sessionScope.paziente.nome} #{sessionScope.paziente.cognome}"/>
+                                    </div>
+                                    <div class="input-group mb-5">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-card"></use></svg></div>
+                                        </div>
+                                        <label for="codiceFiscale">CODICE FISCALE</label>
+                                        <input type="text" class="form-control" id="codiceFiscale" readonly="true" value="#{sessionScope.paziente.cf}"/>
+                                    </div>
+
+                                    <div class="input-group mb-5">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-pin"></use></svg></div>
+                                        </div>
+                                        <label for="luogoNascita">LUOGO DI NASCITA</label>
+                                        <input type="text" class="form-control" id="luogoNascita" readonly="true" value="#{sessionScope.paziente.luogoNascita} (#{sessionScope.paziente.provincia})"/>
+                                    </div>
+
+                                    <div class="input-group mb-5">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
+                                        </div>
+                                        <label for="sesso">SESSO</label>
+                                        <input type="text" class="form-control" id="sesso" readonly="true" value="#{sessionScope.paziente.sesso}"/>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
+                                        </div>
+                                        <label for="medicoBase">MEDICO BASE</label>
+                                        <input type="text" class="form-control" id="medicoBase" readonly="true" value="MIKE DYSON"/>
+                                        <div class="input-group-append">
+                                            <a data-toggle="collapse" data-target="#medicCollapse"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-pencil"></use></svg></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5"></div>
+                        <div class="collapse col-md-7 w-100 mt-5 " id="medicCollapse">
+                            <form action="./cambiaMedico" method="POST" class="w-100">
+                                <div class="row w-100">
+                                    <div class="col-9 pb-5">
+                                        <div class="bootstrap-select-wrapper">
+                                            <label>CAMBIA MEDICO DI BASE</label>
+                                            <select title="Selezioni un medico" data-live-search="true" data-live-search-placeholder="Cerca medici">
+                                                <option value="1">Bestia vacca</option>
+                                                <option value="2">Medico pregiato</option>
+                                                <option value="3">Pregiated medic</option>
+                                                <option value="4">Gayy</option>
+                                                <option value="5">Gay gay gay</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="submit" class="btn btn-primary">Conferma</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>		
+        </ui:decorate>  
+    
+        
+        <!-- MODAL CAMBIA PASSWORD-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Modifica password</h4>
+              </div>
+              <div class="modal-body">
+                <form action=" " method="POST">
+                    <div class="form-row">
+                        <div class="form-group col text-center">
+                            <input type="text" class="form-control" name="username" placeholder="inserisci password attuale"/>
+                            <label for="username" class="active" style="transition: none 0s ease 0s; width: auto;">Password attuale</label>
+                        </div>
+                    </div>    
+                    <div class="form-row">
+                        <div class="form-group col text-center">
+                            <input type="password" class="form-control input-password" name="password" placeholder="inserisci nuova password"/>
+                            <span class="password-icon" aria-hidden="true">
+                              <svg class="password-icon-visible icon icon-sm"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-password-visible"></use></svg>
+                              <svg class="password-icon-invisible icon icon-sm d-none"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-password-invisible"></use></svg>
+                            </span>
+                            <label for="password" class="active" style="transition: none 0s ease 0s; width: auto;">Password nuova</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col text-center">
+                            <input type="password" class="form-control input-password" name="password" placeholder="conferma nuova password"/>
+                            <span class="password-icon" aria-hidden="true">
+                              <svg class="password-icon-visible icon icon-sm"><use xlink:href="../svg/sprite.svg#it-password-visible"></use></svg>
+                              <svg class="password-icon-invisible icon icon-sm d-none"><use xlink:href="../svg/sprite.svg#it-password-invisible"></use></svg>
+                            </span>
+                            <label for="password" class="active" style="transition: none 0s ease 0s; width: auto;">Conferma password nuova</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Conferma</button>
+                        </div>
+                    </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" data-dismiss="modal" type="button">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+    </ui:define>
+
+</ui:composition>

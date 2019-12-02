@@ -92,7 +92,7 @@ public class ResetPasswordServlet extends HttpServlet{
     private void forwardToJSPPage(String token, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         
         RequestDispatcher dispatcher = getServletContext().
-        getRequestDispatcher("/WEB-INF/resetPassword.jsp");
+        getRequestDispatcher("/WEB-INF/jsp/resetPassword.jsp");
         req.setAttribute("token", token);
         dispatcher.forward(req, resp);  
     }

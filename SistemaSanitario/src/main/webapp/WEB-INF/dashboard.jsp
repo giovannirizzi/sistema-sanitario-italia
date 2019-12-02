@@ -7,7 +7,7 @@
 <html lang="it">
 <head>
     
-    <title><c:out value = "${PAGE_TITLE}"/> | Sistema Sanitario</title>
+    <title><c:out value = "${PAGE_TITLE}"/> | SS Italia</title>
     
     <%@ include file="./jspf/meta.jspf" %> 
     
@@ -20,6 +20,12 @@
     </c:if>
     <c:if test="${sessionScope.user.type == 'MEDICO_BASE'}">
         <jsp:forward page="./pazientiMedicoBase" />
+    </c:if>
+    <c:if test="${sessionScope.user.type == 'MEDICO_SPECIALISTA'}">
+        <jsp:forward page="./profile" />
+    </c:if>
+    <c:if test="${sessionScope.user.type == 'SS_PROVINCIALE'}">
+        <jsp:forward page="./profile" />
     </c:if>
     
 </body>

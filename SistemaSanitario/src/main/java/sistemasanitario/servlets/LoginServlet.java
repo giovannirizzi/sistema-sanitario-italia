@@ -44,12 +44,30 @@ public class LoginServlet extends HttpServlet {
         usersDao = (Dao<User, Integer>)getServletContext().getAttribute("UsersDao");
     }
  
-    private void redirectToServices(HttpServletResponse response) throws IOException{
+    private void redirectToServices(HttpSession authUserSession, HttpServletResponse response) throws IOException{
      
         String contextPath = getServletContext().getContextPath(); 
         if (!contextPath.endsWith("/")) contextPath += "/";
+        
+        User user = (User)authUserSession.getAttribute("user");
+        String path = "";
+        
+        switch(user.getType()){
+            case PAZIENTE:
+                path = "patient/";
+                break;
+            case SS_PROVINCIALE:
+               path = "ssp/";
+                break;
+            case MEDICO_BASE:
+                path = "doctor/";
+                break; 
+            default:
+                path = "specialist/";
+                break;   
+        }
                 
-        response.sendRedirect(response.encodeRedirectURL(contextPath + "myservices/dashboard"));
+        response.sendRedirect(response.encodeRedirectURL(contextPath + "personalarea/" + path));
     }
     
     @Override
@@ -61,12 +79,12 @@ public class LoginServlet extends HttpServlet {
         if(authUserSession == null){
            
             RequestDispatcher dispatcher = getServletContext().
-            getRequestDispatcher("/WEB-INF/login.jsp");
+            getRequestDispatcher("/WEB-INF/jsp/login.jsp");
             dispatcher.forward(request, response);
         }
         else{
             
-            redirectToServices(response); 
+            redirectToServices(authUserSession, response); 
         }
     }
 
@@ -84,7 +102,7 @@ public class LoginServlet extends HttpServlet {
                 response.sendError(500, "SQLException: loadUserData");
             }
             
-            redirectToServices(response); 
+            redirectToServices(session, response); 
             return;
         }
         
@@ -133,21 +151,22 @@ public class LoginServlet extends HttpServlet {
                 saveAuthToken(user, token);     
             }
             
-            request.getSession().setAttribute("user", user);
+            HttpSession tmp = request.getSession();
+            tmp.setAttribute("user", user);
             try {
                 authUserListener.onNewUserAuthenticated(request.getSession(false), user);
             } catch (SQLException ex) {
                 response.sendError(500, "SQLException: loadUserData");
                 return;
             }
-            redirectToServices(response);
+            redirectToServices(tmp, response);
             
         } else { //login failed
             
             request.setAttribute("error", true);
 
             RequestDispatcher dispatcher = getServletContext().
-                    getRequestDispatcher("/WEB-INF/login.jsp");
+                    getRequestDispatcher("/WEB-INF/jsp/login.jsp");
             
             dispatcher.forward(request, response);
         }

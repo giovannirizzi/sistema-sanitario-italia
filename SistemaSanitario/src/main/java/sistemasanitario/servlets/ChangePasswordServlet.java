@@ -31,7 +31,7 @@ errori:
 
 */
 
-@WebServlet(name = "ChangePasswordServlet", urlPatterns = {"/myservices/changepassword"})
+@WebServlet(name = "ChangePasswordServlet", urlPatterns = {"/services/changepassword"})
 public class ChangePasswordServlet extends HttpServlet {
     
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());

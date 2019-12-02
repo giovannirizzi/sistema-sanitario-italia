@@ -1,0 +1,40 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+
+<div class="d-none d-lg-block col-lg-3 mynavbar" style="background-color: #fff;">
+    <div class="sticky-top">
+        <nav class="theme-dark-desktop navbar it-navscroll-wrapper">
+          <div class="menu-wrapper">
+            <div class="link-list-wrapper">
+              <h3 class="no_toc">MENU</h3>
+              <ul class="link-list">
+                <li class="nav-item">
+                  <a class="nav-link" href="#"><span>Servizi Paziente</span></a>
+                  <ul class="link-list">
+                    <li class="nav-link">
+                      <a class="nav-link" href="#"><span>Esami</span></a>
+                    </li>
+                    <li class="nav-link">
+                      <a class="nav-link" href="#"><span>Ticket</span></a>
+                    </li>
+                    <li class="nav-link">
+                      <a class="nav-link" href="#"><span>Nuovi report</span></a>
+                    </li>
+                  </ul>
+                  <a class="nav-link" href="#"><span>Informazioni esami</span></a>
+                  <a class="nav-link" href="#{request.contextPath}/personalarea/profile.xhtml"><span>Profilo</span></a>
+                  <a class="nav-link" href="#{request.contextPath}/myservices/logout"><span>Disconnetti</span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+      </nav>   
+    </div>
+</div>
+
+</ui:composition>
