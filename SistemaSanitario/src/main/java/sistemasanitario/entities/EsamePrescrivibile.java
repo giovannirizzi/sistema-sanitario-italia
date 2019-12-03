@@ -11,6 +11,10 @@ public class EsamePrescrivibile {
     
     @DatabaseField(id = true)
     private int id;
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
     @DatabaseField
     private String nome;

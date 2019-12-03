@@ -22,8 +22,39 @@
                 </ui:define>
                 <ui:define name="sectionBody">
                     <div class="main-pills  text-center">
-                        <div class="main-pills-wrap" style="min-height: 700px;">
-                           
+                        <div class="main-pills-wrap">
+                            <form action="#{request.contextPath}/services/doctor/prescription_exam" method="POST">
+                                <div class="from-row">
+                                    <div class="form-group">
+                                    <div class="bootstrap-select-wrapper">
+                                        <label>PAZIENTE</label>
+                                        <select title="Seleziona il paziente" data-live-search="true" name="idPaziente" data-live-search-placeholder="Cerca pazienti">
+                                          <ui:repeat value="#{applicationScope.pazienti}" var="paziente">
+                                                <option value="#{paziente.id}">#{paziente.nome} #{paziente.cognome} - #{paziente.cf}</option>
+                                            </ui:repeat>
+                                        </select>
+                                    </div>
+                                    </div>
+                                </div>
+ 
+                                <div class="from-row">
+                                    <div class="form-group col-md-8">
+                                    <div class="bootstrap-select-wrapper">
+                                        <label>ESAME</label>
+                                        <select title="Seleziona l'esame" data-live-search="true" name="idEsame" data-live-search-placeholder="Cerca esami">
+                                            <ui:repeat value="#{applicationScope.esami}" var="esame">
+                                                <option value="#{esame.id}">#{esame.nome}</option>
+                                            </ui:repeat>
+                                        </select>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col text-center">
+                                      <button type="submit" class="btn btn-primary">Conferma</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </ui:define>

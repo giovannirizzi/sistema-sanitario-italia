@@ -21,8 +21,50 @@
                      <h4 class="text-secondary pb-4 text-left">Prescrizione medicina</h4>   
                 </ui:define>
                 <ui:define name="sectionBody">
-                    <div class="main-pills  text-center">
-                        <div class="main-pills-wrap" style="min-height: 700px;">
+                    
+                    <div class="main-pills">
+                        <div class="main-pills-wrap">
+                            <form action="#{request.contextPath}/services/doctor/prescription_medicine" method="POST">
+                                <div class="from-row">
+                                    <div class="form-group">
+                                    <div class="bootstrap-select-wrapper">
+                                        <label>PAZIENTE</label>
+                                        <select title="Seleziona il paziente" data-live-search="true" name="idPaziente" data-live-search-placeholder="Cerca pazienti">
+                                          <ui:repeat value="#{applicationScope.pazienti}" var="paziente">
+                                                <option value="#{paziente.id}">#{paziente.nome} #{paziente.cognome} - #{paziente.cf}</option>
+                                            </ui:repeat>
+                                        </select>
+                                    </div>
+                                    </div>
+                                </div>
+ 
+                                <div class="from-row">
+                                    <div class="form-group col-md-8">
+                                    <div class="bootstrap-select-wrapper">
+                                        <label>MEDICINA</label>
+                                        <select title="Seleziona il farmaco" data-live-search="true" name="idMedicina" data-live-search-placeholder="Cerca farmaci">
+                                            <ui:repeat value="#{applicationScope.medicine}" var="medicine">
+                                                <option value="#{medicine.id}">#{medicine.nome}</option>
+                                            </ui:repeat>
+                                        </select>
+                                    </div>
+                                    </div>
+                                </div>
+                                 <div class="from-row">
+                                    <label for="inputQuantita" class="input-number-label text-left">QUANTITA</label>
+                                    <span class="input-number input-number-adaptive from-group">
+                                            <input type="number" id="inputQuantita" step="1" name="quantita" placeholder="Inserisci la quantità" value="1" min="1"/>
+                                            <button class="input-number-add"></button>
+                                            <button class="input-number-sub"></button>
+                                    </span>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group col text-center">
+                                      <button type="submit" class="btn btn-primary">Conferma</button>
+                                    </div>
+                                </div>
+                            </form>
                             
                         </div>
                     </div>
