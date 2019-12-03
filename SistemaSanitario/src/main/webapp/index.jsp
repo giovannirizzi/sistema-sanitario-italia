@@ -108,7 +108,7 @@
   </div>
 
   <!-- SECTION SERVIZI -->
-  <div lass="section section-muted" id="servizi">
+  <div class="section section-muted" id="servizi">
     <div class="section-content">
       <!-- contenuto di esempio START -->
       <div class="container">
@@ -218,7 +218,9 @@
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title big-heading">Ultime notizie</h5>
-                  <p class="card-text">E' stato appena scoperto un farmaco per laurearsi in 3 anni. Se mi dai 50 euro te lo procuro.</p>
+                  <p class="card-text">Si chiama Stereotaxis il robot 'elettricista del cuore' che, all'ospedale Mauriziano di Torino,
+                      ha salvato la vita ad un paziente di 65 anni affetto da una grave aritmia cardiaca ventricolare. 
+                      Il sistema è stato utilizzato, per la prima volta in Italia, per una procedura di ablazione.</p>
                   <a class="read-more" href="#">
                     <span class="text">Leggi di più</span>
                     <svg class="icon">
@@ -236,7 +238,9 @@
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title big-heading">Comunicati</h5>
-                  <p class="card-text">Cup Trentino, prenotazioni sospese per un guasto al server.</p>
+                  <p class="card-text">Cup Trentino, prenotazioni sospese per un guasto al server.<br>
+                      Attivo il nuovo numero per prenotare col cellulare.
+                  </p>
                 </div>
               </div>
             </div>
