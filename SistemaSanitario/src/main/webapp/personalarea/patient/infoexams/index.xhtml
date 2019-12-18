@@ -18,22 +18,24 @@
         
         <ui:decorate template="/WEB-INF/templates/partials/section.xhtml">
                 <ui:define name="sectionTitle">
-                     <h4 class="text-secondary pb-4 text-left">Inserisci l'esame da ricercare</h4>   
+                     <h4 class="text-secondary pb-4 text-left">Lista esami</h4>   
                 </ui:define>
                 <ui:define name="sectionBody">
-                    <div class="main-pills  text-center">
-                        <div class="main-pills-wrap" style="min-height: 700px;">
-                            <div class="form-group">
-                             <input type="search" class="autocomplete" placeholder="Cerca esami..."
-                               id="autocomplete-regioni"
-                               name="autocomplete-regioni"
-                               data-autocomplete='[{"text":"Abruzzo","link":"#"},{"text":"Basilicata","link":"#"},{"text":"Calabria","link":"#"},{"text":"Campania","link":"#"},{"text":"Emilia Romagna","link":"#"},{"text":"Friuli Venezia Giulia","link":"#"},{"text":"Lazio","link":"#"},{"text":"Liguria","link":"#"},{"text":"Lombardia","link":"#"},{"text":"Marche","link":"#"},{"text":"Molise","link":"#"},{"text":"Piemonte","link":"#"},{"text":"Puglia","link":"#"},{"text":"Sardegna","link":"#"},{"text":"Sicilia","link":"#"},{"text":"Toscana","link":"#"},{"text":"Trentino Alto Adige","link":"#"},{"text":"Umbria","link":"#"},{"text":"Valle d’Aosta","link":"#"},{"text":"Veneto","link":"#"}]'/>
-                             <span class="autocomplete-icon" aria-hidden="true">
-                               <svg class="icon icon-sm"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-search"></use></svg>
-                             </span>
-                           </div>
-                        </div>
+                    <div class="bootstrap-select-wrapper">
+                        <select title="Esame molto bello" data-live-search="true" data-live-search-placeholder="Cerca esame">
+                            <option value="1">Ecografia</option>
+                            <option value="2">Esame pregiato</option>
+                            <option value="3">Besta vacca</option>
+                            <option value="4">Gayy</option>
+                            <option value="5">Gay gay gay</option>
+                        </select>
                     </div>
+                    <div>
+                        <div class="form-group mt-5">
+                            <textarea id="infoExams" rows="5" style="resize:none" readonly="true"></textarea>
+                            <label for="infoExams">Descrizione esame</label>
+                        </div>
+                      </div>
                 </ui:define>
         </ui:decorate>
     
