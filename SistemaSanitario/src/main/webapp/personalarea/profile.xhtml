@@ -44,7 +44,7 @@
                                 <label for="medicoBase">PASSWORD</label>
                                 <input type="text" class="form-control" id="password" readonly="true" value="******************"/>
                                 <div class="input-group-append">
-                                    <a data-toggle="modal" data-target="#exampleModal"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-pencil"></use></svg></a>
+                                    <a data-toggle="modal" data-target="#modalPassword"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-pencil"></use></svg></a>
                                 </div>
                             </div>
                         </div>
@@ -162,23 +162,23 @@
     
         
         <!-- MODAL CAMBIA PASSWORD-->
-        <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalPassword">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title">Modifica password</h4>
               </div>
               <div class="modal-body">
-                <form action=" " method="POST">
+                <form action="" id="myForm" method="POST">
                     <div class="form-row">
                         <div class="form-group col text-center">
-                            <input type="text" class="form-control" name="username" placeholder="inserisci password attuale"/>
+                            <input type="text" class="form-control" id="oldpassword" placeholder="inserisci password attuale"/>
                             <label for="username" class="active" style="transition: none 0s ease 0s; width: auto;">Password attuale</label>
                         </div>
                     </div>    
                     <div class="form-row">
                         <div class="form-group col text-center">
-                            <input type="password" class="form-control input-password" name="password" placeholder="inserisci nuova password"/>
+                            <input type="password" class="form-control input-password" id="newpassword" placeholder="inserisci nuova password"/>
                             <span class="password-icon" aria-hidden="true">
                               <svg class="password-icon-visible icon icon-sm"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-password-visible"></use></svg>
                               <svg class="password-icon-invisible icon icon-sm d-none"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-password-invisible"></use></svg>
@@ -188,7 +188,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col text-center">
-                            <input type="password" class="form-control input-password" name="password" placeholder="conferma nuova password"/>
+                            <input type="password" class="form-control input-password" id="confirmpassword" placeholder="conferma nuova password"/>
                             <span class="password-icon" aria-hidden="true">
                               <svg class="password-icon-visible icon icon-sm"><use xlink:href="../svg/sprite.svg#it-password-visible"></use></svg>
                               <svg class="password-icon-invisible icon icon-sm d-none"><use xlink:href="../svg/sprite.svg#it-password-invisible"></use></svg>
@@ -209,7 +209,8 @@
             </div>
           </div>
         </div>
-        
+        <script type="text/javascript" src="/SistemaSanitario/js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="../js/changePassword.js"></script>
     </ui:define>
 
 </ui:composition>

@@ -21,21 +21,30 @@
                      <h4 class="text-secondary pb-4 text-left">Lista esami</h4>   
                 </ui:define>
                 <ui:define name="sectionBody">
-                    <div class="bootstrap-select-wrapper">
-                        <select title="Esame molto bello" data-live-search="true" data-live-search-placeholder="Cerca esame">
-                            <option value="1">Ecografia</option>
-                            <option value="2">Esame pregiato</option>
-                            <option value="3">Besta vacca</option>
-                            <option value="4">Gayy</option>
-                            <option value="5">Gay gay gay</option>
-                        </select>
-                    </div>
-                    <div>
-                        <div class="form-group mt-5">
-                            <textarea id="infoExams" rows="5" style="resize:none" readonly="true"></textarea>
-                            <label for="infoExams">Descrizione esame</label>
+                    <div class="main-pills  text-center">
+                        <div class="main-pills-wrap">
+                            <form action="#{request.contextPath}/services/patient/infoexams" method="POST">
+                                <div class="from-row">
+                                    <div class="form-group">
+                                    <div class="bootstrap-select-wrapper">
+                                        <label>ESAME</label>
+                                        <select title="Seleziona l'esame" data-live-search="true" name="idEsame" data-live-search-placeholder="Cerca esami">
+                                            <ui:repeat value="#{applicationScope.esami}" var="esame">
+                                                <option value="#{esame.id}">#{esame.nome}</option>
+                                            </ui:repeat>
+                                        </select>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="form-group mt-5">
+                                        <textarea id="descrizioneEsame" rows="5" style="resize:none" readonly="true"></textarea>
+                                        <label for="descrizioneEsame">Descrizione esame</label>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                      </div>
+                    </div>
                 </ui:define>
         </ui:decorate>
     
