@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sistemasanitario.services;
 
 import java.util.Set;
@@ -12,7 +7,7 @@ import javax.ws.rs.core.Application;
  *
  * @author giovanni
  */
-@javax.ws.rs.ApplicationPath("myservices")
+@javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
 
     @Override
@@ -29,8 +24,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(sistemasanitario.services.GenericResource.class);
-        resources.add(sistemasanitario.services.ListaPazienti.class);
+        resources.add(sistemasanitario.services.MedicineResource.class);
     }
     
 }
