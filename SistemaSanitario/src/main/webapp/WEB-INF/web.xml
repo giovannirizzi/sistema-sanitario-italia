@@ -24,6 +24,10 @@
         <servlet-name>AvatarServlet</servlet-name>
         <servlet-class>sistemasanitario.servlets.AvatarServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>sistemasanitario.servlets.DashboardServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
@@ -61,6 +65,10 @@
     <servlet-mapping>
         <servlet-name>AvatarServlet</servlet-name>
         <url-pattern>/services/avatar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/services/dashboard</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
