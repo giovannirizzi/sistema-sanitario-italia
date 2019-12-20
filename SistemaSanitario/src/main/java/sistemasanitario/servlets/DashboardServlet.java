@@ -25,8 +25,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import sistemasanitario.entities.Medico;
 import sistemasanitario.entities.Paziente;
 import sistemasanitario.entities.PrescrizioneEsame;
@@ -110,7 +110,7 @@ public class DashboardServlet extends HttpServlet {
                     item.put("name", rs.getString("nomeEsame"));
                     item.put("description", rs.getString("descrizione"));
                     item.put("date", rs.getString("data"));
-                    array.put(item);
+                    array.add(item);
                 }
                 
                 prescrizioni.put("exams", array);
