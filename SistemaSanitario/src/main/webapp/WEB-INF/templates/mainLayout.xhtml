@@ -13,8 +13,7 @@
         
         <h:outputStylesheet name="css/bootstrap-italia.min.css"/>
         <h:outputStylesheet name="css/main.css"/>
-        
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
+        <h:outputStylesheet name="css/datatables.min.css"/>
         
         <title><ui:insert name="title"></ui:insert> | SS Italia</title>
     </h:head>
@@ -31,7 +30,7 @@
                 <div class="row mb-4 mb-md-5">
 
                     <!-- === NAVBAR === -->
-                    <ui:insert name="footer">
+                    <ui:insert name="navbar">
                         <ui:include src="/WEB-INF/templates/partials/navbar.xhtml"/>
                     </ui:insert>
 
@@ -61,14 +60,15 @@
         <script type="text/javascript">window.__PUBLIC_PATH__ = '#{request.contextPath}/fonts';</script>
         
         <script type="text/javascript" src="/SistemaSanitario/js/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript" src="/SistemaSanitario/js/main.js"></script>
-        <script type="text/javascript" src="/SistemaSanitario/js/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="/SistemaSanitario/js/dataTables/datatables.min.js"></script>
         <script type="text/javascript" src="/SistemaSanitario/js/popper.min.js"></script>
+        <script type="text/javascript" src="/SistemaSanitario/js/owl.carousel.min.js"></script>
         <script type="text/javascript" src="/SistemaSanitario/js/bootstrap-italia.min.js"></script>
+        <script type="text/javascript" src="/SistemaSanitario/js/main.js"></script>
         
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/SistemaSanitario/js/pazientiMedico.js"></script>
-
+        <!-- === ADDITIONAL JS === -->
+        <ui:insert name="additionalJs"></ui:insert>
+        
+        
     </h:body>
 </html>

@@ -50,9 +50,12 @@ body{
 }
 
 .main-pills .main-pills-wrap {
-    padding: 40px;
+    
+    padding: 10px;
     background-position: right;
     background-repeat: no-repeat;
+    @media (min-width: 576px) { padding: 40px; }
+
 }
 
 .panel-cards {

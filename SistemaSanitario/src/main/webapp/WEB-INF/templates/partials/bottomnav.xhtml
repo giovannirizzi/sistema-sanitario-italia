@@ -5,7 +5,7 @@
         xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
         xmlns:xlink="http://www.w3.org/1999/xlink">
     
-  <nav class="bottom-nav d-lg-none">
+  <nav class="bottom-nav d-lg-none" style="z-index: 1000;">
       
     <c:choose>
         <c:when test="${sessionScope.user.type == 'PAZIENTE'}">
@@ -47,7 +47,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#{request.contextPath}/personalarea/doctor/patientes/">
+                  <a href="#{request.contextPath}/personalarea/doctor/patients/">
                      <div class="badge-wrapper"><span class="bottom-nav-badge">1</span></div>
                     <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-user"></use></svg>
                     <span class="bottom-nav-label">Pazienti</span>

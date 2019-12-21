@@ -28,7 +28,7 @@
                                  <input type="search" placeholder="Cerca pazienti..."
                                        id="myInput" onkeyup="filterData()" />
                                  <span class="autocomplete-icon" aria-hidden="true">
-                                  <svg class="icon icon-sm"><use xlink:href="/svg/sprite.svg#it-search"></use></svg>
+                                  <svg class="icon icon-sm"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-search"></use></svg>
                                 </span>
                                <label for="autocomplete-regioni" class="sr-only">Cerca nel sito</label>
                            </div>
@@ -56,6 +56,10 @@
                 </ui:define>
         </ui:decorate>
                 
+    </ui:define>
+    
+    <ui:define name="additionalJs">
+        <script type="text/javascript" src="/SistemaSanitario/js/pazientiMedico.js"></script>
     </ui:define>
 
 </ui:composition>

@@ -24,7 +24,7 @@
                     
                     <div class="main-pills">
                         <div class="main-pills-wrap">
-                            <form action="#{request.contextPath}/services/doctor/prescription_medicine" method="POST">
+                            <form action="#{request.contextPath}/services/doctor/prescription_medicine" method="POST" class="invisible">
                                 <div class="from-row">
                                     <div class="form-group">
                                     <div class="bootstrap-select-wrapper">
@@ -71,6 +71,14 @@
                 </ui:define>
         </ui:decorate>
                 
+    </ui:define>
+    
+    <ui:define name="additionalJs">
+        <script type="text/javascript">
+            $(document).ready( function() { 
+               $("form").removeClass('invisible');
+            });
+        </script>
     </ui:define>
 
 </ui:composition>

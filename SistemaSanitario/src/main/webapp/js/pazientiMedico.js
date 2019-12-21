@@ -1,11 +1,9 @@
-$(document).ready( function () {
+$(document).ready( function() { 
     getPazienti();
-    /*$('#myTable').DataTable({
-        "dom": '<"top"i>rt<"bottom"lp><"clear">'
-    });*/
-} );
+ });
 
-$(document).on("click", "#myTable tr", function(e) {
+$(document).on("click", "tr[name='patientRow']", function(e) {
+    
     
     var id = this.id;
     $.ajax({
@@ -125,6 +123,7 @@ function getPazienti(){
 
                 tr = body.insertRow(-1);
                 tr.setAttribute('id',""+data[i]["id"]+"");
+                tr.setAttribute('name', 'patientRow');
 
                 for (var j = 0; j < arrayHeader.length; j++) {
                     var tabCell = tr.insertCell(-1);

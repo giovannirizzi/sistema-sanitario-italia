@@ -23,12 +23,12 @@
                 <ui:define name="sectionBody">
                     <div class="main-pills  text-center">
                         <div class="main-pills-wrap">
-                            <form action="#{request.contextPath}/services/doctor/prescription_exam" method="POST">
+                            <form action="#{request.contextPath}/services/doctor/prescription_exam" method="POST" class="invisible">
                                 <div class="from-row">
                                     <div class="form-group">
                                     <div class="bootstrap-select-wrapper">
                                         <label>PAZIENTE</label>
-                                        <select title="Seleziona il paziente" data-live-search="true" name="idPaziente" data-live-search-placeholder="Cerca pazienti">
+                                        <select  title="Seleziona il paziente" data-live-search="true" name="idPaziente" data-live-search-placeholder="Cerca pazienti">
                                           <ui:repeat value="#{applicationScope.pazienti}" var="paziente">
                                                 <option value="#{paziente.id}">#{paziente.nome} #{paziente.cognome} - #{paziente.cf}</option>
                                             </ui:repeat>
@@ -60,6 +60,14 @@
                 </ui:define>
         </ui:decorate>
                 
+    </ui:define>
+    
+    <ui:define name="additionalJs">
+        <script type="text/javascript">
+            $(document).ready( function() { 
+               $("form").removeClass('invisible');
+            });
+        </script>
     </ui:define>
 
 </ui:composition>
