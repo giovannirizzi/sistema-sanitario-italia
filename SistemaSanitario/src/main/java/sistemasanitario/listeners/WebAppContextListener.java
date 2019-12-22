@@ -75,7 +75,7 @@ public class WebAppContextListener  implements ServletContextListener{
             sce.getServletContext().setAttribute("prescrizioneEsameDao", prescrizioneEsameDao);
             
             Dao<PrescrizioneMedicina, Integer> prescrizioneMedicinaDao = DaoManager.createDao(con, PrescrizioneMedicina.class);
-            sce.getServletContext().setAttribute("prescrizioneMedicinaDao", medicinaDao);
+            sce.getServletContext().setAttribute("prescrizioneMedicinaDao", prescrizioneMedicinaDao);
             
             Dao<Report, Integer> reportDao = DaoManager.createDao(con, Report.class); 
             sce.getServletContext().setAttribute("reportDao", reportDao);

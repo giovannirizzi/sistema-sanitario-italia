@@ -44,7 +44,7 @@ public class Paziente {
         this.medicoBase = medicoBase;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(String foto) {
         this.foto = foto;
     }
 

@@ -18,7 +18,7 @@ public class PrescrizioneMedicina {
     @DatabaseField(columnName="idMedico", foreign = true)
     private Medico medico;
     
-    @DatabaseField(columnName="idMedicina", foreign = true)
+    @DatabaseField(columnName="idMedicina", foreign = true, foreignAutoRefresh=true)
     private Medicina medicina;
     
     @DatabaseField

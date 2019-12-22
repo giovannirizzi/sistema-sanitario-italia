@@ -4,7 +4,8 @@
                 template="/WEB-INF/templates/mainLayout.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
         Prescrizioni
@@ -22,13 +23,61 @@
                 </ui:define>
                 <ui:define name="sectionBody">
                     <div class="main-pills  text-center">
-                        <div class="main-pills-wrap" style="min-height: 700px;">
+                        <div class="main-pills-wrap table-responsive-sm" style="min-height: 300px;">
+                            
+                            <c:if test="#{prescrizioniMedicine.prescrizioni.rowCount > 0}">
+
+                                <h:dataTable value = "#{prescrizioniMedicine.prescrizioni}" var = "prescrizione"
+                               id = "myTable" styleClass = "table table-hover table-striped">  
+                                    
+                                <h:column> 
+                                   <f:facet name = "header">#</f:facet>
+                                   #{prescrizioniMedicine.prescrizioni.rowIndex + 1}
+                                </h:column>
+
+                                <h:column>    				
+                                   <f:facet name = "header">Nome farmaco</f:facet>    				
+                                   #{prescrizione.medicina.nome}
+                                </h:column>
+
+                                <h:column>
+                                   <f:facet name = "header">Quantità</f:facet>
+                                   #{prescrizione.quantita}
+                                </h:column>
+           
+                                <h:column>    				
+                                   <f:facet name = "header">Data prescrizione</f:facet>
+                                    <h:outputText value="#{prescrizione.data}">
+                                        <f:convertDateTime type="date" dateStyle="medium"/>
+                                    </h:outputText>                                   
+                                </h:column>
+                                </h:dataTable>
+
+                            </c:if>
+                            <c:if test="#{prescrizioniMedicine.prescrizioni.rowCount eq 0}">
+                                <p>Al momento non hai nessun farmaco prescritto</p>
+                            </c:if>
                             
                         </div>
                     </div>
                 </ui:define>
         </ui:decorate>
           
+    </ui:define>
+    
+     <ui:define name="additionalJs">
+        <script type="text/javascript"> 
+            $(document).ready( function() { 
+                $("#myTable").dataTable(
+                {
+                    lengthChange: false,
+                    paging: false,
+                    info: false
+                });
+                
+                $("#myTable thead").addClass("thead-light");
+             });
+        </script>
     </ui:define>
 
 </ui:composition>
