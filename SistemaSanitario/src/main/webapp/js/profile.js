@@ -54,9 +54,10 @@ $("document").ready(function() {
                     var newDoctorName = $('#newDoctorSelect option:selected').text();
                     $('#medicoBase').val(newDoctorName);
                     $('#medicCollapse').collapse("hide");
-                } 
-                        
-            );
+                    notificationShow('changeDoctorSuccess',5000);
+                }).fail(function(){    
+                    notificationShow('changeDoctorError',5000);
+                });
         } 
     });
 

@@ -61,6 +61,15 @@
                     <h2 class="text-secondary pb-4 text-left">Dati Anagrafici</h2>   
             </ui:define>
             <ui:define name="sectionBody">
+                	
+                <div class="notification top-fix with-icon success" role="alert" aria-labelledby="not1b-title" id="changeDoctorSuccess">
+                    <h5 id="not1b-title"><svg class="icon"><use xlink:href="../svg/sprite.svg#it-check-circle"></use></svg>Medico cambiato con successo</h5>
+                </div>
+                
+                <div class="notification top-fix with-icon error" role="alert" aria-labelledby="not2b-title" id="changeDoctorError">
+                    <h5 id="not2b-title"><svg class="icon"><use xlink:href="../svg/sprite.svg#it-close-circle"></use></svg>Errore, cambio medico non effettuato</h5>
+		</div>
+
                 <div class="container text-left mb-5">
                     <div class="row">
                         <div class="col-md-5 d-flex flex-column justify-content-center align-items-center">
@@ -216,8 +225,10 @@
               </div>
             </div>
           </div>
-        </div>
-        <script type="text/javascript" src="/SistemaSanitario/js/jquery-3.4.1.min.js"></script>
+        </div> 
+    </ui:define>
+    
+    <ui:define name="additionalJs">
         <script type="text/javascript" src="../js/profile.js"></script>
     </ui:define>
 

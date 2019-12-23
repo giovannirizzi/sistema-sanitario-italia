@@ -7,18 +7,18 @@
                 xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <ui:define name="title">
-        Prescrizione medicina
+        Prescrivi medicine
     </ui:define>
 
     <ui:define name="pageTitle">
-        Prescrizione medicina
+        Prescrivi medicine
     </ui:define>
 
     <ui:define name="content">
         
         <ui:decorate template="/WEB-INF/templates/partials/section.xhtml">
                 <ui:define name="sectionTitle">
-                     <h4 class="text-secondary pb-4 text-left">Prescrizione medicina</h4>   
+                     <h4 class="text-secondary pb-4 text-left">Nuova ricetta farmaceutica</h4>   
                 </ui:define>
                 <ui:define name="sectionBody">
                     
@@ -39,7 +39,7 @@
                                 </div>
  
                                 <div class="from-row">
-                                    <div class="form-group col-md-8">
+                                    <div class="form-group">
                                     <div class="bootstrap-select-wrapper">
                                         <label>MEDICINA</label>
                                         <select title="Seleziona il farmaco" data-live-search="true" name="idMedicina" data-live-search-placeholder="Cerca farmaci">
@@ -50,13 +50,19 @@
                                     </div>
                                     </div>
                                 </div>
-                                 <div class="from-row">
-                                    <label for="inputQuantita" class="input-number-label text-left">QUANTITA</label>
-                                    <span class="input-number input-number-adaptive from-group">
-                                            <input type="number" id="inputQuantita" step="1" name="quantita" placeholder="Inserisci la quantità" value="1" min="1"/>
-                                            <button class="input-number-add"></button>
-                                            <button class="input-number-sub"></button>
-                                    </span>
+                                 <div class="from-row" style="margin-top: -20px;">
+                                    
+                                        <div class="w-100">
+                                           <label for="inputNumber6" class="input-number-label text-left">QUANTITA</label>
+                                           <div class="d-flex justify-content-start">
+                                           <span class="input-number input-number-adaptive">
+                                                <input class="mr-4" type="number" id="inputQuantita" step="1" name="quantita" placeholder="Inserisci la quantità" value="1" min="1"/>
+                                                <button class="input-number-add"></button>
+                                                <button class="input-number-sub"></button>
+                                           </span>
+                                           </div>
+                                        </div>
+                            
                                 </div>
                                 
                                 <div class="form-row">
