@@ -100,7 +100,7 @@ public class DashboardServlet extends HttpServlet {
                 Statement statement = connection.createStatement();
 
                 // Esecuzione di un comando sul DB
-                ResultSet rs = statement.executeQuery("select PAZIENTE.nome,PAZIENTE.cognome,ESAME_PRESCRIVIBILE.nome as nomeEsame,ESAME_PRESCRIVIBILE.descrizione, PRESCRIZIONE_ESAME.data from PAZIENTE left join PRESCRIZIONE_ESAME on PAZIENTE.id = PRESCRIZIONE_ESAME.idPaziente inner join ESAME_PRESCRIVIBILE on PRESCRIZIONE_ESAME.idEsame = ESAME_PRESCRIVIBILE.id where PAZIENTE.id = " + id + ";");
+                ResultSet rs = statement.executeQuery("select ESAME_PRESCRIVIBILE.nome as nomeEsame,ESAME_PRESCRIVIBILE.descrizione as descrizioneEsame, PRESCRIZIONE_ESAME.data from PAZIENTE left join PRESCRIZIONE_ESAME on PAZIENTE.id = PRESCRIZIONE_ESAME.idPaziente inner join ESAME_PRESCRIVIBILE on PRESCRIZIONE_ESAME.idEsame = ESAME_PRESCRIVIBILE.id where PAZIENTE.id = " + id + ";");
                 
                 JSONArray array = new JSONArray();
                 JSONObject item = new JSONObject();
@@ -108,18 +108,23 @@ public class DashboardServlet extends HttpServlet {
                 // Elaborazione del risultato
                 while (rs.next()){
                     item.put("name", rs.getString("nomeEsame"));
-                    item.put("description", rs.getString("descrizione"));
+                    item.put("description", rs.getString("descrizioneEsame"));
                     item.put("date", rs.getString("data"));
                     array.add(item);
                 }
                 
                 prescrizioni.put("exams", array);
                 
-                rs = statement.executeQuery("select nome,cognome from PAZIENTE where PAZIENTE.id = " + id + ";");
+                rs = statement.executeQuery("select nome,cognome,dataNascita,luogoNascita,provincia,cf,foto from PAZIENTE where PAZIENTE.id = " + id + ";");
                 
                 while (rs.next()){
                     prescrizioni.put("name", rs.getString("nome"));
                     prescrizioni.put("surname", rs.getString("cognome"));
+                    prescrizioni.put("birthDate", rs.getString("dataNascita"));
+                    prescrizioni.put("birthPlace", rs.getString("luogoNascita"));
+                    prescrizioni.put("province", rs.getString("provincia"));
+                    prescrizioni.put("cf", rs.getString("cf"));
+                    prescrizioni.put("photo", rs.getString("foto"));
                 }
                 
                 PrintWriter out = response.getWriter();

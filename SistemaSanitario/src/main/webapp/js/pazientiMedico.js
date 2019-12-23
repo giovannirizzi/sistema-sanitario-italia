@@ -12,8 +12,20 @@ $(document).on("click", "tr[name='patientRow']", function(e) {
       dataType : 'json',
       data: {"id":id},
       success: function(response) {
-            console.log(response);
             $('#modalTitle').text("Scheda di "+ response.name + " " + response.surname);
+            
+            if(response.photo !== null){
+                var imageContainer = document.getElementById("myImage");
+                imageContainer.setAttribute('id', 'myImage');
+                imageContainer.setAttribute('src', 'http://localhost:8080/SistemaSanitario/services/avatar?id='+id);
+            }
+            // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+            var pContainer = document.getElementById("cf");
+            pContainer.innerHTML = "<b>Codice fiscale: </b>" + response.cf;
+            pContainer = document.getElementById("birthDate");
+            pContainer.innerHTML = "<b>Data di nascita: </b>" + response.birthDate;
+            pContainer = document.getElementById("birthPlace");
+            pContainer.innerHTML = "<b>Luogo di nascita: </b>" + response.birthPlace + " (" + response.province + ")";
             
             if(response.exams.length !== 0){
                 var col = [];
@@ -66,8 +78,6 @@ $(document).on("click", "tr[name='patientRow']", function(e) {
                 divContainer.innerHTML = "Nessuna prescrizione per questo paziente";
             }
           
-            
-          
             $("#exampleModal").modal();
       },
       error: function(xhr, status, error) {
@@ -95,11 +105,10 @@ function getPazienti(){
                     }
                 }
             }
-            console.log(col);
 
             // CREATE DYNAMIC TABLE.
             var table = document.createElement("table");
-            table.setAttribute('class', 'table');
+            table.setAttribute('class', 'table dt-responsive nowrap');
             table.setAttribute('id', 'myTable');
             var header = table.createTHead();
             header.setAttribute('class', 'thead-light');
@@ -140,7 +149,8 @@ function getPazienti(){
             divContainer.innerHTML = "";
             divContainer.appendChild(table);
             $("#myTable").dataTable({
-                "dom": '<"top"i>rt<"bottom"lp><"clear">'
+                "dom": '<"top"i>rt<"bottom"lp><"clear">',
+                "responsive": true
             });
         }  
     });

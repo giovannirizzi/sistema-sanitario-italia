@@ -32,7 +32,7 @@
                                 </span>
                                <label for="autocomplete-regioni" class="sr-only">Cerca nel sito</label>
                            </div>
-                            <p id="showData"></p>
+                            <p id="showData" class="table-responsive-sm"></p>
                         </div>
                     </div>
                     
@@ -44,8 +44,20 @@
                             <h4 class="modal-title" id="modalTitle">Scheda paziente:</h4>
                           </div>
                           <div class="modal-body">
-                             <p class="text-left">Prescrizioni:</p>
-                             <p class="text-left" id="showPrescriptions"></p>
+                               <div class="d-flex align-items-center justify-content-start justify-content-md-around flex-wrap flex-sm-nowrap">
+                                <div class="avatar-wrapper avatar-extra-text">
+                                  <div class="avatar size-xxl">
+                                      <img id="myImage"/>
+                                  </div>
+                                  <div class="extra-text">
+                                    <p id="cf" class="text-left"></p>
+                                    <p id="birthDate" class="text-left"></p>
+                                    <p id="birthPlace" class="text-left"></p>
+                                  </div>
+                                </div>
+                              </div>
+                             <p class="text-left"><b>Prescrizioni:</b></p>
+                             <p class="text-left table-responsive-sm" id="showPrescriptions" ></p>
                           </div>
                           <div class="modal-footer">
                             <button class="btn btn-primary btn-sm" data-dismiss="modal" type="button">Close</button>
