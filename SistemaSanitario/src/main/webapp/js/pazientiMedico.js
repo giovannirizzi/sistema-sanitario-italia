@@ -16,8 +16,15 @@ $(document).on("click", "tr[name='patientRow']", function(e) {
             
             if(response.photo !== null){
                 var imageContainer = document.getElementById("myImage");
-                imageContainer.setAttribute('id', 'myImage');
                 imageContainer.setAttribute('src', 'http://localhost:8080/SistemaSanitario/services/avatar?id='+id);
+                var svgContainer = document.getElementById("defaultAvatar");
+                svgContainer.style.display = 'none';
+                imageContainer.style.display = 'block';
+            } else {
+                var imageContainer = document.getElementById("myImage");
+                var svgContainer = document.getElementById("defaultAvatar");
+                imageContainer.style.display = 'none';
+                svgContainer.style.display = 'block';
             }
             // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
             var pContainer = document.getElementById("cf");
