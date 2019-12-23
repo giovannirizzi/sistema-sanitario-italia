@@ -4,7 +4,7 @@
 <html>
     <html lang="it">
     <head>
-      <title>Reset password page</title>
+      <title>Reset Password | SS Italia</title>
       
       <%@ include file="../jspf/meta.jspf" %> 
 

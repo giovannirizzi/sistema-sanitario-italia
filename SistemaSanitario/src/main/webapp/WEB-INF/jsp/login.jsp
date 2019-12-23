@@ -4,7 +4,7 @@
 <html>
     <html lang="it">
     <head>
-      <title>Login Page</title>
+      <title>Login Page | SS Italia</title>
       
       <%@ include file="../jspf/meta.jspf" %> 
 

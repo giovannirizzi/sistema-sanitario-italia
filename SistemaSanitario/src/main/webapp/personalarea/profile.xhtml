@@ -4,7 +4,8 @@
                 template="./../WEB-INF/templates/mainLayout.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     
 
     <ui:define name="title">Profilo</ui:define>
@@ -54,8 +55,8 @@
             </ui:define>		
         </ui:decorate>   
 
-
-        <ui:decorate template="/WEB-INF/templates/partials/section.xhtml" rendered="${sessionScope.user.type == 'PAZIENTE'}">
+        <c:if test="#{not empty sessionScope.user and sessionScope.user.type eq 'PAZIENTE'}">
+        <ui:decorate template="/WEB-INF/templates/partials/section.xhtml" >
             <ui:define name="sectionTitle">
                     <h2 class="text-secondary pb-4 text-left">Dati Anagrafici</h2>   
             </ui:define>
@@ -125,7 +126,7 @@
                                             <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
                                         </div>
                                         <label for="medicoBase">MEDICO BASE</label>
-                                        <input type="text" class="form-control" id="medicoBase" readonly="true" value="MIKE DYSON"/>
+                                        <input type="text" class="form-control" id="medicoBase" readonly="true" value="#{sessionScope.paziente.medicoBase.nome} #{sessionScope.paziente.medicoBase.cognome}"/>
                                         <div class="input-group-append">
                                             <a data-toggle="collapse" data-target="#medicCollapse"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-pencil"></use></svg></a>
                                         </div>
@@ -141,11 +142,14 @@
                                         <div class="bootstrap-select-wrapper">
                                             <label>CAMBIA MEDICO DI BASE</label>
                                             <select title="Selezioni un medico" data-live-search="true" data-live-search-placeholder="Cerca medici">
-                                                <option value="1">Bestia vacca</option>
-                                                <option value="2">Medico pregiato</option>
-                                                <option value="3">Pregiated medic</option>
-                                                <option value="4">Gayy</option>
-                                                <option value="5">Gay gay gay</option>
+                                                <ui:repeat value="#{doctors.availableDoctors}" var="doctor">
+                                                    <option value="#{doctor.id}">
+                                                         <h:outputFormat value="{0} {1}" >
+                                                             <f:param value="#{doctor.nome}" />
+                                                            <f:param value="#{doctor.cognome}" />
+                                                        </h:outputFormat>
+                                                    </option>
+                                                </ui:repeat>
                                             </select>
                                         </div>
                                     </div>
@@ -158,7 +162,8 @@
                     </div>
                 </div>
             </ui:define>		
-        </ui:decorate>  
+        </ui:decorate>
+        </c:if>
     
         
         <!-- MODAL CAMBIA PASSWORD-->

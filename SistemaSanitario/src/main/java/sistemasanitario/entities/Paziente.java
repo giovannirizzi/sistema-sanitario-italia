@@ -13,7 +13,7 @@ public class Paziente {
     @DatabaseField(columnName="id", id=true)
     public Integer id;
     
-    @DatabaseField(columnName="idMedico", foreign = true)
+    @DatabaseField(columnName="idMedico", foreign = true,  foreignAutoRefresh=true)
     public Medico medicoBase;
     
     @DatabaseField

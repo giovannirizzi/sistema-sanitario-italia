@@ -25,7 +25,6 @@ public class PrescriptionMedicineBean implements Serializable{
     private Paziente paziente;
     
     private DataModel<PrescrizioneMedicina> prescrizioni; 
-     
     
     @PostConstruct
     public void init(){
