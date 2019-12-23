@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemasanitario.beans;
+package sistemasanitario.services;
 
 import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;

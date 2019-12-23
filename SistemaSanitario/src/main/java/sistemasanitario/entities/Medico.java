@@ -8,10 +8,11 @@ package sistemasanitario.entities;
 import com.j256.ormlite.field.DatabaseField;
 
 import com.j256.ormlite.table.DatabaseTable;
+import java.io.Serializable;
 
 
 @DatabaseTable(tableName = "MEDICO")
-public class Medico {
+public class Medico implements Serializable{
     
     public Medico() {
     }

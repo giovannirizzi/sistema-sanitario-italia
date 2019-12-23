@@ -39,7 +39,7 @@ public class PatientDoctorsBean implements Serializable{
                 
                 availableDoctors = queryBuilder.where().eq("provincia", paziente.getProvincia()).query();
                 
-                if(paziente.getMedicoBase() != null){
+                /*if(paziente.getMedicoBase() != null){
                     availableDoctors.removeIf(new Predicate<Medico>(){
                         @Override
                         public boolean test(Medico medico) {
@@ -47,7 +47,7 @@ public class PatientDoctorsBean implements Serializable{
                         }
                     }
                     );
-                }
+                }*/
             } catch (SQLException ex) {}
         }
     }

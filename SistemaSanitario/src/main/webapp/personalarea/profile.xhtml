@@ -136,12 +136,12 @@
                         </div>
                         <div class="col-md-5"></div>
                         <div class="collapse col-md-7 w-100 mt-5 " id="medicCollapse">
-                            <form action="./cambiaMedico" method="POST" class="w-100">
+                            <form class="w-100">
                                 <div class="row w-100">
                                     <div class="col-9 pb-5">
                                         <div class="bootstrap-select-wrapper">
                                             <label>CAMBIA MEDICO DI BASE</label>
-                                            <select title="Selezioni un medico" data-live-search="true" data-live-search-placeholder="Cerca medici">
+                                            <select id="newDoctorSelect" title="Selezioni un medico" data-live-search="true" data-live-search-placeholder="Cerca medici">
                                                 <ui:repeat value="#{doctors.availableDoctors}" var="doctor">
                                                     <option value="#{doctor.id}">
                                                          <h:outputFormat value="{0} {1}" >
@@ -154,7 +154,7 @@
                                         </div>
                                     </div>
                                     <div class="col-auto">
-                                        <button type="submit" class="btn btn-primary">Conferma</button>
+                                        <button id="changeDoctorBtn" type="button" class="btn btn-primary">Conferma</button>
                                     </div>
                                 </div>
                             </form>
@@ -171,14 +171,16 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title">Modifica password</h4>
+                <h4 class="modal-title mb-2">Modifica password</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <svg class="icon">
+                     <use xlink:href="../svg/sprite.svg#it-close"></use>
+                  </svg>
+                </button>
               </div>
               <div class="modal-body">
                 <form id="formChange">
-                    <div class="form-row mb-5 d-none" id="error">
-                        <div class="alert alert-danger" role="alert">
-                           <b id="errorone">Impossibile cambiare la password.</b> Errore.
-                        </div>
+                    <div class="form-row mb-5 d-none" id="error"> 
                     </div>   
                     <div class="form-row">
                         <div class="form-group col text-center">
@@ -207,20 +209,17 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group text-center">
+                        <div class="form-group col">
                             <button type="button" id="submitPassword" class="btn btn-primary">Conferma</button>
                         </div>
                     </div>
                 </form>
               </div>
-              <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" data-dismiss="modal" type="button">Close</button>
-              </div>
             </div>
           </div>
         </div>
         <script type="text/javascript" src="/SistemaSanitario/js/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript" src="../js/changePassword.js"></script>
+        <script type="text/javascript" src="../js/profile.js"></script>
     </ui:define>
 
 </ui:composition>
