@@ -21,16 +21,21 @@
                      <h4 class="text-secondary pb-4 text-left">Nuova ricetta farmaceutica</h4>   
                 </ui:define>
                 <ui:define name="sectionBody">
-                    
+                    <div class="notification top-fix with-icon success" role="alert" aria-labelledby="not1b-title" id="notificationSuccess">
+                        <h5 id="not1b-title"><svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-check-circle"></use></svg>Prescrizione farmaco effettuata</h5>
+                    </div>
+                    <div class="notification top-fix with-icon error" role="alert" aria-labelledby="not2b-title" id="notificationError">
+                        <h5 id="not2b-title"><svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-close-circle"></use></svg>Errore, prescrizione non effettuata</h5>
+                    </div>
                     <div class="main-pills">
                         <div class="main-pills-wrap">
-                            <form action="#{request.contextPath}/services/doctor/prescription_medicine" method="POST" class="invisible">
+                            <form class="invisible">
                                 <div class="from-row">
                                     <div class="form-group">
                                     <div class="bootstrap-select-wrapper">
                                         <label>PAZIENTE</label>
-                                        <select title="Seleziona il paziente" data-live-search="true" name="idPaziente" data-live-search-placeholder="Cerca pazienti">
-                                          <ui:repeat value="#{applicationScope.pazienti}" var="paziente">
+                                        <select id="selectPaziente" title="Seleziona il paziente" data-live-search="true" name="idPaziente" data-live-search-placeholder="Cerca pazienti">
+                                          <ui:repeat value="#{sessionScope.pazienti}" var="paziente">
                                                 <option value="#{paziente.id}">#{paziente.nome} #{paziente.cognome} - #{paziente.cf}</option>
                                             </ui:repeat>
                                         </select>
@@ -42,7 +47,7 @@
                                     <div class="form-group">
                                     <div class="bootstrap-select-wrapper">
                                         <label>MEDICINA</label>
-                                        <select title="Seleziona il farmaco" data-live-search="true" name="idMedicina" data-live-search-placeholder="Cerca farmaci">
+                                        <select id="selectFarmaco" title="Seleziona il farmaco" data-live-search="true" name="idMedicina" data-live-search-placeholder="Cerca farmaci">
                                             <ui:repeat value="#{applicationScope.medicine}" var="medicine">
                                                 <option value="#{medicine.id}">#{medicine.nome}</option>
                                             </ui:repeat>
@@ -51,23 +56,21 @@
                                     </div>
                                 </div>
                                  <div class="from-row" style="margin-top: -20px;">
-                                    
-                                        <div class="w-100">
-                                           <label for="inputNumber6" class="input-number-label text-left">QUANTITA</label>
-                                           <div class="d-flex justify-content-start">
-                                           <span class="input-number input-number-adaptive">
-                                                <input class="mr-4" type="number" id="inputQuantita" step="1" name="quantita" placeholder="Inserisci la quantità" value="1" min="1"/>
-                                                <button class="input-number-add"></button>
-                                                <button class="input-number-sub"></button>
-                                           </span>
-                                           </div>
-                                        </div>
-                            
+                                    <div class="w-100">
+                                       <label for="inputNumber6" class="input-number-label text-left">QUANTITA</label>
+                                       <div class="d-flex justify-content-start">
+                                       <span class="input-number input-number-adaptive">
+                                            <input class="mr-4" type="number" id="inputQuantita" step="1" name="quantita" placeholder="Inserisci la quantità" value="1" min="1"/>
+                                            <button class="input-number-add"></button>
+                                            <button class="input-number-sub"></button>
+                                       </span>
+                                       </div>
+                                    </div>
                                 </div>
                                 
                                 <div class="form-row">
                                     <div class="form-group col text-center">
-                                      <button type="submit" class="btn btn-primary">Conferma</button>
+                                      <button type="button"  id="prescribeBtn" class="btn btn-primary">Conferma</button>
                                     </div>
                                 </div>
                             </form>
@@ -83,6 +86,28 @@
         <script type="text/javascript">
             $(document).ready( function() { 
                $("form").removeClass('invisible');
+               
+               $("#prescribeBtn").click(function() {
+                    var selectedPazienteId = $('#selectPaziente').val();
+                    var selectFarmacoId = $('#selectFarmaco').val();
+                    var inputQuantita = $('#inputQuantita').val();
+                    if(selectedPazienteId !== ""){
+                        if(selectFarmacoId !== ""){
+                            $.post('#{request.contextPath}/api/doctor/medicine_prescription',
+                                {"idPaziente": parseInt(selectedPazienteId),
+                                 "idMedicina": parseInt(selectFarmacoId),
+                                 "quantita": parseInt(inputQuantita)
+                                },
+                                function() {
+                                    notificationShow('notificationSuccess',5000);
+                                    $('select').selectpicker('val', '');
+                                }).fail(function(){    
+                                    notificationShow('notificationError',5000);
+                                    $('select').selectpicker('val', '');
+                                });
+                        }
+                    } 
+                });
             });
         </script>
     </ui:define>

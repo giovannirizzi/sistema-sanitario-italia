@@ -15,7 +15,7 @@ public class PrescrizioneMedicina {
     @DatabaseField(columnName="idPaziente", foreign = true)
     private Paziente paziente;
     
-    @DatabaseField(columnName="idMedico", foreign = true)
+    @DatabaseField(columnName="idMedico", foreign = true, foreignAutoRefresh=true)
     private Medico medico;
     
     @DatabaseField(columnName="idMedicina", foreign = true, foreignAutoRefresh=true)
@@ -24,7 +24,7 @@ public class PrescrizioneMedicina {
     @DatabaseField
     private Integer quantita;
     
-    @DatabaseField
+    @DatabaseField(readOnly = true, canBeNull = false)
     private Date data;
 
     public int getId() {

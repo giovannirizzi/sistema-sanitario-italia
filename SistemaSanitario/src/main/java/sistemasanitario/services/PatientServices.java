@@ -54,12 +54,6 @@ public class PatientServices {
     }
     
     //CHANGE DOCTOR
-    
-    @XmlRootElement
-    public class DoctorId {
-        @XmlElement Integer id;
-    }
-
     @POST
     @Path("/changedoctor")
     public Response changeDoctor(@FormParam("idMedico") Integer idMedico) {
