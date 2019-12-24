@@ -1,7 +1,11 @@
 #footer {
     clear: both;
     position: relative;
-    bottom:0; 
+    bottom:0;
+    
+    @media (max-width: 991px) {
+        padding-bottom: 64px;
+    }
 }
 
 .main{
@@ -54,7 +58,9 @@ body{
     padding: 10px;
     background-position: right;
     background-repeat: no-repeat;
-    @media (min-width: 576px) { padding: 40px; }
+    @media (min-width: 576px) { 
+        padding: 40px; 
+    }
 
 }
 
@@ -88,5 +94,13 @@ body{
 .forward{
     
     font-size: inherit;
+}
+
+.notification{
+    z-index: 1001;
+    @media (min-width: 576px) { 
+        top: 0 !important;
+        bottom: initial !important;
+    } 
 }
 

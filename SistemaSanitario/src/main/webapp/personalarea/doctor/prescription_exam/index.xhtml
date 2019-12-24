@@ -16,20 +16,27 @@
 
     <ui:define name="content">
         
+        <c:if test="#{not empty sessionScope.user and sessionScope.user.type eq 'MEDICO_BASE'}">
         <ui:decorate template="/WEB-INF/templates/partials/section.xhtml">
                 <ui:define name="sectionTitle">
                      <h4 class="text-secondary pb-4 text-left">Nuova prescrizione medica </h4>   
                 </ui:define>
                 <ui:define name="sectionBody">
+                    <div class="notification top-fix with-icon success" role="alert" aria-labelledby="not1b-title" id="notificationSuccess">
+                        <h5 id="not1b-title"><svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-check-circle"></use></svg>Prescrizione esame effettuata</h5>
+                    </div>
+                    <div class="notification top-fix with-icon error" role="alert" aria-labelledby="not2b-title" id="notificationError">
+                        <h5 id="not2b-title"><svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-close-circle"></use></svg>Errore, prescrizione non effettuata</h5>
+                    </div>
                     <div class="main-pills  text-center">
                         <div class="main-pills-wrap">
-                            <form action="#{request.contextPath}/services/doctor/prescription_exam" method="POST" class="invisible">
+                            <form id="myForm" class="invisible">
                                 <div class="from-row">
                                     <div class="form-group">
                                     <div class="bootstrap-select-wrapper">
                                         <label>PAZIENTE</label>
-                                        <select  title="Seleziona il paziente" data-live-search="true" name="idPaziente" data-live-search-placeholder="Cerca pazienti">
-                                          <ui:repeat value="#{applicationScope.pazienti}" var="paziente">
+                                        <select class="pra" id="selectPaziente" title="Seleziona il paziente" data-live-search="true" name="idPaziente" data-live-search-placeholder="Cerca pazienti">
+                                          <ui:repeat value="#{sessionScope.pazienti}" var="paziente">
                                                 <option value="#{paziente.id}">#{paziente.nome} #{paziente.cognome} - #{paziente.cf}</option>
                                             </ui:repeat>
                                         </select>
@@ -41,7 +48,7 @@
                                     <div class="form-group">
                                     <div class="bootstrap-select-wrapper">
                                         <label>ESAME</label>
-                                        <select title="Seleziona l'esame" data-live-search="true" name="idEsame" data-live-search-placeholder="Cerca esami">
+                                        <select id="selectEsame" title="Seleziona l'esame" data-live-search="true" name="idEsame" data-live-search-placeholder="Cerca esami">
                                             <ui:repeat value="#{applicationScope.esami}" var="esame">
                                                 <option value="#{esame.id}">#{esame.nome}</option>
                                             </ui:repeat>
@@ -51,7 +58,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col text-center">
-                                      <button type="submit" class="btn btn-primary">Conferma</button>
+                                      <button type="button" id="prescribeBtn" class="btn btn-primary">Conferma</button>
                                     </div>
                                 </div>
                             </form>
@@ -59,12 +66,38 @@
                     </div>
                 </ui:define>
         </ui:decorate>
-                
+        </c:if>
+      
     </ui:define>
     
     <ui:define name="additionalJs">
         <script type="text/javascript">
-            $(document).ready( function() { 
+            $(document).ready( function() {
+                
+                $( "form" ).submit(function( event ) {
+                    event.preventDefault();
+                });
+                
+               $("#prescribeBtn").click(function() {
+                    var selectedPazienteId = $('#selectPaziente').val();
+                    var selectedEsameId = $('#selectEsame').val();
+                    if((selectedPazienteId !== "")){
+                        if((selectedEsameId !== "")){
+                            $.post('#{request.contextPath}/api/doctor/exam_prescription',
+                                {"idPaziente": parseInt(selectedPazienteId),
+                                 "idEsame": parseInt(selectedEsameId)
+                                },
+                                function() {
+                                    notificationShow('notificationSuccess',5000);
+                                    $('select').selectpicker('val', '');
+                                }).fail(function(){    
+                                    notificationShow('notificationError',5000);
+                                    $('select').selectpicker('val', '');
+                                });
+                        }
+                    } 
+                });
+                
                $("form").removeClass('invisible');
             });
         </script>

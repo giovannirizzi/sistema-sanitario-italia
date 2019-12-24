@@ -8,18 +8,18 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
-        Prescrizioni
+        Ricette mediche
     </ui:define>
 
     <ui:define name="pageTitle">
-        Prescrizioni medicine
+        Ricette mediche
     </ui:define>
 
     <ui:define name="content">
         
         <ui:decorate template="/WEB-INF/templates/partials/section.xhtml">
                 <ui:define name="sectionTitle">
-                     <h4 class="text-secondary pb-4 text-left">Lista prescrizioni</h4>   
+                     <h4 class="text-secondary pb-4 text-left">Le mie prescrizioni di farmaci</h4>   
                 </ui:define>
                 <ui:define name="sectionBody">
                     <div class="main-pills  text-center">
@@ -44,12 +44,20 @@
                                    <f:facet name = "header">Quantità</f:facet>
                                    #{prescrizione.quantita}
                                 </h:column>
+                                    
+                                <h:column>    				
+                                   <f:facet name = "header">Medico</f:facet>
+                                    <h:outputFormat value="{0} {1}" >
+                                        <f:param value="#{prescrizione.medico.nome}" />
+                                        <f:param value="#{prescrizione.medico.cognome}" />
+                                    </h:outputFormat>                                   
+                                </h:column>
            
                                 <h:column>    				
                                    <f:facet name = "header">Data prescrizione</f:facet>
                                     <h:outputText value="#{prescrizione.data}">
                                         <f:convertDateTime type="date" dateStyle="medium"/>
-                                    </h:outputText>                                   
+                                    </h:outputText>     
                                 </h:column>
                                 </h:dataTable>
 
@@ -70,6 +78,7 @@
             $(document).ready( function() { 
                 $("#myTable").dataTable(
                 {
+                    order: [[ 4, 'desc' ]],
                     lengthChange: false,
                     paging: false,
                     info: false

@@ -1,6 +1,7 @@
 package sistemasanitario.listeners;
 
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.QueryBuilder;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
@@ -53,6 +54,7 @@ public class AuthenticatedUserListener{
                 Ssp ssp = sspDao.queryForId(user.getId());
                 if(ssp != null){
                     session.setAttribute("ssp", ssp);
+                    session.setAttribute("pazienti", pazienteDao.queryForAll());
                     headerUserName = ssp.getNome();
                 }
                 break;
@@ -63,6 +65,12 @@ public class AuthenticatedUserListener{
                 Medico medico = medicoDao.queryForId(user.getId());
                 if(medico != null){
                     session.setAttribute("medico", medico);
+                    QueryBuilder<Paziente, Integer> queryBuilder = pazienteDao.queryBuilder();
+          
+                    session.setAttribute("pazienti", queryBuilder.
+                            where().
+                            eq("idMedico", medico.getId())
+                            .query());
                     headerUserName = medico.getNome() + " " + medico.getCognome();
                 }
                 break; 
@@ -73,6 +81,7 @@ public class AuthenticatedUserListener{
                 MedicoSpecialista medico = medicoSpecialistaDao.queryForId(user.getId());
                 if(medico != null){
                     session.setAttribute("medicoSpecialista", medico);
+                    session.setAttribute("pazienti", pazienteDao.queryForAll());
                     headerUserName = medico.getNome() + " " + medico.getCognome();
                 }
                 break; 

@@ -21,7 +21,7 @@ public class PrescrizioneEsame {
     @DatabaseField(columnName="idEsame", foreign = true)
     private EsamePrescrivibile esame;
     
-    @DatabaseField
+    @DatabaseField(readOnly = true, canBeNull = false)
     private Boolean letta;
 
     public void setPaziente(Paziente paziente) {
@@ -60,7 +60,7 @@ public class PrescrizioneEsame {
         return data;
     }
      
-    @DatabaseField
+    @DatabaseField(readOnly = true, canBeNull = false)
     private Date data;
     
 }

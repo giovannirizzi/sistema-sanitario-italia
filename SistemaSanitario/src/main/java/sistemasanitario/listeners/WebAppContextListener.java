@@ -81,7 +81,6 @@ public class WebAppContextListener  implements ServletContextListener{
             sce.getServletContext().setAttribute("reportDao", reportDao);
             
             sce.getServletContext().setAttribute("medicine", medicinaDao.queryForAll());
-            sce.getServletContext().setAttribute("pazienti", pazienteDao.queryForAll());
             sce.getServletContext().setAttribute("esami", esamePrescrivibileDao.queryForAll());
                
         } catch (SQLException ex) {

@@ -12,7 +12,6 @@
     <ui:define name="pageTitle">Profilo</ui:define>
 
     <ui:define name="content">
-
         <ui:decorate template="/WEB-INF/templates/partials/section.xhtml">
             <ui:define name="sectionTitle">
                 <h2 class="text-secondary pb-4 text-left mb-5">Dati utente</h2>   
@@ -57,15 +56,15 @@
 
         <c:if test="#{not empty sessionScope.user and sessionScope.user.type eq 'PAZIENTE'}">
         <ui:decorate template="/WEB-INF/templates/partials/section.xhtml" >
+            
             <ui:define name="sectionTitle">
                     <h2 class="text-secondary pb-4 text-left">Dati Anagrafici</h2>   
             </ui:define>
             <ui:define name="sectionBody">
-                	
+                
                 <div class="notification top-fix with-icon success" role="alert" aria-labelledby="not1b-title" id="changeDoctorSuccess">
                     <h5 id="not1b-title"><svg class="icon"><use xlink:href="../svg/sprite.svg#it-check-circle"></use></svg>Medico cambiato con successo</h5>
                 </div>
-                
                 <div class="notification top-fix with-icon error" role="alert" aria-labelledby="not2b-title" id="changeDoctorError">
                     <h5 id="not2b-title"><svg class="icon"><use xlink:href="../svg/sprite.svg#it-close-circle"></use></svg>Errore, cambio medico non effettuato</h5>
 		</div>
@@ -152,7 +151,7 @@
                                             <select id="newDoctorSelect" title="Selezioni un medico" data-live-search="true" data-live-search-placeholder="Cerca medici">
                                                 <ui:repeat value="#{doctors.availableDoctors}" var="doctor">
                                                     <option value="#{doctor.id}">
-                                                         <h:outputFormat value="{0} {1}" >
+                                                        <h:outputFormat value="{0} {1}" >
                                                              <f:param value="#{doctor.nome}" />
                                                             <f:param value="#{doctor.cognome}" />
                                                         </h:outputFormat>
