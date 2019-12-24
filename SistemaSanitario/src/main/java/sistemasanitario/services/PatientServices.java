@@ -49,7 +49,7 @@ public class PatientServices {
         if (servletContext != null) {
             medicoDao =  (Dao<Medico, Integer>) servletContext.getAttribute("medicoDao");
             pazienteDao = (Dao<Paziente, Integer>) servletContext.getAttribute("pazienteDao");
-            esameDao = (Dao<EsamePrescrivibile, Integer>) servletContext.getAttribute("esameDao");
+            esameDao = (Dao<EsamePrescrivibile, Integer>) servletContext.getAttribute("esamePrescrivibileDao");
         }
     }
     

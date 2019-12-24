@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                     <div class="bootstrap-select-wrapper">
                                         <label>ESAME</label>
-                                        <select title="Seleziona l'esame" data-live-search="true" id="selectExam" data-live-search-placeholder="Cerca esami">
+                                        <select title="Seleziona l'esame" data-live-search="true" id="selectedExam" data-live-search-placeholder="Cerca esami">
                                             <ui:repeat value="#{applicationScope.esami}" var="esame">
                                                 <option value="#{esame.id}">#{esame.nome}</option>
                                             </ui:repeat>
@@ -38,8 +38,10 @@
                                 </div>
                                 <div>
                                     <div class="form-group mt-5">
-                                        <textarea id="descrizioneEsame" rows="5" style="resize:none" readonly="true"></textarea>
-                                        <label for="descrizioneEsame">Descrizione esame</label>
+                                        <div class="bootstrap-select-wrapper">
+                                            <label>Descrizione esame</label>
+                                            <textarea id="descrizioneEsame" rows="5" style="resize:none" readonly="true"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -47,8 +49,10 @@
                     </div>
                 </ui:define>
         </ui:decorate>
-        <script type="text/javascript" src="../../js/infoExams.js"></script>
                 
+    </ui:define>
+    <ui:define name="additionalJs">
+        <script type="text/javascript" src="../../../js/infoExams.js"></script>
     </ui:define>
 
 </ui:composition>
