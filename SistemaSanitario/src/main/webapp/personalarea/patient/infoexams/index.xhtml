@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                     <div class="bootstrap-select-wrapper">
                                         <label>ESAME</label>
-                                        <select title="Seleziona l'esame" data-live-search="true" name="idEsame" data-live-search-placeholder="Cerca esami">
+                                        <select title="Seleziona l'esame" data-live-search="true" id="selectExam" data-live-search-placeholder="Cerca esami">
                                             <ui:repeat value="#{applicationScope.esami}" var="esame">
                                                 <option value="#{esame.id}">#{esame.nome}</option>
                                             </ui:repeat>
@@ -47,7 +47,7 @@
                     </div>
                 </ui:define>
         </ui:decorate>
-    
+        <script type="text/javascript" src="../../js/infoExams.js"></script>
                 
     </ui:define>
 

@@ -50,33 +50,4 @@ public class ExamResource {
            esameDao =  (Dao<EsamePrescrivibile, Integer>) servletContext.getAttribute("esameDao");
         }
     }
-
-    
-    @GET
-    @Path("{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getExamById(@PathParam("id") Integer esameId) {
-        
-        Response.ResponseBuilder response;
-       
-        EsamePrescrivibile esame;
-
-        if (esameId == null) {
-            // EsameId is missing
-            response = Response.status(Response.Status.BAD_REQUEST);
-        } else {
-            try {
-                if ((esame = esameDao.queryForId(esameId)) == null) {
-                    
-                    response = Response.status(Response.Status.BAD_REQUEST);
-                } else {
-         
-                    response = Response.ok(esame);
-                }
-            } catch (SQLException ex) {
-                response = Response.status(Response.Status.INTERNAL_SERVER_ERROR);
-            }
-        }
-        return response.build();
-    }
 }

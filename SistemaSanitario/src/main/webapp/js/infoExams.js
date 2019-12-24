@@ -1,19 +1,20 @@
-$(document).ready( function () {
-    getInfoExams();
+$("document").ready(function() {
+    
+ $("#selectExam").change(function() {
+        var examId = $("#selectedExam").val();
+        alert("Ciao negro gay1!");
+        if(examId !== ""){
+            $.get("SistemaSanitario/api/patient/examInfo/"+examId,
+                function() { // on success
+                    var descrizione;
+                    alert("Ciao negro gay2!");
+                })
+                        .done(function(response){
+                            alert("Ciao negro gay3!");
+                            descrizione = response;
+                            $("#descrizioneEsame").val(descrizione);
+                });
+        }
+    }); 
 
-} );
-
-function getInfoExams() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "ajax_info.txt", true);
-  xhttp.send();
-}
-
-
-
+});

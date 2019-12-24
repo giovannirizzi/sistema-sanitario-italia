@@ -24,6 +24,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import sistemasanitario.entities.EsamePrescrivibile;
 import sistemasanitario.entities.Medico;
 import sistemasanitario.entities.Paziente;
 import sistemasanitario.servlets.PasswordTest;
@@ -37,6 +38,7 @@ public class PatientServices {
     
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
     private Dao<Medico, Integer> medicoDao;
+    private Dao<EsamePrescrivibile, Integer> esameDao;
     private Dao<Paziente, Integer> pazienteDao;
     
     public PatientServices() {
@@ -47,6 +49,7 @@ public class PatientServices {
         if (servletContext != null) {
             medicoDao =  (Dao<Medico, Integer>) servletContext.getAttribute("medicoDao");
             pazienteDao = (Dao<Paziente, Integer>) servletContext.getAttribute("pazienteDao");
+            esameDao = (Dao<EsamePrescrivibile, Integer>) servletContext.getAttribute("esameDao");
         }
     }
     
@@ -92,5 +95,28 @@ public class PatientServices {
         }
       
         return Response.ok().build();
+    }
+    
+    @GET
+    @Path("/examInfo/{id}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response examInfo(@PathParam("id") Integer esameId) {
+        
+        Response.ResponseBuilder response;
+        if (esameId == null) {
+            // EsameId is missing
+            response = Response.status(Response.Status.BAD_REQUEST);
+        } else {
+            try {
+                QueryBuilder<EsamePrescrivibile, Integer> queryBuilder = esameDao.queryBuilder();
+                List <EsamePrescrivibile> esame = queryBuilder.where().idEq(esameId).query();
+                String descrizione = esame.get(0).getDescrizione();
+                response = Response.ok(descrizione);
+                
+            } catch (SQLException ex) {
+                response = Response.status(Response.Status.INTERNAL_SERVER_ERROR);
+            }
+        }
+        return response.build();
     }
 }
