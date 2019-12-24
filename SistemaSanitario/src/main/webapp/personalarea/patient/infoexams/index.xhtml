@@ -17,13 +17,10 @@
     <ui:define name="content">
         
         <ui:decorate template="/WEB-INF/templates/partials/section.xhtml">
-                <ui:define name="sectionTitle">
-                     <h4 class="text-secondary pb-4 text-left">Lista esami</h4>   
-                </ui:define>
                 <ui:define name="sectionBody">
                     <div class="main-pills  text-center">
                         <div class="main-pills-wrap">
-                            <form action="#{request.contextPath}/services/patient/infoexams" method="POST">
+                            <form class="mt-4">
                                 <div class="from-row">
                                     <div class="form-group">
                                     <div class="bootstrap-select-wrapper">
@@ -39,8 +36,8 @@
                                 <div>
                                     <div class="form-group mt-5">
                                         <div class="bootstrap-select-wrapper">
-                                            <label>Descrizione esame</label>
-                                            <textarea id="descrizioneEsame" rows="5" style="resize:none" readonly="true"></textarea>
+                                            <label>DESCRIZIONE ESAME</label>
+                                            <textarea class="mt-1" id="descrizioneEsame" rows="5" style="resize:none" readonly="true"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -51,8 +48,22 @@
         </ui:decorate>
                 
     </ui:define>
+    
     <ui:define name="additionalJs">
-        <script type="text/javascript" src="../../../js/infoExams.js"></script>
+        <script type="text/javascript">
+            $("document").ready(function() {
+                $("#selectedExam").change(function() {
+                       var examId = $("#selectedExam").val();
+                       if(examId !== ""){
+                           $.get("/SistemaSanitario/api/patient/examInfo/"+examId,
+                               function(response) { // on success
+                                   $("#descrizioneEsame").val(response);
+                               });
+                       }
+                   }); 
+               });
+
+        </script>
     </ui:define>
 
 </ui:composition>

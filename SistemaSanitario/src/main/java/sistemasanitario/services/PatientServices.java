@@ -104,8 +104,12 @@ public class PatientServices {
             try {
                 QueryBuilder<EsamePrescrivibile, Integer> queryBuilder = esameDao.queryBuilder();
                 List <EsamePrescrivibile> esame = queryBuilder.where().idEq(esameId).query();
-                String descrizione = esame.get(0).getDescrizione();
-                response = Response.ok(descrizione);
+                String descrizione = "";
+                if(esame.size() > 0){
+                    descrizione = esame.get(0).getDescrizione();
+                    descrizione = descrizione.replace("\n", "").replace("\r", "");
+                } 
+                response = Response.ok(descrizione, MediaType.TEXT_PLAIN);
                 
             } catch (SQLException ex) {
                 response = Response.status(Response.Status.INTERNAL_SERVER_ERROR);
