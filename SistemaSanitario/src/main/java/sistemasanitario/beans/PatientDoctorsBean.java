@@ -5,23 +5,21 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.function.Predicate;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import sistemasanitario.entities.Medico;
 import sistemasanitario.entities.Paziente;
 
 
 @ManagedBean(name = "doctors", eager = true)
-@SessionScoped
+@ViewScoped
 public class PatientDoctorsBean implements Serializable{
     
     private static final long serialVersionUID = 1L;
-    
-    @ManagedProperty("#{medicoDao}")
-    private Dao<Medico, Integer> medicoDao;
     
     @ManagedProperty("#{sessionScope.paziente}")
     private Paziente paziente;
@@ -34,6 +32,11 @@ public class PatientDoctorsBean implements Serializable{
     public void init(){
         
         if(paziente != null){
+            
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            ServletContext servletContext = (ServletContext)facesContext.getExternalContext().getContext();
+            Dao<Medico, Integer> medicoDao = (Dao<Medico, Integer>)servletContext.getAttribute("medicoDao");
+            
             QueryBuilder queryBuilder = medicoDao.queryBuilder();
             try {
                 
@@ -56,10 +59,6 @@ public class PatientDoctorsBean implements Serializable{
         return availableDoctors;
     }
     
-    public void setMedicoDao(Dao<Medico, Integer> medicoDao) {
-        this.medicoDao = medicoDao;
-    }
-
     public void setPaziente(Paziente paziente) {
         this.paziente = paziente;
     }

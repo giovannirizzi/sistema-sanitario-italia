@@ -20,7 +20,7 @@
             <div class="col-12">
               <div class="it-header-center-content-wrapper">
                 <div class="it-brand-wrapper">
-                  <a href="#">
+                  <a data-attribute="forward"  href="#main">
                     <svg class="icon">
                       <use xlink:href="svg/sprite.svg#it-pa"></use>
                     </svg>
@@ -108,7 +108,8 @@
   </div>
 
   <!-- SECTION SERVIZI -->
-  <div class="section section-muted" id="servizi">
+  <a class="anchor" id="servizi"></a>
+  <div class="section section-muted">
     <div class="section-content">
       <!-- contenuto di esempio START -->
       <div class="container">
@@ -181,8 +182,9 @@
     </div>
   </div>
  
-    <!-- SECTION CHI-SIAMO -->
-    <div id="chisiamo" class="section bg-dark p-0 section-3">
+   <!-- SECTION CHI-SIAMO -->
+   <a class="anchor" id="chisiamo"></a>
+    <div class="section bg-dark p-0 section-3">
       <div class="section-content">
         <div class="container white-color">
           <div class="row">
@@ -203,7 +205,9 @@
       </div>
     </div>
     
-    <section id="novita">
+   <!-- SECTION NOVITA -->
+    <a class="anchor" id="novita"></a>
+    <section>
     <div class="py-5">
       <div class="container px-4">
         <div class="row">

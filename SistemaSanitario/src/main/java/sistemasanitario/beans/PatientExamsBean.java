@@ -14,44 +14,50 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.servlet.ServletContext;
 import sistemasanitario.entities.Paziente;
+import sistemasanitario.entities.PrescrizioneEsame;
 import sistemasanitario.entities.PrescrizioneMedicina;
+import sistemasanitario.entities.Report;
 
-@ManagedBean(name = "prescrizioniMedicine")
+@ManagedBean(name = "patientExams")
 @ViewScoped
-public class PrescriptionMedicineBean implements Serializable{
+public class PatientExamsBean implements Serializable{
     
     @ManagedProperty("#{sessionScope.paziente}")
     private Paziente paziente;
-    
-    private DataModel<PrescrizioneMedicina> prescrizioni; 
+
+    private DataModel<PrescrizioneEsame> exams; 
     
     @PostConstruct
     public void init(){
         
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ServletContext servletContext = (ServletContext)facesContext.getExternalContext().getContext();
+        Dao<PrescrizioneMedicina, Integer> prescrizioneEsameDao = 
+                (Dao<PrescrizioneMedicina, Integer>)servletContext.getAttribute("prescrizioneEsameDao");
+
+        QueryBuilder queryBuilder = prescrizioneEsameDao.queryBuilder();
         
-        Dao<PrescrizioneMedicina, Integer> prescrizioneMedicinaDao = 
-                (Dao<PrescrizioneMedicina, Integer>)servletContext.getAttribute("prescrizioneMedicinaDao");
-        
-        QueryBuilder queryBuilder = prescrizioneMedicinaDao.queryBuilder();
-        List<PrescrizioneMedicina> tmp = null;
+        List<PrescrizioneEsame> tmp = null;
         try {
             tmp = queryBuilder.where().eq("idPaziente", paziente.getId()).query();
+             
         } catch (SQLException ex) {
            
         }
-        this.prescrizioni = new ListDataModel<>(tmp);
+        this.exams = new ListDataModel<>(tmp);
     }
-    
-    public PrescriptionMedicineBean(){}
+
+    public PatientExamsBean(){}
 
     public void setPaziente(Paziente paziente) {
         this.paziente = paziente;
     }
 
-    public DataModel<PrescrizioneMedicina> getPrescrizioni() {
-        return prescrizioni;
+    public void setExams(DataModel<PrescrizioneEsame> exams) {
+        this.exams = exams;
     }
-  
+
+    public DataModel<PrescrizioneEsame> getExams() {
+        return exams;
+    }
 }

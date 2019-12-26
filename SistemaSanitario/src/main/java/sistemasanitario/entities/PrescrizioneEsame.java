@@ -15,14 +15,31 @@ public class PrescrizioneEsame {
     @DatabaseField(columnName="idPaziente", foreign = true)
     private Paziente paziente;
     
-    @DatabaseField(columnName="idMedico", foreign = true)
+    @DatabaseField(columnName="idMedico", foreign = true, foreignAutoRefresh=true)
     private Medico medico;
     
-    @DatabaseField(columnName="idEsame", foreign = true)
+    @DatabaseField(columnName="idEsame", foreign = true, foreignAutoRefresh=true)
     private EsamePrescrivibile esame;
     
     @DatabaseField(readOnly = true, canBeNull = false)
     private Boolean letta;
+      
+    @DatabaseField(readOnly = true, canBeNull = false)
+    private Date data;
+    
+    private Boolean completed;
+
+    public void setLetta(Boolean letta) {
+        this.letta = letta;
+    }
+
+    public Boolean getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
+    }
 
     public void setPaziente(Paziente paziente) {
         this.paziente = paziente;
@@ -59,8 +76,4 @@ public class PrescrizioneEsame {
     public Date getData() {
         return data;
     }
-     
-    @DatabaseField(readOnly = true, canBeNull = false)
-    private Date data;
-    
 }

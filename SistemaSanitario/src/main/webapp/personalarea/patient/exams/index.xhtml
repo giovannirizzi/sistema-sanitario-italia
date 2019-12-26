@@ -4,7 +4,8 @@
                 template="/WEB-INF/templates/mainLayout.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
         Esami
@@ -23,7 +24,41 @@
                 <ui:define name="sectionBody">
                     <div class="main-pills  text-center">
                         <div class="main-pills-wrap" style="min-height: 700px;">
-                            
+                            <c:if test="#{patientExams.exams.rowCount > 0}">
+
+                                <h:dataTable value = "#{patientExams.exams}" var = "exam"
+                                    id = "myTable" styleClass = "table table-hover table-striped">  
+                                    
+                                <h:column> 
+                                   <f:facet name = "header">#</f:facet>
+                                   #{patientExams.exams.rowIndex + 1}
+                                </h:column>
+
+                                <h:column>    				
+                                   <f:facet name = "header">Esame</f:facet>    				
+                                   #{exam.esame.nome}
+                                </h:column>
+
+                                <h:column>    				
+                                   <f:facet name = "header">Medico base</f:facet>
+                                    <h:outputFormat value="{0} {1}" >
+                                        <f:param value="#{exam.medico.nome}" />
+                                        <f:param value="#{exam.medico.cognome}" />
+                                    </h:outputFormat>                                   
+                                </h:column>
+           
+                                <h:column>    				
+                                   <f:facet name = "header">Data prescrizione</f:facet>
+                                    <h:outputText value="#{exam.data}">
+                                        <f:convertDateTime type="date" dateStyle="medium"/>
+                                    </h:outputText>     
+                                </h:column>
+                                </h:dataTable>
+
+                            </c:if>
+                            <c:if test="#{prescrizioniMedicine.prescrizioni.rowCount eq 0}">
+                                <p>Al momento non hai nessun esame prescritto</p>
+                            </c:if>
                         </div>
                     </div>
                 </ui:define>
