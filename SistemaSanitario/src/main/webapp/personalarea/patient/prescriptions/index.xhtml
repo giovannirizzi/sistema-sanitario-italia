@@ -25,10 +25,10 @@
                     <div class="main-pills  text-center">
                         <div class="main-pills-wrap table-responsive-sm" style="min-height: 300px;">
                             
-                            <c:if test="#{prescrizioniMedicine.prescrizioni.rowCount > 0}">
+                            <c:if test="#{prescrizioniMedicine.prescrizioni.rowCount gt 0}">
 
                                 <h:dataTable value = "#{prescrizioniMedicine.prescrizioni}" var = "prescrizione"
-                               id = "myTable" styleClass = "table table-hover table-striped">  
+                               id = "myTable" styleClass = "table table-hover table-bordered table-striped">  
                                     
                                 <h:column> 
                                    <f:facet name = "header">#</f:facet>
@@ -59,6 +59,16 @@
                                         <f:convertDateTime type="date" dateStyle="medium"/>
                                     </h:outputText>     
                                 </h:column>
+                                    
+                                <h:column>    				
+                                   <f:facet name = "header">Download</f:facet>
+                                    <button type="button" class="btn btn-success" value="#{prescrizione.id}">
+                                        <svg class="icon icon-white">
+                                            <use xlink:href="../../../svg/sprite.svg#it-download"></use>
+                                        </svg>
+                                    </button>
+                                </h:column>  
+                                  
                                 </h:dataTable>
 
                             </c:if>
@@ -80,7 +90,6 @@
                 {
                     order: [[ 4, 'desc' ]],
                     lengthChange: false,
-                    paging: false,
                     info: false
                 });
                 

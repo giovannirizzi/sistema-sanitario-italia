@@ -8,7 +8,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -18,8 +18,8 @@ import sistemasanitario.entities.PrescrizioneEsame;
 import sistemasanitario.entities.PrescrizioneMedicina;
 import sistemasanitario.entities.Report;
 
-@ManagedBean(name = "patientExams")
 @ViewScoped
+@ManagedBean(name = "patientExams")
 public class PatientExamsBean implements Serializable{
     
     @ManagedProperty("#{sessionScope.paziente}")
@@ -34,13 +34,21 @@ public class PatientExamsBean implements Serializable{
         ServletContext servletContext = (ServletContext)facesContext.getExternalContext().getContext();
         Dao<PrescrizioneMedicina, Integer> prescrizioneEsameDao = 
                 (Dao<PrescrizioneMedicina, Integer>)servletContext.getAttribute("prescrizioneEsameDao");
+        Dao<Report, Integer> reportDao = 
+                (Dao<Report, Integer>)servletContext.getAttribute("reportDao");
 
-        QueryBuilder queryBuilder = prescrizioneEsameDao.queryBuilder();
-        
+        QueryBuilder queryBuilderPreEsami = prescrizioneEsameDao.queryBuilder();
+  
         List<PrescrizioneEsame> tmp = null;
+
+        
         try {
-            tmp = queryBuilder.where().eq("idPaziente", paziente.getId()).query();
-             
+
+            //tmp = queryBuilder.where().eq("idPaziente", paziente.getId()).query();
+            tmp = queryBuilderPreEsami.where()
+                    .eq("idPaziente", paziente.getId())
+                    .query();
+
         } catch (SQLException ex) {
            
         }

@@ -24,10 +24,10 @@
                 <ui:define name="sectionBody">
                     <div class="main-pills  text-center">
                         <div class="main-pills-wrap" style="min-height: 700px;">
-                            <c:if test="#{patientExams.exams.rowCount > 0}">
+                            <c:if test="#{patientExams.exams.rowCount gt 0}">
 
                                 <h:dataTable value = "#{patientExams.exams}" var = "exam"
-                                    id = "myTable" styleClass = "table table-hover table-striped">  
+                                    id = "myTable" styleClass = "table table-hover table-bordered table-striped">  
                                     
                                 <h:column> 
                                    <f:facet name = "header">#</f:facet>
@@ -48,23 +48,56 @@
                                 </h:column>
            
                                 <h:column>    				
-                                   <f:facet name = "header">Data prescrizione</f:facet>
+                                   <f:facet name = "header">Data</f:facet>
                                     <h:outputText value="#{exam.data}">
                                         <f:convertDateTime type="date" dateStyle="medium"/>
                                     </h:outputText>     
                                 </h:column>
+                                
+                                <h:column>    				
+                                   <f:facet name = "header">Ticket</f:facet>
+                                   <h:outputText value="50,00 €" rendered="#{not empty exam.medicoSpe}"></h:outputText>
+                                   <h:outputText value="11,00 €" rendered="#{not empty exam.ssp}"></h:outputText>
+                                   <h:outputText value="#{exam.ticket}"></h:outputText>    
+                                </h:column>
+                                
+                                <h:column>    				
+                                    <f:facet name = "header">Report</f:facet>
+                                    <ui:fragment rendered="#{not empty exam.report}">
+                                        <button type="button" class="btn btn-success" value="#{exam.report.id}">
+                                            <svg class="icon icon-white">
+                                                <use xlink:href="../../../svg/sprite.svg#it-note"></use>
+                                            </svg>
+                                            <span>Report</span>
+                                        </button>
+                                    </ui:fragment>
+                                </h:column>
+                                    
                                 </h:dataTable>
-
                             </c:if>
-                            <c:if test="#{prescrizioniMedicine.prescrizioni.rowCount eq 0}">
+                            <c:if test="#{patientExams.exams.rowCount eq 0}">
                                 <p>Al momento non hai nessun esame prescritto</p>
                             </c:if>
                         </div>
                     </div>
                 </ui:define>
-        </ui:decorate>
+        </ui:decorate> 
+    </ui:define>
     
+        
+     <ui:define name="additionalJs">
+        <script type="text/javascript"> 
+            $(document).ready( function() { 
+                $("#myTable").dataTable(
+                {
+                    order: [[ 3, 'desc' ]],
+                    lengthChange: false,
+                    info: false
+                });
                 
+                $("#myTable thead").addClass("thead-light");
+             });
+        </script>
     </ui:define>
 
 </ui:composition>
