@@ -8,16 +8,16 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.view.ViewScoped;
 import javax.servlet.ServletContext;
 import sistemasanitario.entities.Paziente;
 import sistemasanitario.entities.PrescrizioneMedicina;
 
-@ManagedBean(name = "prescrizioniMedicine")
 @ViewScoped
+@ManagedBean(name = "prescrizioniMedicine")
 public class PrescriptionMedicineBean implements Serializable{
     
     @ManagedProperty("#{sessionScope.paziente}")

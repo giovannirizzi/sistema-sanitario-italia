@@ -27,7 +27,49 @@ public class PrescrizioneEsame {
     @DatabaseField(readOnly = true, canBeNull = false)
     private Date data;
     
+    @DatabaseField(columnName="idReport", foreign = true)
+    private Report report;
+    
+    @DatabaseField(columnName="idMedicoSpe", foreign = true, canBeNull = true)
+    private MedicoSpecialista medicoSpe;
+    
+    @DatabaseField(columnName="idSsp", foreign = true, canBeNull = true)
+    private Ssp ssp;
+    
     private Boolean completed;
+
+    public Report getReport() {
+        return report;
+    }
+
+    public void setReport(Report report) {
+        this.report = report;
+    }
+
+    public MedicoSpecialista getMedicoSpe() {
+        return medicoSpe;
+    }
+
+    public void setMedicoSpe(MedicoSpecialista medicoSpe) {
+        this.medicoSpe = medicoSpe;
+    }
+
+    public Ssp getSsp() {
+        return ssp;
+    }
+
+    public void setSsp(Ssp ssp) {
+        this.ssp = ssp;
+    }
+    private Float ticket;
+
+    public Float getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Float ticket) {
+        this.ticket = ticket;
+    }
 
     public void setLetta(Boolean letta) {
         this.letta = letta;

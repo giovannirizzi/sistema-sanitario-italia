@@ -11,7 +11,7 @@ public class Report {
     public Report(){}
     
     @DatabaseField(id = true)
-    private int id;
+    private Integer id;
     
     @DatabaseField(columnName="idPrescrizione", foreign = true)
     private PrescrizioneEsame prescrizioneEsame;
@@ -21,4 +21,30 @@ public class Report {
     
     @DatabaseField
     private Date data; 
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public PrescrizioneEsame getPrescrizioneEsame() {
+        return prescrizioneEsame;
+    }
+
+    public void setPrescrizioneEsame(PrescrizioneEsame prescrizioneEsame) {
+        this.prescrizioneEsame = prescrizioneEsame;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+    
+    
 }
