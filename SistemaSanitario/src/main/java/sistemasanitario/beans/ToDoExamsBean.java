@@ -13,18 +13,24 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.servlet.ServletContext;
+import sistemasanitario.entities.MedicoSpecialista;
 import sistemasanitario.entities.Paziente;
 import sistemasanitario.entities.PrescrizioneEsame;
 import sistemasanitario.entities.PrescrizioneMedicina;
+import sistemasanitario.entities.Ssp;
 
-@ManagedBean(name = "patientExams")
-@ViewScoped
-public class PatientExamsBean implements Serializable{
     
-    @ManagedProperty("#{sessionScope.paziente}")
-    private Paziente paziente;
+@ManagedBean(name = "todoExams")
+@ViewScoped
+public class ToDoExamsBean {
 
-    private DataModel<PrescrizioneEsame> exams; 
+    @ManagedProperty("#{sessionScope.medicoSpecialista}")
+    private MedicoSpecialista medicoSpe;
+
+    @ManagedProperty("#{sessionScope.ssp}")
+    private Ssp ssp;
+
+    private DataModel<PrescrizioneEsame> todoExams; 
     
     @PostConstruct
     public void init(){
@@ -38,25 +44,45 @@ public class PatientExamsBean implements Serializable{
         
         List<PrescrizioneEsame> tmp = null;
         try {
-            tmp = queryBuilder.where().eq("idPaziente", paziente.getId()).query();
-             
+            
+            if(ssp == null){
+                
+               tmp = queryBuilder.where().isNull("idReport").query(); 
+            }
+            else{
+                
+               tmp = queryBuilder.where().isNull("idReport").query();   
+            }        
         } catch (SQLException ex) {
            
         }
-        this.exams = new ListDataModel<>(tmp);
+        this.todoExams = new ListDataModel<>(tmp);
     }
 
-    public PatientExamsBean(){}
+    public ToDoExamsBean(){}
 
-    public void setPaziente(Paziente paziente) {
-        this.paziente = paziente;
+    public MedicoSpecialista getMedicoSpe() {
+        return medicoSpe;
     }
 
-    public void setExams(DataModel<PrescrizioneEsame> exams) {
-        this.exams = exams;
+    public void setMedicoSpe(MedicoSpecialista medicoSpe) {
+        this.medicoSpe = medicoSpe;
     }
 
-    public DataModel<PrescrizioneEsame> getExams() {
-        return exams;
+    public Ssp getSsp() {
+        return ssp;
     }
+
+    public void setSsp(Ssp ssp) {
+        this.ssp = ssp;
+    }
+
+    public DataModel<PrescrizioneEsame> getTodoExams() {
+        return todoExams;
+    }
+
+    public void setTodoExams(DataModel<PrescrizioneEsame> todoExams) {
+        this.todoExams = todoExams;
+    }
+     
 }
