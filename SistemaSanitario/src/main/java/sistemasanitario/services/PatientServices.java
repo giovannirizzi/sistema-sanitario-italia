@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import sistemasanitario.entities.EsamePrescrivibile;
 import sistemasanitario.entities.Medico;
 import sistemasanitario.entities.Paziente;
+import sistemasanitario.entities.Report;
 import sistemasanitario.servlets.PasswordTest;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
 
@@ -40,6 +41,7 @@ public class PatientServices {
     private Dao<Medico, Integer> medicoDao;
     private Dao<EsamePrescrivibile, Integer> esameDao;
     private Dao<Paziente, Integer> pazienteDao;
+    private Dao<Report, Integer> reportDao;
     
     public PatientServices() {
     }
@@ -50,6 +52,7 @@ public class PatientServices {
             medicoDao =  (Dao<Medico, Integer>) servletContext.getAttribute("medicoDao");
             pazienteDao = (Dao<Paziente, Integer>) servletContext.getAttribute("pazienteDao");
             esameDao = (Dao<EsamePrescrivibile, Integer>) servletContext.getAttribute("esamePrescrivibileDao");
+            reportDao = (Dao<Report, Integer>) servletContext.getAttribute("reportDao");
         }
     }
     
@@ -91,6 +94,7 @@ public class PatientServices {
         return Response.ok().build();
     }
     
+    //GET EXAM INFO
     @GET
     @Path("/examInfo/{id}")
     @Produces(MediaType.TEXT_PLAIN)
@@ -117,4 +121,31 @@ public class PatientServices {
         }
         return response.build();
     }
+    
+    //GET REPORT
+    @GET
+    @Path("/report/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getReportById(@PathParam("id") Integer reportId) {
+        
+        Response.ResponseBuilder response;
+                    
+        if (reportId == null) {
+            // Report Id is missing
+            response = Response.status(Response.Status.BAD_REQUEST);
+        } else {
+            try {
+                QueryBuilder <Report, Integer> reportBuilder = reportDao.queryBuilder();
+                reportBuilder.where().idEq(reportId);
+
+                List <Report> report = reportBuilder.query();
+
+                response = Response.ok(report.get(0));
+            } catch (SQLException ex) {
+                response = Response.status(Response.Status.INTERNAL_SERVER_ERROR);
+            }
+        }
+        return response.build();
+    }
+        
 }

@@ -41,6 +41,10 @@ public class Report {
     public String getDescrizione() {
         return descrizione;
     }
+    
+    public Date getData() {
+        return data;
+    }
 
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;

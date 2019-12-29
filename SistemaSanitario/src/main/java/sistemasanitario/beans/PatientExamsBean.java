@@ -16,6 +16,7 @@ import javax.servlet.ServletContext;
 import sistemasanitario.entities.Paziente;
 import sistemasanitario.entities.PrescrizioneEsame;
 import sistemasanitario.entities.PrescrizioneMedicina;
+import sistemasanitario.entities.Report;
 
 @ViewScoped
 @ManagedBean(name = "patientExams")
