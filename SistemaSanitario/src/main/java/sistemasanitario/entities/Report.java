@@ -19,8 +19,8 @@ public class Report {
     @DatabaseField
     private String descrizione;
     
-    @DatabaseField
-    private Date data; 
+    @DatabaseField(readOnly = true, canBeNull = false)
+    private Date data;
 
     public Integer getId() {
         return id;
