@@ -5,6 +5,8 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.UpdateBuilder;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,10 +21,14 @@ import sistemasanitario.entities.EsamePrescrivibile;
 import sistemasanitario.entities.Medicina;
 import sistemasanitario.entities.Medico;
 import sistemasanitario.entities.Paziente;
+import sistemasanitario.entities.User;
 import sistemasanitario.entities.PrescrizioneEsame;
 import sistemasanitario.entities.PrescrizioneMedicina;
 import sistemasanitario.entities.Report;
+import sistemasanitario.servlets.ForgotPasswordServlet;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
+import sistemasanitario.utils.MailSender;
+import sistemasanitario.utils.TokenUtil;
 
 
 @Path("/doctor")
@@ -36,6 +42,9 @@ public class DoctorServices {
     private Dao<PrescrizioneEsame, Integer> prescrizioneEsameDao;
     private Dao<PrescrizioneMedicina, Integer> prescrizioneMedicinaDao;
     private Dao<Report, Integer> reportDao;
+    private Dao<User, Integer> userDao;
+    private Dao<EsamePrescrivibile, Integer> esamePrescrivibileDao;
+    private Dao<Medicina, Integer> medicinaDao;
 
     public DoctorServices() {
     }
@@ -49,6 +58,12 @@ public class DoctorServices {
                     servletContext.getAttribute("prescrizioneMedicinaDao");
             reportDao = (Dao<Report, Integer>)
                     servletContext.getAttribute("reportDao");
+            userDao = (Dao<User, Integer>)
+                    servletContext.getAttribute("UsersDao");
+            esamePrescrivibileDao = (Dao<EsamePrescrivibile, Integer>)
+                    servletContext.getAttribute("esamePrescrivibileDao");
+            medicinaDao = (Dao<Medicina, Integer>)
+                    servletContext.getAttribute("medicinaDao");
         }
     }
 
@@ -81,6 +96,20 @@ public class DoctorServices {
         } catch (SQLException ex) {
             return Response.serverError().build();
         }
+        //Cerco l'email dell'utente e il nome dell'esame per riempire la mail
+        try {
+            QueryBuilder<User, Integer> queryEmail = userDao.queryBuilder();
+            QueryBuilder<EsamePrescrivibile, Integer> queryEsame = esamePrescrivibileDao.queryBuilder();
+            List<User> utenti = queryEmail.where().idEq(idPaziente).query();
+            List<EsamePrescrivibile> esamePrescritto = queryEsame.where().idEq(idEsame).query();
+       
+            MailSender s1 = new MailSender();
+            s1.sendEmail(utenti.get(0).getEmail(), "Nuova Prescrizione", "Salve: "+utenti.get(0).getUsername()+"\nE' stato prescritto un nuovo esame per lei!\nEsame: "+esamePrescritto.get(0).getNome());
+
+        } catch (SQLException ex) {
+            return Response.serverError().build();
+        }    
+            
         return Response.ok().build();
     }
     
@@ -115,6 +144,18 @@ public class DoctorServices {
         } catch (SQLException ex) {
             return Response.serverError().build();
         }
+        try {
+            QueryBuilder<User, Integer> queryEmail = userDao.queryBuilder();
+            QueryBuilder<Medicina, Integer> queryMedicina = medicinaDao.queryBuilder();
+            List<User> utenti = queryEmail.where().idEq(idPaziente).query();
+            List<Medicina> medicinaPrescritta = queryMedicina.where().idEq(idMedicina).query();
+       
+            MailSender s1 = new MailSender();
+            s1.sendEmail(utenti.get(0).getEmail(), "Nuovo Prescrizione", "Salve: "+utenti.get(0).getUsername()+"\nE' stato prescritto un nuovo farmaco per lei!\nFarmaco: "+medicinaPrescritta.get(0).getNome());
+
+        } catch (SQLException ex) {
+            return Response.serverError().build();
+        }    
         return Response.ok().build();
     }
     
