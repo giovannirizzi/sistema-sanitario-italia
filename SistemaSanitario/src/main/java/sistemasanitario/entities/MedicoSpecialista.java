@@ -3,7 +3,7 @@ package sistemasanitario.entities;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "MEDICO")
+@DatabaseTable(tableName = "MEDICO_SPECIALISTA")
 public class MedicoSpecialista {
     
     public MedicoSpecialista() {}

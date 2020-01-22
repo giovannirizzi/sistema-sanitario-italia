@@ -17,7 +17,7 @@ import sistemasanitario.entities.User.UserType;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
 
 @WebFilter(
-    urlPatterns = {"/personalarea/specialist/*"},
+    urlPatterns = {"/personalarea/ssp/*"},
     dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.FORWARD}
 )
 public class SspFilter implements Filter{
