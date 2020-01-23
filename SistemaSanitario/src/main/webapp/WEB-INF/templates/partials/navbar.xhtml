@@ -48,7 +48,18 @@
                         <a class="nav-link" href="#{request.contextPath}/personalarea/specialist/patients/"><span>Pazienti</span></a>
                       </li>
                        <li class="nav-link">
-                        <a class="nav-link" href="#{request.contextPath}/personalarea/specialist/todoexams/"><span>Visite da fare</span></a>
+                        <a class="nav-link" href="#{request.contextPath}/personalarea/specialist/todoexams/"><span>Scrivi report</span></a>
+                      </li>
+                    </ul>
+                    </c:when>
+                    <c:when test="${sessionScope.user.type == 'SS_PROVINCIALE'}">
+                    <a class="nav-link" href="#{request.contextPath}/personalarea/ssp/"><span>Servizi SSP</span></a>
+                    <ul class="link-list">
+                      <li class="nav-link">
+                        <a class="nav-link" href="#{request.contextPath}/personalarea/ssp/patients/"><span>Pazienti</span></a>
+                      </li>
+                       <li class="nav-link">
+                        <a class="nav-link" href="#{request.contextPath}/personalarea/ssp/todoexams/"><span>Scrivi report</span></a>
                       </li>
                     </ul>
                     </c:when>
