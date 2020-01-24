@@ -30,7 +30,7 @@
     </servlet>
     <servlet>
         <servlet-name>DashboardServlet</servlet-name>
-        <servlet-class>sistemasanitario.servlets.DashboardServlet</servlet-class>
+        <servlet-class>sistemasanitario.servlets.PatientCardServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>

@@ -25,10 +25,8 @@ import sistemasanitario.entities.User;
 import sistemasanitario.entities.PrescrizioneEsame;
 import sistemasanitario.entities.PrescrizioneMedicina;
 import sistemasanitario.entities.Report;
-import sistemasanitario.servlets.ForgotPasswordServlet;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
 import sistemasanitario.utils.MailSender;
-import sistemasanitario.utils.TokenUtil;
 
 
 @Path("/doctor")
