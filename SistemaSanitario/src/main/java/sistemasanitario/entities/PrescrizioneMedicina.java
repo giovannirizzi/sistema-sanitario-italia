@@ -11,7 +11,7 @@ public class PrescrizioneMedicina {
     
     @DatabaseField(id = true)
     private int id;
-    
+
     @DatabaseField(columnName="idPaziente", foreign = true)
     private Paziente paziente;
     
@@ -29,6 +29,14 @@ public class PrescrizioneMedicina {
 
     public int getId() {
         return id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 
     public Paziente getPaziente() {

@@ -35,6 +35,11 @@ public class Medico implements Serializable{
     @DatabaseField
     private String codiceMedico;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
     public int getId() {
         return id;
     }

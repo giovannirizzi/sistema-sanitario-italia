@@ -62,7 +62,8 @@
                                     
                                 <h:column>    				
                                    <f:facet name = "header">Download</f:facet>
-                                    <button type="button" class="btn btn-success" value="#{prescrizione.id}">
+                                    <button type="button" class="btn btn-success" value="#{prescrizione.id}"
+                                            onclick="window.open('../../../api/patient/prescriptionmedicine/#{prescrizione.id}');">
                                         <svg class="icon icon-white">
                                             <use xlink:href="../../../svg/sprite.svg#it-download"></use>
                                         </svg>
