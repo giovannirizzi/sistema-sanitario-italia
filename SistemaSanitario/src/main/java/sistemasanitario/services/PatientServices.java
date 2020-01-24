@@ -5,31 +5,27 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.UpdateBuilder;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Context;
-
 import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import sistemasanitario.entities.EsamePrescrivibile;
 import sistemasanitario.entities.Medico;
 import sistemasanitario.entities.Paziente;
+import sistemasanitario.entities.PrescrizioneMedicina;
 import sistemasanitario.entities.Report;
 import sistemasanitario.servlets.PasswordTest;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
+import sistemasanitario.utils.pdf.PrescriptionMedicinePDFUtil;
 
 @Path("patient")
 public class PatientServices {
@@ -42,6 +38,7 @@ public class PatientServices {
     private Dao<EsamePrescrivibile, Integer> esameDao;
     private Dao<Paziente, Integer> pazienteDao;
     private Dao<Report, Integer> reportDao;
+    private static Dao<PrescrizioneMedicina, Integer> prescrizioneMedicinaDao;
     
     public PatientServices() {
     }
@@ -53,6 +50,7 @@ public class PatientServices {
             pazienteDao = (Dao<Paziente, Integer>) servletContext.getAttribute("pazienteDao");
             esameDao = (Dao<EsamePrescrivibile, Integer>) servletContext.getAttribute("esamePrescrivibileDao");
             reportDao = (Dao<Report, Integer>) servletContext.getAttribute("reportDao");
+            prescrizioneMedicinaDao = (Dao<PrescrizioneMedicina, Integer>)servletContext.getAttribute("prescrizioneMedicinaDao");
         }
     }
     
@@ -147,5 +145,49 @@ public class PatientServices {
         }
         return response.build();
     }
+    
+    //GET PRESCRIPTION MEDICINE PDF
+    @GET
+    @Path("/prescriptionmedicine/{id}")
+    @Produces("application/pdf")
+    public javax.ws.rs.core.Response getPrescriptionMedicine(@PathParam("id") Integer idPrescription) {
         
+        Response.ResponseBuilder response;
+        PrescrizioneMedicina prescrizioneMedicina = null;
+        
+        if (idPrescription == null)
+            return Response.status(Response.Status.BAD_REQUEST).build();
+       
+        Paziente paziente = (Paziente)getUserSession(request).getAttribute("paziente");
+        boolean exists = false;        
+        QueryBuilder queryBuilder = prescrizioneMedicinaDao.queryBuilder();
+        List<PrescrizioneMedicina> prescrizioniPaziente;
+
+        try {
+            prescrizioniPaziente = queryBuilder.where().eq("idPaziente", paziente.getId()).query();
+
+            for(PrescrizioneMedicina prescrizione : prescrizioniPaziente){
+
+                if(prescrizione.getId() == idPrescription){
+                    exists = true;
+                    prescrizioneMedicina = prescrizione;
+                }
+            }
+
+             if(exists && prescrizioneMedicina != null){
+                pazienteDao.refresh(prescrizioneMedicina.getPaziente());
+                response = Response.ok(PrescriptionMedicinePDFUtil.generatePDF(prescrizioneMedicina).toByteArray());
+                response.type("application/pdf");
+                response.header("Content-Disposition",  "filename = Prescription_Medicine_" + prescrizioneMedicina.getId() + ".pdf"); 
+
+            }
+            else
+                response = Response.status(Response.Status.UNAUTHORIZED);
+
+        } catch (SQLException ex) {
+            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR);
+        }
+      
+        return response.build();
+    }
 }

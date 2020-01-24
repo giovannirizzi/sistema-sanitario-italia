@@ -23,6 +23,7 @@ import sistemasanitario.entities.Report;
 import sistemasanitario.entities.ResetPasswordToken;
 import sistemasanitario.entities.Ssp;
 import sistemasanitario.entities.User;
+import sistemasanitario.utils.pdf.PrescriptionMedicinePDFUtil;
 
 public class WebAppContextListener  implements ServletContextListener{
 
@@ -82,6 +83,8 @@ public class WebAppContextListener  implements ServletContextListener{
             
             sce.getServletContext().setAttribute("medicine", medicinaDao.queryForAll());
             sce.getServletContext().setAttribute("esami", esamePrescrivibileDao.queryForAll());
+            
+            PrescriptionMedicinePDFUtil.init(sce.getServletContext());
                
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, null, ex);

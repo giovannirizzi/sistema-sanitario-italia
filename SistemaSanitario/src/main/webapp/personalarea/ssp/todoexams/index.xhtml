@@ -8,45 +8,48 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
-        Ricette mediche
+        Scrivi report
     </ui:define>
 
     <ui:define name="pageTitle">
-        Ricette mediche
+        Scrivi report
     </ui:define>
 
     <ui:define name="content">
         
         <ui:decorate template="/WEB-INF/templates/partials/section.xhtml">
                 <ui:define name="sectionTitle">
-                     <h4 class="text-secondary pb-4 text-left">Le mie prescrizioni di farmaci</h4>   
+                     <h4 class="text-danger pb-4 text-center">Esami specialistici da effettuare</h4>   
                 </ui:define>
                 <ui:define name="sectionBody">
                     <div class="main-pills  text-center">
                         <div class="main-pills-wrap table-responsive-sm" style="min-height: 300px;">
                             
-                            <c:if test="#{prescrizioniMedicine.prescrizioni.rowCount gt 0}">
+                            <c:if test="#{todoExams.todoExams.rowCount gt 0}">
 
-                                <h:dataTable value = "#{prescrizioniMedicine.prescrizioni}" var = "prescrizione"
+                                <h:dataTable value = "#{todoExams.todoExams}" var = "prescrizione"
                                id = "myTable" styleClass = "table table-hover table-bordered table-striped">  
                                     
                                 <h:column> 
-                                   <f:facet name = "header">#</f:facet>
-                                   #{prescrizioniMedicine.prescrizioni.rowIndex + 1}
+                                   <f:facet name = "header">ID</f:facet>
+                                   #{prescrizione.id}
                                 </h:column>
 
                                 <h:column>    				
-                                   <f:facet name = "header">Nome farmaco</f:facet>    				
-                                   #{prescrizione.medicina.nome}
+                                   <f:facet name = "header">ESAME</f:facet>    				
+                                   #{prescrizione.esame.nome}
                                 </h:column>
 
                                 <h:column>
-                                   <f:facet name = "header">Quantità</f:facet>
-                                   #{prescrizione.quantita}
+                                   <f:facet name = "header">PAZIENTE</f:facet>
+                                   <h:outputFormat value="{0} {1}" >
+                                        <f:param value="#{prescrizione.paziente.nome}" />
+                                        <f:param value="#{prescrizione.paziente.cognome}" />
+                                    </h:outputFormat>   
                                 </h:column>
                                     
                                 <h:column>    				
-                                   <f:facet name = "header">Medico</f:facet>
+                                   <f:facet name = "header">MEDICO BASE</f:facet>
                                     <h:outputFormat value="{0} {1}" >
                                         <f:param value="#{prescrizione.medico.nome}" />
                                         <f:param value="#{prescrizione.medico.cognome}" />
@@ -54,18 +57,17 @@
                                 </h:column>
            
                                 <h:column>    				
-                                   <f:facet name = "header">Data prescrizione</f:facet>
+                                   <f:facet name = "header">DATA PRESCRIZIONE</f:facet>
                                     <h:outputText value="#{prescrizione.data}">
                                         <f:convertDateTime type="date" dateStyle="medium"/>
                                     </h:outputText>     
                                 </h:column>
                                     
                                 <h:column>    				
-                                   <f:facet name = "header">Download</f:facet>
-                                    <button type="button" class="btn btn-success" value="#{prescrizione.id}"
-                                            onclick="window.open('../../../api/patient/prescriptionmedicine/#{prescrizione.id}');">
+                                   <f:facet name = "header">SCRIVI REPORT</f:facet>
+                                    <button type="button" class="btn btn-danger" value="#{prescrizione.id}">
                                         <svg class="icon icon-white">
-                                            <use xlink:href="../../../svg/sprite.svg#it-download"></use>
+                                            <use xlink:href="../../../svg/sprite.svg#it-pencil"></use>
                                         </svg>
                                     </button>
                                 </h:column>  
@@ -73,24 +75,23 @@
                                 </h:dataTable>
 
                             </c:if>
-                            <c:if test="#{prescrizioniMedicine.prescrizioni.rowCount eq 0}">
-                                <p>Al momento non hai nessun farmaco prescritto</p>
+                            <c:if test="#{todoExams.todoExams.rowCount eq 0}">
+                                <p>Al momento non c'è nessun esame da effettuare</p>
                             </c:if>
                             
                         </div>
                     </div>
                 </ui:define>
         </ui:decorate>
-          
+    
     </ui:define>
     
-     <ui:define name="additionalJs">
+    <ui:define name="additionalJs">
         <script type="text/javascript"> 
             $(document).ready( function() { 
                 $("#myTable").dataTable(
                 {
-                    order: [[ 4, 'desc' ]],
-                    lengthChange: false,
+                    order: [[ 1, 'asc' ]],
                     info: false
                 });
                 
