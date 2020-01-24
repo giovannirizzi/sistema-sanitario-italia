@@ -84,7 +84,7 @@ $(document).on("click", "tr[name='patientRow']", function(e) {
                 var divContainer = document.getElementById("showPrescriptions");
                 divContainer.innerHTML = "Nessuna prescrizione per questo paziente";
             }
-          
+            console.log(response);
             $("#exampleModal").modal();
       },
       error: function(xhr, status, error) {
@@ -103,15 +103,16 @@ function getPazienti(){
             alert(xhr.responseText);
         },
         success : function(data) {
-        
+            
             var col = [];
-            for (var i = 0; i < data.length; i++) {
-                for (var key in data[i]) {
+            for (var i = 0; i < data.patient.length; i++) {
+                for (var key in data.patient[i]) {
                     if (col.indexOf(key) === -1) {
                         col.push(key);
                     }
                 }
             }
+            console.log(col);
 
             // CREATE DYNAMIC TABLE.
             var table = document.createElement("table");
@@ -135,19 +136,24 @@ function getPazienti(){
             var body = table.createTBody();
 
             // ADD JSON DATA TO THE TABLE AS ROWS.
-            for (var i = 0; i < data.length; i++) {
+            for (var i = 0; i < data.patient.length; i++) {
 
                 tr = body.insertRow(-1);
-                tr.setAttribute('id',""+data[i]["id"]+"");
+                tr.setAttribute('id',""+data.patient[i]["id"]+"");
                 tr.setAttribute('name', 'patientRow');
 
                 for (var j = 0; j < arrayHeader.length; j++) {
                     var tabCell = tr.insertCell(-1);
-                    if(j===0)
-                        tabCell.innerHTML = data[i][col[j+2]] + " " + data[i][col[j+3]];
-                    else
-                        tabCell.innerHTML = data[i][col[j+3]];
-                    
+                    switch(j) {
+                        case 0:
+                          tabCell.innerHTML = data.patient[i]["name"] + " " + data.patient[i]["surname"];
+                          break;
+                        case 1:
+                          tabCell.innerHTML = data.patient[i]["lastVisit"];
+                          break;
+                        default:
+                          tabCell.innerHTML = data.patient[i]["lastMedicine"];
+                    }
                 }
             }
 
@@ -159,6 +165,7 @@ function getPazienti(){
                 "dom": '<"top"i>rt<"bottom"lp><"clear">',
                 "responsive": true
             });
+            console.log(data);
         }  
     });
 

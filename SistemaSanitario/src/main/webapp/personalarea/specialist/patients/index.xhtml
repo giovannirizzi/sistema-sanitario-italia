@@ -24,20 +24,54 @@
                     <div class="main-pills  text-center">
                         <div class="main-pills-wrap" style="min-height: 700px;">
                             <div class="form-group">
-                             <input type="search" class="autocomplete" placeholder="Cerca esami..."
-                               id="autocomplete-regioni"
-                               name="autocomplete-regioni"
-                               data-autocomplete='[{"text":"Abruzzo","link":"#"},{"text":"Basilicata","link":"#"},{"text":"Calabria","link":"#"},{"text":"Campania","link":"#"},{"text":"Emilia Romagna","link":"#"},{"text":"Friuli Venezia Giulia","link":"#"},{"text":"Lazio","link":"#"},{"text":"Liguria","link":"#"},{"text":"Lombardia","link":"#"},{"text":"Marche","link":"#"},{"text":"Molise","link":"#"},{"text":"Piemonte","link":"#"},{"text":"Puglia","link":"#"},{"text":"Sardegna","link":"#"},{"text":"Sicilia","link":"#"},{"text":"Toscana","link":"#"},{"text":"Trentino Alto Adige","link":"#"},{"text":"Umbria","link":"#"},{"text":"Valle d’Aosta","link":"#"},{"text":"Veneto","link":"#"}]'/>
-                             <span class="autocomplete-icon" aria-hidden="true">
-                               <svg class="icon icon-sm"><use xlink:href="/SistemaSanitario/svg/sprite.svg#it-search"></use></svg>
-                             </span>
+                                 <input type="search" placeholder="Cerca pazienti..."
+                                       id="myInput" onkeyup="filterData()" />
+                                 <span class="autocomplete-icon" aria-hidden="true">
+                                  <svg class="icon icon-sm"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-search"></use></svg>
+                                </span>
+                               <label for="autocomplete-regioni" class="sr-only">Cerca nel sito</label>
                            </div>
+                            <p id="showData" class="table-responsive-sm"></p>
                         </div>
+                    </div>
+                    
+                    <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="modalTitle">Scheda paziente:</h4>
+                          </div>
+                          <div class="modal-body">
+                               <div class="d-flex align-items-center justify-content-start justify-content-md-around flex-wrap flex-sm-nowrap">
+                                <div class="avatar-wrapper avatar-extra-text">
+                                  <div class="avatar size-xxl" id="profileImage">
+                                      <img id="myImage"/>
+                                      <svg id="defaultAvatar" class="icon icon icon-secondary"><use xlink:href="../../../svg/sprite.svg#it-user"></use></svg>
+                                  </div>
+                                  <div class="extra-text">
+                                    <p id="cf" class="text-left"></p>
+                                    <p id="birthDate" class="text-left"></p>
+                                    <p id="birthPlace" class="text-left"></p>
+                                  </div>
+                                </div>
+                              </div>
+                             <p class="text-left"><b>Prescrizioni:</b></p>
+                             <p class="text-left table-responsive-sm" id="showPrescriptions" ></p>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-primary btn-sm" data-dismiss="modal" type="button">Close</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                 </ui:define>
         </ui:decorate>
     
                 
+    </ui:define>
+    
+    <ui:define name="additionalJs">
+        <script type="text/javascript" src="/SistemaSanitario/js/pazientiMedico.js"></script>
     </ui:define>
 
 </ui:composition>

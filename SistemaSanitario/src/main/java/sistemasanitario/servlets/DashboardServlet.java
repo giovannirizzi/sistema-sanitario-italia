@@ -30,6 +30,7 @@ import org.json.simple.JSONObject;
 import sistemasanitario.entities.Medico;
 import sistemasanitario.entities.Paziente;
 import sistemasanitario.entities.PrescrizioneEsame;
+import sistemasanitario.entities.User;
 
 /**
  *
@@ -69,44 +70,133 @@ public class DashboardServlet extends HttpServlet {
         Medico medico = (Medico)request.getSession().getAttribute("medico");
         String id = request.getParameter("id");
         
-        if(id == null){
-            QueryBuilder<Paziente, Integer> queryBuilder = pazienteDao.queryBuilder();
-            PreparedQuery<Paziente> getPazienteByIdMedicoQuery;
+        Connection connection;
+        Statement statement = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://sistemasanitariodb.c16q8irjv9nd.us-east-2.rds.amazonaws.com/sistemasanitario", "admin", "Cinghiale123$");
+            statement = connection.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(DashboardServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-            try {
-                getPazienteByIdMedicoQuery = queryBuilder.where().eq("idMedico", medico.getId()).prepare();
-                List<Paziente> pazienti = pazienteDao.query(getPazienteByIdMedicoQuery);
+        
+        if(id == null){
+            
+            User user = (User)request.getSession().getAttribute("user");
+            
+            if(user.getType() == User.UserType.MEDICO_BASE){
                 
-                String listaPazienti = this.gson.toJson(pazienti);
-                PrintWriter out = response.getWriter();
-                response.setContentType("application/json");
-                response.setCharacterEncoding("UTF-8");
-                out.print(listaPazienti);
-                out.flush();
-            } catch (SQLException ex) {
-                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    
+                    JSONObject pazienti = new JSONObject();
+
+                    ResultSet rs = statement.executeQuery("SELECT * FROM PAZIENTE WHERE idMedico = " + medico.getId() + ";");
+                    
+                    JSONArray array = new JSONArray();
+
+                    while (rs.next()){
+                        JSONObject item = new JSONObject();
+                        item.put("id", rs.getString("id"));
+                        item.put("name", rs.getString("nome"));
+                        item.put("surname", rs.getString("cognome"));
+                        item.put("birthDate", rs.getString("dataNascita"));
+                        item.put("birthPlace", rs.getString("luogoNascita"));
+                        item.put("province", rs.getString("provincia"));
+                        item.put("cf", rs.getString("cf"));
+                        item.put("photo", rs.getString("foto"));
+                        ResultSet rs1 = statement.executeQuery("SELECT max(PRESCRIZIONE_MEDICINA.data) AS dataMedicina,max(PRESCRIZIONE_ESAME.data) AS dataEsame FROM PAZIENTE INNER JOIN PRESCRIZIONE_MEDICINA ON PAZIENTE.id = PRESCRIZIONE_MEDICINA.idPaziente AND PAZIENTE.idMedico = " + medico.getId() + " INNER JOIN PRESCRIZIONE_ESAME ON PAZIENTE.id = PRESCRIZIONE_ESAME.idPaziente WHERE PAZIENTE.ID = " + rs.getString("id") + ";");
+                        while (rs1.next()){
+                            item.put("lastMedicine", rs1.getString("dataMedicina"));
+                            item.put("lastVisit", rs1.getString("dataEsame"));
+                        }
+                        array.add(item);
+                    }
+                    
+                    pazienti.put("patient", array);
+                    
+                    PrintWriter out = response.getWriter();
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+                    out.print(pazienti);
+                    out.flush();
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(DashboardServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                /*QueryBuilder<Paziente, Integer> queryBuilder = pazienteDao.queryBuilder();
+                PreparedQuery<Paziente> getPazienteByIdMedicoQuery;
+                try {
+                    getPazienteByIdMedicoQuery = queryBuilder.where().eq("idMedico", medico.getId()).prepare();
+                    List<Paziente> pazienti = pazienteDao.query(getPazienteByIdMedicoQuery);
+
+                    String listaPazienti = this.gson.toJson(pazienti);
+                    PrintWriter out = response.getWriter();
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+                    out.print(listaPazienti);
+                    out.flush();
+                } catch (SQLException ex) {
+                    Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }*/
+                
+            }else{
+                
+                if(user.getType() == User.UserType.MEDICO_SPECIALISTA || user.getType() == User.UserType.SS_PROVINCIALE){
+                    
+                    try {
+                        
+                        JSONObject pazienti = new JSONObject();
+
+                        ResultSet rs = statement.executeQuery("SELECT * FROM PAZIENTE");
+
+                        JSONArray array = new JSONArray();
+
+                        while (rs.next()){
+                            JSONObject item = new JSONObject();
+                            item.put("id", rs.getString("id"));
+                            item.put("name", rs.getString("nome"));
+                            item.put("surname", rs.getString("cognome"));
+                            item.put("birthDate", rs.getString("dataNascita"));
+                            item.put("birthPlace", rs.getString("luogoNascita"));
+                            item.put("province", rs.getString("provincia"));
+                            item.put("cf", rs.getString("cf"));
+                            item.put("photo", rs.getString("foto"));
+                            ResultSet rs1 = statement.executeQuery("SELECT max(PRESCRIZIONE_MEDICINA.data) AS dataMedicina,max(PRESCRIZIONE_ESAME.data) AS dataEsame FROM PAZIENTE INNER JOIN PRESCRIZIONE_MEDICINA ON PAZIENTE.id = PRESCRIZIONE_MEDICINA.idPaziente INNER JOIN PRESCRIZIONE_ESAME ON PAZIENTE.id = PRESCRIZIONE_ESAME.idPaziente WHERE PAZIENTE.ID = " + rs.getString("id") + ";");
+                            while (rs1.next()){
+                                item.put("lastMedicine", rs1.getString("dataMedicina"));
+                                item.put("lastVisit", rs1.getString("dataEsame"));
+                            }
+                            array.add(item);
+                        }
+
+                        pazienti.put("patient", array);
+
+                        PrintWriter out = response.getWriter();
+                        response.setContentType("application/json");
+                        response.setCharacterEncoding("UTF-8");
+                        out.print(pazienti);
+                        out.flush();
+                    
+                    } catch (SQLException ex) {
+                        Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                }
             }
             
         } else {
-            QueryBuilder<PrescrizioneEsame, Integer> queryBuilder2 = prescrizioneEsameDao.queryBuilder();
-            PreparedQuery<PrescrizioneEsame> getPrescrizioneEsameByIdPazienteQuery;
             
             try {
                 
                 JSONObject prescrizioni = new JSONObject();
                 
-                Connection connection = DriverManager.getConnection("jdbc:mysql://sistemasanitariodb.c16q8irjv9nd.us-east-2.rds.amazonaws.com/sistemasanitario", "admin", "Cinghiale123$");
-                // Creazione oggetto Statement
-                Statement statement = connection.createStatement();
-
-                // Esecuzione di un comando sul DB
                 ResultSet rs = statement.executeQuery("select ESAME_PRESCRIVIBILE.nome as nomeEsame,ESAME_PRESCRIVIBILE.descrizione as descrizioneEsame, PRESCRIZIONE_ESAME.data from PAZIENTE left join PRESCRIZIONE_ESAME on PAZIENTE.id = PRESCRIZIONE_ESAME.idPaziente inner join ESAME_PRESCRIVIBILE on PRESCRIZIONE_ESAME.idEsame = ESAME_PRESCRIVIBILE.id where PAZIENTE.id = " + id + ";");
                 
                 JSONArray array = new JSONArray();
-                JSONObject item = new JSONObject();
                 
-                // Elaborazione del risultato
                 while (rs.next()){
+                    JSONObject item = new JSONObject();
                     item.put("name", rs.getString("nomeEsame"));
                     item.put("description", rs.getString("descrizioneEsame"));
                     item.put("date", rs.getString("data"));
