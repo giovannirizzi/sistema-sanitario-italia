@@ -3,18 +3,17 @@ $(document).ready( function() {
  });
 
 $(document).on("click", "tr[name='patientRow']", function(e) {
-    
-    
+
     var id = this.id;
+    var myId = this.getAttribute('myattr');
     $.ajax({
       url: "/SistemaSanitario/services/dashboard",
       type: "get", //send it through get method
       dataType : 'json',
       data: {"id":id},
       success: function(response) {
-            $('#modalTitle').text("Scheda di "+ response.name + " " + response.surname);
-            
-            if(response.photo !== null){
+            $('#modalTitle').text("Scheda di "+ patients.patient[myId].name + " " + patients.patient[myId].surname);
+            if(patients.patient[myId].photo !== null){
                 var imageContainer = document.getElementById("myImage");
                 imageContainer.setAttribute('src', 'http://localhost:8080/SistemaSanitario/services/avatar?id='+id);
                 var svgContainer = document.getElementById("defaultAvatar");
@@ -28,11 +27,11 @@ $(document).on("click", "tr[name='patientRow']", function(e) {
             }
             // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
             var pContainer = document.getElementById("cf");
-            pContainer.innerHTML = "<b>Codice fiscale: </b>" + response.cf;
+            pContainer.innerHTML = "<b>Codice fiscale: </b>" + patients.patient[myId].cf;
             pContainer = document.getElementById("birthDate");
-            pContainer.innerHTML = "<b>Data di nascita: </b>" + response.birthDate;
+            pContainer.innerHTML = "<b>Data di nascita: </b>" + patients.patient[myId].birthDate;
             pContainer = document.getElementById("birthPlace");
-            pContainer.innerHTML = "<b>Luogo di nascita: </b>" + response.birthPlace + " (" + response.province + ")";
+            pContainer.innerHTML = "<b>Luogo di nascita: </b>" + patients.patient[myId].birthPlace + " (" + patients.patient[myId].province + ")";
             
             if(response.exams.length !== 0){
                 var col = [];
@@ -84,14 +83,16 @@ $(document).on("click", "tr[name='patientRow']", function(e) {
                 var divContainer = document.getElementById("showPrescriptions");
                 divContainer.innerHTML = "Nessuna prescrizione per questo paziente";
             }
-            console.log(response);
+          
             $("#exampleModal").modal();
       },
       error: function(xhr, status, error) {
-         alert(xhr.responseText);
+           console.log(xhr.responseText);
       }
     });
 });
+
+var patients;
 
 function getPazienti(){
     
@@ -103,6 +104,8 @@ function getPazienti(){
             alert(xhr.responseText);
         },
         success : function(data) {
+            
+            patients = data;
             
             var col = [];
             for (var i = 0; i < data.patient.length; i++) {
@@ -116,7 +119,7 @@ function getPazienti(){
 
             // CREATE DYNAMIC TABLE.
             var table = document.createElement("table");
-            table.setAttribute('class', 'table dt-responsive nowrap');
+            table.setAttribute('class', 'table table-hover table-bordered table-striped dt-responsive nowrap');
             table.setAttribute('id', 'myTable');
             var header = table.createTHead();
             header.setAttribute('class', 'thead-light');
@@ -141,6 +144,8 @@ function getPazienti(){
                 tr = body.insertRow(-1);
                 tr.setAttribute('id',""+data.patient[i]["id"]+"");
                 tr.setAttribute('name', 'patientRow');
+                tr.setAttribute('myattr', i);
+                tr.setAttribute('style','cursor:pointer;');
 
                 for (var j = 0; j < arrayHeader.length; j++) {
                     var tabCell = tr.insertCell(-1);
