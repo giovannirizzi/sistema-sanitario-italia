@@ -6,11 +6,11 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import sistemasanitario.config.DatabaseConfig;
 import sistemasanitario.entities.AuthToken;
 import sistemasanitario.entities.EsamePrescrivibile;
 import sistemasanitario.entities.Medicina;
@@ -32,15 +32,15 @@ public class WebAppContextListener  implements ServletContextListener{
     @Override
     public void contextInitialized(ServletContextEvent sce) {
 
-        String path = WebAppContextListener.class.getClassLoader()
-                                  .getResource("logging.properties")
-                                  .getFile();
-        System.setProperty("java.util.logging.config.file", path);
-
         try {
-            JdbcConnectionSource con = new JdbcConnectionSource(
+            /*JdbcConnectionSource con = new JdbcConnectionSource(
                     sce.getServletContext().getInitParameter("DBURL"),
-                     "webapp", "bufalo123");  
+                     "webapp", "bufalo123");*/
+            
+            DatabaseConfig dbConfig = DatabaseConfig.getInstance();
+            JdbcConnectionSource con = new JdbcConnectionSource(dbConfig.getUrl(),
+                    dbConfig.getUsername(), dbConfig.getPassword());
+     
             
             sce.getServletContext().setAttribute("connectionSource", con);
             
@@ -87,9 +87,10 @@ public class WebAppContextListener  implements ServletContextListener{
             PrescriptionMedicinePDFUtil.init(sce.getServletContext());
                
         } catch (SQLException ex) {
-            LOGGER.log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, "Error initialize DAO", ex);
+        } catch (Exception ex) {
+            LOGGER.log(Level.SEVERE, "Error get database url configuration", ex);
         }  
-  
     }
 
     @Override

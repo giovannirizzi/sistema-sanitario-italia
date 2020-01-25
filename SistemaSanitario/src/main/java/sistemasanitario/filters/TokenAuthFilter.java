@@ -22,19 +22,20 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sistemasanitario.config.AuthConfig;
 import sistemasanitario.entities.AuthToken;
 import sistemasanitario.entities.User;
 import sistemasanitario.listeners.AuthenticatedUserListener;
 import sistemasanitario.servlets.PasswordTest;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
+import sistemasanitario.utils.PasswordUtil;
 import sistemasanitario.utils.TokenUtil;
 
 public class TokenAuthFilter implements Filter{
 
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
     
-    private static final int MAX_DAYS_REMEMBER_ME = 7;
-    public static final String REMEMBER_COOKIE_NAME = "rememberme";
+    private static AuthConfig authConfig;
     
     private Dao<AuthToken, Integer> authTokensDao;
     private Dao<User, Integer> usersDao;
@@ -42,6 +43,12 @@ public class TokenAuthFilter implements Filter{
     
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        
+        try {
+            authConfig = AuthConfig.getInstance();
+        } catch (Exception ex) {
+            Logger.getLogger(PasswordUtil.class.getName()).log(Level.SEVERE, "Error initialize auth config", ex);
+        }
         
         authTokensDao = (Dao<AuthToken, Integer>)filterConfig.getServletContext().getAttribute("AuthTokensDao");
         usersDao = (Dao<User, Integer>)filterConfig.getServletContext().getAttribute("UsersDao");
@@ -68,7 +75,7 @@ public class TokenAuthFilter implements Filter{
         String rememberMeToken = null;
         if(cookies != null) {
             for (Cookie cookie : cookies) {
-                if(cookie.getName().equals(REMEMBER_COOKIE_NAME)){
+                if(cookie.getName().equals(authConfig.getRememberMeCookieName())){
                     rememberMeToken = cookie.getValue();
                     break;
                 } 
@@ -92,13 +99,13 @@ public class TokenAuthFilter implements Filter{
 
                     Timestamp now = Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
                   
-                    long elapsedDaysSinceCreation = TimeUnit.DAYS.convert(now.getTime() - 
+                    long elapsedSecSinceCreation = TimeUnit.SECONDS.convert(now.getTime() - 
                             tokens.get(0).getCreatedTime().getTime()
                             , TimeUnit.MILLISECONDS);
                     
-                    LOGGER.log(Level.INFO, "ELAPSED DAYS SINCE CREATION OF AUTH TOKEN: {0}", elapsedDaysSinceCreation);
+                    LOGGER.log(Level.INFO, "ELAPSED DAYS SINCE CREATION OF AUTH TOKEN: {0}", elapsedSecSinceCreation);
                     
-                    if(elapsedDaysSinceCreation < MAX_DAYS_REMEMBER_ME
+                    if(elapsedSecSinceCreation < authConfig.getRememberMeMaxAge()
                             && TokenUtil.verify(tokens.get(0).getValidator(), validator)){
 
                         LOGGER.log(Level.INFO, "User authenticated with token");
@@ -119,10 +126,4 @@ public class TokenAuthFilter implements Filter{
             }
         }
     }
-
-    @Override
-    public void destroy() {
-        
-    }
-
-   }
+}

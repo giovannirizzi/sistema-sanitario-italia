@@ -47,13 +47,6 @@ public class AuthenticatedUserListener{
                     session.setAttribute("paziente", paziente);
                     headerUserName = paziente.getNome() + " " + paziente.getCognome();
                 }
-                
-                /*NotificationsBean notificationBean = (NotificationsBean)session.getAttribute("notifications");
-                if(notificationBean != null){
-                    notificationBean.patientUpdateNotifications();
-                }
-                else
-                    LOGGER.severe("NotificationsBean is null");*/
 
                 break;
             }

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sistemasanitario.config.AuthConfig;
 import sistemasanitario.entities.AuthToken;
 import sistemasanitario.entities.User;
 import sistemasanitario.filters.TokenAuthFilter;
@@ -29,8 +30,8 @@ import sistemasanitario.utils.PasswordUtil;
 public class LoginServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
-    private static final int REMEMBERME_COOKIE_AGE = 60*60*24*14; //14 giorni
-    
+
+    private static AuthConfig authConfig;
     private AuthenticatedUserListener authUserListener; 
     private Dao<AuthToken, Integer> authTokensDao;
     private Dao<User, Integer> usersDao;
@@ -42,6 +43,11 @@ public class LoginServlet extends HttpServlet {
         authUserListener = new AuthenticatedUserListener(getServletContext());
         authTokensDao = (Dao<AuthToken, Integer>)getServletContext().getAttribute("AuthTokensDao");
         usersDao = (Dao<User, Integer>)getServletContext().getAttribute("UsersDao");
+        try {
+            authConfig = AuthConfig.getInstance();
+        } catch (Exception ex) {
+            Logger.getLogger(PasswordUtil.class.getName()).log(Level.SEVERE, "Error initialize auth config", ex);
+        }
     }
  
     private void redirectToServices(HttpSession authUserSession, HttpServletResponse response) throws IOException{
@@ -141,18 +147,20 @@ public class LoginServlet extends HttpServlet {
 
                 AuthToken token = TokenUtil.getRandomAuthToken();
                 
-                Cookie rememberCookie = new Cookie(TokenAuthFilter.REMEMBER_COOKIE_NAME, 
+                Cookie rememberCookie = new Cookie(authConfig.getRememberMeCookieName(), 
                         token.selector+token.validator);
-                rememberCookie.setMaxAge(REMEMBERME_COOKIE_AGE);
+                rememberCookie.setMaxAge(authConfig.getRememberMeMaxAge());
                 rememberCookie.setHttpOnly(true);
                 rememberCookie.setPath("/");
                 response.addCookie(rememberCookie);
                 
-                saveAuthToken(user, token);     
+                saveAuthToken(user, token);  
             }
             
             HttpSession tmp = request.getSession();
             tmp.setAttribute("user", user);
+            if(rememberMe) tmp.setMaxInactiveInterval(authConfig.getRememberMeMaxAge());
+            
             try {
                 authUserListener.onNewUserAuthenticated(request.getSession(false), user);
             } catch (SQLException ex) {

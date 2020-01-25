@@ -13,27 +13,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sistemasanitario.config.AuthConfig;
 import sistemasanitario.entities.AuthToken;
 import sistemasanitario.entities.User;
-import sistemasanitario.filters.TokenAuthFilter;
+import sistemasanitario.utils.PasswordUtil;
 
 @WebServlet("/services/logout")
 public class LogoutServlet extends HttpServlet{
     
     private Dao<AuthToken, Integer> authTokensDao;
-    private Dao<User, Integer> usersDao;
+    private static AuthConfig authConfig;
     
     @Override
     public void init() throws ServletException {
         super.init();
         
         authTokensDao = (Dao<AuthToken, Integer>)getServletContext().getAttribute("AuthTokensDao");
-        usersDao = (Dao<User, Integer>)getServletContext().getAttribute("UsersDao");
+        
+        try {
+            authConfig = AuthConfig.getInstance();
+        } catch (Exception ex) {
+            Logger.getLogger(PasswordUtil.class.getName()).log(Level.SEVERE, "Error initialize auth config", ex);
+        }
     }
     
     private void clearRememberMeCookie(HttpServletRequest req, HttpServletResponse response){
         
-        Cookie rememberCookie = new Cookie(TokenAuthFilter.REMEMBER_COOKIE_NAME, "");
+        Cookie rememberCookie = new Cookie(authConfig.getRememberMeCookieName(), "");
         rememberCookie.setPath("/");
         rememberCookie.setMaxAge(0);
         response.addCookie(rememberCookie);
@@ -42,7 +48,7 @@ public class LogoutServlet extends HttpServlet{
         
         if (cookies != null)
             for (Cookie cookie : cookies) {
-                if(cookie.getName().equals(TokenAuthFilter.REMEMBER_COOKIE_NAME)){
+                if(cookie.getName().equals(authConfig.getRememberMeCookieName())){
                     cookie.setMaxAge(0);
                     cookie.setValue("");
                     break;

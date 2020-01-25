@@ -4,12 +4,15 @@ import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
 import org.passay.LengthRule;
 import org.passay.PasswordData;
 import org.passay.PasswordValidator;
 import org.passay.RuleResult;
+import sistemasanitario.config.AuthConfig;
 
 public final class PasswordUtil {
     
@@ -82,15 +85,23 @@ public final class PasswordUtil {
     }
     
     public static RuleResult validatePassword(String password){
+        
+        final AuthConfig authConfig;
+        try {
+            authConfig = AuthConfig.getInstance();
+        } catch (Exception ex) {
+            Logger.getLogger(PasswordUtil.class.getName()).log(Level.SEVERE, "Error initialize auth config", ex);
+            return null;
+        }
          
         if(passwordValidator == null){
             passwordValidator = new PasswordValidator(
                 Arrays.asList(
-                    new LengthRule(8, 255),
-                    new CharacterRule(EnglishCharacterData.LowerCase, 1),
-                    new CharacterRule(EnglishCharacterData.UpperCase, 1),
-                    new CharacterRule(EnglishCharacterData.Digit, 1),
-                    new CharacterRule(EnglishCharacterData.Special, 1))
+                    new LengthRule(authConfig.getPasswordMinLength(), authConfig.getPasswordMaxLength()),
+                    new CharacterRule(EnglishCharacterData.LowerCase, authConfig.getMinLowerCaseCharacter()),
+                    new CharacterRule(EnglishCharacterData.UpperCase, authConfig.getMinUpperCaseCharacter()),
+                    new CharacterRule(EnglishCharacterData.Digit, authConfig.getMinDigitCharacter()),
+                    new CharacterRule(EnglishCharacterData.Special, authConfig.getMinSpecialCharacter()))
                 );
         }
         return passwordValidator.validate(new PasswordData(password));
