@@ -19,10 +19,20 @@
                       <a class="nav-link" href="#{request.contextPath}/personalarea/patient/"><span>Servizi Paziente</span></a>
                       <ul class="link-list">
                         <li class="nav-link">
-                          <a class="nav-link" href="#{request.contextPath}/personalarea/patient/exams/"><span>Esami</span></a>
+                          <a class="nav-link" href="#{request.contextPath}/personalarea/patient/exams/">
+                              <span>Esami</span>
+                              <c:if test="#{notifications.patientNewExamPrescriptions gt 0}">
+                                 <span class=" badge badge badge-danger text-white">#{notifications.patientNewExamPrescriptions} NEW</span>
+                              </c:if>
+                          </a>
                         </li>
                         <li class="nav-link">
-                          <a class="nav-link" href="#{request.contextPath}/personalarea/patient/prescriptions/"><span>Ricette</span></a>
+                          <a class="nav-link" href="#{request.contextPath}/personalarea/patient/prescriptions/">
+                              <span>Ricette</span>
+                              <c:if test="#{notifications.patientNewMedicinePrescriptions gt 0}">
+                                 <span class=" badge badge badge-danger text-white">#{notifications.patientNewMedicinePrescriptions} NEW</span>
+                              </c:if>
+                          </a>
                         </li>
                       </ul>
                        <a class="nav-link" href="#{request.contextPath}/personalarea/patient/infoexams/"><span>Informazioni esami</span></a>   

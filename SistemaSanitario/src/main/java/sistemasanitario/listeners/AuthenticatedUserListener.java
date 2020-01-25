@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import sistemasanitario.beans.NotificationsBean;
 import sistemasanitario.entities.Medicina;
 import sistemasanitario.entities.Medico;
 import sistemasanitario.entities.MedicoSpecialista;
@@ -17,11 +18,11 @@ import sistemasanitario.servlets.PasswordTest;
 
 public class AuthenticatedUserListener{
     
-    private Dao<Paziente, Integer> pazienteDao;
-    private Dao<Medico, Integer> medicoDao;
-    private Dao<MedicoSpecialista, Integer> medicoSpecialistaDao;
-    private Dao<Medicina, Integer> medicinaDao;
-    private Dao<Ssp, Integer> sspDao;
+    private final Dao<Paziente, Integer> pazienteDao;
+    private final Dao<Medico, Integer> medicoDao;
+    private final Dao<MedicoSpecialista, Integer> medicoSpecialistaDao;
+    private final Dao<Medicina, Integer> medicinaDao;
+    private final Dao<Ssp, Integer> sspDao;
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
     
     public AuthenticatedUserListener(ServletContext context){
@@ -46,6 +47,14 @@ public class AuthenticatedUserListener{
                     session.setAttribute("paziente", paziente);
                     headerUserName = paziente.getNome() + " " + paziente.getCognome();
                 }
+                
+                /*NotificationsBean notificationBean = (NotificationsBean)session.getAttribute("notifications");
+                if(notificationBean != null){
+                    notificationBean.patientUpdateNotifications();
+                }
+                else
+                    LOGGER.severe("NotificationsBean is null");*/
+
                 break;
             }
                 

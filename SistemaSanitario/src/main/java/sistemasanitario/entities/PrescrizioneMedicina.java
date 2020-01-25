@@ -25,6 +25,9 @@ public class PrescrizioneMedicina {
     private Integer quantita;
     
     @DatabaseField(readOnly = true, canBeNull = false)
+    private Boolean letta;
+    
+    @DatabaseField(readOnly = true, canBeNull = false)
     private Date data;
 
     public int getId() {
@@ -74,4 +77,8 @@ public class PrescrizioneMedicina {
     public Date getData() {
         return data;
     } 
+
+    public Boolean getLetta() {
+        return letta;
+    }
 }

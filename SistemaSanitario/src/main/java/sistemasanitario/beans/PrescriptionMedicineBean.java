@@ -23,16 +23,22 @@ public class PrescriptionMedicineBean implements Serializable{
     @ManagedProperty("#{sessionScope.paziente}")
     private Paziente paziente;
     
-    private DataModel<PrescrizioneMedicina> prescrizioni; 
+    @ManagedProperty("#{notifications}")
+    private NotificationsBean notifications;
     
-    @PostConstruct
-    public void init(){
+    private DataModel<PrescrizioneMedicina> prescrizioni; 
+    private static Dao<PrescrizioneMedicina, Integer> prescrizioneMedicinaDao;
+    
+    public PrescriptionMedicineBean(){
         
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ServletContext servletContext = (ServletContext)facesContext.getExternalContext().getContext();
         
-        Dao<PrescrizioneMedicina, Integer> prescrizioneMedicinaDao = 
-                (Dao<PrescrizioneMedicina, Integer>)servletContext.getAttribute("prescrizioneMedicinaDao");
+        prescrizioneMedicinaDao = (Dao<PrescrizioneMedicina, Integer>)servletContext.getAttribute("prescrizioneMedicinaDao");
+    }
+    
+    @PostConstruct
+    public void init(){
         
         QueryBuilder queryBuilder = prescrizioneMedicinaDao.queryBuilder();
         List<PrescrizioneMedicina> tmp = null;
@@ -42,9 +48,10 @@ public class PrescriptionMedicineBean implements Serializable{
            
         }
         this.prescrizioni = new ListDataModel<>(tmp);
+        
+        if(notifications.getPatientNewMedicinePrescriptions()!= 0)
+            notifications.patientOnGetMedicinePrescription();
     }
-    
-    public PrescriptionMedicineBean(){}
 
     public void setPaziente(Paziente paziente) {
         this.paziente = paziente;
@@ -53,5 +60,8 @@ public class PrescriptionMedicineBean implements Serializable{
     public DataModel<PrescrizioneMedicina> getPrescrizioni() {
         return prescrizioni;
     }
-  
+
+    public void setNotifications(NotificationsBean notifications) {
+        this.notifications = notifications;
+    }
 }

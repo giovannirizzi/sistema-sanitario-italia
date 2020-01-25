@@ -101,8 +101,11 @@ public class DoctorServices {
             List<User> utenti = queryEmail.where().idEq(idPaziente).query();
             List<EsamePrescrivibile> esamePrescritto = queryEsame.where().idEq(idEsame).query();
        
-            MailSender s1 = new MailSender();
-            s1.sendEmail(utenti.get(0).getEmail(), "Nuova Prescrizione", "Salve: "+utenti.get(0).getUsername()+"\nE' stato prescritto un nuovo esame per lei!\nEsame: "+esamePrescritto.get(0).getNome());
+            if(!utenti.get(0).getEmail().contains("example.com")){
+                MailSender s1 = new MailSender();
+                s1.sendEmail(utenti.get(0).getEmail(), "Nuova Prescrizione",
+                        "Salve: "+utenti.get(0).getUsername()+"\nE' stato prescritto un nuovo esame per lei!\nEsame: "+esamePrescritto.get(0).getNome());
+            }
 
         } catch (SQLException ex) {
             return Response.serverError().build();
@@ -147,9 +150,13 @@ public class DoctorServices {
             QueryBuilder<Medicina, Integer> queryMedicina = medicinaDao.queryBuilder();
             List<User> utenti = queryEmail.where().idEq(idPaziente).query();
             List<Medicina> medicinaPrescritta = queryMedicina.where().idEq(idMedicina).query();
-       
-            MailSender s1 = new MailSender();
-            s1.sendEmail(utenti.get(0).getEmail(), "Nuovo Prescrizione", "Salve: "+utenti.get(0).getUsername()+"\nE' stato prescritto un nuovo farmaco per lei!\nFarmaco: "+medicinaPrescritta.get(0).getNome());
+            
+            if(!utenti.get(0).getEmail().contains("example.com")){
+                MailSender s1 = new MailSender();
+                s1.sendEmail(utenti.get(0).getEmail(), "Nuovo Prescrizione",
+                    "Salve: "+utenti.get(0).getUsername()+"\nE' stato prescritto un nuovo farmaco per lei!\nFarmaco: "+medicinaPrescritta.get(0).getNome());
+            }
+            
 
         } catch (SQLException ex) {
             return Response.serverError().build();

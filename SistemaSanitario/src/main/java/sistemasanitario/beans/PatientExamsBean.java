@@ -5,6 +5,7 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -24,24 +25,31 @@ public class PatientExamsBean implements Serializable{
     
     @ManagedProperty("#{sessionScope.paziente}")
     private Paziente paziente;
+    
+    @ManagedProperty("#{notifications}")
+    private NotificationsBean notifications;
 
     private DataModel<PrescrizioneEsame> exams; 
+    private static final Logger LOG = Logger.getLogger(PatientExamsBean.class.getName());
     
-    @PostConstruct
-    public void init(){
+    private static Dao<PrescrizioneMedicina, Integer> prescrizioneEsameDao;
+    private static Dao<Report, Integer> reportDao;
+    
+    public PatientExamsBean(){
         
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ServletContext servletContext = (ServletContext)facesContext.getExternalContext().getContext();
-        Dao<PrescrizioneMedicina, Integer> prescrizioneEsameDao = 
-                (Dao<PrescrizioneMedicina, Integer>)servletContext.getAttribute("prescrizioneEsameDao");
-        Dao<Report, Integer> reportDao = 
-                (Dao<Report, Integer>)servletContext.getAttribute("reportDao");
+        prescrizioneEsameDao = (Dao<PrescrizioneMedicina, Integer>)servletContext
+                .getAttribute("prescrizioneEsameDao");
+        reportDao = (Dao<Report, Integer>)servletContext.getAttribute("reportDao");
+    }
+    
+    @PostConstruct
+    public void init(){
 
         QueryBuilder queryBuilderPreEsami = prescrizioneEsameDao.queryBuilder();
-  
         List<PrescrizioneEsame> tmp = null;
 
-        
         try {
 
             //tmp = queryBuilder.where().eq("idPaziente", paziente.getId()).query();
@@ -53,9 +61,10 @@ public class PatientExamsBean implements Serializable{
            
         }
         this.exams = new ListDataModel<>(tmp);
+        
+        if(notifications.getPatientNewExamPrescriptions() != 0)
+            notifications.patientOnGetExamPrescription();
     }
-
-    public PatientExamsBean(){}
 
     public void setPaziente(Paziente paziente) {
         this.paziente = paziente;
@@ -68,4 +77,9 @@ public class PatientExamsBean implements Serializable{
     public DataModel<PrescrizioneEsame> getExams() {
         return exams;
     }
+
+    public void setNotifications(NotificationsBean notifications) {
+        this.notifications = notifications;
+    }
+ 
 }

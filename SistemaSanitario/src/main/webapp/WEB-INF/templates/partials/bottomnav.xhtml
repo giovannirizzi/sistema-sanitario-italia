@@ -18,14 +18,22 @@
                 </li>
                 <li>
                   <a href="#{request.contextPath}/personalarea/patient/exams/">
-                     <div class="badge-wrapper"><span class="bottom-nav-badge">1</span></div>
+                     <div class="badge-wrapper">
+                        <c:if test="#{notifications.patientNewExamPrescriptions gt 0}">
+                            <span class="bottom-nav-badge">#{notifications.patientNewExamPrescriptions}</span>
+                        </c:if> 
+                     </div>
                     <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-files"></use></svg>
                     <span class="bottom-nav-label">Esami</span>
                   </a>
                 </li>
                 <li>
                   <a href="#{request.contextPath}/personalarea/patient/prescriptions/">
-                    <div class="badge-wrapper"><span class="bottom-nav-badge">2</span></div>
+                      <div class="badge-wrapper">
+                          <c:if test="#{notifications.patientNewMedicinePrescriptions gt 0}">
+                            <span class="bottom-nav-badge">#{notifications.patientNewMedicinePrescriptions}</span>
+                        </c:if>
+                      </div>
                     <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-note"></use></svg>
                     <span class="bottom-nav-label">Ricette</span>
                   </a>
@@ -48,14 +56,12 @@
                 </li>
                 <li>
                   <a href="#{request.contextPath}/personalarea/doctor/patients/">
-                     <div class="badge-wrapper"><span class="bottom-nav-badge">1</span></div>
                     <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-user"></use></svg>
                     <span class="bottom-nav-label">Pazienti</span>
                   </a>
                 </li>
                 <li>
                   <a href="#{request.contextPath}/personalarea/doctor/prescription_exam/">
-                    <div class="badge-wrapper"><span class="bottom-nav-badge">2</span></div>
                     <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-file"></use></svg>
                     <span class="bottom-nav-label">Prescrivi esame</span>
                   </a>
@@ -78,14 +84,12 @@
                 </li>
                 <li>
                   <a href="#{request.contextPath}/personalarea/specialist/patients/">
-                     <div class="badge-wrapper"><span class="bottom-nav-badge">1</span></div>
                     <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-user"></use></svg>
                     <span class="bottom-nav-label">Pazienti</span>
                   </a>
                 </li>
                 <li>
                   <a href="#{request.contextPath}/personalarea/specialist/todoexams/">
-                    <div class="badge-wrapper"><span class="bottom-nav-badge">2</span></div>
                     <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-pencil"></use></svg>
                     <span class="bottom-nav-label">Scrivi report</span>
                   </a>
@@ -102,14 +106,12 @@
                 </li>
                 <li>
                   <a href="#{request.contextPath}/personalarea/ssp/patients/">
-                     <div class="badge-wrapper"><span class="bottom-nav-badge">1</span></div>
                     <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-user"></use></svg>
                     <span class="bottom-nav-label">Pazienti</span>
                   </a>
                 </li>
                 <li>
                   <a href="#{request.contextPath}/personalarea/ssp/todoexams/">
-                    <div class="badge-wrapper"><span class="bottom-nav-badge">2</span></div>
                     <svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-pencil"></use></svg>
                     <span class="bottom-nav-label">Scrivi report</span>
                   </a>

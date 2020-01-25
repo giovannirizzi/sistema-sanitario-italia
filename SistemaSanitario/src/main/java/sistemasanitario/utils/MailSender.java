@@ -25,9 +25,7 @@ public class MailSender {
     final String port = "465";
     final String username = "omarbattan@gmail.com";
     final String passwordAcc = "dbfcdokqbhuspuop";
-    
-    
-    
+
     public void sendEmail(String email, String subject, String message){
         Properties props = System.getProperties();
         props.setProperty("mail.smtp.host", host);
@@ -38,13 +36,11 @@ public class MailSender {
         props.setProperty("mail.smtp.starttls.enable", "true");
         props.setProperty("mail.debug", "true");
 
-        
         Session session = Session.getInstance(props, new Authenticator() {
-
-        @Override
-        protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(username, passwordAcc);
-        }
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, passwordAcc);
+            }
         });
         Message msg = new MimeMessage(session);
         try {
