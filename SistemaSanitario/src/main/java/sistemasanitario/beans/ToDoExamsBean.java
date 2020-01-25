@@ -2,7 +2,6 @@ package sistemasanitario.beans;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.QueryBuilder;
-import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -14,7 +13,6 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.servlet.ServletContext;
 import sistemasanitario.entities.MedicoSpecialista;
-import sistemasanitario.entities.Paziente;
 import sistemasanitario.entities.PrescrizioneEsame;
 import sistemasanitario.entities.PrescrizioneMedicina;
 import sistemasanitario.entities.Ssp;

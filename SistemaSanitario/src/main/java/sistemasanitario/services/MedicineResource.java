@@ -5,7 +5,6 @@
  */
 package sistemasanitario.services;
 
-import com.google.gson.Gson;
 import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 import javax.servlet.ServletContext;

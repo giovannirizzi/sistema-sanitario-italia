@@ -27,11 +27,6 @@ import sistemasanitario.entities.Paziente;
 import sistemasanitario.entities.PrescrizioneMedicina;
 import sistemasanitario.utils.QRCodeUtil;
 
-/**
- * Util class for generating PDF file from a {@link PrescriptionMedicine Presscription Medicine}
- *
- * @author Carlo Corradini
- */
 public final class PrescriptionMedicinePDFUtil {
 
     private static final Logger LOGGER = Logger.getLogger(PrescriptionMedicinePDFUtil.class.getName());
