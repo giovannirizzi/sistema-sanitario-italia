@@ -3,10 +3,6 @@ package sistemasanitario.services;
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
-/**
- *
- * @author giovanni
- */
 @javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
 
@@ -25,7 +21,6 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(sistemasanitario.services.DoctorServices.class);
-        resources.add(sistemasanitario.services.ExamResource.class);
         resources.add(sistemasanitario.services.MedicineResource.class);
         resources.add(sistemasanitario.services.PatientServices.class);
     }

@@ -1,9 +1,11 @@
 package sistemasanitario.services;
 
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.UpdateBuilder;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
@@ -20,9 +22,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import sistemasanitario.entities.EsamePrescrivibile;
 import sistemasanitario.entities.Medico;
+import sistemasanitario.entities.MedicoSpecialista;
 import sistemasanitario.entities.Paziente;
+import sistemasanitario.entities.PrescrizioneEsame;
 import sistemasanitario.entities.PrescrizioneMedicina;
 import sistemasanitario.entities.Report;
+import sistemasanitario.entities.Ssp;
 import sistemasanitario.servlets.PasswordTest;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
 import sistemasanitario.utils.pdf.PrescriptionMedicinePDFUtil;
@@ -34,11 +39,14 @@ public class PatientServices {
     private HttpServletRequest request;
     
     private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
-    private Dao<Medico, Integer> medicoDao;
-    private Dao<EsamePrescrivibile, Integer> esameDao;
-    private Dao<Paziente, Integer> pazienteDao;
-    private Dao<Report, Integer> reportDao;
+    private static Dao<Medico, Integer> medicoDao;
+    private static Dao<EsamePrescrivibile, Integer> esameDao;
+    private static Dao<Paziente, Integer> pazienteDao;
+    private static Dao<Report, Integer> reportDao;
     private static Dao<PrescrizioneMedicina, Integer> prescrizioneMedicinaDao;
+    private static Dao<PrescrizioneEsame, Integer> prescrizioneEsameDao;
+    private static Dao<MedicoSpecialista, Integer> medicoSpecialistaDao;
+    private static Dao<Ssp, Integer> sspDao;
     
     public PatientServices() {
     }
@@ -51,6 +59,9 @@ public class PatientServices {
             esameDao = (Dao<EsamePrescrivibile, Integer>) servletContext.getAttribute("esamePrescrivibileDao");
             reportDao = (Dao<Report, Integer>) servletContext.getAttribute("reportDao");
             prescrizioneMedicinaDao = (Dao<PrescrizioneMedicina, Integer>)servletContext.getAttribute("prescrizioneMedicinaDao");
+            prescrizioneEsameDao = (Dao<PrescrizioneEsame, Integer>)servletContext.getAttribute("prescrizioneEsameDao");
+            medicoSpecialistaDao = (Dao<MedicoSpecialista, Integer>)servletContext.getAttribute("medicoSpecialistaDao");
+            sspDao = (Dao<Ssp, Integer>)servletContext.getAttribute("sspDao");  
         }
     }
     
@@ -133,12 +144,28 @@ public class PatientServices {
             response = Response.status(Response.Status.BAD_REQUEST);
         } else {
             try {
-                QueryBuilder <Report, Integer> reportBuilder = reportDao.queryBuilder();
-                reportBuilder.where().idEq(reportId);
-
-                List <Report> report = reportBuilder.query();
-
-                response = Response.ok(report.get(0));
+                Report report = reportDao.queryForId(reportId);
+                prescrizioneEsameDao.refresh(report.getPrescrizioneEsame());
+                
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+                String data = dateFormat.format(report.getData());
+                report.setDataString(data);
+                
+                if(report.getPrescrizioneEsame().getMedicoSpe() != null){
+                    MedicoSpecialista spe = report.getPrescrizioneEsame().getMedicoSpe();
+                    medicoSpecialistaDao.refresh(spe);
+                    report.setAutore(spe.getNome() + " " + spe.getCognome());    
+                }
+                else if(report.getPrescrizioneEsame().getSsp() != null){
+                    Ssp ssp = report.getPrescrizioneEsame().getSsp();
+                    sspDao.refresh(ssp);
+                    report.setAutore(ssp.getNome());    
+                }
+                report.setEsame(report.getPrescrizioneEsame().getEsame().getNome());
+                
+                report.setData(null);
+                report.setPrescrizioneEsame(null);
+                response = Response.ok(report);
             } catch (SQLException ex) {
                 response = Response.status(Response.Status.INTERNAL_SERVER_ERROR);
             }

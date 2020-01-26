@@ -21,7 +21,41 @@ public class Report {
     
     @DatabaseField(readOnly = true, canBeNull = false)
     private Date data;
+    
+    private String autore;
+    private String esame;
+    
+    public String getEsame() {
+        return esame;
+    }
 
+    public void setEsame(String esame) {
+        this.esame = esame;
+    }
+    
+
+    public String getAutore() {
+        return autore;
+    }
+
+    public void setAutore(String autore) {
+        this.autore = autore;
+    }
+    
+    private String dataString;
+
+    public String getDataString() {
+        return dataString;
+    }
+
+    public void setDataString(String dataString) {
+        this.dataString = dataString;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -49,6 +83,5 @@ public class Report {
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
-    
-    
+
 }

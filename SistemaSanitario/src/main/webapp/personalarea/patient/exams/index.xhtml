@@ -64,7 +64,7 @@
                                 <h:column>    				
                                     <f:facet name = "header">Report</f:facet>
                                     <ui:fragment rendered="#{not empty exam.report}">
-                                        <button type="button" class="btn btn-success" value="#{exam.report.id}">
+                                        <button name="showReportBtn" type="button" class="btn btn-success" value="#{exam.report.id}">
                                             <svg class="icon icon-white">
                                                 <use xlink:href="../../../svg/sprite.svg#it-note"></use>
                                             </svg>
@@ -81,11 +81,53 @@
                         </div>
                     </div>
                 </ui:define>
-        </ui:decorate> 
+        </ui:decorate>
+ 
+        <div class="it-example-modal">
+            <div class="modal fade" tabindex="-1" role="dialog" id="reportModal">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h4 class="modal-title text-center mb-2">Report esame</h4>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                           <svg class="icon">
+                              <use xlink:href="../../../svg/sprite.svg#it-close"></use>
+                           </svg>
+                        </button>
+                     </div>
+                     <div class="modal-body">
+                         <div>
+                            <div class="form-group">
+                               <label for="userName">Esame</label>
+                               <input type="text" class="form-control-plaintext" placeholder=" " id="esameText" readonly="true" value=""/>
+                            </div>
+                            <div class="form-group">
+                               <label for="userName">Data</label>
+                               <input type="text" class="form-control-plaintext"  placeholder=" " id="dataText" readonly="true" value=""/>
+                            </div>
+                            <div class="form-group">
+                               <label for="userName">Erogato da</label>
+                               <input type="text" class="form-control-plaintext"  placeholder=" " id="autoreText" readonly="true" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="reportTextArea" rows="6" readonly="" placeholder=" "></textarea>
+                              <label for="reportTextArea">Descrizione</label>
+                            </div>
+                          </div>
+                     </div>
+                     <div class="modal-footer">
+                         
+                     </div>
+                  </div>
+               </div>
+            </div>
+        </div>
+ 
     </ui:define>
     
         
      <ui:define name="additionalJs">
+        <script type="text/javascript" src="/SistemaSanitario/js/patientExams.js"></script>
         <script type="text/javascript"> 
             $(document).ready( function() { 
                 $("#myTable").dataTable(
