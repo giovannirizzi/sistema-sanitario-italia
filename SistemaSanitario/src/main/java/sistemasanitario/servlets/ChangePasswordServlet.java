@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sistemasanitario.servlets;
 
 import com.j256.ormlite.dao.Dao;
@@ -21,20 +16,10 @@ import sistemasanitario.entities.User;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
 import sistemasanitario.utils.PasswordUtil;
 
-/*
-    
-errori:
-    generic error: 400
-    wrong password policy: 490
-    wrong old password: 491
-    databases error: 500
-
-*/
-
 @WebServlet(name = "ChangePasswordServlet", urlPatterns = {"/services/changepassword"})
 public class ChangePasswordServlet extends HttpServlet {
     
-    private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ChangePasswordServlet.class.getName());
     private Dao<User, Integer> usersDao;
     
     @Override
@@ -43,8 +28,6 @@ public class ChangePasswordServlet extends HttpServlet {
         usersDao = (Dao<User, Integer>)getServletContext().getAttribute("UsersDao");
     }
     
-
-    //FORMATO RICHIESTA: .../changepassword?oldpassword=...&newpassword=...
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

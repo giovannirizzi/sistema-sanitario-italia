@@ -93,7 +93,7 @@
                     var inputQuantita = $('#inputQuantita').val();
                     if(selectedPazienteId !== ""){
                         if(selectFarmacoId !== ""){
-                            $.post('#{request.contextPath}/api/doctor/medicine_prescription',
+                            $.post('#{request.contextPath}/services/doctor/medicine_prescription',
                                 {"idPaziente": parseInt(selectedPazienteId),
                                  "idMedicina": parseInt(selectFarmacoId),
                                  "quantita": parseInt(inputQuantita)

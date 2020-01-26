@@ -27,7 +27,7 @@ import sistemasanitario.utils.PasswordUtil;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(LoginServlet.class.getName());
 
     private static AuthConfig authConfig;
     private AuthenticatedUserListener authUserListener; 
@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
         if (!contextPath.endsWith("/")) contextPath += "/";
         
         User user = (User)authUserSession.getAttribute("user");
-        String path = "";
+        String path;
         
         switch(user.getType()){
             case PAZIENTE:

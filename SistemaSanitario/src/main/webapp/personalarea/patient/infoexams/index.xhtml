@@ -55,7 +55,7 @@
                 $("#selectedExam").change(function() {
                        var examId = $("#selectedExam").val();
                        if(examId !== ""){
-                           $.get("/SistemaSanitario/api/patient/examInfo/"+examId,
+                           $.get("/SistemaSanitario/services/patient/examInfo/"+examId,
                                function(response) { // on success
                                    $("#descrizioneEsame").val(response);
                                });

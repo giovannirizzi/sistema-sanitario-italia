@@ -26,15 +26,15 @@ import sistemasanitario.config.AuthConfig;
 import sistemasanitario.entities.AuthToken;
 import sistemasanitario.entities.User;
 import sistemasanitario.listeners.AuthenticatedUserListener;
-import sistemasanitario.servlets.PasswordTest;
+
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
 import sistemasanitario.utils.PasswordUtil;
 import sistemasanitario.utils.TokenUtil;
 
 public class TokenAuthFilter implements Filter{
 
-    private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
-    
+    private static final Logger LOGGER = Logger.getLogger(TokenAuthFilter.class.getName());
+
     private static AuthConfig authConfig;
     
     private Dao<AuthToken, Integer> authTokensDao;

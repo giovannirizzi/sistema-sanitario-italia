@@ -1,7 +1,6 @@
 package sistemasanitario.services;
 
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.UpdateBuilder;
 import java.sql.SQLException;
@@ -28,7 +27,6 @@ import sistemasanitario.entities.PrescrizioneEsame;
 import sistemasanitario.entities.PrescrizioneMedicina;
 import sistemasanitario.entities.Report;
 import sistemasanitario.entities.Ssp;
-import sistemasanitario.servlets.PasswordTest;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
 import sistemasanitario.utils.pdf.PrescriptionMedicinePDFUtil;
 
@@ -38,7 +36,7 @@ public class PatientServices {
     @Context
     private HttpServletRequest request;
     
-    private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(PatientServices.class.getName());
     private static Dao<Medico, Integer> medicoDao;
     private static Dao<EsamePrescrivibile, Integer> esameDao;
     private static Dao<Paziente, Integer> pazienteDao;

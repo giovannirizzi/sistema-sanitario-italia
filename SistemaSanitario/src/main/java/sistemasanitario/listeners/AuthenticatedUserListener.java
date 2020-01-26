@@ -12,7 +12,6 @@ import sistemasanitario.entities.MedicoSpecialista;
 import sistemasanitario.entities.Paziente;
 import sistemasanitario.entities.Ssp;
 import sistemasanitario.entities.User;
-import sistemasanitario.servlets.PasswordTest;
 
 public class AuthenticatedUserListener{
     
@@ -21,7 +20,7 @@ public class AuthenticatedUserListener{
     private final Dao<MedicoSpecialista, Integer> medicoSpecialistaDao;
     private final Dao<Medicina, Integer> medicinaDao;
     private final Dao<Ssp, Integer> sspDao;
-    private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(AuthenticatedUserListener.class.getName());
     
     public AuthenticatedUserListener(ServletContext context){
         
