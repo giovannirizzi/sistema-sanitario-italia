@@ -88,5 +88,14 @@ public class Paziente implements Serializable{
     public String getFoto() {
         return foto;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    } 
+    
 }
 

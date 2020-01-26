@@ -118,4 +118,12 @@ public class PrescrizioneEsame {
     public Date getData() {
         return data;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
 }

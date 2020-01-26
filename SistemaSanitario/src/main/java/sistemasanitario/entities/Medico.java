@@ -58,4 +58,14 @@ public class Medico implements Serializable{
     public String getCodiceMedico() {
         return codiceMedico;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+    
+    
 }

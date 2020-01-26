@@ -52,7 +52,6 @@ public class PatientExamsBean implements Serializable{
 
         try {
 
-            //tmp = queryBuilder.where().eq("idPaziente", paziente.getId()).query();
             tmp = queryBuilderPreEsami.where()
                     .eq("idPaziente", paziente.getId())
                     .query();
