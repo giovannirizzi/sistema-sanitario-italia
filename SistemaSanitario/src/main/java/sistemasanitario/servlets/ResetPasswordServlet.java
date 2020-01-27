@@ -30,7 +30,7 @@ public class ResetPasswordServlet extends HttpServlet{
 
     private Dao<ResetPasswordToken, Integer> resetTokenDao;
     private Dao<User, Integer> usersDao;
-    private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ResetPasswordServlet.class.getName());
 
     @Override
     public void init() throws ServletException {

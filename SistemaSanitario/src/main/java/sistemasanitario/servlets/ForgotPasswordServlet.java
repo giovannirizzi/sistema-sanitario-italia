@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 @WebServlet("/forgotpassword")
 public class ForgotPasswordServlet extends HttpServlet {
     
-    private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ForgotPasswordServlet.class.getName());
     private Dao<ResetPasswordToken, Integer> resetTokenDao;
     private Dao<User, Integer> usersDao;
     

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sistemasanitario.entities;
 
 import com.j256.ormlite.field.DatabaseField;
@@ -63,4 +58,14 @@ public class Medico implements Serializable{
     public String getCodiceMedico() {
         return codiceMedico;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+    
+    
 }

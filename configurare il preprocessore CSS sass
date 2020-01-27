@@ -1,9 +1,0 @@
-
-Cos'è sass: https://sass-lang.com/
-
-- Installare Ruby: https://www.ruby-lang.org/en/downloads/
- 
-- Estrarre la cartella ruby-sass-3.7.4
- 
-- In NetBeans: Tools -> Options -> HTML/JS -> CSS Preprocessors, inserire il full path dell'eseguibile
-sass nella cartella ruby-sass-3.7.4/bin/

@@ -12,7 +12,7 @@ public class PrescrizioneEsame {
     @DatabaseField(id = true)
     private int id;
     
-    @DatabaseField(columnName="idPaziente", foreign = true, foreignAutoRefresh=true)
+    @DatabaseField(columnName="idPaziente", foreign = true)
     private Paziente paziente;
     
     @DatabaseField(columnName="idMedico", foreign = true, foreignAutoRefresh=true)
@@ -117,5 +117,13 @@ public class PrescrizioneEsame {
 
     public Date getData() {
         return data;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 }

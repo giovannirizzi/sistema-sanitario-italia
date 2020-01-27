@@ -26,14 +26,14 @@
                                     <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
                                 </div>
                                 <label for="userName">NOME UTENTE</label>
-                                <input type="text" class="form-control" id="userName" readonly="true" value="#{sessionScope.user.username}"/>
+                                <input type="text" class="form-control-plaintext" id="userName" readonly="true" value="#{sessionScope.user.username}"/>
                             </div>
                             <div class="col-md-5 col-md-6 input-group mb-5">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-mail"></use></svg></div>
                                 </div>
                                 <label for="email">EMAIL</label>
-                                <input type="text" class="form-control" id="email" readonly="true" value="#{sessionScope.user.email}"/>
+                                <input type="text" class="form-control-plaintext" id="email" readonly="true" value="#{sessionScope.user.email}"/>
                             </div>
                         </div>
                         <div class="form-row">
@@ -42,7 +42,7 @@
                                     <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-key"></use></svg></div>
                                 </div>
                                 <label for="medicoBase">PASSWORD</label>
-                                <input type="text" class="form-control" id="password" readonly="true" value="******************"/>
+                                <input type="text" class="form-control-plaintext" id="password" readonly="true" value="******************"/>
                                 <div class="input-group-append">
                                     <a data-toggle="modal" data-target="#modalPassword"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-pencil"></use></svg></a>
                                 </div>
@@ -102,14 +102,14 @@
                                             <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
                                         </div>
                                         <label for="codiceFiscale">NOME E COGNOME</label>
-                                        <input type="text" class="form-control" id="nomeCognome" readonly="true" value="#{sessionScope.paziente.nome} #{sessionScope.paziente.cognome}"/>
+                                        <input type="text" class="form-control-plaintext" id="nomeCognome" readonly="true" value="#{sessionScope.paziente.nome} #{sessionScope.paziente.cognome}"/>
                                     </div>
                                     <div class="input-group mb-5">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-card"></use></svg></div>
                                         </div>
                                         <label for="codiceFiscale">CODICE FISCALE</label>
-                                        <input type="text" class="form-control" id="codiceFiscale" readonly="true" value="#{sessionScope.paziente.cf}"/>
+                                        <input type="text" class="form-control-plaintext" id="codiceFiscale" readonly="true" value="#{sessionScope.paziente.cf}"/>
                                     </div>
 
                                     <div class="input-group mb-5">
@@ -117,7 +117,7 @@
                                             <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-pin"></use></svg></div>
                                         </div>
                                         <label for="luogoNascita">LUOGO DI NASCITA</label>
-                                        <input type="text" class="form-control" id="luogoNascita" readonly="true" value="#{sessionScope.paziente.luogoNascita} (#{sessionScope.paziente.provincia})"/>
+                                        <input type="text" class="form-control-plaintext" id="luogoNascita" readonly="true" value="#{sessionScope.paziente.luogoNascita} (#{sessionScope.paziente.provincia})"/>
                                     </div>
 
                                     <div class="input-group mb-5">
@@ -125,7 +125,7 @@
                                             <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
                                         </div>
                                         <label for="sesso">SESSO</label>
-                                        <input type="text" class="form-control" id="sesso" readonly="true" value="#{sessionScope.paziente.sesso}"/>
+                                        <input type="text" class="form-control-plaintext" id="sesso" readonly="true" value="#{sessionScope.paziente.sesso}"/>
                                     </div>
 
                                     <div class="input-group">
@@ -133,7 +133,7 @@
                                             <div class="input-group-text"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-user"></use></svg></div>
                                         </div>
                                         <label for="medicoBase">MEDICO BASE</label>
-                                        <input type="text" class="form-control" id="medicoBase" readonly="true" value="#{sessionScope.paziente.medicoBase.nome} #{sessionScope.paziente.medicoBase.cognome}"/>
+                                        <input type="text" class="form-control-plaintext" id="medicoBase" readonly="true" value="#{sessionScope.paziente.medicoBase.nome} #{sessionScope.paziente.medicoBase.cognome}"/>
                                         <div class="input-group-append">
                                             <a data-toggle="collapse" data-target="#medicCollapse"><svg class="icon icon-sm icon-primary"><use xlink:href="../svg/sprite.svg#it-pencil"></use></svg></a>
                                         </div>

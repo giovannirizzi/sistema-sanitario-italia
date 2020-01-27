@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sistemasanitario.servlets;
 
 import com.j256.ormlite.dao.Dao;
@@ -29,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
@@ -44,7 +40,7 @@ import sistemasanitario.entities.User.UserType;
 public class AvatarServlet extends HttpServlet {
     
     private String uploadPath;
-    private static final Logger LOGGER = Logger.getLogger(PasswordTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(AvatarServlet.class.getName());
     private Dao<Paziente, Integer> pazienteDao;
 
     @Override
@@ -91,13 +87,13 @@ public class AvatarServlet extends HttpServlet {
         
             if(paziente.getFoto() != null){
                 filePath = uploadPath.concat("/" + paziente.getFoto());
-                LOGGER.log(Level.INFO, "filepath:" + filePath);  
+                //LOGGER.log(Level.INFO, "filepath:{0}", filePath);  
             }
         }
         else{
             
             String id = request.getParameter("id");
-            Integer pazienteId = -1;
+            Integer pazienteId;
             try{
                 pazienteId = Integer.valueOf(id);
             }
@@ -112,7 +108,7 @@ public class AvatarServlet extends HttpServlet {
                 Paziente paziente = pazienteDao.queryForId(pazienteId);
                 if(paziente != null && paziente.getFoto() != null){
                     filePath = uploadPath.concat("/" + paziente.getFoto());
-                    LOGGER.log(Level.INFO, "filepath:" + filePath); 
+                    //LOGGER.log(Level.INFO, "filepath:{0}", filePath); 
                 }               
             } catch (SQLException ex) {
                 response.sendError(500);
@@ -137,12 +133,13 @@ public class AvatarServlet extends HttpServlet {
             
             writeFotoToResponse(response, filePath);          
         }
-        catch(Exception ex){
+        catch(IOException ex){
             response.sendError(500);
-            LOGGER.log(Level.SEVERE, "UploadImage error: "+ex.getMessage()); 
+            LOGGER.log(Level.SEVERE, "UploadImage error: {0}", ex.getMessage()); 
         }
     }
     
+    @Override
     protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
         
@@ -180,7 +177,7 @@ public class AvatarServlet extends HttpServlet {
                                         File storeFile = new File(filePath);
 
                                         item.write(storeFile);
-                                        LOGGER.log(Level.INFO, "IMMAGINE SALVATA: "+ fileName);
+                                        //LOGGER.log(Level.INFO, "IMMAGINE SALVATA: {0}", fileName);
 
                                         updateFotoOfPaziente(request.getSession(), fileName);
                                         
@@ -193,9 +190,9 @@ public class AvatarServlet extends HttpServlet {
                             }
                     }
             }
-        } catch (Exception ex) {
+        } catch (IOException | FileUploadException ex) {
             response.sendError(500);
-            LOGGER.log(Level.SEVERE, "UploadImage error: "+ex.getMessage()); 
+            LOGGER.log(Level.SEVERE, "UploadImage error: {0}", ex.getMessage()); 
         }
         
         String contextPath = getServletContext().getContextPath(); 

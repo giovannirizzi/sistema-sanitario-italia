@@ -49,7 +49,7 @@ $("document").ready(function() {
     $("#changeDoctorBtn").click(function() {
         var selectedDoctorId = $('#newDoctorSelect').val();
         if(selectedDoctorId !== ""){
-            $.post('../api/patient/changedoctor', {"idMedico": parseInt(selectedDoctorId)},
+            $.post('../services/patient/changedoctor', {"idMedico": parseInt(selectedDoctorId)},
                 function() {
                     var newDoctorName = $('#newDoctorSelect option:selected').text();
                     $('#medicoBase').val(newDoctorName);

@@ -83,7 +83,7 @@
                     var selectedEsameId = $('#selectEsame').val();
                     if((selectedPazienteId !== "")){
                         if((selectedEsameId !== "")){
-                            $.post('#{request.contextPath}/api/doctor/exam_prescription',
+                            $.post('#{request.contextPath}/services/doctor/exam_prescription',
                                 {"idPaziente": parseInt(selectedPazienteId),
                                  "idEsame": parseInt(selectedEsameId)
                                 },

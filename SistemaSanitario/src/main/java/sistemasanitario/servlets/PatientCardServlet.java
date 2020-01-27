@@ -5,14 +5,10 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.QueryBuilder;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.Integer.valueOf;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 import static java.util.logging.Level.SEVERE;
-import java.util.logging.Logger;
 import static java.util.logging.Logger.getLogger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,18 +27,12 @@ import static sistemasanitario.entities.User.UserType.MEDICO_SPECIALISTA;
 import static sistemasanitario.entities.User.UserType.SS_PROVINCIALE;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
 
-/**
- *
- * @author marco
- */
-
 @WebServlet(name = "DashboardServlet", urlPatterns = {"/services/dashboard"})
 public class PatientCardServlet extends HttpServlet {
 
     private Dao<Paziente, Integer> pazienteDao;
     private Dao<Medico, Integer> medicoDao;
     private Dao<PrescrizioneEsame, Integer> prescrizioneEsameDao;
-    private Gson gson = new Gson();
     
     @Override
     public void init() throws ServletException {

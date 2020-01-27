@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sistemasanitario.services;
 
 import com.j256.ormlite.dao.Dao;
@@ -19,20 +14,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import sistemasanitario.entities.Medicina;
 
-/**
- * REST Web Service
- *
- * @author giovanni
- */
 @Path("medicine")
 public class MedicineResource {
 
     @Context
     private UriInfo context;
 
-    /**
-     * Creates a new instance of Medicine2Resource
-     */
     public MedicineResource() {
     }
     

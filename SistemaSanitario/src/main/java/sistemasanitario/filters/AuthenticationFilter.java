@@ -11,13 +11,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sistemasanitario.utils.GeneralUtil;
 
 public class AuthenticationFilter implements Filter{
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        
-       
     }
     
     private void redirectToLoginPage(HttpServletRequest request, HttpServletResponse response) throws IOException{
@@ -33,10 +32,9 @@ public class AuthenticationFilter implements Filter{
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         
         if (request instanceof HttpServletRequest) {
-            ServletContext servletContext = ((HttpServletRequest) request).getServletContext();
-            HttpSession session = ((HttpServletRequest) request).getSession(false);
-
-            if(session == null || (session != null && session.getAttribute("user") == null)){
+  
+            HttpSession session = GeneralUtil.getUserSession((HttpServletRequest) request);
+            if(session == null ){
                 redirectToLoginPage((HttpServletRequest)request,
                         (HttpServletResponse)response);
                 return;

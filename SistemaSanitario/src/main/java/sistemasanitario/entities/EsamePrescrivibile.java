@@ -33,5 +33,8 @@ public class EsamePrescrivibile {
     public String getDescrizione() {
         return descrizione;
     }
-    
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }
