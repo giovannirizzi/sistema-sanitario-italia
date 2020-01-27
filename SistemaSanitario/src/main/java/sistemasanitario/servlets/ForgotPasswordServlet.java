@@ -60,7 +60,7 @@ public class ForgotPasswordServlet extends HttpServlet {
 
             try {
                 MailSender s1 = new MailSender();
-                s1.sendEmail(email, "Reset Password", "Clicca sul link per il reset della password: \n"+"http://localhost:8080/SistemaSanitario/resetpassword?token="+token.token);
+                s1.sendEmail(email, "Reset Password", "Clicca sul link per il reset della password: \n"+"http://localhost:8080/resetpassword?token="+token.token);
                 
                 LOGGER.log(Level.INFO, "Reset password token: {0}", token.token );
 

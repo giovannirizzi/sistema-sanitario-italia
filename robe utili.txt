@@ -1,0 +1,154 @@
+Per salvare le password:
+https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+Algoritmo Argon2
+Libreria JVM: https://github.com/phxql/argon2-jvm
+
+Per DB: 
+sudo mysql -u admin -h sistemasanitariodb.c16q8irjv9nd.us-east-2.rds.amazonaws.com -p sistemasanitario
+
+Bootstrap Italia Doc: https://italia.github.io/bootstrap-italia/docs/come-iniziare/introduzione/
+
+Remember me: https://paragonie.com/blog/2015/04/secure-authentication-php-with-long-term-persistence#title.2
+
+SELECT TIMESTAMPDIFF(HOUR, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+
+Utente paziente:
+username = mario.rossi
+password = Ciao1234!
+
+
+DOTTORE:
+vede lista pazienti PAZIENTI
+prescrive esami ai suoi pazienti PRESCRIVI ESAME
+prescrive medicine ai suoi pazienti PRESCRIVI MEDICINE
+
+PAZIENTE
+vede lista esami fatti e da fare (con eventuali report)
+vede i nuovi report
+vede la lista di prescrizioni di medicine
+informazioni esami
+TICKETS?
+
+DOTTORE specialista
+vede ela lista pazienti (tutti) PAZIENTI
+visite da fare VISITE DA FARE
+vede lista visite fatte VISITE FATTE
+
+SSP
+visite da assegnare
+visite da fare 
+Daily report REPORT STATISTICHE
+pazienti PAZIENTI
+
+
+DOMANDE
+
+D: Qual è la differenza, nelle specifiche, tra "esame" erogato dal servizio sanitario e "visita" erogata dal medico specialista? Dobbiamo supporre che esistano alcuni esami che non sono erogabili da alcun medico specialista? È scritto che il ssp eroga l'esame prescritto con ticket di 11 euro e poi che il medico specialista fa pagare un ticket di 50 euro. Dobbiamo assumere che queste spese sono pagate entrambe dal paziente per ogni prestazione?
+
+R: Ssn eroga esami di laboratorio o radiologia
+Lo specialista la visita. Sono due prestazioni diverse
+
+D: Buongiorno @GinoPerna, nel testo c'è scritto che il SSP eroga gli esami e prescrive i richiami, che sono praticamente degli esami per cui non si paga il ticket. C'è però scritto che il richiamo è erogato dai medici specialistici e non dal SSP, è corretto?
+
+R: Buongiorno @GinoPerna, nel testo c'è scritto che il SSP eroga gli esami e prescrive i richiami, che sono praticamente degli esami per cui non si paga il ticket. C'è però scritto che il richiamo è erogato dai medici specialistici e non dal SSP, è corretto?
+
+D:Però per l'esame di mammografia devo andare dal SSP?
+
+R: Non devo andare, è ssp che lo prescrive per, ad esempio, tutte le donne nate nel 1979 e poi vado a farlo dallo specialista
+
+
+Matteo Zanella, [26.08.19 13:23]
+[In reply to Gino Perna]
+Però per l'esame di mammografia devo andare dal SSP?
+
+Gino Perna, [26.08.19 13:24]
+Non devo andare, è ssp che lo prescrive per, ad esempio, tutte le donne nate nel 1979 e poi vado a farlo dallo specialista
+
+Matteo Zanella, [26.08.19 14:03]
+[In reply to Gino Perna]
+Quindi il medico di base prescrive visite dallo specialista o esami specialistici? Sono la stessa cosa?
+
+Gino Perna, [26.08.19 16:53]
+[In reply to Matteo Zanella]
+In che senso la stessa cosa?
+Se intende che prescrive una tac e va a farla dal radiologo si.
+Ma un esame del sangue lo fa il ssn
+
+Matteo Zanella, [26.08.19 17:04]
+[In reply to Gino Perna]
+Cioè, nel nostro sistema approssimato, una visita di radiologia e un esame tac (che va fatto da un radiologo) sono la stessa cosa in pratica?
+
+Matteo Zanella, [26.08.19 17:05]
+Ovvero, il medico di base cosa può prescrivere di fare tra:
+• Esame specialistico
+• Vista di uno specialista
+• Esame dal SSP
+
+Matteo Zanella, [26.08.19 17:06]
+[In reply to Matteo Zanella]
+Può prescrivere tutte e tre queste cose? Sono tutte e tre differenti? Alcune sono sinonimi tra loro?
+
+Gino Perna, [26.08.19 17:13]
+[In reply to Matteo Zanella]
+Si la stessa cosa
+
+Gino Perna, [26.08.19 17:16]
+[In reply to Matteo Zanella]
+I primi due possono essere considerati sinonimi.
+Comunque se inve sono accorpati il primo ed il terzo (interpretando che il ssn eroga l'esame specialistico comunque e lo specialista solo la visita ordinata dal medico) va bene lo stesso, per evitare panico in chi avesse interpretato così.
+
+Matteo Zanella, [26.08.19 13:23]
+[In reply to Gino Perna]
+Però per l'esame di mammografia devo andare dal SSP?
+
+Gino Perna, [26.08.19 13:24]
+Non devo andare, è ssp che lo prescrive per, ad esempio, tutte le donne nate nel 1979 e poi vado a farlo dallo specialista
+
+
+
+Alberto Xamin, [02.09.19 18:45]
+Buonasera @GinoPerna, la ricerca degli esami da parte dell'utente deve essere fatta sui suoi esami oppure su tutti gli esami esistenti a scopo informativo?
+
+Gino Perna, [02.09.19 19:01]
+Sugli esami esiatenti a scopo informativo
+
+INSERT INTO USERS (username,password,email,type) VALUES ("andrea.gentile","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","andrea.gentile@gmail.com",'PAZIENTE'),
+("mario.fontana","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","mario.fontana@gmail.com",'PAZIENTE'),
+("alessia.lombardi","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","alessia.lombardi@gmail.com",'PAZIENTE'),
+("nicola.giordano","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","nicola.giordano@gmail.com",'PAZIENTE'),
+("aurelio.mancini","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","aurelio.mancini@gmail.com",'PAZIENTE'),
+("oscar.pellegrini","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","oscar.pellegrini@gmail.com",'PAZIENTE'),
+("ilaria.caruso","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","ilaria.caruso@gmail.com",'PAZIENTE'),
+("ugo.ferri","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","ugo.ferri@gmail.com",'PAZIENTE'),
+("emilia.bernardi","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","emilia.bernardi@gmail.com",'PAZIENTE'),
+("federica.mazza","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","federica.mazza@gmail.com",'PAZIENTE'),
+("mario.farina","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","mario.farina@gmail.com",'PAZIENTE'),
+("oscar.bianco","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","oscar.bianco@gmail.com",'PAZIENTE'),
+("alessia.barbieri","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","alessia.barbieri@gmail.com",'PAZIENTE'),
+("ada.conte","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","ada.conte@gmail.com",'MEDICO_BASE'),
+("gabriele.serra","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","gabriele.serra@gmail.com",'MEDICO_BASE'),
+("paolo.santoro","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","paolo.santoro@gmail.com",'MEDICO_SPECIALISTA'),
+("monica.moretti","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","monica.moretti@gmail.com",'MEDICO_BASE'),
+("chiara.leone","$argon2i$v=19$m=65536,t=10,p=1$1uOQ9ZMimX8ypevdlWniqA$lCi1NqvmwM3ZI82njebmt4EkuNXl0pr+5TJ2yn1dKHM","chiara.leone@gmail.com",'MEDICO_SPECIALISTA'); 
+
+INSERT INTO PAZIENTE (nome,cognome,dataNascita,luogoNascita,provincia,cf,sesso,id) VALUES
+("Andrea","Gentile",'1970-11-23',"Trento",'TN',"GNTNDR70S23L378F",'M',22),
+("Mario","Fontana",'1994-07-16',"Bolzano",'BZ',"FNTMRA94L16A952G",'M',23),
+("Alessia","Lombardi",'1937-02-28',"Cles",'TN',"LMBLSS37B68C794D",'F',24),
+("Nicola","Giordano",'1985-05-05',"Lana",'BZ',"GRDNCL85E05E434J",'M',25),
+("Aurelio","Mancini",'1997-08-13',"Bressanone",'BZ',"MNCRLA97M13B160P",'M',26),
+("Oscar","Pellegrini",'1965-06-19',"Ala",'TN',"PLLSCR65H19A116D",'M',27),
+("Ilaria","Caruso",'1949-01-01',"Pergine Valsugana",'TN',"CRSLRI49A41G452F",'F',28),
+("Ugo","Ferri",'1918-12-26',"Storo",'TN',"FRRGUO18T26I964B",'M',29),
+("Emilia","Bernardi",'1981-04-10',"Merano",'BZ',"BRNMLE81D50F132Z",'F',30),
+("Federica","Mazza",'1954-03-15',"Chiusa",'BZ',"MZZFRC54C55C652S",'F',31),
+("Mario","Farina",'1927-10-16',"Mori",'TN',"FRNMRA27R16F728T",'M',32),
+("Oscar","Bianco",'1964-01-23',"Egna",'BZ',"BNCSCR64A23D392H",'F',33),
+("Alessia","Barbieri",'1989-08-20',"Mezzolombardo",'TN',"BRBLSS89M60F187L",'F',34);
+
+INSERT INTO MEDICO (nome,cognome,citta,provincia,codiceMedico,id) VALUES
+("Ada","Conte","Rovereto",'TN','TN2849',35),
+("Gabriele","Serra","Merano",'BZ','BZ1690',36),
+("Paolo","Santoro","Merano",'BZ','BZ3271',37),
+("Monica","Moretti","Trento",'TN','TN7421',38),
+("Chiara","Leone","Trento",'TN','TN7954',39);
