@@ -193,7 +193,7 @@
             </div>
             <div class="col-12 col-lg-10 px-4 py-5 order-1 bg-dark">
               <h2>Chi Siamo</h2>
-                <p>Progetto Sanità è stato attivato nel 2019, il servizio è stato implementato per consenti ai cittadini di avere un unico interlocutore. <br>
+                <p>Progetto Sanità è stato attivato nel 2019, il servizio è stato implementato per consentire ai cittadini di avere un unico interlocutore. <br>
                  La piattaforma permette di prenotare visite ed esami della sanità pubblica e privata.
                  Progetto Sanità consente la prenotazione online con i browser Explorer, FireFox e GoogleChrome. <br>
                  Con questo servizio si può consultare in tempo reale la disponibilità delle prestazioni e l’attesa. <br>
