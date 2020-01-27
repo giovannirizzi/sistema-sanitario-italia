@@ -1,10 +1,16 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8" session="false" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <%@ include file="/WEB-INF/jspf/meta.jspf" %> 
+<head> 
     <title>Sistema Sanitario Italia</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="${context}/css/bootstrap-italia.min.css">
+    <link rel="stylesheet" type="text/css" href="${context}/css/main.css">
 </head>
 
 <body>
@@ -430,11 +436,11 @@
   
   </div>
 
-<script type="text/javascript" src="/SistemaSanitario/js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="/SistemaSanitario/js/main.js"></script>
-<script type="text/javascript" src="/SistemaSanitario/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="/SistemaSanitario/js/popper.min.js"></script>
-<script type="text/javascript" src="/SistemaSanitario/js/bootstrap-italia.min.js"></script>
+<script type="text/javascript" src="${context}/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="${context}/js/main.js"></script>
+<script type="text/javascript" src="${context}/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="${context}/js/popper.min.js"></script>
+<script type="text/javascript" src="${context}/js/bootstrap-italia.min.js"></script>
 </body>
 
 </html>

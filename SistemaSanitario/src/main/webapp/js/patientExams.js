@@ -4,7 +4,7 @@ $(document).on("click", "button[name='showReportBtn']", function(e) {
     $('#reportModal').modal('show');
     
     $.ajax({
-      url: "/SistemaSanitario/services/patient/report/"+reportId,
+      url: "/services/patient/report/"+reportId,
       type: "get",
       dataType : 'json',
       success: function(data) {

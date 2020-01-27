@@ -1,6 +1,5 @@
 package sistemasanitario.servlets;
 
-import com.google.gson.Gson;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.QueryBuilder;
 import java.io.IOException;
@@ -27,7 +26,7 @@ import static sistemasanitario.entities.User.UserType.MEDICO_SPECIALISTA;
 import static sistemasanitario.entities.User.UserType.SS_PROVINCIALE;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
 
-@WebServlet(name = "DashboardServlet", urlPatterns = {"/services/dashboard"})
+@WebServlet(name = "PatientCardServlet", urlPatterns = {"/services/patientcard"})
 public class PatientCardServlet extends HttpServlet {
 
     private Dao<Paziente, Integer> pazienteDao;

@@ -17,7 +17,7 @@ $(document).on("click", "tr[name='patientRow']", function(e) {
     var id = this.id;
     var myId = this.getAttribute('myattr');
     $.ajax({
-      url: "/SistemaSanitario/services/dashboard",
+      url: "/services/patientcard",
       type: "get", //send it through get method
       dataType : 'json',
       data: {"id":id},
@@ -25,7 +25,7 @@ $(document).on("click", "tr[name='patientRow']", function(e) {
             $('#modalTitle').text("Scheda di "+ patients.patient[myId].name + " " + patients.patient[myId].surname);
             if(patients.patient[myId].photo !== null){
                 var imageContainer = document.getElementById("myImage");
-                imageContainer.setAttribute('src', 'http://localhost:8080/SistemaSanitario/services/avatar?id='+id);
+                imageContainer.setAttribute('src', 'http://localhost:8080/services/avatar?id='+id);
                 var svgContainer = document.getElementById("defaultAvatar");
                 svgContainer.style.display = 'none';
                 imageContainer.style.display = 'block';
@@ -106,7 +106,7 @@ function getPazienti(){
     
     var p;
     $.ajax({
-        url : "/SistemaSanitario/services/dashboard",
+        url : "/services/patientcard",
         dataType : 'json',
         error: function(xhr, status, error) {
             console.log(xhr.responseText);

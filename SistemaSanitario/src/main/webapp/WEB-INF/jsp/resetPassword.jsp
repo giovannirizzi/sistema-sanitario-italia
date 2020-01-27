@@ -1,12 +1,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
     <html lang="it">
     <head>
       <title>Reset Password | SS Italia</title>
       
-      <%@ include file="../jspf/meta.jspf" %> 
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="${context}/css/bootstrap-italia.min.css">
+    <link rel="stylesheet" type="text/css" href="${context}/css/main.css">
 
     </head>
     <body style="background-color: #f6f6f6;">
