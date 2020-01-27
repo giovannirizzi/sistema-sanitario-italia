@@ -168,9 +168,6 @@ public class DoctorServices {
     public Response writeReport(@FormParam("idPrescrizione") Integer idPrescrizione,
             @FormParam("descrizione") String descrizione) {
         
-        HttpSession session = getUserSession(request);
-        Medico medico = (Medico)session.getAttribute("medico");
-        
         try {
             //Prendo una prescrizione e la inserisco nel report
             QueryBuilder<PrescrizioneEsame, Integer> queryBuilder = prescrizioneEsameDao.queryBuilder();

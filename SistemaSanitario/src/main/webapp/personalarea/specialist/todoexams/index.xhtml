@@ -78,7 +78,7 @@
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h4 class="modal-title mb-2" id="idPrescrizione"></h4>
+                                  <h4 class="modal-title mb-2" id="idPrescrizione">Report Esame n. </h4>
                                   <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <svg class="icon">
                                        <use xlink:href="../../../svg/sprite.svg#it-close"></use>
@@ -123,7 +123,7 @@
              $(document).on("click", "button[name='numPrescrizione']", function(e) {
                     var idPrescrizione = $(this).val();
                     $('#reportModal').modal('show');
-                    $('#idPrescrizione').text("Report Esame n. "+idPrescrizione);
+                    $('#idPrescrizione').append(idPrescrizione);
                 });
             $('#reportModal').on('hidden.bs.modal', function (e) {
                 $('#idPrescrizione').val("");
@@ -131,12 +131,15 @@
             });
             $("#submitReport").click(function() {
                 var descrizione = $('#descrizione').val();
-                $.post('../../../services/doctor/report',{"idPrescrizione": parseInt(idPrescrizione), "descrizione": descrizione},
+                var idPrescrizione = document.getElementsByName('numPrescrizione')[0].value;
+                console.log(descrizione);
+                console.log(idPrescrizione);
+                $.post('#{request.contextPath}/services/doctor/report',{"idPrescrizione": parseInt(idPrescrizione), "descrizione": descrizione},
                     function() { // on success
                           
                     })
                     .fail(function(error) { //on failure
-                                
+                         console.log("SEI UN GAY!!");       
                     });
                 });
         </script>
