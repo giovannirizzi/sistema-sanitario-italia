@@ -157,7 +157,7 @@ public class LoginServlet extends HttpServlet {
             
             HttpSession tmp = request.getSession();
             tmp.setAttribute("user", user);
-            if(rememberMe) tmp.setMaxInactiveInterval(authConfig.getRememberMeMaxAge());
+            //if(rememberMe) tmp.setMaxInactiveInterval(authConfig.getRememberMeMaxAge());
             
             try {
                 authUserListener.onNewUserAuthenticated(request.getSession(false), user);

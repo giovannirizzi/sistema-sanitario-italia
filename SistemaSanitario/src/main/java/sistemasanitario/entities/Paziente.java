@@ -14,7 +14,7 @@ public class Paziente implements Serializable{
     @DatabaseField(columnName="id", id=true)
     public Integer id;
     
-    @DatabaseField(columnName="idMedico", foreign = true,  foreignAutoRefresh=true)
+    @DatabaseField(columnName="idMedico", foreign = true)
     public Medico medicoBase;
     
     @DatabaseField

@@ -19,14 +19,6 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <servlet>
-        <servlet-name>AvatarServlet</servlet-name>
-        <servlet-class>sistemasanitario.servlets.AvatarServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PatientCardServlet</servlet-name>
-        <servlet-class>sistemasanitario.servlets.PatientCardServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
@@ -61,14 +53,6 @@
         <error-code>404</error-code>
         <location>/404.html</location>
     </error-page>
-    <servlet-mapping>
-        <servlet-name>AvatarServlet</servlet-name>
-        <url-pattern>/services/avatar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PatientCardServlet</servlet-name>
-        <url-pattern>/services/patientcard</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
