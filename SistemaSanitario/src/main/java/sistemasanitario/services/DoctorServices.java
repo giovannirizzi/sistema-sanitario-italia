@@ -162,11 +162,14 @@ public class DoctorServices {
         return Response.ok().build();
     }
     
+
     @POST
-    @Path("/report/{idPrescrizione}")
-    public Response writeReport(@PathParam("idPrescrizione") Integer idPrescrizione) {
+    @Path("/report")
+    public Response writeReport(@FormParam("idPrescrizione") Integer idPrescrizione,
+            @FormParam("descrizione") String descrizione) {
         
         HttpSession session = getUserSession(request);
+        Medico medico = (Medico)session.getAttribute("medico");
         
         try {
             //Prendo una prescrizione e la inserisco nel report
@@ -176,8 +179,7 @@ public class DoctorServices {
             Report report = new Report();
 
             report.setPrescrizioneEsame(prescrizione.get(0));
-            report.setDescrizione("Ciao bello stai per morire!");
-            
+            report.setDescrizione(descrizione);
             reportDao.create(report);
             
             //Prendo idReport e lo metto nella tabella PrescrizioneEsame

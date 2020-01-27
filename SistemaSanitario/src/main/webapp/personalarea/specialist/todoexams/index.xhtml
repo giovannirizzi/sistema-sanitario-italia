@@ -58,7 +58,7 @@
                                     
                                 <h:column>    				
                                    <f:facet name = "header">SCRIVI REPORT</f:facet>
-                                    <button type="button" class="btn btn-danger" value="#{prescrizione.id}">
+                                    <button type="button" class="btn btn-danger" name="numPrescrizione" value="#{prescrizione.id}">
                                         <svg class="icon icon-white">
                                             <use xlink:href="../../../svg/sprite.svg#it-pencil"></use>
                                         </svg>
@@ -74,6 +74,36 @@
                             
                         </div>
                     </div>
+                        <div class="modal fade" tabindex="-1" role="dialog" id="reportModal">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h4 class="modal-title mb-2" id="idPrescrizione"></h4>
+                                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <svg class="icon">
+                                       <use xlink:href="../../../svg/sprite.svg#it-close"></use>
+                                    </svg>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <form id="formReport">
+                                      <div class="form-row">
+                                          <div class="form-group w-100">
+                                              <textarea id="descrizione" rows="5" style="resize: none" placeholder="inserisci la descrizione dell'esame"></textarea>
+                                              <label for="descrizione">Descrizione</label>
+                                          </div>
+                                      </div>
+                                      <div class="form-row">
+                                        <div class="form-group">
+                                            <button type="button" id="submitReport" class="btn btn-primary">Conferma</button>
+                                        </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                        </div> 
+
                 </ui:define>
         </ui:decorate>
     
@@ -90,6 +120,25 @@
                 
                 $("#myTable thead").addClass("thead-light");
              });
+             $(document).on("click", "button[name='numPrescrizione']", function(e) {
+                    var idPrescrizione = $(this).val();
+                    $('#reportModal').modal('show');
+                    $('#idPrescrizione').text("Report Esame n. "+idPrescrizione);
+                });
+            $('#reportModal').on('hidden.bs.modal', function (e) {
+                $('#idPrescrizione').val("");
+                $('#descrizione').val("");
+            });
+            $("#submitReport").click(function() {
+                var descrizione = $('#descrizione').val();
+                $.post('../../../services/doctor/report',{"idPrescrizione": parseInt(idPrescrizione), "descrizione": descrizione},
+                    function() { // on success
+                          
+                    })
+                    .fail(function(error) { //on failure
+                                
+                    });
+                });
         </script>
     </ui:define>
 
