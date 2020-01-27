@@ -41,6 +41,7 @@ public class AuthenticatedUserListener{
             {
                 Paziente paziente = pazienteDao.queryForId(user.getId());
                 if(paziente != null){
+                    medicoDao.refresh(paziente.getMedicoBase());
                     session.setAttribute("paziente", paziente);
                     headerUserName = paziente.getNome() + " " + paziente.getCognome();
                 }

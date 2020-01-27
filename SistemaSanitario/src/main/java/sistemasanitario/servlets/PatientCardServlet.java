@@ -1,13 +1,20 @@
 package sistemasanitario.servlets;
 
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.GenericRawResults;
 import com.j256.ormlite.stmt.QueryBuilder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.logging.Level;
 import static java.util.logging.Level.SEVERE;
+import java.util.logging.Logger;
 import static java.util.logging.Logger.getLogger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,22 +67,20 @@ public class PatientCardServlet extends HttpServlet {
         }
         
         try {
-            JSONObject prescrizioni = new JSONObject();    
-            QueryBuilder queryBuilder = prescrizioneEsameDao.queryBuilder();
-            List<PrescrizioneEsame> prescrizioniList = queryBuilder.where().eq("idPaziente", id).query();
-
-            //ResultSet rs = statement.executeQuery("select ESAME_PRESCRIVIBILE.nome as nomeEsame,ESAME_PRESCRIVIBILE.descrizione as descrizioneEsame, PRESCRIZIONE_ESAME.data from PAZIENTE left join PRESCRIZIONE_ESAME on PAZIENTE.id = PRESCRIZIONE_ESAME.idPaziente inner join ESAME_PRESCRIVIBILE on PRESCRIZIONE_ESAME.idEsame = ESAME_PRESCRIVIBILE.id where PAZIENTE.id = " + id + ";");
+               
+            GenericRawResults<String[]> rawResults = prescrizioneEsameDao.queryRaw("select ESAME_PRESCRIVIBILE.nome,REPORT.descrizione, PRESCRIZIONE_ESAME.data from PAZIENTE left join PRESCRIZIONE_ESAME on PAZIENTE.id = PRESCRIZIONE_ESAME.idPaziente inner join ESAME_PRESCRIVIBILE on PRESCRIZIONE_ESAME.idEsame = ESAME_PRESCRIVIBILE.id LEFT JOIN REPORT on PRESCRIZIONE_ESAME.idReport = REPORT.id where PAZIENTE.id = " + id + ";");
+            List<String[]> results = rawResults.getResults();
+            
             JSONArray array = new JSONArray();
-
-            for(PrescrizioneEsame prescrizione : prescrizioniList){
+            for(String[] resultArray : results){
+                
                 JSONObject item = new JSONObject();
-                item.put("name", prescrizione.getEsame().getNome());
-                item.put("description", prescrizione.getEsame().getDescrizione());
-                SimpleDateFormat mdyFormat = new SimpleDateFormat("dd/MM/yyyy");
-                String date = mdyFormat.format(prescrizione.getData());
-                item.put("date", date);
+                item.put("name", resultArray[0]);
+                item.put("description", resultArray[1]);
+                item.put("date", resultArray[2]);
                 array.add(item);
             }
+            JSONObject prescrizioni = new JSONObject(); 
             prescrizioni.put("exams", array);
 
             PrintWriter out = response.getWriter();
@@ -113,7 +118,8 @@ public class PatientCardServlet extends HttpServlet {
         JSONObject pazienti = new JSONObject();
         QueryBuilder queryBuilder = pazienteDao.queryBuilder();
 
-        try{  
+        try{
+ 
             if(user.getType() == MEDICO_BASE){
                 Medico medico = (Medico)session.getAttribute("medico");
                 pazientiList = queryBuilder.where().eq("idMedico", medico.getId()).query();
@@ -141,24 +147,18 @@ public class PatientCardServlet extends HttpServlet {
                 item.put("province", paziente.getProvincia());
                 item.put("cf", paziente.getCf());
                 item.put("photo", paziente.getFoto());
-                item.put("lastMedicine", "pra lastMedicine");
-                item.put("lastVisit", "pra lastVisit");
 
-                /*pazienteDao.queryR
-                ResultSet rs1 = statement.executeQuery("SELECT max(PRESCRIZIONE_MEDICINA.data) AS dataMedicina,max(PRESCRIZIONE_ESAME.data) AS dataEsame FROM PAZIENTE INNER JOIN PRESCRIZIONE_MEDICINA ON PAZIENTE.id = PRESCRIZIONE_MEDICINA.idPaziente AND PAZIENTE.idMedico = " + medico.getId() + " INNER JOIN PRESCRIZIONE_ESAME ON PAZIENTE.id = PRESCRIZIONE_ESAME.idPaziente WHERE PAZIENTE.ID = " + rs.getString("id") + ";");
-                while (rs1.next()){
-                    item.put("lastMedicine", rs1.getString("dataMedicina"));
-                    item.put("lastVisit", rs1.getString("dataEsame"));
-                }*/
+                GenericRawResults<String[]> rawResults = prescrizioneEsameDao.queryRaw("SELECT max(PRESCRIZIONE_MEDICINA.data),max(PRESCRIZIONE_ESAME.data) FROM PAZIENTE INNER JOIN PRESCRIZIONE_MEDICINA ON PAZIENTE.id = PRESCRIZIONE_MEDICINA.idPaziente INNER JOIN PRESCRIZIONE_ESAME ON PAZIENTE.id = PRESCRIZIONE_ESAME.idPaziente WHERE PAZIENTE.ID = " + paziente.getId() + ";");
+                List<String[]> results = rawResults.getResults();
+                for(String[] resultArray : results){
+                    item.put("lastMedicine", resultArray[0]);
+                    item.put("lastVisit", resultArray[1]);   
+                }
 
                 array.add(item); 
             }
-
-
             pazienti.put("patient", array);
 
-            
- 
         } catch(SQLException ex){
             getLogger(PatientCardServlet.class.getName()).log(SEVERE, "SQL Error get patients", ex);
             response.sendError(500);
