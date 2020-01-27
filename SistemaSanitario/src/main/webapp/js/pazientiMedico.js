@@ -7,6 +7,9 @@ $(document).ready( function() {
         $('#birthDate').text("");
         $('#birthPlace').text("");
         $('#showPrescriptions').text("");
+        $('#myImage').attr("src", "");
+        $('#myImage').attr("style", "display:none");
+        $('#defaultAvatar').attr("style", "display:block");
     });
  });
 
@@ -64,7 +67,7 @@ $(document).on("click", "tr[name='patientRow']", function(e) {
 
                 var tr = header.insertRow(-1);                   // TABLE ROW.
 
-                var arrayHeader = ["Data","Esame","Descrizione"];
+                var arrayHeader = ["Data","Esame","Report"];
 
                 for (var i = 0; i < arrayHeader.length; i++) {
                     var th = document.createElement("th");      // TABLE HEADER.
@@ -136,7 +139,7 @@ function getPazienti(){
 
             var tr = header.insertRow(-1);                   // TABLE ROW.
 
-            var arrayHeader = ["Cognome e nome","Ultima visita","Ultima ricetta"];
+            var arrayHeader = ["Nome e cognome","Ultimo esame prescritto","Ultima ricetta"];
 
             for (var i = 0; i < arrayHeader.length; i++) {
                 var th = document.createElement("th");      // TABLE HEADER.

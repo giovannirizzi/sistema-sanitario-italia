@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/mainLayout.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        Genera report
+    </ui:define>
+
+    <ui:define name="pageTitle">
+        Report giornaliero
+    </ui:define>
+
+    <ui:define name="content">
+        
+        <ui:decorate template="/WEB-INF/templates/partials/section.xhtml">
+                <ui:define name="sectionTitle">
+                     <h4 class="text-danger pb-4 text-center">Genera nuovo report</h4>   
+                </ui:define>
+                <ui:define name="sectionBody">
+                    <div class="main-pills  text-left">
+                        <div class="main-pills-wrap" style="min-height: 700px;">
+                            <div>
+                                Seleziona il tipo di report che vuoi generare:
+                                <div class="row">
+                                  <div class="form-check form-check-inline">
+                                    <input name="gruppo2" type="radio" id="radio4" checked="checked" />
+                                    <label for="radio4">Esami</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input name="gruppo2" type="radio" id="radio5" />
+                                    <label for="radio5">Medicine</label>
+                                  </div>
+                                </div>
+                            </div>
+                            <br></br>
+                            <div class="it-datepicker-wrapper">
+                                <div class="form-group">
+                                  <input class="form-control it-date-datepicker" id="date1" type="text" placeholder="inserisci la data in formato gg/mm/aaaa" />
+                                  <label for="date1">Seleziona la data</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ui:define>
+        </ui:decorate>
+    
+    </ui:define>
+    
+    <ui:define name="additionalJs">
+        <script type="text/javascript"> 
+            $(document).ready(function() {
+                $('.it-date-datepicker').datepicker({
+                  inputFormat: ["dd/MM/yyyy"],
+                  outputFormat: 'dd/MM/yyyy',
+                });
+            });
+        </script>
+    </ui:define>
+
+</ui:composition>
