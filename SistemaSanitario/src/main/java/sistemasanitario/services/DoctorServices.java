@@ -23,6 +23,8 @@ import sistemasanitario.entities.User;
 import sistemasanitario.entities.PrescrizioneEsame;
 import sistemasanitario.entities.PrescrizioneMedicina;
 import sistemasanitario.entities.Report;
+import static sistemasanitario.entities.User.UserType.MEDICO_SPECIALISTA;
+import static sistemasanitario.entities.User.UserType.SS_PROVINCIALE;
 import static sistemasanitario.utils.GeneralUtil.getUserSession;
 import sistemasanitario.utils.MailSender;
 
@@ -173,6 +175,9 @@ public class DoctorServices {
             QueryBuilder<PrescrizioneEsame, Integer> queryBuilder = prescrizioneEsameDao.queryBuilder();
             List <PrescrizioneEsame> prescrizione = queryBuilder.where().idEq(idPrescrizione).query();
             
+            HttpSession session = getUserSession(request);
+            User utente = (User)session.getAttribute("user");
+            
             Report report = new Report();
 
             report.setPrescrizioneEsame(prescrizione.get(0));
@@ -186,6 +191,15 @@ public class DoctorServices {
             UpdateBuilder<PrescrizioneEsame, Integer> updateBuilder = prescrizioneEsameDao.updateBuilder();
             updateBuilder.where().idEq(idPrescrizione);
             updateBuilder.updateColumnValue("idReport", reports.get(0).getId());
+            
+            
+            if (utente.getType() == MEDICO_SPECIALISTA){
+                updateBuilder.updateColumnValue("idMedicoSpe", utente.getId());
+            }
+            if (utente.getType() == SS_PROVINCIALE){
+                
+                updateBuilder.updateColumnValue("idSsp", utente.getId());
+            }
             updateBuilder.update();
                 
         } catch (SQLException ex) {

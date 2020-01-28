@@ -22,6 +22,12 @@
                      <h4 class="text-danger pb-4 text-center">Esami specialistici da effettuare</h4>   
                 </ui:define>
                 <ui:define name="sectionBody">
+                    <div class="notification top-fix with-icon success" role="alert" aria-labelledby="not1b-title" id="notificationSuccess">
+                        <h5 id="not1b-title"><svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-check-circle"></use></svg>Report esame confermato</h5>
+                    </div>
+                    <div class="notification top-fix with-icon error" role="alert" aria-labelledby="not2b-title" id="notificationError">
+                        <h5 id="not2b-title"><svg class="icon"><use xlink:href="#{request.contextPath}/svg/sprite.svg#it-close-circle"></use></svg>Errore, Report esame non inserito</h5>
+                    </div>
                     <div class="main-pills  text-center">
                         <div class="main-pills-wrap table-responsive-sm" style="min-height: 300px;">
                             
@@ -74,35 +80,35 @@
                             
                         </div>
                     </div>
-                        <div class="modal fade" tabindex="-1" role="dialog" id="reportModal">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h4 class="modal-title mb-2" id="idPrescrizione">Report Esame n. </h4>
-                                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <svg class="icon">
-                                       <use xlink:href="../../../svg/sprite.svg#it-close"></use>
-                                    </svg>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  <form id="formReport">
-                                      <div class="form-row">
-                                          <div class="form-group w-100">
-                                              <textarea id="descrizione" rows="5" style="resize: none" placeholder="inserisci la descrizione dell'esame"></textarea>
-                                              <label for="descrizione">Descrizione</label>
-                                          </div>
-                                      </div>
-                                      <div class="form-row">
-                                        <div class="form-group">
-                                            <button type="button" id="submitReport" class="btn btn-primary">Conferma</button>
-                                        </div>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
+                    <div class="modal fade" tabindex="-1" role="dialog" id="reportModal">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title mb-2" id="idPrescrizione"></h4>
+                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <svg class="icon">
+                                   <use xlink:href="../../../svg/sprite.svg#it-close"></use>
+                                </svg>
+                              </button>
                             </div>
-                        </div> 
+                            <div class="modal-body">
+                              <form id="formReport">
+                                  <div class="form-row">
+                                      <div class="form-group w-100">
+                                          <textarea id="descrizione" rows="5" style="resize: none" placeholder="inserisci la descrizione dell'esame"></textarea>
+                                          <label for="descrizione">Descrizione</label>
+                                      </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group">
+                                        <button type="button" id="submitReport" class="btn btn-primary">Conferma</button>
+                                    </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                    </div> 
 
                 </ui:define>
         </ui:decorate>
@@ -123,7 +129,7 @@
              $(document).on("click", "button[name='numPrescrizione']", function(e) {
                     var idPrescrizione = $(this).val();
                     $('#reportModal').modal('show');
-                    $('#idPrescrizione').append(idPrescrizione);
+                    $('#idPrescrizione').text('Report Esame n. '+idPrescrizione);
                 });
             $('#reportModal').on('hidden.bs.modal', function (e) {
                 $('#idPrescrizione').val("");
@@ -132,14 +138,17 @@
             $("#submitReport").click(function() {
                 var descrizione = $('#descrizione').val();
                 var idPrescrizione = document.getElementsByName('numPrescrizione')[0].value;
-                console.log(descrizione);
-                console.log(idPrescrizione);
+                
                 $.post('#{request.contextPath}/services/doctor/report',{"idPrescrizione": parseInt(idPrescrizione), "descrizione": descrizione},
                     function() { // on success
-                          
+                        $("#reportModal").modal('hide');
+                        notificationShow('notificationSuccess',5000);
+                        $('select').selectpicker('val', '');
                     })
                     .fail(function(error) { //on failure
-                         console.log("SEI UN GAY!!");       
+                        $("#reportModal").modal('hide');
+                        notificationShow('notificationError',5000);
+                        $('select').selectpicker('val', '');
                     });
                 });
         </script>
