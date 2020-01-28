@@ -23,6 +23,7 @@ public class ApplicationConfig extends Application {
         resources.add(sistemasanitario.services.DoctorServices.class);
         resources.add(sistemasanitario.services.MedicineResource.class);
         resources.add(sistemasanitario.services.PatientServices.class);
+        resources.add(sistemasanitario.services.SspServices.class);
     }
     
 }

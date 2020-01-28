@@ -24,9 +24,9 @@
                 <ui:define name="sectionBody">
                     <div class="main-pills  text-left">
                         <div class="main-pills-wrap" style="min-height: 700px;">
-                            <div>
-                                Seleziona il tipo di report che vuoi generare:
-                                <div class="row">
+                            <label class="input-number-label text-left mb-1" style="color: #435a70;">Seleziona il tipo di report che vuoi generare</label>
+                            <div class="form-group">
+                                <div class="ml-1 row">
                                   <div class="form-check form-check-inline">
                                     <input name="gruppo2" type="radio" id="radio4" checked="checked" />
                                     <label for="radio4">Esami</label>
@@ -37,13 +37,20 @@
                                   </div>
                                 </div>
                             </div>
-                            <br></br>
-                            <div class="it-datepicker-wrapper">
-                                <div class="form-group">
-                                  <input class="form-control it-date-datepicker" id="date1" type="text" placeholder="inserisci la data in formato gg/mm/aaaa" />
-                                  <label for="date1">Seleziona la data</label>
+                            <div class="form-group">
+                                <div class="it-datepicker-wrapper">
+                                    <div class="form-group">
+                                      <input class="form-control it-date-datepicker" id="date" type="text" placeholder="inserisci la data in formato gg/mm/aaaa" />
+                                      <label for="date">Seleziona la data</label>
+                                    </div>
                                 </div>
                             </div>
+                            <button class="btn btn-danger btn btn-icon">
+                                <svg class="icon icon-white">
+                                <use xlink:href="../../../svg/sprite.svg#it-download"></use>
+                                </svg>
+                                <span>Genera e scarica</span>
+                            </button>
                         </div>
                     </div>
                 </ui:define>
@@ -56,7 +63,8 @@
             $(document).ready(function() {
                 $('.it-date-datepicker').datepicker({
                   inputFormat: ["dd/MM/yyyy"],
-                  outputFormat: 'dd/MM/yyyy',
+                  outputFormat: 'yyyy-MM-dd',
+                  function (value) { console.log("date updated : " + value);}
                 });
             });
         </script>
