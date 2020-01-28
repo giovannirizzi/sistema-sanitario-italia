@@ -28,11 +28,11 @@
                             <div class="form-group">
                                 <div class="ml-1 row">
                                   <div class="form-check form-check-inline">
-                                    <input name="gruppo2" type="radio" id="radio4" checked="checked" />
+                                    <input name="gruppo2" type="radio" id="radio4" checked="checked" value="report_medicine"/>
                                     <label for="radio4">Esami</label>
                                   </div>
                                   <div class="form-check form-check-inline">
-                                    <input name="gruppo2" type="radio" id="radio5" />
+                                    <input name="gruppo2" type="radio" id="radio5" value="report_exam"/>
                                     <label for="radio5">Medicine</label>
                                   </div>
                                 </div>
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <div class="it-datepicker-wrapper">
                                     <div class="form-group">
-                                      <input class="form-control it-date-datepicker" id="date" type="text" placeholder="inserisci la data in formato gg/mm/aaaa" />
+                                      <input class="form-control it-date-datepicker" id="date" type="text" placeholder="inserisci la data in formato gg/mm/aaaa" readonly="readonly" />
                                       <label for="date">Seleziona la data</label>
                                     </div>
                                 </div>
@@ -60,12 +60,26 @@
     
     <ui:define name="additionalJs">
         <script type="text/javascript"> 
+            $('button').prop('disabled', true);
             $(document).ready(function() {
                 $('.it-date-datepicker').datepicker({
                   inputFormat: ["dd/MM/yyyy"],
-                  outputFormat: 'yyyy-MM-dd',
-                  function (value) { console.log("date updated : " + value);}
+                  outputFormat: 'yyyy-MM-dd'
+                })
+                .on("change", function() {
+                    $('button').prop('disabled', false);
                 });
+            });
+            $(document).on("click", "button", function(e) {
+                var reportType = $('input[name=gruppo2]:checked').val();
+                var date = document.getElementById("date").value;
+                var url = "";
+                if(reportType === "reportMedicine"){
+                    url = "/services/ssp/report_medicine?date="+date;
+                } else {
+                    url = "/services/ssp/report_exams?date="+date;
+                }
+                window.open((url), "_blank");
             });
         </script>
     </ui:define>
