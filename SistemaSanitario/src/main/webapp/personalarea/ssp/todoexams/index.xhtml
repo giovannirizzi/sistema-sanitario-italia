@@ -116,7 +116,7 @@
     
     <ui:define name="additionalJs">
         <script type="text/javascript">
-            var clickedBtn;
+            var clickedBtn, idPrescrizione;
             $(document).ready( function() { 
                 $("#myTable").dataTable(
                 {
@@ -128,7 +128,7 @@
              });
             $(document).on("click", "button[name='numPrescrizione']", function(e) {
                     clickedBtn = $(this);
-                    var idPrescrizione = $(this).val();
+                    idPrescrizione = $(this).val();
                     $('#reportModal').modal('show');
                     $('#idPrescrizione').text('Report Esame n. '+idPrescrizione);
                 });
@@ -138,9 +138,7 @@
             });
             $("#submitReport").click(function() {
                 var descrizione = $('#descrizione').val();
-                var idPrescrizione = document.getElementsByName('numPrescrizione')[0].value;
                 clickedBtn.addClass("disabled");
-
                 $.post('#{request.contextPath}/services/doctor/report',{"idPrescrizione": parseInt(idPrescrizione), "descrizione": descrizione},
                     function() { // on success
                         clickedBtn.closest("tr").remove();

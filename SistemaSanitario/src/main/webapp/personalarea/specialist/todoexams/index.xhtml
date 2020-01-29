@@ -117,6 +117,7 @@
     
     <ui:define name="additionalJs">
         <script type="text/javascript"> 
+            var clickedBtn, idPrescrizione;
             $(document).ready( function() { 
                 $("#myTable").dataTable(
                 {
@@ -127,7 +128,8 @@
                 $("#myTable thead").addClass("thead-light");
              });
              $(document).on("click", "button[name='numPrescrizione']", function(e) {
-                    var idPrescrizione = $(this).val();
+                    clickedBtn = $(this);
+                    idPrescrizione = $(this).val();
                     $('#reportModal').modal('show');
                     $('#idPrescrizione').text('Report Esame n. '+idPrescrizione);
                 });
@@ -137,10 +139,10 @@
             });
             $("#submitReport").click(function() {
                 var descrizione = $('#descrizione').val();
-                var idPrescrizione = document.getElementsByName('numPrescrizione')[0].value;
-                
+                clickedBtn.addClass("disabled");
                 $.post('#{request.contextPath}/services/doctor/report',{"idPrescrizione": parseInt(idPrescrizione), "descrizione": descrizione},
                     function() { // on success
+                        clickedBtn.closest("tr").remove();
                         $("#reportModal").modal('hide');
                         notificationShow('notificationSuccess',5000);
                         $('select').selectpicker('val', '');
