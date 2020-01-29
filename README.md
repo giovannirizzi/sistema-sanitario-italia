@@ -1,6 +1,6 @@
-#Sistema Sanitario Italia
+# Sistema Sanitario Italia
 
-###Autori
+### Autori
 - Giovanni Rizzi
 - Marco Menapace
 - Omar Battan 
