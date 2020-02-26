@@ -11,13 +11,9 @@ nbactions.xml
 nb-configuration.xml
 .DS_Store
 *.map
-/SistemaSanitario/src/main/webapp/css/main.css
 SistemaSanitario/src/main/webapp/node_modules/
 SistemaSanitario/src/main/webapp/css/bootstrap-italia.scss
 SistemaSanitario/src/main/webapp/css/custom/
 SistemaSanitario/src/main/webapp/css/utilities/
 SistemaSanitario/src/main/webapp/css/_variables.scss
 SistemaSanitario/src/main/webapp/css/_functions.scss
-ormlite.pdf
-robe utili.txt
-wpss1819_190418.pdf
