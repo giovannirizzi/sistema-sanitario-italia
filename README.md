@@ -46,5 +46,11 @@ Applicazione web per la gestione dei servizi sanitari e delle risorse ad essi co
   <img src="/Screenshot/profile.png?raw=true" width="400" alt="Profile page" />
 </div>
 
+## Autori
+- Giovanni Rizzi
+- Omar Battan
+- Marco Menapace
+
 ## Licenza
 Distribuito sotto licenza MIT. Visitare `LICENSE` per ulteriori informazioni.
+&copy; Sistema Sanitario Italia 2020
